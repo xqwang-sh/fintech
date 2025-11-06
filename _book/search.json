@@ -1622,11 +1622,41 @@
   {
     "objectID": "project_list.html",
     "href": "project_list.html",
-    "title": "9  入门级（难度系数 0.9）",
+    "title": "9  项目列表",
     "section": "",
-    "text": "California House Prices：回归问题，特征较少，提供数据清洗模板\nUCI Credit Card Default：分类问题，数据集小，特征清晰\n\n\n9.0.1 进阶级（难度系数 1.0）\n\nLendingClub Default Risk：评估 AUC、剔除泄露字段\nHome Credit Default Risk：评估 AUC，可合并外部表\n\n\n\n9.0.2 挑战级（难度系数 1.1，需要一定编程基础）\n\nIEEE-CIS Fraud Detection：极不平衡、严格时序、多表合并\nG-Research Crypto Forecasting：回归/排序、多币种、时间序列",
+    "text": "9.1 入门级（难度系数 0.9）",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>入门级（难度系数 0.9）</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>项目列表</span>"
+    ]
+  },
+  {
+    "objectID": "project_list.html#入门级难度系数-0.9",
+    "href": "project_list.html#入门级难度系数-0.9",
+    "title": "9  项目列表",
+    "section": "",
+    "text": "California House Prices：回归问题，特征较少，提供数据清洗模板\nUCI Credit Card Default：分类问题，数据集小，特征清晰",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>项目列表</span>"
+    ]
+  },
+  {
+    "objectID": "project_list.html#进阶级难度系数-1.0",
+    "href": "project_list.html#进阶级难度系数-1.0",
+    "title": "9  项目列表",
+    "section": "9.2 进阶级（难度系数 1.0）",
+    "text": "9.2 进阶级（难度系数 1.0）\n\nLendingClub Default Risk：评估 AUC、剔除泄露字段\nHome Credit Default Risk：评估 AUC，可合并外部表",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>项目列表</span>"
+    ]
+  },
+  {
+    "objectID": "project_list.html#挑战级难度系数-1.1需要一定编程基础",
+    "href": "project_list.html#挑战级难度系数-1.1需要一定编程基础",
+    "title": "9  项目列表",
+    "section": "9.3 挑战级（难度系数 1.1，需要一定编程基础）",
+    "text": "9.3 挑战级（难度系数 1.1，需要一定编程基础）\n\nIEEE-CIS Fraud Detection：极不平衡、严格时序、多表合并\nG-Research Crypto Forecasting：回归/排序、多币种、时间序列",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>项目列表</span>"
     ]
   },
   {

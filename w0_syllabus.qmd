@@ -202,7 +202,7 @@
 ## 教学资源
 
 1. **教学资料**：
-   - 课程handouts（https://fintech.netlify.app/）
+   - 课程handouts（https://fintech-ml.netlify.app/）
    - 网上教材（https://ai-first-ml.netlify.app/）
 
 2. **`project_list/`**：项目说明

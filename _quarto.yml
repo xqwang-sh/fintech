@@ -5,7 +5,7 @@ project:
 book:
   title: "金融科技概论讲义（机器学习部分）"
   author: "汪小圈" # 请替换为您的姓名
-  date: last-modified
+  date: "2025-11-10"
   chapters:
     - index.qmd
     - w0_syllabus.qmd
