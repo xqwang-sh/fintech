@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "数据挖掘与机器学习课程讲义",
+    "title": "金融科技概论讲义（机器学习部分）",
     "section": "",
     "text": "欢迎学习金融科技导论！",
     "crumbs": [
@@ -12,7 +12,7 @@
   {
     "objectID": "index.html#课程简介",
     "href": "index.html#课程简介",
-    "title": "数据挖掘与机器学习课程讲义",
+    "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.1 课程简介",
     "text": "0.1 课程简介\n本课程专为零编程基础的本科二年级学生设计，采用渐进式实践优先的教学模式。通过后7周的学习，你将掌握：\n\n编程技能：Python 基础语法和数据处理\n机器学习理论：从线性回归到神经网络\n金融应用：实际案例和项目实践\n数据思维：理解数据驱动的决策过程\n\n课程具体安排与考核要求",
     "crumbs": [
@@ -22,7 +22,7 @@
   {
     "objectID": "index.html#学习目标",
     "href": "index.html#学习目标",
-    "title": "数据挖掘与机器学习课程讲义",
+    "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.2 学习目标",
     "text": "0.2 学习目标\n完成本课程后，你将能够：\n\n独立编程：使用 Python 进行数据分析和机器学习\n模型构建：从数据预处理到模型评估的完整流程\n问题解决：将机器学习应用于金融场景\n项目开发：完成端到端的机器学习项目",
     "crumbs": [
@@ -32,7 +32,7 @@
   {
     "objectID": "index.html#课程结构",
     "href": "index.html#课程结构",
-    "title": "数据挖掘与机器学习课程讲义",
+    "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.3 课程结构",
     "text": "0.3 课程结构\n本书按时间顺序组织，共分为6个主要章节：\n\n第10周：Python基础与机器学习入门\n第11周：数据处理与线性回归实践\n第12周：线性回归的正则化\n第13周：分类问题、决策树与评估指标\n第14周：集成学习 - 随机森林与 GBDT\n第15周：神经网络基础\n\n所有上机课jupyter notebook请通过百度网盘获取（）",
     "crumbs": [
@@ -42,7 +42,7 @@
   {
     "objectID": "index.html#项目列表与要求",
     "href": "index.html#项目列表与要求",
-    "title": "数据挖掘与机器学习课程讲义",
+    "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.4 项目列表与要求",
     "text": "0.4 项目列表与要求\n\n项目列表与难度\n每个项目具体要求：\n\nCalifornia House Prices\nUCI Credit Card Default\nLendingClub Default Risk\nHome Credit Default Risk\nIEEE-CIS Fraud Detection\nG-Research Crypto Forecasting\n\n项目数据与模板请通过百度网盘获取（）",
     "crumbs": [
@@ -52,7 +52,7 @@
   {
     "objectID": "index.html#技术栈",
     "href": "index.html#技术栈",
-    "title": "数据挖掘与机器学习课程讲义",
+    "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.5 技术栈",
     "text": "0.5 技术栈\n\n编程语言：Python 3.10+\n核心库：pandas, numpy, scikit-learn, matplotlib, seaborn\n深度学习：TensorFlow/Keras\n开发环境：VS Code + Jupyter Notebook\n版本控制：Git + GitHub",
     "crumbs": [
@@ -62,7 +62,7 @@
   {
     "objectID": "index.html#学习建议",
     "href": "index.html#学习建议",
-    "title": "数据挖掘与机器学习课程讲义",
+    "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.6 学习建议",
     "text": "0.6 学习建议\n\n理论实践结合：每章理论后都有对应的上机练习\n项目驱动学习：通过实际项目巩固知识\n逐步深入：从简单概念开始，逐渐过渡到复杂算法\n多练多想：编程是实践技能，需要大量练习",
     "crumbs": [
@@ -72,7 +72,7 @@
   {
     "objectID": "index.html#联系方式",
     "href": "index.html#联系方式",
-    "title": "数据挖掘与机器学习课程讲义",
+    "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.7 联系方式",
     "text": "0.7 联系方式\n\n课程群：随时线上问答\nOffice Hour：周二、周三上午（需预约）\n邮箱：xqwang@suibe.edu.cn\n\n\n\n记住：机器学习不是魔法，而是从数据中学习规律的工具。理解原理比记住公式更重要！\n\n祝学习愉快！🚀",
     "crumbs": [
@@ -144,7 +144,7 @@
     "href": "w0_syllabus.html#教学资源",
     "title": "2  课程安排与考核要求",
     "section": "2.6 教学资源",
-    "text": "2.6 教学资源\n\n教学资料：\n\n课程handouts（https://fintech.netlify.app/）\n网上教材（https://ai-first-ml.netlify.app/）\n\nproject_list/：项目说明\nproject_root/：演示项目根目录\n\n项目仓库结构\nproject_root/\n  README.md                # 项目背景、分工、数据来源与口径摘要、运行命令\n  main.py                  # 单文件分工脚本\n  requirements.txt         # 依赖（pandas/numpy/scikit-learn 等）\n  data/\n    sample.csv             # 样本（数据不上传）\n    README.md              # 数据文件夹结构\n  outputs/\n    predictions.csv        # 模型输出样例（运行脚本可覆盖生成）\n  report.pdf  (或 .md)     # 6–8 页项目报告（请在结题时添加）\n  slides.pdf               # 6–8 页答辩幻灯（请在结题时添加）\n  ai_usage_log.md          # AI 使用记录（日期/工具/用途/采纳与否）\n  .gitignore               # 忽略大文件（保留示例数据与示例输出）",
+    "text": "2.6 教学资源\n\n教学资料：\n\n课程handouts（https://fintech-ml.netlify.app/）\n网上教材（https://ai-first-ml.netlify.app/）\n\nproject_list/：项目说明\nproject_root/：演示项目根目录\n\n项目仓库结构\nproject_root/\n  README.md                # 项目背景、分工、数据来源与口径摘要、运行命令\n  main.py                  # 单文件分工脚本\n  requirements.txt         # 依赖（pandas/numpy/scikit-learn 等）\n  data/\n    sample.csv             # 样本（数据不上传）\n    README.md              # 数据文件夹结构\n  outputs/\n    predictions.csv        # 模型输出样例（运行脚本可覆盖生成）\n  report.pdf  (或 .md)     # 6–8 页项目报告（请在结题时添加）\n  slides.pdf               # 6–8 页答辩幻灯（请在结题时添加）\n  ai_usage_log.md          # AI 使用记录（日期/工具/用途/采纳与否）\n  .gitignore               # 忽略大文件（保留示例数据与示例输出）",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>课程安排与考核要求</span>"
     ]
