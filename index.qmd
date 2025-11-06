@@ -1,0 +1,81 @@
+---
+title: "金融科技导论"
+subtitle: "从零开始的机器学习之旅"
+author: "汪小圈"
+date: "2025"
+description: "金融科技导论课程之机器学习部分的完整讲义，系统介绍机器学习在金融科技领域的应用"
+---
+
+# 欢迎学习金融科技导论！ {.unnumbered}
+
+## 课程简介
+
+本课程专为零编程基础的本科二年级学生设计，采用渐进式实践优先的教学模式。通过后7周的学习，你将掌握：
+
+- **编程技能**：Python 基础语法和数据处理
+- **机器学习理论**：从线性回归到神经网络
+- **金融应用**：实际案例和项目实践
+- **数据思维**：理解数据驱动的决策过程
+
+[课程具体安排与考核要求](w0_syllabus.qmd)
+
+## 学习目标
+
+完成本课程后，你将能够：
+
+1. **独立编程**：使用 Python 进行数据分析和机器学习
+2. **模型构建**：从数据预处理到模型评估的完整流程
+3. **问题解决**：将机器学习应用于金融场景
+4. **项目开发**：完成端到端的机器学习项目
+
+## 课程结构
+
+本书按时间顺序组织，共分为6个主要章节：
+
+- **第10周**：[Python基础与机器学习入门](w1_python_ml_intro.qmd)
+- **第11周**：[数据处理与线性回归实践](w2_data_processing.qmd)
+- **第12周**：[线性回归的正则化](w3_lm_regularization.qmd)
+- **第13周**：[分类问题、决策树与评估指标](w4_classification_decision_tree.qmd)
+- **第14周**：[集成学习 - 随机森林与 GBDT](w5_ensemble_learning.qmd)
+- **第15周**：[神经网络基础](w6_neural_networks.qmd)
+
+所有上机课jupyter notebook请通过百度网盘获取（）
+
+## 项目列表与要求
+
+- [项目列表与难度](project_list.qmd)
+- 每个项目具体要求：
+    - [California House Prices](1_california.qmd)
+    - [UCI Credit Card Default](2_uci.qmd)
+    - [LendingClub Default Risk](3_lendingclub.qmd)
+    - [Home Credit Default Risk](4_homecredit.qmd)
+    - [IEEE-CIS Fraud Detection](5_ieee-cis.qmd)
+    - [G-Research Crypto Forecasting](6_gresearch.qmd)
+- 项目数据与模板请通过百度网盘获取（）
+
+## 技术栈
+
+- **编程语言**：Python 3.10+
+- **核心库**：pandas, numpy, scikit-learn, matplotlib, seaborn
+- **深度学习**：TensorFlow/Keras
+- **开发环境**：VS Code + Jupyter Notebook
+- **版本控制**：Git + GitHub
+
+## 学习建议
+
+1. **理论实践结合**：每章理论后都有对应的上机练习
+2. **项目驱动学习**：通过实际项目巩固知识
+3. **逐步深入**：从简单概念开始，逐渐过渡到复杂算法
+4. **多练多想**：编程是实践技能，需要大量练习
+
+## 联系方式
+
+- **课程群**：随时线上问答
+- **Office Hour**：周二、周三上午（需预约）
+- **邮箱**：xqwang@suibe.edu.cn
+
+---
+
+> **记住**：机器学习不是魔法，而是从数据中学习规律的工具。理解原理比记住公式更重要！
+
+祝学习愉快！🚀

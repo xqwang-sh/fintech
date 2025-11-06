@@ -1,0 +1,109 @@
+# 参考资料与资源 {.unnumbered}
+
+## 📚 推荐教材
+
+### 机器学习基础
+- **《Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow》**
+  - Aurélien Géron 著
+  - 实践导向，代码示例丰富
+
+- **《Pattern Recognition and Machine Learning》**
+  - Christopher M. Bishop 著
+  - 理论深度，数学推导详细
+
+- **《Deep Learning》**
+  - Ian Goodfellow、Yoshua Bengio、Aaron Courville 著
+  - 深度学习经典教材
+
+### Python 编程
+- **《Python for Data Analysis》**
+  - Wes McKinney 著
+  - pandas 库创始人亲著
+
+- **《Python Crash Course》**
+  - Eric Matthes 著
+  - 编程入门经典
+
+## 🌐 在线资源
+
+### 官方文档
+- [Scikit-learn 官方文档](https://scikit-learn.org/)
+- [Pandas 官方文档](https://pandas.pydata.org/)
+- [TensorFlow 官方文档](https://www.tensorflow.org/)
+- [PyTorch 官方文档](https://pytorch.org/)
+
+### 学习平台
+- [Coursera - Machine Learning by Andrew Ng](https://www.coursera.org/learn/machine-learning)
+- [fast.ai - Practical Deep Learning for Coders](https://course.fast.ai/)
+- [Google's Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course)
+
+### 中文资源
+- [机器学习实战](https://www.ituring.com.cn/book/1021)
+- [Python 数据分析](https://www.ituring.com.cn/book/1983)
+- [李宏毅机器学习课程](https://www.youtube.com/c/HungyiLeeNTU)
+
+## 🛠️ 开发工具
+
+### IDE 和编辑器
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [PyCharm](https://www.jetbrains.com/pycharm/)
+- [Jupyter Notebook](https://jupyter.org/)
+
+### 版本控制
+- [Git 官方文档](https://git-scm.com/doc)
+- [GitHub](https://github.com/)
+
+## 📊 数据集资源
+
+### 经典数据集
+- [UCI Machine Learning Repository](https://archive.ics.uci.edu/)
+- [Kaggle Datasets](https://www.kaggle.com/datasets)
+
+### 金融数据集
+- [Yahoo Finance API](https://pypi.org/project/yfinance/)
+- [Alpha Vantage](https://www.alphavantage.co/)
+- [FRED Economic Data](https://fred.stlouisfed.org/)
+
+## 🤝 社区与交流
+
+### 技术社区
+- [Stack Overflow](https://stackoverflow.com/)
+- [Reddit r/MachineLearning](https://www.reddit.com/r/MachineLearning/)
+- [Reddit r/Python](https://www.reddit.com/r/python/)
+
+### 中文社区
+- [CSDN](https://www.csdn.net/)
+- [知乎](https://www.zhihu.com/)
+- [机器学习算法与Python学习](https://www.ituring.com.cn/tag/2781)
+
+## 📝 论文与研究
+
+### 经典论文
+- **"A Few Useful Things to Know about Machine Learning"**
+  - Pedro Domingos, 2012
+
+- **"Deep Learning"**
+  - Yann LeCun, Yoshua Bengio & Geoffrey Hinton, 2015
+
+- **"Random Forests"**
+  - Leo Breiman, 2001
+
+## 🎯 实践项目
+
+### 比赛平台
+- [Kaggle](https://www.kaggle.com/)
+- [DrivenData](https://www.drivendata.org/)
+
+### 项目灵感
+- [Awesome Machine Learning](https://github.com/josephmisiti/awesome-machine-learning)
+- [Machine Learning Projects](https://github.com/NirantK/awesome-project-ideas)
+
+## 📞 课程支持
+
+- **课程QQ群**：[群号]
+- **GitHub Issues**：[仓库地址]
+- **邮件咨询**：[邮箱地址]
+
+---
+
+*本参考资料持续更新，如有建议欢迎提交 Issue 或 Pull Request*

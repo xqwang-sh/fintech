@@ -1,0 +1,36 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "数据挖掘与机器学习课程讲义"
+  author: "汪小圈" # 请替换为您的姓名
+  date: last-modified
+  chapters:
+    - index.qmd
+    - w0_syllabus.qmd
+    - w1_python_ml_intro.qmd
+    - w2_data_processing.qmd
+    - w3_lm_regularization.qmd
+    - w4_classification_decision_tree.qmd
+    - w5_ensemble_learning.qmd
+    - w6_neural_networks.qmd
+    - project_list.qmd
+    - 1_california.qmd
+    - 2_uci.qmd
+    - 3_lendingclub.qmd
+    - 4_homecredit.qmd
+    - 5_ieee-cis.qmd
+    - 6_gresearch.qmd
+
+format:
+  html:
+    theme: cosmo
+    code-fold: true
+    number-sections: true
+    toc: true
+    toc-depth: 3
+    lang: zh-CN
+
+execute:
+  freeze: auto 

@@ -1,0 +1,11 @@
+### 入门级（难度系数 0.9）
+1. **California House Prices**：回归问题，特征较少，提供数据清洗模板
+2. **UCI Credit Card Default**：分类问题，数据集小，特征清晰
+
+### 进阶级（难度系数 1.0）
+3. **LendingClub Default Risk**：评估 AUC、剔除泄露字段
+4. **Home Credit Default Risk**：评估 AUC，可合并外部表
+
+### 挑战级（难度系数 1.1，需要一定编程基础）
+5. **IEEE-CIS Fraud Detection**：极不平衡、严格时序、多表合并
+6. **G-Research Crypto Forecasting**：回归/排序、多币种、时间序列

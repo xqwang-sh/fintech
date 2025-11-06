@@ -1,0 +1,1 @@
+cd /Users/xqwang/Library/CloudStorage/OneDrive-个人/Courses/FinTechIntro/book && quarto render

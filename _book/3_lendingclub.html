@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; 项目3：Lending Club（借贷违约风险）学生项目要求 – 数据挖掘与机器学习课程讲义</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./4_homecredit.html" rel="next">
+<link href="./2_uci.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ed6da6eef3892af8a4b5ed59bfb951f5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./3_lendingclub.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">项目3：Lending Club（借贷违约风险）学生项目要求</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">数据挖掘与机器学习课程讲义</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="搜索"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">金融科技导论</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w0_syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程安排与考核要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w1_python_ml_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w2_data_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第二讲：数据处理与线性回归实践</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w3_lm_regularization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w4_classification_decision_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w5_ensemble_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w6_neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_list.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">入门级（难度系数 0.9）</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_california.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">项目1：California House Prices 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_uci.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">项目2：UCI Credit Card Default 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_lendingclub.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">项目3：Lending Club（借贷违约风险）学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_homecredit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">项目4：Home Credit Default Risk 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_ieee-cis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">项目5：IEEE‑CIS Fraud Detection 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_gresearch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">项目6：G‑Research Crypto Forecasting 学生项目要求</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目录</h2>
+   
+  <ul>
+  <li><a href="#项目背景" id="toc-项目背景" class="nav-link active" data-scroll-target="#项目背景"><span class="header-section-number">12.1</span> 0. 项目背景</a></li>
+  <li><a href="#项目任务必须完成" id="toc-项目任务必须完成" class="nav-link" data-scroll-target="#项目任务必须完成"><span class="header-section-number">12.2</span> 1. 项目任务（必须完成）</a></li>
+  <li><a href="#团队与分工6-10-人" id="toc-团队与分工6-10-人" class="nav-link" data-scroll-target="#团队与分工6-10-人"><span class="header-section-number">12.3</span> 2. 团队与分工（6-10 人）</a></li>
+  <li><a href="#数据与合规" id="toc-数据与合规" class="nav-link" data-scroll-target="#数据与合规"><span class="header-section-number">12.4</span> 3. 数据与合规</a></li>
+  <li><a href="#交付与时间线统一里程碑" id="toc-交付与时间线统一里程碑" class="nav-link" data-scroll-target="#交付与时间线统一里程碑"><span class="header-section-number">12.5</span> 4. 交付与时间线（统一里程碑）</a></li>
+  <li><a href="#交付清单统一目录" id="toc-交付清单统一目录" class="nav-link" data-scroll-target="#交付清单统一目录"><span class="header-section-number">12.6</span> 5. 交付清单（统一目录）</a></li>
+  <li><a href="#技术要求" id="toc-技术要求" class="nav-link" data-scroll-target="#技术要求"><span class="header-section-number">12.7</span> 6. 技术要求</a></li>
+  <li><a href="#评分与-rubric统一口径可微调" id="toc-评分与-rubric统一口径可微调" class="nav-link" data-scroll-target="#评分与-rubric统一口径可微调"><span class="header-section-number">12.8</span> 7. 评分与 Rubric（统一口径，可微调）</a>
+  <ul class="collapse">
+  <li><a href="#团队分90" id="toc-团队分90" class="nav-link" data-scroll-target="#团队分90"><span class="header-section-number">12.8.1</span> 7.1 团队分（90%）</a></li>
+  <li><a href="#互评10" id="toc-互评10" class="nav-link" data-scroll-target="#互评10"><span class="header-section-number">12.8.2</span> 7.2 互评（10%）</a></li>
+  </ul></li>
+  <li><a href="#报告与答辩内容统一骨架" id="toc-报告与答辩内容统一骨架" class="nav-link" data-scroll-target="#报告与答辩内容统一骨架"><span class="header-section-number">12.9</span> 8. 报告与答辩内容（统一骨架）</a></li>
+  <li><a href="#提交与命名规范" id="toc-提交与命名规范" class="nav-link" data-scroll-target="#提交与命名规范"><span class="header-section-number">12.10</span> 9. 提交与命名规范</a></li>
+  <li><a href="#学术诚信与-ai-使用政策" id="toc-学术诚信与-ai-使用政策" class="nav-link" data-scroll-target="#学术诚信与-ai-使用政策"><span class="header-section-number">12.11</span> 10. 学术诚信与 AI 使用政策</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">项目3：Lending Club（借贷违约风险）学生项目要求</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="项目背景" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="项目背景"><span class="header-section-number">12.1</span> 0. 项目背景</h2>
+<ul>
+<li><strong>项目名称</strong>：借贷违约风险评估（Lending Club）</li>
+<li><strong>应用场景 / 价值</strong>：在线撮合的个人信用贷需要在放款前评估违约概率，以定价利率、设定授信或拒绝申请。你们将基于历史贷款数据构建一个<strong>放款前可用</strong>的违约预测模型，理解信用风险关键因素，并以图表与文字解释业务含义。</li>
+<li><strong>数据来源</strong>：Lending Club 历史贷款公开数据（课程提供子集）。原始数据覆盖 <strong>2007.06–2018.12</strong>，字段约 145 个、记录约 200 万条；本项目使用其中子集。</li>
+<li><strong>任务类型</strong>：二分类（是否违约 / 坏账）。</li>
+<li><strong>数据说明</strong>：变量说明见 <code>LCDataDictionary.xlsx</code> 。</li>
+</ul>
+<hr>
+</section>
+<section id="项目任务必须完成" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="项目任务必须完成"><span class="header-section-number">12.2</span> 1. 项目任务（必须完成）</h2>
+<ol type="1">
+<li><strong>目标变量口径</strong>：将 <code>loan_status</code> 统一映射为二分类标签：违约=1、非违约=0；请在报告中提供<strong>映射表</strong>与口径解释。</li>
+<li><strong>样本选择</strong>：统一使用 <strong>2013–2014 年</strong>发放且<strong>期限 36 个月</strong>的贷款作为训练/测试样本（这些贷款在 2018 年底前已结束，结局可观察）。</li>
+<li><strong>可用字段原则（非常重要）</strong>：<strong>只使用放款前可获得信息</strong>进行建模；<strong>剔除</strong>所有放款后的贷后信息，例如变量名包含 <code>recover</code>、<code>settlement</code>、<code>pymnt</code>、以 <code>total_rec</code> 开头、以 <code>out_prncp</code> 开头等（报告中请列出你们剔除的字段清单）。</li>
+<li><strong>数据读取与检查</strong>：打印行列数、前 3 行、关键列存在性；形成 <code>README.md</code> 的数据摘要。</li>
+<li><strong>数据清洗</strong>：缺失值、异常值、类别统一（大小写/空格）；说明口径与处理理由。</li>
+<li><strong>特征工程</strong>：至少 <strong>2 个</strong>新增特征（示例：DTI 分箱、<code>revol_util</code> 分段、<code>annual_inc</code> 对数、<code>grade/sub_grade</code> 编码等）；必要的 One-Hot/分箱。</li>
+<li><strong>训练/测试切分</strong>：固定随机种子；说明比例与分层策略。</li>
+<li><strong>基线模型</strong>：逻辑回归（Logistic Regression）作为<strong>必做基线</strong>；至少提供 <strong>1 个</strong>评估指标（推荐 Accuracy + F1 或 AUC）。</li>
+<li><strong>模型解释</strong>：打印或可视化关键特征影响（如系数/重要性），并结合业务给出 2–3 条洞见。</li>
+<li><strong>结果导出</strong>：在 <code>outputs/</code> 目录输出预测结果（含概率列），并在报告中说明阈值选择与业务含义。</li>
+</ol>
+<blockquote class="blockquote">
+<p>允许在基线之上追加 1–2 个简单模型作对比（如决策树/随机森林），见“额外加分”。</p>
+</blockquote>
+<hr>
+</section>
+<section id="团队与分工6-10-人" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="团队与分工6-10-人"><span class="header-section-number">12.3</span> 2. 团队与分工（6-10 人）</h2>
+<ul>
+<li><strong>推荐规模</strong>：6-10 人；可根据团队实际人数灵活调整。</li>
+<li><strong>核心角色（必须）</strong>： A. 数据读取与清洗（<code>clean_data</code>） B. 数据探索（<code>explore_data</code>） C. 特征工程（<code>feature_engineering</code>） D. 数据切分（<code>split_data</code>） E. 训练模型（<code>train_model</code>） F. 评估与导出（<code>evaluate_model</code> / <code>save_predictions</code>）</li>
+<li><strong>可选角色（7-8 人时添加）</strong>： G. 可视化与报告排版（负责图表制作、报告编写） H. presenter（做PPT、项目答辩汇报）</li>
+<li><strong>协作角色（9-10 人时添加）</strong>： I. 数据探索辅助（协助 A 完成数据理解、可视化探索） J. 特征工程辅助（协助 C 完成特征构造、验证） K. 模型调参辅助（协助 E 完成超参数调优、模型对比）</li>
+<li><strong>署名规范</strong>：每位成员在自己负责的函数顶部写 <code>(owner 学号)+姓名</code>；<strong>不得修改他人代码</strong>；合并由队长负责。</li>
+<li><strong>分工建议</strong>：
+<ul>
+<li>6 人：每人 1 个核心角色</li>
+<li>7 人：6 个核心角色 + 1 个可选角色（G 或 H）</li>
+<li>8 人：6 个核心角色 + 2 个可选角色（G + H）</li>
+<li>9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色</li>
+<li>10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="数据与合规" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="数据与合规"><span class="header-section-number">12.4</span> 3. 数据与合规</h2>
+<ul>
+<li><strong>数据说明</strong>：在 <code>README.md</code> 或报告中写明来源、时间范围（本项目用 2013–2014, 36 期）、关键字段、目标变量口径、过滤规则。</li>
+<li><strong>隐私与伦理</strong>：数据不含个人敏感信息；如追加外部数据，请确保合法来源并说明许可与处理。</li>
+<li><strong>数据字典</strong>：提供关键字段释义（表格或清单）。</li>
+</ul>
+<hr>
+</section>
+<section id="交付与时间线统一里程碑" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="交付与时间线统一里程碑"><span class="header-section-number">12.5</span> 4. 交付与时间线（统一里程碑）</h2>
+<ul>
+<li><p><strong>W3：立项检查</strong></p>
+<ol type="1">
+<li><code>README.md</code>（项目背景、分工、数据来源与口径摘要）；</li>
+<li>可运行的最小脚本（跑通样例数据并生成至少一张图片）；</li>
+<li>明确任务清单与负责人。</li>
+</ol></li>
+<li><p><strong>W7：结项答辩</strong></p>
+<p>提交完整复现包（见下 §5）+ 报告（6–8 页）+ 幻灯（6–8 页）+ AI 使用记录。</p></li>
+</ul>
+<hr>
+</section>
+<section id="交付清单统一目录" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="交付清单统一目录"><span class="header-section-number">12.6</span> 5. 交付清单（统一目录）</h2>
+<pre><code>project_root/
+  README.md                # 项目背景、分工、数据来源与口径摘要、运行命令
+  main.py                  # 单文件分工脚本
+  requirements.txt         # 依赖（pandas/numpy/scikit-learn 等）
+  data/
+    sample.csv             # 样本（数据不上传）
+    README.md              # 数据文件夹结构
+  outputs/
+    predictions.csv        # 模型输出样例（运行脚本可覆盖生成）
+  report.pdf  (或 .md)     # 6–8 页项目报告（请在结题时添加）
+  slides.pdf               # 6–8 页答辩幻灯（请在结题时添加）
+  ai_usage_log.md          # AI 使用记录（日期/工具/用途/采纳与否）
+  .gitignore               # 忽略大文件（保留示例数据与示例输出）</code></pre>
+<hr>
+</section>
+<section id="技术要求" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="技术要求"><span class="header-section-number">12.7</span> 6. 技术要求</h2>
+<p><strong>最低要求（必须达成）</strong></p>
+<ul>
+<li>按照README可以复刻结果。</li>
+<li>最小流程：读取 → 清洗 → 特征 → 切分 → 训练（基线）→ 评估 → 导出。</li>
+<li>基线模型：分类=逻辑回归 / 回归=线性回归；至少 1 个评估指标；固定随机种子；输出预测到 <code>outputs/</code>。</li>
+<li>可复现性：写清版本号与数据来源；提交样例数据与样例输出。</li>
+<li>代码协作：每人仅编辑自己的函数；完成 <code>TODO</code> 后改为 <code>DONE</code>；合并由队长统一执行。</li>
+</ul>
+<p><strong>额外加分点</strong></p>
+<ul>
+<li>新增 1-3 个简单模型并与基线对比（如 决策树/随机森林），解释差异。</li>
+<li>类别不平衡处理（如类权重/欠采样/过采样/SMOTE）并报告对指标的影响。</li>
+<li>关键图表（分布、相关、特征重要性/系数、ROC/PR 曲线）。</li>
+<li>友好报错与自动日志（数据形状、特征清单、耗时、随机种子）。</li>
+</ul>
+<hr>
+</section>
+<section id="评分与-rubric统一口径可微调" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="评分与-rubric统一口径可微调"><span class="header-section-number">12.8</span> 7. 评分与 Rubric（统一口径，可微调）</h2>
+<blockquote class="blockquote">
+<p>总评 = <strong>团队分 90% + 互评 10%</strong>；如公布<strong>难度系数</strong>（0.9 / 1.0 / 1.1），按乘数计算。</p>
+</blockquote>
+<section id="团队分90" class="level3" data-number="12.8.1">
+<h3 data-number="12.8.1" class="anchored" data-anchor-id="团队分90"><span class="header-section-number">12.8.1</span> 7.1 团队分（90%）</h3>
+<blockquote class="blockquote">
+<p>其中”报告与可读性”仅针对<strong>报告文本与图表</strong>评分。</p>
+</blockquote>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 27%">
+<col style="width: 21%">
+<col style="width: 19%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>维度</th>
+<th>A（优秀）</th>
+<th>B（良好）</th>
+<th>C（合格）</th>
+<th>D（需改进）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>可运行性(10)</td>
+<td>一键跑通；无报错；跨平台稳定</td>
+<td>一键跑通，小问题可自解</td>
+<td>基本跑通，需老师介入</td>
+<td>无法跑通</td>
+</tr>
+<tr class="even">
+<td>正确性(20)</td>
+<td>任务实现到位，评估合理</td>
+<td>基本实现，评估略单薄</td>
+<td>只完成部分流程</td>
+<td>偏离题意</td>
+</tr>
+<tr class="odd">
+<td>稳健性(10)</td>
+<td>缺失/异常/边界处理到位</td>
+<td>处理常见问题</td>
+<td>处理有限</td>
+<td>几乎未处理</td>
+</tr>
+<tr class="even">
+<td>代码质量(10)</td>
+<td>变量/注释清晰，结构整洁</td>
+<td>基本清晰</td>
+<td>可读性一般</td>
+<td>可读性差</td>
+</tr>
+<tr class="odd">
+<td>报告与可读性(30)</td>
+<td>结构清晰、图表规范、叙述有因有据</td>
+<td>大体清晰</td>
+<td>说明不全/结构混乱</td>
+<td>缺失关键说明</td>
+</tr>
+<tr class="even">
+<td>演示表达(20)</td>
+<td>逻辑清楚，答辩到位</td>
+<td>讲清主要结论</td>
+<td>表达一般</td>
+<td>不能自洽</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="互评10" class="level3" data-number="12.8.2">
+<h3 data-number="12.8.2" class="anchored" data-anchor-id="互评10"><span class="header-section-number">12.8.2</span> 7.2 互评（10%）</h3>
+<ul>
+<li>每位成员对<strong>其他人</strong>打分；与教师评分结合。</li>
+<li>若互评明显失真，教师可依据提交记录与痕迹进行调整。</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="报告与答辩内容统一骨架" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="报告与答辩内容统一骨架"><span class="header-section-number">12.9</span> 8. 报告与答辩内容（统一骨架）</h2>
+<p><strong>报告（6–8 页）</strong></p>
+<ol type="1">
+<li>背景与任务（场景、目标、评估指标）</li>
+<li>数据与变量（来源、时间、清洗摘要、口径与过滤、数据字典片段）</li>
+<li>方法（流程图、基线模型、评估方案；说明为何剔除贷后字段）</li>
+<li>结果（表/图 + 解读 + 业务含义；阈值选择与收益/风险权衡）</li>
+<li>误差来源与改进（不平衡处理、特征选择、阈值策略等）</li>
+<li>结论与建议（面向风控/定价/营销的要点）</li>
+</ol>
+<p><strong>答辩幻灯（6–8 页）</strong>：与报告同结构，突出关键结论与可视化（ROC/PR、Top 特征等）。</p>
+<hr>
+</section>
+<section id="提交与命名规范" class="level2" data-number="12.10">
+<h2 data-number="12.10" class="anchored" data-anchor-id="提交与命名规范"><span class="header-section-number">12.10</span> 9. 提交与命名规范</h2>
+<ul>
+<li><strong>打包</strong>：提交 <code>.zip</code>，保留目录结构；不要包含超大无关文件。</li>
+<li><strong>命名</strong>：<code>【LC】_【班级】_【组别】.zip</code>；报告/幻灯使用相同前缀。</li>
+<li><strong>提交方式</strong>：按课程平台要求（学习通）。</li>
+</ul>
+<hr>
+</section>
+<section id="学术诚信与-ai-使用政策" class="level2" data-number="12.11">
+<h2 data-number="12.11" class="anchored" data-anchor-id="学术诚信与-ai-使用政策"><span class="header-section-number">12.11</span> 10. 学术诚信与 AI 使用政策</h2>
+<ul>
+<li>允许用 AI 工具进行<strong>资料查询、代码解释、调试建议</strong>；</li>
+<li><strong>禁止</strong>：粘贴未理解的大段生成代码、虚构数据/结果、抄袭他组；</li>
+<li>必交 <code>ai_usage_log.md</code>（日期、工具、用途、是否采纳与原因 2–3 句）；</li>
+<li>发现学术不端将按校规处理。</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "已复制");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "已复制");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2_uci.html" class="pagination-link" aria-label="项目2：UCI Credit Card Default 学生项目要求">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">项目2：UCI Credit Card Default 学生项目要求</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./4_homecredit.html" class="pagination-link" aria-label="项目4：Home Credit Default Risk 学生项目要求">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">项目4：Home Credit Default Risk 学生项目要求</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,948 @@
+# 第六讲：神经网络基础
+
+```{python}
+import matplotlib.pyplot as plt
+# 根据操作系统设置不同的字体
+import platform
+
+# 获取操作系统类型
+system = platform.system()
+
+# 设置 matplotlib 字体
+if system == 'Windows':
+    plt.rcParams['font.sans-serif'] = ['SimHei']  # Windows 使用黑体
+elif system == 'Darwin':
+    plt.rcParams['font.sans-serif'] = ['Songti SC']  # Mac 使用宋体
+else:
+    plt.rcParams['font.sans-serif'] = ['WenQuanYi Zen Hei']  # Linux 使用文泉驿正黑
+
+# 解决负号显示问题
+plt.rcParams['axes.unicode_minus'] = False
+
+```
+
+# 开场：深度学习的神秘面纱
+
+---
+
+## 深度学习无处不在
+
+**你每天都在使用深度学习**：
+
+- 📱 手机人脸解锁
+- 🗣️ 语音助手（Siri、小爱）
+- 📷 拍照美颜
+- 🚗 自动驾驶
+- 💬 ChatGPT
+
+**问题**：这些"黑科技"的底层原理是什么？
+
+**答案**：**神经网络**
+
+---
+
+## 本周目标：揭开神秘面纱
+
+### 知识目标
+1. 理解神经元的基本概念
+2. 理解多层感知机（MLP）的网络结构
+3. 了解常见激活函数（ReLU、Sigmoid、Tanh）
+4. 理解前向传播和反向传播的直觉
+5. 知道何时用树模型 vs 神经网络
+
+### 技能目标
+1. 使用 Keras 搭建简单的 MLP
+2. 训练 MLP 并可视化学习曲线
+3. 在测试集上评估 MLP 的 AUC
+4. 调整网络结构（层数、神经元数量）
+
+---
+
+### 核心理念
+
+**深度学习不神秘**
+
+- 它是基于简单数学运算的累积
+- 关键是"学习"：通过数据自动调整参数
+- 不要被复杂的公式吓倒，先建立直觉！
+
+---
+
+# 第一部分：从生物到人工
+
+---
+
+## 1.1 生物神经元
+
+### 人脑的神经网络
+
+- 人脑约有 **860 亿个神经元**
+- 每个神经元连接 **数千到上万个**其他神经元
+- 通过**电信号**传递信息
+- 学习 = 调整神经元之间的**连接强度**
+
+---
+
+### 生物神经元的结构
+
+```{mermaid}
+graph LR
+    A[树突<br/>Dendrites<br/>接收信号] --> B[细胞体<br/>Soma<br/>整合处理]
+    B --> C[轴突<br/>Axon<br/>输出信号]
+    C --> D[突触<br/>Synapse<br/>连接下一个神经元]
+    
+    style A fill:#fff9c4
+    style B fill:#c8e6c9
+    style C fill:#bbdefb
+    style D fill:#ffccbc
+```
+
+**关键过程**：
+
+1. 树突接收多个输入信号
+2. 细胞体对信号进行**加权求和**
+3. 如果总和超过**阈值**，神经元"发火"（激活）
+4. 通过轴突传递信号给下一个神经元
+
+---
+
+## 1.2 人工神经元
+
+### 数学模型
+
+**简化的神经元模型（1943年，McCulloch & Pitts）**：
+
+$$
+y = f\left(\sum_{i=1}^{n} w_i x_i + b\right)
+$$
+
+**组成部分**：
+
+- $x_i$：输入信号（特征）
+- $w_i$：权重（连接强度）
+- $b$：偏置（阈值）
+- $f$：激活函数（决定是否"发火"）
+- $y$：输出
+
+---
+
+### 可视化人工神经元
+
+```{mermaid}
+graph LR
+    X1[x₁] -->|w₁| S((Σ))
+    X2[x₂] -->|w₂| S
+    X3[x₃] -->|w₃| S
+    B[+b] --> S
+    S --> F[激活函数<br/>f]
+    F --> Y[y]
+    
+    style S fill:#fff9c4
+    style F fill:#c8e6c9
+    style Y fill:#4caf50,color:#fff
+```
+
+**步骤 1：加权求和**
+
+$$
+z = w_1 x_1 + w_2 x_2 + w_3 x_3 + b
+$$
+
+**步骤 2：激活**
+
+$$
+y = f(z)
+$$
+
+---
+
+### 具体例子：Titanic 生存预测
+
+**特征**：
+
+- $x_1$ = 性别（1=男，0=女）
+- $x_2$ = 年龄
+- $x_3$ = 票价
+
+**假设权重**：
+
+- $w_1 = -2$（性别越男越不利）
+- $w_2 = -0.01$（年龄越大越不利）
+- $w_3 = 0.001$（票价越高越有利）
+- $b = 1$（基础偏置）
+
+---
+
+**计算过程**：
+
+```
+男性乘客：x₁=1, x₂=25, x₃=50
+z = (-2)×1 + (-0.01)×25 + 0.001×50 + 1
+  = -2 - 0.25 + 0.05 + 1
+  = -1.2
+
+经过 Sigmoid 激活：
+y = 1/(1+e^1.2) ≈ 0.23
+
+解释：存活概率 23%（较低）
+```
+
+**权重的含义**：
+
+- $w_1 = -2$：性别对生存影响最大
+- 负权重表示负相关
+- 权重的绝对值表示重要性
+
+---
+
+# 第二部分：激活函数
+
+---
+
+## 2.1 为什么需要激活函数？
+
+**没有激活函数的问题**：
+
+$$
+\begin{align}
+\text{层1: } &h_1 = W_1 x + b_1 \\
+\text{层2: } &h_2 = W_2 h_1 + b_2 = W_2(W_1 x + b_1) + b_2 \\
+&= (W_2 W_1) x + (W_2 b_1 + b_2) \\
+&= W' x + b' \quad \text{（仍然是线性）}
+\end{align}
+$$
+
+**结论**：多层线性叠加 = 单层线性
+
+**激活函数的作用**：**引入非线性**，让网络能学习复杂模式
+
+---
+
+## 2.2 常见激活函数
+
+### 1. Sigmoid
+
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+z = np.linspace(-6, 6, 100)
+
+sigmoid = 1 / (1 + np.exp(-z))
+relu = np.maximum(0, z)
+tanh = np.tanh(z)
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+# Sigmoid
+axes[0].plot(z, sigmoid, linewidth=3, color='#2196f3')
+axes[0].axhline(y=0, color='k', linestyle='--', alpha=0.3)
+axes[0].axhline(y=1, color='k', linestyle='--', alpha=0.3)
+axes[0].axvline(x=0, color='k', linestyle='--', alpha=0.3)
+axes[0].set_xlabel('z', fontsize=12)
+axes[0].set_ylabel('σ(z)', fontsize=12)
+axes[0].set_title('Sigmoid\nσ(z) = 1/(1+e⁻ᶻ)', fontsize=14)
+axes[0].grid(True, alpha=0.3)
+axes[0].set_ylim(-0.1, 1.1)
+axes[0].text(3, 0.5, '输出: (0, 1)', fontsize=11, bbox=dict(boxstyle='round', facecolor='wheat'))
+
+# ReLU
+axes[1].plot(z, relu, linewidth=3, color='#4caf50')
+axes[1].axhline(y=0, color='k', linestyle='--', alpha=0.3)
+axes[1].axvline(x=0, color='k', linestyle='--', alpha=0.3)
+axes[1].set_xlabel('z', fontsize=12)
+axes[1].set_ylabel('ReLU(z)', fontsize=12)
+axes[1].set_title('ReLU\nReLU(z) = max(0, z)', fontsize=14)
+axes[1].grid(True, alpha=0.3)
+axes[1].text(3, 3, '输出: [0, ∞)', fontsize=11, bbox=dict(boxstyle='round', facecolor='wheat'))
+
+# Tanh
+axes[2].plot(z, tanh, linewidth=3, color='#ff9800')
+axes[2].axhline(y=0, color='k', linestyle='--', alpha=0.3)
+axes[2].axhline(y=1, color='k', linestyle='--', alpha=0.3)
+axes[2].axhline(y=-1, color='k', linestyle='--', alpha=0.3)
+axes[2].axvline(x=0, color='k', linestyle='--', alpha=0.3)
+axes[2].set_xlabel('z', fontsize=12)
+axes[2].set_ylabel('tanh(z)', fontsize=12)
+axes[2].set_title('Tanh\ntanh(z) = (eᶻ-e⁻ᶻ)/(eᶻ+e⁻ᶻ)', fontsize=14)
+axes[2].grid(True, alpha=0.3)
+axes[2].set_ylim(-1.1, 1.1)
+axes[2].text(3, 0, '输出: (-1, 1)', fontsize=11, bbox=dict(boxstyle='round', facecolor='wheat'))
+
+plt.tight_layout()
+plt.show()
+```
+
+---
+
+### Sigmoid 详解
+
+**公式**：
+
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+
+**特点**：
+
+- 输出范围：(0, 1)
+- S 形曲线，平滑
+- 可解释为**概率**
+
+**优点**：
+
+- 输出有界，稳定
+- 适合二分类输出层
+
+**缺点**：
+
+- **梯度消失**：当 $|z|$ 很大时，梯度接近 0
+- 计算成本高（指数运算）
+
+**使用场景**：
+
+- ✓ 二分类问题的**输出层**
+- ✗ 隐藏层（已被 ReLU 取代）
+
+---
+
+### ReLU 详解
+
+**公式**：
+
+$$
+\text{ReLU}(z) = \max(0, z) = \begin{cases}
+z & \text{if } z > 0 \\
+0 & \text{if } z \leq 0
+\end{cases}
+$$
+
+**优点**：
+
+- ⚡ **计算超快**（只是比较和选择）
+- 🎯 缓解梯度消失（$z>0$ 时梯度恒为 1）
+- 🧠 生物学合理性（神经元要么激活要么不激活）
+- 📊 稀疏激活（约 50% 神经元输出 0）
+
+**缺点**：
+
+- 💀 **"神经元死亡"**：某些神经元可能永远输出 0
+
+**使用场景**：
+
+- ✓ **隐藏层首选**
+- ✓ 绝大多数深度学习任务
+
+---
+
+### Tanh 详解
+
+**公式**：
+
+$$
+\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}
+$$
+
+**特点**：
+
+- 输出范围：(-1, 1)
+- **零中心**（Sigmoid 不是）
+- 比 Sigmoid 更陡
+
+**优点**：
+
+- 零中心 → 收敛更快
+- 输出范围对称
+
+**缺点**：
+
+- 仍有梯度消失问题
+- 计算成本高
+
+**使用场景**：
+
+- 循环神经网络（RNN）
+- 需要零中心输出的场景
+
+---
+
+### 激活函数对比表
+
+| 激活函数 | 范围 | 优点 | 缺点 | 主要用途 |
+|---------|------|------|------|---------|
+| **Sigmoid** | (0, 1) | 概率解释<br/>平滑 | 梯度消失<br/>计算慢 | 二分类输出层 |
+| **ReLU** | [0, ∞) | 快速<br/>缓解梯度消失 | 神经元死亡 | **隐藏层首选** |
+| **Tanh** | (-1, 1) | 零中心<br/>对称 | 梯度消失<br/>计算慢 | RNN |
+
+**经验法则**：
+
+- 隐藏层：**优先选 ReLU**
+- 输出层：
+  - 二分类 → Sigmoid
+  - 多分类 → Softmax（后续会学）
+  - 回归 → 不用激活（线性输出）
+
+---
+
+# 第三部分：多层感知机（MLP）
+
+---
+
+## 3.1 网络结构
+
+### 从单个神经元到神经网络
+
+```{mermaid}
+graph LR
+    subgraph 输入层
+    X1[特征1]
+    X2[特征2]
+    X3[特征3]
+    end
+    subgraph 隐藏层1
+    H11[神经元1]
+    H12[神经元2]
+    H13[神经元3]
+    H14[神经元4]
+    end
+    subgraph 隐藏层2
+    H21[神经元1]
+    H22[神经元2]
+    end
+    subgraph 输出层
+    Y[预测]
+    end
+
+    X1 --> H11
+    X1 --> H12
+    X1 --> H13
+    X1 --> H14
+    X2 --> H11
+    X2 --> H12
+    X2 --> H13
+    X2 --> H14
+    X3 --> H11
+    X3 --> H12
+    X3 --> H13
+    X3 --> H14
+
+    H11 --> H21
+    H11 --> H22
+    H12 --> H21
+    H12 --> H22
+    H13 --> H21
+    H13 --> H22
+    H14 --> H21
+    H14 --> H22
+
+    H21 --> Y
+    H22 --> Y
+
+    style X1 fill:#fff9c4
+    style X2 fill:#fff9c4
+    style X3 fill:#fff9c4
+    style H11 fill:#c8e6c9
+    style H12 fill:#c8e6c9
+    style H13 fill:#c8e6c9
+    style H14 fill:#c8e6c9
+    style H21 fill:#bbdefb
+    style H22 fill:#bbdefb
+    style Y fill:#4caf50,color:#fff
+    %% subgraph 背景色美化
+    style 输入层 fill:#f8f9fa,stroke:#e0e0e0
+    style 隐藏层1 fill:#f1f8e9,stroke:#aed581
+    style 隐藏层2 fill:#e3f2fd,stroke:#90caf9
+    style 输出层 fill:#fce4ec,stroke:#f06292
+```
+
+---
+
+### 符号表示
+
+**输入层 → 隐藏层1 → 隐藏层2 → 输出层**
+
+- 输入：3 个特征
+- 隐藏层1：4 个神经元（ReLU）
+- 隐藏层2：2 个神经元（ReLU）
+- 输出层：1 个神经元（Sigmoid）
+
+**简写**：`Input(3) → [4] → [2] → Output(1)`
+
+---
+
+## 3.2 参数数量计算
+
+### Titanic 例子
+
+```
+Input(8) → Dense(64, ReLU) → Dense(32, ReLU) → Output(1, Sigmoid)
+```
+
+**计算**：
+
+| 层 | 参数数量 | 计算 |
+|----|---------|------|
+| 输入 → 隐藏1 | 8×64 + 64 = **576** | 权重 + 偏置 |
+| 隐藏1 → 隐藏2 | 64×32 + 32 = **2,080** | 权重 + 偏置 |
+| 隐藏2 → 输出 | 32×1 + 1 = **33** | 权重 + 偏置 |
+| **总计** | **2,689** | |
+
+**对比**：
+
+- 决策树：只有分裂规则（少量参数）
+- MLP：**数千个参数需要学习**
+
+---
+
+## 3.3 为什么需要多层？
+
+### 单层的局限性
+
+**单层神经网络**（= 逻辑回归）：
+
+- 只能学习**线性决策边界**
+- 无法解决 XOR 问题
+
+```{python}
+# XOR 问题示例
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+# XOR 数据
+X_xor = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+y_xor = np.array([0, 1, 1, 0])
+
+# 单层无法分类
+axes[0].scatter(X_xor[y_xor==0, 0], X_xor[y_xor==0, 1], s=200, c='red', marker='o', label='类别 0', edgecolors='k', linewidth=2)
+axes[0].scatter(X_xor[y_xor==1, 0], X_xor[y_xor==1, 1], s=200, c='blue', marker='s', label='类别 1', edgecolors='k', linewidth=2)
+axes[0].plot([0, 1], [0.5, 0.5], 'k--', linewidth=2, alpha=0.5, label='线性边界？')
+axes[0].set_xlabel('x₁', fontsize=12)
+axes[0].set_ylabel('x₂', fontsize=12)
+axes[0].set_title('XOR 问题：单层网络无法解决', fontsize=14)
+axes[0].legend(fontsize=10)
+axes[0].set_xlim(-0.2, 1.2)
+axes[0].set_ylim(-0.2, 1.2)
+axes[0].grid(True, alpha=0.3)
+
+# 多层可以分类
+from sklearn.neural_network import MLPClassifier
+mlp_xor = MLPClassifier(hidden_layer_sizes=(4,), activation='relu', random_state=42, max_iter=5000)
+mlp_xor.fit(X_xor, y_xor)
+
+xx, yy = np.meshgrid(np.linspace(-0.2, 1.2, 100), np.linspace(-0.2, 1.2, 100))
+Z = mlp_xor.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
+
+axes[1].contourf(xx, yy, Z, alpha=0.3, cmap='RdBu')
+axes[1].scatter(X_xor[y_xor==0, 0], X_xor[y_xor==0, 1], s=200, c='red', marker='o', label='类别 0', edgecolors='k', linewidth=2)
+axes[1].scatter(X_xor[y_xor==1, 0], X_xor[y_xor==1, 1], s=200, c='blue', marker='s', label='类别 1', edgecolors='k', linewidth=2)
+axes[1].set_xlabel('x₁', fontsize=12)
+axes[1].set_ylabel('x₂', fontsize=12)
+axes[1].set_title('XOR 问题：多层网络可以解决', fontsize=14)
+axes[1].legend(fontsize=10)
+axes[1].set_xlim(-0.2, 1.2)
+axes[1].set_ylim(-0.2, 1.2)
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+---
+
+### 多层的威力：层次特征学习
+
+```{mermaid}
+graph TD
+    A[图像识别例子] --> B[第1层<br/>检测边缘]
+    B --> C[第2层<br/>检测形状]
+    C --> D[第3层<br/>检测物体部件]
+    D --> E[第4层<br/>识别完整物体]
+    
+    style B fill:#fff9c4
+    style C fill:#c8e6c9
+    style D fill:#bbdefb
+    style E fill:#4caf50,color:#fff
+```
+
+**关键洞察**：
+
+- 浅层：学习简单特征（边缘、纹理）
+- 深层：学习复杂特征（组合模式）
+- 这是**自动特征工程**！
+
+---
+
+### 层数选择建议
+
+| 数据量 | 推荐层数 | 原因 |
+|--------|---------|------|
+| < 1万 | 1-2 层隐藏层 | 数据少，深层易过拟合 |
+| 1万-10万 | 2-3 层隐藏层 | 中等复杂度 |
+| > 10万 | 3-5 层隐藏层 | 大数据支持深层网络 |
+| > 100万 | 5+ 层 | 需要特殊技巧（下周讲） |
+
+**经验法则**：
+
+- 从简单开始（2层）
+- 如果欠拟合，增加层数或神经元数
+- 如果过拟合，减少复杂度或使用正则化（下周讲）
+
+---
+
+# 第四部分：前向传播与反向传播
+
+---
+
+## 4.1 前向传播（Forward Propagation）
+
+### 从输入到输出的信息流
+
+```{mermaid}
+graph LR
+    A[输入<br/>x] --> B[隐藏层1<br/>h₁ = ReLU W₁x+b₁]
+    B --> C[隐藏层2<br/>h₂ = ReLU W₂h₁+b₂]
+    C --> D[输出<br/>ŷ = σ W₃h₂+b₃]
+    
+    style A fill:#fff9c4
+    style B fill:#c8e6c9
+    style C fill:#bbdefb
+    style D fill:#4caf50,color:#fff
+```
+
+**逐层计算**：
+
+1. 输入：$x$ = [性别, 年龄, 票价, ...]
+2. 隐藏层1：$h_1 = \text{ReLU}(W_1 x + b_1)$
+3. 隐藏层2：$h_2 = \text{ReLU}(W_2 h_1 + b_2)$
+4. 输出：$\hat{y} = \sigma(W_3 h_2 + b_3)$
+
+**结果**：$\hat{y}$ = 0.85（85% 存活概率）
+
+---
+
+## 4.2 损失函数（Loss Function）
+
+### 衡量预测误差
+
+**二分类：Binary Cross-Entropy**
+
+$$
+\text{Loss} = -\frac{1}{n}\sum_{i=1}^{n}\left[y_i \log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i)\right]
+$$
+
+**直观理解**：
+
+- 真实是 1，预测 0.9 → Loss 小（好）
+- 真实是 1，预测 0.1 → Loss 大（差）
+
+**类比**：Loss = 考试分数与满分的差距
+
+---
+
+### 损失函数可视化
+
+```{python}
+# Binary Cross-Entropy 可视化
+y_true_demo = 1  # 真实标签
+y_pred_range = np.linspace(0.01, 0.99, 100)
+loss = -np.log(y_pred_range)
+
+plt.figure(figsize=(10, 6))
+plt.plot(y_pred_range, loss, linewidth=3, color='#f44336')
+plt.xlabel('预测概率 ŷ', fontsize=12)
+plt.ylabel('Loss', fontsize=12)
+plt.title('Binary Cross-Entropy Loss\n（真实标签 y=1 时）', fontsize=14)
+plt.grid(True, alpha=0.3)
+plt.axvline(x=1, color='green', linestyle='--', linewidth=2, label='完美预测')
+plt.axvline(x=0.5, color='orange', linestyle='--', linewidth=2, label='随机猜测')
+plt.legend(fontsize=11)
+
+# 标注
+plt.text(0.9, 0.5, 'ŷ → 1\nLoss → 0\n(预测对了)', fontsize=11, bbox=dict(boxstyle='round', facecolor='#c8e6c9'))
+plt.text(0.1, 4, 'ŷ → 0\nLoss → ∞\n(预测错了)', fontsize=11, bbox=dict(boxstyle='round', facecolor='#ffccbc'))
+
+plt.show()
+```
+
+---
+
+## 4.3 反向传播（Backpropagation）
+
+### 核心思想（不讲数学细节）
+
+**问题**：如何调整 W 和 b 来降低 Loss？
+
+**方法**：计算 Loss 对每个参数的"贡献"（梯度）
+
+```{mermaid}
+graph RL
+    A[Loss] --> B[∂Loss/∂W₃<br/>∂Loss/∂b₃]
+    B --> C[∂Loss/∂W₂<br/>∂Loss/∂b₂]
+    C --> D[∂Loss/∂W₁<br/>∂Loss/∂b₁]
+    
+    style A fill:#f44336,color:#fff
+    style B fill:#ffccbc
+    style C fill:#fff9c4
+    style D fill:#c8e6c9
+```
+
+**更新规则**：
+
+$$
+W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\partial W}
+$$
+
+- $\eta$：学习率（步长）
+- $\frac{\partial \text{Loss}}{\partial W}$：梯度（方向）
+
+---
+
+### 类比：登山下坡
+
+```{python}
+# 梯度下降可视化
+x = np.linspace(-2, 2, 100)
+y = x**2 + 1  # 简单的凸函数
+
+plt.figure(figsize=(12, 6))
+plt.plot(x, y, linewidth=3, color='#2196f3', label='Loss 曲线')
+
+# 梯度下降路径
+x_path = [1.8, 1.2, 0.7, 0.3, 0.1, 0.0]
+y_path = [xi**2 + 1 for xi in x_path]
+
+plt.plot(x_path, y_path, 'ro-', markersize=10, linewidth=2, label='梯度下降路径')
+plt.scatter([0], [1], s=300, c='green', marker='*', zorder=5, label='最优点')
+
+plt.xlabel('参数 W', fontsize=12)
+plt.ylabel('Loss', fontsize=12)
+plt.title('梯度下降：沿着坡度下山', fontsize=14)
+plt.legend(fontsize=11)
+plt.grid(True, alpha=0.3)
+plt.annotate('起点', xy=(1.8, y_path[0]), xytext=(2, 4.5), 
+            arrowprops=dict(arrowstyle='->', color='red'), fontsize=11)
+plt.annotate('终点（最优）', xy=(0, 1), xytext=(0.5, 2), 
+            arrowprops=dict(arrowstyle='->', color='green'), fontsize=11)
+plt.show()
+```
+
+**类比**：
+
+- 做菜太咸（Loss 大） → 下次少放盐（调整参数）
+- 通过不断尝试，找到最佳配方（最优参数）
+
+---
+
+## 4.4 优化器（Optimizer）
+
+### SGD vs Adam
+
+| 优化器 | 全称 | 特点 | 何时用 |
+|--------|------|------|--------|
+| **SGD** | Stochastic Gradient Descent | 最基础<br/>学习率固定 | 简单问题<br/>理论研究 |
+| **Adam** | Adaptive Moment Estimation | 自适应学习率<br/>收敛快 | **大多数情况首选** |
+
+**建议**：
+
+- 初学者：**直接用 Adam**
+- 效果不好再试 SGD
+
+---
+
+# 第五部分：MLP vs 树模型
+
+---
+
+## 何时用树模型，何时用 MLP？
+
+### 对比表
+
+| 维度 | 树模型（RF/GBDT） | MLP |
+|------|------------|----------|
+| **适用数据** | 表格数据<br/>（行列结构） | 图像、文本、音频<br/>（非结构化） |
+| **特征工程** | 需要人工处理<br/>（编码、缺失值） | 自动学习特征 |
+| **训练速度** | 快（分钟级） | 慢（小时级） |
+| **调参难度** | 简单（3-5个参数） | 复杂（层数、神经元数、学习率...） |
+| **可解释性** | 高（特征重要性、可视化） | 低（黑盒） |
+| **样本量要求** | 小数据也可以（100+） | 需要大量数据（10000+） |
+| **过拟合** | 较容易控制 | 容易过拟合 |
+
+---
+
+### 金融领域实际情况
+
+| 场景             | 数据类型     | 首选模型         | 原因     |
+|------------------|-------------|------------------|----------|
+| 贷款违约预测     | 表格        | GBDT             | 可解释   |
+| 欺诈检测         | 表格        | GBDT/RF          | 速度快   |
+| 客户流失         | 表格        | GBDT             | 可解释   |
+| 票据识别（OCR）  | 图像        | CNN              | 图像专用 |
+| 舆情分析         | 文本        | BERT             | 文本专用 |
+| 股票预测         | 时间序列    | LSTM/Transformer | 序列专用 |
+
+**核心结论**：
+
+- **表格数据（90%的金融任务）** → **树模型**
+- **图像/文本/音频** → 深度学习
+
+---
+
+# 总结
+
+---
+
+## 本讲知识回顾
+
+### 神经元模型
+
+- 生物神经元 → 人工神经元
+- 加权求和 + 激活函数
+
+### 激活函数
+
+- **Sigmoid**：输出层（二分类）
+- **ReLU**：隐藏层首选
+- **Tanh**：RNN 专用
+
+### 多层感知机
+
+- 输入层 → 隐藏层 → 输出层
+- 参数：权重 W + 偏置 b
+- 多层 → 学习复杂非线性模式
+
+---
+
+### 训练过程
+
+- **前向传播**：输入 → 输出
+- **损失函数**：衡量误差
+- **反向传播**：计算梯度
+- **优化器**：更新参数（推荐 Adam）
+
+### MLP vs 树模型
+
+| 场景 | 推荐模型 |
+|------|---------|
+| 表格数据 | 树模型 |
+| 图像 | CNN |
+| 文本 | Transformer |
+| 音频 | RNN/CNN |
+
+---
+
+## 核心要点
+
+1. **深度学习不神秘**  
+   基于简单的数学运算累积
+
+2. **激活函数很重要**  
+   隐藏层用 ReLU，输出层看任务
+
+3. **归一化是必须的**  
+   神经网络对数据尺度敏感
+
+4. **表格数据树模型更好**  
+   不要迷信深度学习
+
+5. **Keras 很简单**  
+   Sequential API 易上手
+
+---
+
+# Q&A
+
+**Q1：人工神经元是如何模拟生物神经元的？请写出人工神经元的基本数学模型。**
+
+**A：**
+人工神经元模拟生物神经元“接收信号-整合处理-激活发火”的过程。
+
+它的数学模型是：
+
+1.  加权求和： $z = \sum_{i=1}^{n} w_i x_i + b$ 
+2.  激活函数： $y = f(z)$ 
+（其中 $x_i$ 是输入特征，$w_i$ 是权重，$b$ 是偏置，$f$ 是激活函数）
+
+---
+
+**Q2：为什么神经网络中必须使用“非线性”激活函数（如 ReLU）？如果只用线性激活（或不用激活），多层网络会退化成什么？**
+
+**A：**
+
+* 原因：激活函数的作用是引入非线性，使得网络能够学习和拟合复杂的非线性模式（例如 XOR 问题）。
+* 退化：如果只用线性激活，多层线性叠加的结果仍然是线性的（$W'x + b'$）。这会导致整个深度神经网络退化成一个单层的线性模型（如逻辑回归），失去深度学习的意义。
+
+---
+
+**Q3：为神经网络的“隐藏层”和“二分类输出层”选择激活函数时，首选的推荐分别是什么？**
+
+**A：**
+
+* 隐藏层首选：ReLU。因为它计算快，并能有效缓解梯度消失问题。
+* 二分类输出层首选：Sigmoid。因为它的输出范围是 (0, 1) ，可以将输出结果解释为概率。
+
+---
+
+**Q4：请简要描述“前向传播”（Forward Propagation）和“反向传播”（Backward Propagation）在神经网络训练中的角色。**
+
+**A：**
+
+* 前向传播：是指数据从输入层开始，逐层计算，直到在输出层得到预测值（$\hat{y}$）的过程。
+* 反向传播：是指在得到预测值并计算出 Loss（误差）后，从输出层反向逐层计算 Loss 对每个参数（W 和 b）的梯度（贡献度）的过程。
+
+---
+
+**Q5：为什么 ReLU ($\max(0, z)$) 作为隐藏层激活函数，通常优于 Sigmoid？Sigmoid 用在隐藏层时有什么主要缺陷？**
+
+**A：**
+ReLU 之所以更优，主要是因为它解决了 Sigmoid 的一个主要缺陷：梯度消失（Gradient Vanishing）。
+
+* Sigmoid 的缺陷：Sigmoid 函数在输入值（z）很大或很小时，其曲线非常平坦，导致梯度（导数）接近于 0。在反向传播时，这些接近 0 的梯度逐层相乘，导致深层网络的梯度变得极小，使得参数几乎无法更新。
+* ReLU 的优势：当输入 $z > 0$ 时，ReLU 的梯度恒为 1。这使得梯度在反向传播时能够更顺畅地流动，极大地缓解了梯度消失问题，让网络训练得更快、更深。
+
+---
+
+**Q6：假设一个 MLP 网络结构为 `Input(10) -> Dense(32, ReLU) -> Output(1, Sigmoid)`。请问从 Input 层到 Dense(32) 层（第一个隐藏层）总共有多少个可训练参数？**
+
+**A：**
+可训练参数 = 权重（Weights）+ 偏置（Biases）。
+
+1.  权重 (W)：每个输入神经元都连接到每个隐藏神经元。
+    * 计算：`输入维度 × 隐藏层维度` = $10 \times 32 = 320$ 个。
+2.  偏置 (b)：隐藏层中的每个神经元都有 1 个偏置项。
+    * 计算：`隐藏层维度` = $32$ 个。
+3.  总计： $320 + 32 = \mathbf{352}$ 个可训练参数。
+
+---
+
+**Q7：在反向传播中，我们计算出 Loss 对权重 W 的梯度（$\frac{\partial \text{Loss}}{\partial W}$）后，是如何更新这个权重 W 的？（请写出更新规则）。在这个规则中，“学习率（$\eta$）”扮演了什么角色？**
+
+**A：**
+
+* 更新规则： $W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\partial W}$ 。
+* 学习率（$\eta$）的角色：学习率（Learning Rate）扮演着“步长”的角色。它控制了模型在“下山”（降低 Loss）时每一步迈多大。
+    *  $\eta$ 太大：可能会导致“步子迈太大”，越过最低点，导致 Loss 震荡或发散。
+    *  $\eta$ 太小：会导致“小碎步”下山，训练速度过慢，可能需要很久才能收敛。
+
+---
+
+**Q8：对于绝大多数金融场景中的“表格数据”（像一个 Excel 表格、数据库表类型的数据），推荐首选哪一类模型（树模型还是MLP）？为什么？**
+
+**A：**
+
+* 首选模型：树模型（特别是 GBDT）。
+* 原因：对于表格数据，树模型通常训练速度更快、调参更简单、可解释性更强，并且在中小规模的数据集上（金融领域很常见）表现往往优于需要大量数据和复杂调参的 MLP。
+
+---
+
+**Q9：一个金融科技团队想用 MLP（神经网络）来预测客户流失，他们的数据集只有 5000 行（样本）和 20 个特征（表格数据）。你认为他们应该优先使用 MLP 吗？为什么？**
+
+**A：** 不应该优先使用 MLP。
+
+理由如下：
+
+* 数据量太小：MLP 通常需要大量数据（例如 1 万条以上）才能学习其数千个参数并防止过拟合。5000 行数据对于 MLP 来说太少了。
+* 树模型更优：对于这种中小型表格数据，树模型（如 GBDT 或 随机森林）通常表现更好，并且训练更快、可解释性更强（这对业务很重要）。

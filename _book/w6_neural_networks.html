@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; 第六讲：神经网络基础 – 数据挖掘与机器学习课程讲义</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./project_list.html" rel="next">
+<link href="./w5_ensemble_learning.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ed6da6eef3892af8a4b5ed59bfb951f5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w6_neural_networks.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">数据挖掘与机器学习课程讲义</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="搜索"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">金融科技导论</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w0_syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程安排与考核要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w1_python_ml_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w2_data_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第二讲：数据处理与线性回归实践</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w3_lm_regularization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w4_classification_decision_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w5_ensemble_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w6_neural_networks.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_list.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">入门级（难度系数 0.9）</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_california.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">项目1：California House Prices 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_uci.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">项目2：UCI Credit Card Default 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_lendingclub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">项目3：Lending Club（借贷违约风险）学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_homecredit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">项目4：Home Credit Default Risk 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_ieee-cis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">项目5：IEEE‑CIS Fraud Detection 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_gresearch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">项目6：G‑Research Crypto Forecasting 学生项目要求</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目录</h2>
+   
+  <ul>
+  <li><a href="#开场深度学习的神秘面纱" id="toc-开场深度学习的神秘面纱" class="nav-link active" data-scroll-target="#开场深度学习的神秘面纱"><span class="header-section-number">9</span> 开场：深度学习的神秘面纱</a>
+  <ul class="collapse">
+  <li><a href="#深度学习无处不在" id="toc-深度学习无处不在" class="nav-link" data-scroll-target="#深度学习无处不在"><span class="header-section-number">9.1</span> 深度学习无处不在</a></li>
+  <li><a href="#本周目标揭开神秘面纱" id="toc-本周目标揭开神秘面纱" class="nav-link" data-scroll-target="#本周目标揭开神秘面纱"><span class="header-section-number">9.2</span> 本周目标：揭开神秘面纱</a>
+  <ul class="collapse">
+  <li><a href="#知识目标" id="toc-知识目标" class="nav-link" data-scroll-target="#知识目标"><span class="header-section-number">9.2.1</span> 知识目标</a></li>
+  <li><a href="#技能目标" id="toc-技能目标" class="nav-link" data-scroll-target="#技能目标"><span class="header-section-number">9.2.2</span> 技能目标</a></li>
+  <li><a href="#核心理念" id="toc-核心理念" class="nav-link" data-scroll-target="#核心理念"><span class="header-section-number">9.2.3</span> 核心理念</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#第一部分从生物到人工" id="toc-第一部分从生物到人工" class="nav-link" data-scroll-target="#第一部分从生物到人工"><span class="header-section-number">10</span> 第一部分：从生物到人工</a>
+  <ul class="collapse">
+  <li><a href="#生物神经元" id="toc-生物神经元" class="nav-link" data-scroll-target="#生物神经元"><span class="header-section-number">10.1</span> 1.1 生物神经元</a>
+  <ul class="collapse">
+  <li><a href="#人脑的神经网络" id="toc-人脑的神经网络" class="nav-link" data-scroll-target="#人脑的神经网络"><span class="header-section-number">10.1.1</span> 人脑的神经网络</a></li>
+  <li><a href="#生物神经元的结构" id="toc-生物神经元的结构" class="nav-link" data-scroll-target="#生物神经元的结构"><span class="header-section-number">10.1.2</span> 生物神经元的结构</a></li>
+  </ul></li>
+  <li><a href="#人工神经元" id="toc-人工神经元" class="nav-link" data-scroll-target="#人工神经元"><span class="header-section-number">10.2</span> 1.2 人工神经元</a>
+  <ul class="collapse">
+  <li><a href="#数学模型" id="toc-数学模型" class="nav-link" data-scroll-target="#数学模型"><span class="header-section-number">10.2.1</span> 数学模型</a></li>
+  <li><a href="#可视化人工神经元" id="toc-可视化人工神经元" class="nav-link" data-scroll-target="#可视化人工神经元"><span class="header-section-number">10.2.2</span> 可视化人工神经元</a></li>
+  <li><a href="#具体例子titanic-生存预测" id="toc-具体例子titanic-生存预测" class="nav-link" data-scroll-target="#具体例子titanic-生存预测"><span class="header-section-number">10.2.3</span> 具体例子：Titanic 生存预测</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#第二部分激活函数" id="toc-第二部分激活函数" class="nav-link" data-scroll-target="#第二部分激活函数"><span class="header-section-number">11</span> 第二部分：激活函数</a>
+  <ul class="collapse">
+  <li><a href="#为什么需要激活函数" id="toc-为什么需要激活函数" class="nav-link" data-scroll-target="#为什么需要激活函数"><span class="header-section-number">11.1</span> 2.1 为什么需要激活函数？</a></li>
+  <li><a href="#常见激活函数" id="toc-常见激活函数" class="nav-link" data-scroll-target="#常见激活函数"><span class="header-section-number">11.2</span> 2.2 常见激活函数</a>
+  <ul class="collapse">
+  <li><a href="#sigmoid" id="toc-sigmoid" class="nav-link" data-scroll-target="#sigmoid"><span class="header-section-number">11.2.1</span> 1. Sigmoid</a></li>
+  <li><a href="#sigmoid-详解" id="toc-sigmoid-详解" class="nav-link" data-scroll-target="#sigmoid-详解"><span class="header-section-number">11.2.2</span> Sigmoid 详解</a></li>
+  <li><a href="#relu-详解" id="toc-relu-详解" class="nav-link" data-scroll-target="#relu-详解"><span class="header-section-number">11.2.3</span> ReLU 详解</a></li>
+  <li><a href="#tanh-详解" id="toc-tanh-详解" class="nav-link" data-scroll-target="#tanh-详解"><span class="header-section-number">11.2.4</span> Tanh 详解</a></li>
+  <li><a href="#激活函数对比表" id="toc-激活函数对比表" class="nav-link" data-scroll-target="#激活函数对比表"><span class="header-section-number">11.2.5</span> 激活函数对比表</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#第三部分多层感知机mlp" id="toc-第三部分多层感知机mlp" class="nav-link" data-scroll-target="#第三部分多层感知机mlp"><span class="header-section-number">12</span> 第三部分：多层感知机（MLP）</a>
+  <ul class="collapse">
+  <li><a href="#网络结构" id="toc-网络结构" class="nav-link" data-scroll-target="#网络结构"><span class="header-section-number">12.1</span> 3.1 网络结构</a>
+  <ul class="collapse">
+  <li><a href="#从单个神经元到神经网络" id="toc-从单个神经元到神经网络" class="nav-link" data-scroll-target="#从单个神经元到神经网络"><span class="header-section-number">12.1.1</span> 从单个神经元到神经网络</a></li>
+  <li><a href="#符号表示" id="toc-符号表示" class="nav-link" data-scroll-target="#符号表示"><span class="header-section-number">12.1.2</span> 符号表示</a></li>
+  </ul></li>
+  <li><a href="#参数数量计算" id="toc-参数数量计算" class="nav-link" data-scroll-target="#参数数量计算"><span class="header-section-number">12.2</span> 3.2 参数数量计算</a>
+  <ul class="collapse">
+  <li><a href="#titanic-例子" id="toc-titanic-例子" class="nav-link" data-scroll-target="#titanic-例子"><span class="header-section-number">12.2.1</span> Titanic 例子</a></li>
+  </ul></li>
+  <li><a href="#为什么需要多层" id="toc-为什么需要多层" class="nav-link" data-scroll-target="#为什么需要多层"><span class="header-section-number">12.3</span> 3.3 为什么需要多层？</a>
+  <ul class="collapse">
+  <li><a href="#单层的局限性" id="toc-单层的局限性" class="nav-link" data-scroll-target="#单层的局限性"><span class="header-section-number">12.3.1</span> 单层的局限性</a></li>
+  <li><a href="#多层的威力层次特征学习" id="toc-多层的威力层次特征学习" class="nav-link" data-scroll-target="#多层的威力层次特征学习"><span class="header-section-number">12.3.2</span> 多层的威力：层次特征学习</a></li>
+  <li><a href="#层数选择建议" id="toc-层数选择建议" class="nav-link" data-scroll-target="#层数选择建议"><span class="header-section-number">12.3.3</span> 层数选择建议</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#第四部分前向传播与反向传播" id="toc-第四部分前向传播与反向传播" class="nav-link" data-scroll-target="#第四部分前向传播与反向传播"><span class="header-section-number">13</span> 第四部分：前向传播与反向传播</a>
+  <ul class="collapse">
+  <li><a href="#前向传播forward-propagation" id="toc-前向传播forward-propagation" class="nav-link" data-scroll-target="#前向传播forward-propagation"><span class="header-section-number">13.1</span> 4.1 前向传播（Forward Propagation）</a>
+  <ul class="collapse">
+  <li><a href="#从输入到输出的信息流" id="toc-从输入到输出的信息流" class="nav-link" data-scroll-target="#从输入到输出的信息流"><span class="header-section-number">13.1.1</span> 从输入到输出的信息流</a></li>
+  </ul></li>
+  <li><a href="#损失函数loss-function" id="toc-损失函数loss-function" class="nav-link" data-scroll-target="#损失函数loss-function"><span class="header-section-number">13.2</span> 4.2 损失函数（Loss Function）</a>
+  <ul class="collapse">
+  <li><a href="#衡量预测误差" id="toc-衡量预测误差" class="nav-link" data-scroll-target="#衡量预测误差"><span class="header-section-number">13.2.1</span> 衡量预测误差</a></li>
+  <li><a href="#损失函数可视化" id="toc-损失函数可视化" class="nav-link" data-scroll-target="#损失函数可视化"><span class="header-section-number">13.2.2</span> 损失函数可视化</a></li>
+  </ul></li>
+  <li><a href="#反向传播backpropagation" id="toc-反向传播backpropagation" class="nav-link" data-scroll-target="#反向传播backpropagation"><span class="header-section-number">13.3</span> 4.3 反向传播（Backpropagation）</a>
+  <ul class="collapse">
+  <li><a href="#核心思想不讲数学细节" id="toc-核心思想不讲数学细节" class="nav-link" data-scroll-target="#核心思想不讲数学细节"><span class="header-section-number">13.3.1</span> 核心思想（不讲数学细节）</a></li>
+  <li><a href="#类比登山下坡" id="toc-类比登山下坡" class="nav-link" data-scroll-target="#类比登山下坡"><span class="header-section-number">13.3.2</span> 类比：登山下坡</a></li>
+  </ul></li>
+  <li><a href="#优化器optimizer" id="toc-优化器optimizer" class="nav-link" data-scroll-target="#优化器optimizer"><span class="header-section-number">13.4</span> 4.4 优化器（Optimizer）</a>
+  <ul class="collapse">
+  <li><a href="#sgd-vs-adam" id="toc-sgd-vs-adam" class="nav-link" data-scroll-target="#sgd-vs-adam"><span class="header-section-number">13.4.1</span> SGD vs Adam</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#第五部分mlp-vs-树模型" id="toc-第五部分mlp-vs-树模型" class="nav-link" data-scroll-target="#第五部分mlp-vs-树模型"><span class="header-section-number">14</span> 第五部分：MLP vs 树模型</a>
+  <ul class="collapse">
+  <li><a href="#何时用树模型何时用-mlp" id="toc-何时用树模型何时用-mlp" class="nav-link" data-scroll-target="#何时用树模型何时用-mlp"><span class="header-section-number">14.1</span> 何时用树模型，何时用 MLP？</a>
+  <ul class="collapse">
+  <li><a href="#对比表" id="toc-对比表" class="nav-link" data-scroll-target="#对比表"><span class="header-section-number">14.1.1</span> 对比表</a></li>
+  <li><a href="#金融领域实际情况" id="toc-金融领域实际情况" class="nav-link" data-scroll-target="#金融领域实际情况"><span class="header-section-number">14.1.2</span> 金融领域实际情况</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">15</span> 总结</a>
+  <ul class="collapse">
+  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">15.1</span> 本讲知识回顾</a>
+  <ul class="collapse">
+  <li><a href="#神经元模型" id="toc-神经元模型" class="nav-link" data-scroll-target="#神经元模型"><span class="header-section-number">15.1.1</span> 神经元模型</a></li>
+  <li><a href="#激活函数" id="toc-激活函数" class="nav-link" data-scroll-target="#激活函数"><span class="header-section-number">15.1.2</span> 激活函数</a></li>
+  <li><a href="#多层感知机" id="toc-多层感知机" class="nav-link" data-scroll-target="#多层感知机"><span class="header-section-number">15.1.3</span> 多层感知机</a></li>
+  <li><a href="#训练过程" id="toc-训练过程" class="nav-link" data-scroll-target="#训练过程"><span class="header-section-number">15.1.4</span> 训练过程</a></li>
+  <li><a href="#mlp-vs-树模型" id="toc-mlp-vs-树模型" class="nav-link" data-scroll-target="#mlp-vs-树模型"><span class="header-section-number">15.1.5</span> MLP vs 树模型</a></li>
+  </ul></li>
+  <li><a href="#核心要点" id="toc-核心要点" class="nav-link" data-scroll-target="#核心要点"><span class="header-section-number">15.2</span> 核心要点</a></li>
+  </ul></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">16</span> Q&amp;A</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="198441d2" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 根据操作系统设置不同的字体</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> platform</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取操作系统类型</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>system <span class="op">=</span> platform.system()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置 matplotlib 字体</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> system <span class="op">==</span> <span class="st">'Windows'</span>:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># Windows 使用黑体</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> system <span class="op">==</span> <span class="st">'Darwin'</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Songti SC'</span>]  <span class="co"># Mac 使用宋体</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'WenQuanYi Zen Hei'</span>]  <span class="co"># Linux 使用文泉驿正黑</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 解决负号显示问题</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="开场深度学习的神秘面纱" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> 开场：深度学习的神秘面纱</h1>
+<hr>
+<section id="深度学习无处不在" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="深度学习无处不在"><span class="header-section-number">9.1</span> 深度学习无处不在</h2>
+<p><strong>你每天都在使用深度学习</strong>：</p>
+<ul>
+<li>📱 手机人脸解锁</li>
+<li>🗣️ 语音助手（Siri、小爱）</li>
+<li>📷 拍照美颜</li>
+<li>🚗 自动驾驶</li>
+<li>💬 ChatGPT</li>
+</ul>
+<p><strong>问题</strong>：这些”黑科技”的底层原理是什么？</p>
+<p><strong>答案</strong>：<strong>神经网络</strong></p>
+<hr>
+</section>
+<section id="本周目标揭开神秘面纱" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="本周目标揭开神秘面纱"><span class="header-section-number">9.2</span> 本周目标：揭开神秘面纱</h2>
+<section id="知识目标" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">9.2.1</span> 知识目标</h3>
+<ol type="1">
+<li>理解神经元的基本概念</li>
+<li>理解多层感知机（MLP）的网络结构</li>
+<li>了解常见激活函数（ReLU、Sigmoid、Tanh）</li>
+<li>理解前向传播和反向传播的直觉</li>
+<li>知道何时用树模型 vs 神经网络</li>
+</ol>
+</section>
+<section id="技能目标" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">9.2.2</span> 技能目标</h3>
+<ol type="1">
+<li>使用 Keras 搭建简单的 MLP</li>
+<li>训练 MLP 并可视化学习曲线</li>
+<li>在测试集上评估 MLP 的 AUC</li>
+<li>调整网络结构（层数、神经元数量）</li>
+</ol>
+<hr>
+</section>
+<section id="核心理念" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="核心理念"><span class="header-section-number">9.2.3</span> 核心理念</h3>
+<p><strong>深度学习不神秘</strong></p>
+<ul>
+<li>它是基于简单数学运算的累积</li>
+<li>关键是”学习”：通过数据自动调整参数</li>
+<li>不要被复杂的公式吓倒，先建立直觉！</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="第一部分从生物到人工" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> 第一部分：从生物到人工</h1>
+<hr>
+<section id="生物神经元" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="生物神经元"><span class="header-section-number">10.1</span> 1.1 生物神经元</h2>
+<section id="人脑的神经网络" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="人脑的神经网络"><span class="header-section-number">10.1.1</span> 人脑的神经网络</h3>
+<ul>
+<li>人脑约有 <strong>860 亿个神经元</strong></li>
+<li>每个神经元连接 <strong>数千到上万个</strong>其他神经元</li>
+<li>通过<strong>电信号</strong>传递信息</li>
+<li>学习 = 调整神经元之间的<strong>连接强度</strong></li>
+</ul>
+<hr>
+</section>
+<section id="生物神经元的结构" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="生物神经元的结构"><span class="header-section-number">10.1.2</span> 生物神经元的结构</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[树突&lt;br/&gt;Dendrites&lt;br/&gt;接收信号] --&gt; B[细胞体&lt;br/&gt;Soma&lt;br/&gt;整合处理]
+    B --&gt; C[轴突&lt;br/&gt;Axon&lt;br/&gt;输出信号]
+    C --&gt; D[突触&lt;br/&gt;Synapse&lt;br/&gt;连接下一个神经元]
+    
+    style A fill:#fff9c4
+    style B fill:#c8e6c9
+    style C fill:#bbdefb
+    style D fill:#ffccbc
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>关键过程</strong>：</p>
+<ol type="1">
+<li>树突接收多个输入信号</li>
+<li>细胞体对信号进行<strong>加权求和</strong></li>
+<li>如果总和超过<strong>阈值</strong>，神经元”发火”（激活）</li>
+<li>通过轴突传递信号给下一个神经元</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="人工神经元" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="人工神经元"><span class="header-section-number">10.2</span> 1.2 人工神经元</h2>
+<section id="数学模型" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="数学模型"><span class="header-section-number">10.2.1</span> 数学模型</h3>
+<p><strong>简化的神经元模型（1943年，McCulloch &amp; Pitts）</strong>：</p>
+<p><span class="math display">\[
+y = f\left(\sum_{i=1}^{n} w_i x_i + b\right)
+\]</span></p>
+<p><strong>组成部分</strong>：</p>
+<ul>
+<li><span class="math inline">\(x_i\)</span>：输入信号（特征）</li>
+<li><span class="math inline">\(w_i\)</span>：权重（连接强度）</li>
+<li><span class="math inline">\(b\)</span>：偏置（阈值）</li>
+<li><span class="math inline">\(f\)</span>：激活函数（决定是否”发火”）</li>
+<li><span class="math inline">\(y\)</span>：输出</li>
+</ul>
+<hr>
+</section>
+<section id="可视化人工神经元" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="可视化人工神经元"><span class="header-section-number">10.2.2</span> 可视化人工神经元</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    X1[x₁] --&gt;|w₁| S((Σ))
+    X2[x₂] --&gt;|w₂| S
+    X3[x₃] --&gt;|w₃| S
+    B[+b] --&gt; S
+    S --&gt; F[激活函数&lt;br/&gt;f]
+    F --&gt; Y[y]
+    
+    style S fill:#fff9c4
+    style F fill:#c8e6c9
+    style Y fill:#4caf50,color:#fff
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>步骤 1：加权求和</strong></p>
+<p><span class="math display">\[
+z = w_1 x_1 + w_2 x_2 + w_3 x_3 + b
+\]</span></p>
+<p><strong>步骤 2：激活</strong></p>
+<p><span class="math display">\[
+y = f(z)
+\]</span></p>
+<hr>
+</section>
+<section id="具体例子titanic-生存预测" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="具体例子titanic-生存预测"><span class="header-section-number">10.2.3</span> 具体例子：Titanic 生存预测</h3>
+<p><strong>特征</strong>：</p>
+<ul>
+<li><span class="math inline">\(x_1\)</span> = 性别（1=男，0=女）</li>
+<li><span class="math inline">\(x_2\)</span> = 年龄</li>
+<li><span class="math inline">\(x_3\)</span> = 票价</li>
+</ul>
+<p><strong>假设权重</strong>：</p>
+<ul>
+<li><span class="math inline">\(w_1 = -2\)</span>（性别越男越不利）</li>
+<li><span class="math inline">\(w_2 = -0.01\)</span>（年龄越大越不利）</li>
+<li><span class="math inline">\(w_3 = 0.001\)</span>（票价越高越有利）</li>
+<li><span class="math inline">\(b = 1\)</span>（基础偏置）</li>
+</ul>
+<hr>
+<p><strong>计算过程</strong>：</p>
+<pre><code>男性乘客：x₁=1, x₂=25, x₃=50
+z = (-2)×1 + (-0.01)×25 + 0.001×50 + 1
+  = -2 - 0.25 + 0.05 + 1
+  = -1.2
+
+经过 Sigmoid 激活：
+y = 1/(1+e^1.2) ≈ 0.23
+
+解释：存活概率 23%（较低）</code></pre>
+<p><strong>权重的含义</strong>：</p>
+<ul>
+<li><span class="math inline">\(w_1 = -2\)</span>：性别对生存影响最大</li>
+<li>负权重表示负相关</li>
+<li>权重的绝对值表示重要性</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="第二部分激活函数" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> 第二部分：激活函数</h1>
+<hr>
+<section id="为什么需要激活函数" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="为什么需要激活函数"><span class="header-section-number">11.1</span> 2.1 为什么需要激活函数？</h2>
+<p><strong>没有激活函数的问题</strong>：</p>
+<p><span class="math display">\[
+\begin{align}
+\text{层1: } &amp;h_1 = W_1 x + b_1 \\
+\text{层2: } &amp;h_2 = W_2 h_1 + b_2 = W_2(W_1 x + b_1) + b_2 \\
+&amp;= (W_2 W_1) x + (W_2 b_1 + b_2) \\
+&amp;= W' x + b' \quad \text{（仍然是线性）}
+\end{align}
+\]</span></p>
+<p><strong>结论</strong>：多层线性叠加 = 单层线性</p>
+<p><strong>激活函数的作用</strong>：<strong>引入非线性</strong>，让网络能学习复杂模式</p>
+<hr>
+</section>
+<section id="常见激活函数" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="常见激活函数"><span class="header-section-number">11.2</span> 2.2 常见激活函数</h2>
+<section id="sigmoid" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="sigmoid"><span class="header-section-number">11.2.1</span> 1. Sigmoid</h3>
+<p><span class="math display">\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]</span></p>
+<div id="49a3d44f" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">100</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sigmoid <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>z))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>relu <span class="op">=</span> np.maximum(<span class="dv">0</span>, z)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>tanh <span class="op">=</span> np.tanh(z)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Sigmoid</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(z, sigmoid, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'#2196f3'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axhline(y<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'z'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'σ(z)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Sigmoid</span><span class="ch">\n</span><span class="st">σ(z) = 1/(1+e⁻ᶻ)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylim(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].text(<span class="dv">3</span>, <span class="fl">0.5</span>, <span class="st">'输出: (0, 1)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'wheat'</span>))</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># ReLU</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(z, relu, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'#4caf50'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'z'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'ReLU(z)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'ReLU</span><span class="ch">\n</span><span class="st">ReLU(z) = max(0, z)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].text(<span class="dv">3</span>, <span class="dv">3</span>, <span class="st">'输出: [0, ∞)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'wheat'</span>))</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Tanh</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].plot(z, tanh, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'#ff9800'</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axhline(y<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axhline(y<span class="op">=-</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'z'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">'tanh(z)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">'Tanh</span><span class="ch">\n</span><span class="st">tanh(z) = (eᶻ-e⁻ᶻ)/(eᶻ+e⁻ᶻ)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylim(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].text(<span class="dv">3</span>, <span class="dv">0</span>, <span class="st">'输出: (-1, 1)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'wheat'</span>))</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_37997/1535391376.py:48: UserWarning:
+
+Glyph 8315 (\N{SUPERSCRIPT MINUS}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_37997/1535391376.py:48: UserWarning:
+
+Glyph 7611 (\N{MODIFIER LETTER SMALL Z}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 8315 (\N{SUPERSCRIPT MINUS}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 7611 (\N{MODIFIER LETTER SMALL Z}) missing from current font.
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w6_neural_networks_files/figure-html/cell-3-output-2.png" width="1429" height="472" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sigmoid-详解" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="sigmoid-详解"><span class="header-section-number">11.2.2</span> Sigmoid 详解</h3>
+<p><strong>公式</strong>：</p>
+<p><span class="math display">\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]</span></p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>输出范围：(0, 1)</li>
+<li>S 形曲线，平滑</li>
+<li>可解释为<strong>概率</strong></li>
+</ul>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>输出有界，稳定</li>
+<li>适合二分类输出层</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>梯度消失</strong>：当 <span class="math inline">\(|z|\)</span> 很大时，梯度接近 0</li>
+<li>计算成本高（指数运算）</li>
+</ul>
+<p><strong>使用场景</strong>：</p>
+<ul>
+<li>✓ 二分类问题的<strong>输出层</strong></li>
+<li>✗ 隐藏层（已被 ReLU 取代）</li>
+</ul>
+<hr>
+</section>
+<section id="relu-详解" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="relu-详解"><span class="header-section-number">11.2.3</span> ReLU 详解</h3>
+<p><strong>公式</strong>：</p>
+<p><span class="math display">\[
+\text{ReLU}(z) = \max(0, z) = \begin{cases}
+z &amp; \text{if } z &gt; 0 \\
+0 &amp; \text{if } z \leq 0
+\end{cases}
+\]</span></p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>⚡ <strong>计算超快</strong>（只是比较和选择）</li>
+<li>🎯 缓解梯度消失（<span class="math inline">\(z&gt;0\)</span> 时梯度恒为 1）</li>
+<li>🧠 生物学合理性（神经元要么激活要么不激活）</li>
+<li>📊 稀疏激活（约 50% 神经元输出 0）</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>💀 <strong>“神经元死亡”</strong>：某些神经元可能永远输出 0</li>
+</ul>
+<p><strong>使用场景</strong>：</p>
+<ul>
+<li>✓ <strong>隐藏层首选</strong></li>
+<li>✓ 绝大多数深度学习任务</li>
+</ul>
+<hr>
+</section>
+<section id="tanh-详解" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="tanh-详解"><span class="header-section-number">11.2.4</span> Tanh 详解</h3>
+<p><strong>公式</strong>：</p>
+<p><span class="math display">\[
+\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}
+\]</span></p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>输出范围：(-1, 1)</li>
+<li><strong>零中心</strong>（Sigmoid 不是）</li>
+<li>比 Sigmoid 更陡</li>
+</ul>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>零中心 → 收敛更快</li>
+<li>输出范围对称</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>仍有梯度消失问题</li>
+<li>计算成本高</li>
+</ul>
+<p><strong>使用场景</strong>：</p>
+<ul>
+<li>循环神经网络（RNN）</li>
+<li>需要零中心输出的场景</li>
+</ul>
+<hr>
+</section>
+<section id="激活函数对比表" class="level3" data-number="11.2.5">
+<h3 data-number="11.2.5" class="anchored" data-anchor-id="激活函数对比表"><span class="header-section-number">11.2.5</span> 激活函数对比表</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>激活函数</th>
+<th>范围</th>
+<th>优点</th>
+<th>缺点</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sigmoid</strong></td>
+<td>(0, 1)</td>
+<td>概率解释<br>平滑</td>
+<td>梯度消失<br>计算慢</td>
+<td>二分类输出层</td>
+</tr>
+<tr class="even">
+<td><strong>ReLU</strong></td>
+<td>[0, ∞)</td>
+<td>快速<br>缓解梯度消失</td>
+<td>神经元死亡</td>
+<td><strong>隐藏层首选</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Tanh</strong></td>
+<td>(-1, 1)</td>
+<td>零中心<br>对称</td>
+<td>梯度消失<br>计算慢</td>
+<td>RNN</td>
+</tr>
+</tbody>
+</table>
+<p><strong>经验法则</strong>：</p>
+<ul>
+<li>隐藏层：<strong>优先选 ReLU</strong></li>
+<li>输出层：
+<ul>
+<li>二分类 → Sigmoid</li>
+<li>多分类 → Softmax（后续会学）</li>
+<li>回归 → 不用激活（线性输出）</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="第三部分多层感知机mlp" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> 第三部分：多层感知机（MLP）</h1>
+<hr>
+<section id="网络结构" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="网络结构"><span class="header-section-number">12.1</span> 3.1 网络结构</h2>
+<section id="从单个神经元到神经网络" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="从单个神经元到神经网络"><span class="header-section-number">12.1.1</span> 从单个神经元到神经网络</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    subgraph 输入层
+    X1[特征1]
+    X2[特征2]
+    X3[特征3]
+    end
+    subgraph 隐藏层1
+    H11[神经元1]
+    H12[神经元2]
+    H13[神经元3]
+    H14[神经元4]
+    end
+    subgraph 隐藏层2
+    H21[神经元1]
+    H22[神经元2]
+    end
+    subgraph 输出层
+    Y[预测]
+    end
+
+    X1 --&gt; H11
+    X1 --&gt; H12
+    X1 --&gt; H13
+    X1 --&gt; H14
+    X2 --&gt; H11
+    X2 --&gt; H12
+    X2 --&gt; H13
+    X2 --&gt; H14
+    X3 --&gt; H11
+    X3 --&gt; H12
+    X3 --&gt; H13
+    X3 --&gt; H14
+
+    H11 --&gt; H21
+    H11 --&gt; H22
+    H12 --&gt; H21
+    H12 --&gt; H22
+    H13 --&gt; H21
+    H13 --&gt; H22
+    H14 --&gt; H21
+    H14 --&gt; H22
+
+    H21 --&gt; Y
+    H22 --&gt; Y
+
+    style X1 fill:#fff9c4
+    style X2 fill:#fff9c4
+    style X3 fill:#fff9c4
+    style H11 fill:#c8e6c9
+    style H12 fill:#c8e6c9
+    style H13 fill:#c8e6c9
+    style H14 fill:#c8e6c9
+    style H21 fill:#bbdefb
+    style H22 fill:#bbdefb
+    style Y fill:#4caf50,color:#fff
+    %% subgraph 背景色美化
+    style 输入层 fill:#f8f9fa,stroke:#e0e0e0
+    style 隐藏层1 fill:#f1f8e9,stroke:#aed581
+    style 隐藏层2 fill:#e3f2fd,stroke:#90caf9
+    style 输出层 fill:#fce4ec,stroke:#f06292
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="符号表示" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="符号表示"><span class="header-section-number">12.1.2</span> 符号表示</h3>
+<p><strong>输入层 → 隐藏层1 → 隐藏层2 → 输出层</strong></p>
+<ul>
+<li>输入：3 个特征</li>
+<li>隐藏层1：4 个神经元（ReLU）</li>
+<li>隐藏层2：2 个神经元（ReLU）</li>
+<li>输出层：1 个神经元（Sigmoid）</li>
+</ul>
+<p><strong>简写</strong>：<code>Input(3) → [4] → [2] → Output(1)</code></p>
+<hr>
+</section>
+</section>
+<section id="参数数量计算" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="参数数量计算"><span class="header-section-number">12.2</span> 3.2 参数数量计算</h2>
+<section id="titanic-例子" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="titanic-例子"><span class="header-section-number">12.2.1</span> Titanic 例子</h3>
+<pre><code>Input(8) → Dense(64, ReLU) → Dense(32, ReLU) → Output(1, Sigmoid)</code></pre>
+<p><strong>计算</strong>：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>层</th>
+<th>参数数量</th>
+<th>计算</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>输入 → 隐藏1</td>
+<td>8×64 + 64 = <strong>576</strong></td>
+<td>权重 + 偏置</td>
+</tr>
+<tr class="even">
+<td>隐藏1 → 隐藏2</td>
+<td>64×32 + 32 = <strong>2,080</strong></td>
+<td>权重 + 偏置</td>
+</tr>
+<tr class="odd">
+<td>隐藏2 → 输出</td>
+<td>32×1 + 1 = <strong>33</strong></td>
+<td>权重 + 偏置</td>
+</tr>
+<tr class="even">
+<td><strong>总计</strong></td>
+<td><strong>2,689</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>对比</strong>：</p>
+<ul>
+<li>决策树：只有分裂规则（少量参数）</li>
+<li>MLP：<strong>数千个参数需要学习</strong></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="为什么需要多层" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="为什么需要多层"><span class="header-section-number">12.3</span> 3.3 为什么需要多层？</h2>
+<section id="单层的局限性" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="单层的局限性"><span class="header-section-number">12.3.1</span> 单层的局限性</h3>
+<p><strong>单层神经网络</strong>（= 逻辑回归）：</p>
+<ul>
+<li>只能学习<strong>线性决策边界</strong></li>
+<li>无法解决 XOR 问题</li>
+</ul>
+<div id="4a7806c5" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># XOR 问题示例</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># XOR 数据</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>X_xor <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>]])</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>y_xor <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 单层无法分类</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].scatter(X_xor[y_xor<span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>], X_xor[y_xor<span class="op">==</span><span class="dv">0</span>, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">200</span>, c<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'类别 0'</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].scatter(X_xor[y_xor<span class="op">==</span><span class="dv">1</span>, <span class="dv">0</span>], X_xor[y_xor<span class="op">==</span><span class="dv">1</span>, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">200</span>, c<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'s'</span>, label<span class="op">=</span><span class="st">'类别 1'</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="fl">0.5</span>, <span class="fl">0.5</span>], <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'线性边界？'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'x₁'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'x₂'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'XOR 问题：单层网络无法解决'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlim(<span class="op">-</span><span class="fl">0.2</span>, <span class="fl">1.2</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylim(<span class="op">-</span><span class="fl">0.2</span>, <span class="fl">1.2</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 多层可以分类</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>mlp_xor <span class="op">=</span> MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">4</span>,), activation<span class="op">=</span><span class="st">'relu'</span>, random_state<span class="op">=</span><span class="dv">42</span>, max_iter<span class="op">=</span><span class="dv">5000</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>mlp_xor.fit(X_xor, y_xor)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.linspace(<span class="op">-</span><span class="fl">0.2</span>, <span class="fl">1.2</span>, <span class="dv">100</span>), np.linspace(<span class="op">-</span><span class="fl">0.2</span>, <span class="fl">1.2</span>, <span class="dv">100</span>))</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> mlp_xor.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.3</span>, cmap<span class="op">=</span><span class="st">'RdBu'</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].scatter(X_xor[y_xor<span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>], X_xor[y_xor<span class="op">==</span><span class="dv">0</span>, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">200</span>, c<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'类别 0'</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].scatter(X_xor[y_xor<span class="op">==</span><span class="dv">1</span>, <span class="dv">0</span>], X_xor[y_xor<span class="op">==</span><span class="dv">1</span>, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">200</span>, c<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'s'</span>, label<span class="op">=</span><span class="st">'类别 1'</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'x₁'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'x₂'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'XOR 问题：多层网络可以解决'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlim(<span class="op">-</span><span class="fl">0.2</span>, <span class="fl">1.2</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylim(<span class="op">-</span><span class="fl">0.2</span>, <span class="fl">1.2</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_37997/3615795970.py:39: UserWarning:
+
+Glyph 8321 (\N{SUBSCRIPT ONE}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_37997/3615795970.py:39: UserWarning:
+
+Glyph 8322 (\N{SUBSCRIPT TWO}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 8322 (\N{SUBSCRIPT TWO}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 8321 (\N{SUBSCRIPT ONE}) missing from current font.
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w6_neural_networks_files/figure-html/cell-4-output-2.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="多层的威力层次特征学习" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="多层的威力层次特征学习"><span class="header-section-number">12.3.2</span> 多层的威力：层次特征学习</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[图像识别例子] --&gt; B[第1层&lt;br/&gt;检测边缘]
+    B --&gt; C[第2层&lt;br/&gt;检测形状]
+    C --&gt; D[第3层&lt;br/&gt;检测物体部件]
+    D --&gt; E[第4层&lt;br/&gt;识别完整物体]
+    
+    style B fill:#fff9c4
+    style C fill:#c8e6c9
+    style D fill:#bbdefb
+    style E fill:#4caf50,color:#fff
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>关键洞察</strong>：</p>
+<ul>
+<li>浅层：学习简单特征（边缘、纹理）</li>
+<li>深层：学习复杂特征（组合模式）</li>
+<li>这是<strong>自动特征工程</strong>！</li>
+</ul>
+<hr>
+</section>
+<section id="层数选择建议" class="level3" data-number="12.3.3">
+<h3 data-number="12.3.3" class="anchored" data-anchor-id="层数选择建议"><span class="header-section-number">12.3.3</span> 层数选择建议</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>数据量</th>
+<th>推荐层数</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt; 1万</td>
+<td>1-2 层隐藏层</td>
+<td>数据少，深层易过拟合</td>
+</tr>
+<tr class="even">
+<td>1万-10万</td>
+<td>2-3 层隐藏层</td>
+<td>中等复杂度</td>
+</tr>
+<tr class="odd">
+<td>&gt; 10万</td>
+<td>3-5 层隐藏层</td>
+<td>大数据支持深层网络</td>
+</tr>
+<tr class="even">
+<td>&gt; 100万</td>
+<td>5+ 层</td>
+<td>需要特殊技巧（下周讲）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>经验法则</strong>：</p>
+<ul>
+<li>从简单开始（2层）</li>
+<li>如果欠拟合，增加层数或神经元数</li>
+<li>如果过拟合，减少复杂度或使用正则化（下周讲）</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="第四部分前向传播与反向传播" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> 第四部分：前向传播与反向传播</h1>
+<hr>
+<section id="前向传播forward-propagation" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="前向传播forward-propagation"><span class="header-section-number">13.1</span> 4.1 前向传播（Forward Propagation）</h2>
+<section id="从输入到输出的信息流" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="从输入到输出的信息流"><span class="header-section-number">13.1.1</span> 从输入到输出的信息流</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[输入&lt;br/&gt;x] --&gt; B[隐藏层1&lt;br/&gt;h₁ = ReLU W₁x+b₁]
+    B --&gt; C[隐藏层2&lt;br/&gt;h₂ = ReLU W₂h₁+b₂]
+    C --&gt; D[输出&lt;br/&gt;ŷ = σ W₃h₂+b₃]
+    
+    style A fill:#fff9c4
+    style B fill:#c8e6c9
+    style C fill:#bbdefb
+    style D fill:#4caf50,color:#fff
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>逐层计算</strong>：</p>
+<ol type="1">
+<li>输入：<span class="math inline">\(x\)</span> = [性别, 年龄, 票价, …]</li>
+<li>隐藏层1：<span class="math inline">\(h_1 = \text{ReLU}(W_1 x + b_1)\)</span></li>
+<li>隐藏层2：<span class="math inline">\(h_2 = \text{ReLU}(W_2 h_1 + b_2)\)</span></li>
+<li>输出：<span class="math inline">\(\hat{y} = \sigma(W_3 h_2 + b_3)\)</span></li>
+</ol>
+<p><strong>结果</strong>：<span class="math inline">\(\hat{y}\)</span> = 0.85（85% 存活概率）</p>
+<hr>
+</section>
+</section>
+<section id="损失函数loss-function" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="损失函数loss-function"><span class="header-section-number">13.2</span> 4.2 损失函数（Loss Function）</h2>
+<section id="衡量预测误差" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="衡量预测误差"><span class="header-section-number">13.2.1</span> 衡量预测误差</h3>
+<p><strong>二分类：Binary Cross-Entropy</strong></p>
+<p><span class="math display">\[
+\text{Loss} = -\frac{1}{n}\sum_{i=1}^{n}\left[y_i \log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i)\right]
+\]</span></p>
+<p><strong>直观理解</strong>：</p>
+<ul>
+<li>真实是 1，预测 0.9 → Loss 小（好）</li>
+<li>真实是 1，预测 0.1 → Loss 大（差）</li>
+</ul>
+<p><strong>类比</strong>：Loss = 考试分数与满分的差距</p>
+<hr>
+</section>
+<section id="损失函数可视化" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="损失函数可视化"><span class="header-section-number">13.2.2</span> 损失函数可视化</h3>
+<div id="b870f90f" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Binary Cross-Entropy 可视化</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y_true_demo <span class="op">=</span> <span class="dv">1</span>  <span class="co"># 真实标签</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y_pred_range <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="fl">0.99</span>, <span class="dv">100</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> <span class="op">-</span>np.log(y_pred_range)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.plot(y_pred_range, loss, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'#f44336'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'预测概率 ŷ'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Loss'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Binary Cross-Entropy Loss</span><span class="ch">\n</span><span class="st">（真实标签 y=1 时）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'完美预测'</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'orange'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'随机猜测'</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.9</span>, <span class="fl">0.5</span>, <span class="st">'ŷ → 1</span><span class="ch">\n</span><span class="st">Loss → 0</span><span class="ch">\n</span><span class="st">(预测对了)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'#c8e6c9'</span>))</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.1</span>, <span class="dv">4</span>, <span class="st">'ŷ → 0</span><span class="ch">\n</span><span class="st">Loss → ∞</span><span class="ch">\n</span><span class="st">(预测错了)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'#ffccbc'</span>))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 375 (\N{LATIN SMALL LETTER Y WITH CIRCUMFLEX}) missing from current font.
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w6_neural_networks_files/figure-html/cell-5-output-2.png" width="798" height="547" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="反向传播backpropagation" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="反向传播backpropagation"><span class="header-section-number">13.3</span> 4.3 反向传播（Backpropagation）</h2>
+<section id="核心思想不讲数学细节" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="核心思想不讲数学细节"><span class="header-section-number">13.3.1</span> 核心思想（不讲数学细节）</h3>
+<p><strong>问题</strong>：如何调整 W 和 b 来降低 Loss？</p>
+<p><strong>方法</strong>：计算 Loss 对每个参数的”贡献”（梯度）</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph RL
+    A[Loss] --&gt; B[∂Loss/∂W₃&lt;br/&gt;∂Loss/∂b₃]
+    B --&gt; C[∂Loss/∂W₂&lt;br/&gt;∂Loss/∂b₂]
+    C --&gt; D[∂Loss/∂W₁&lt;br/&gt;∂Loss/∂b₁]
+    
+    style A fill:#f44336,color:#fff
+    style B fill:#ffccbc
+    style C fill:#fff9c4
+    style D fill:#c8e6c9
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>更新规则</strong>：</p>
+<p><span class="math display">\[
+W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\partial W}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\eta\)</span>：学习率（步长）</li>
+<li><span class="math inline">\(\frac{\partial \text{Loss}}{\partial W}\)</span>：梯度（方向）</li>
+</ul>
+<hr>
+</section>
+<section id="类比登山下坡" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="类比登山下坡"><span class="header-section-number">13.3.2</span> 类比：登山下坡</h3>
+<div id="3f01e55e" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 梯度下降可视化</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>  <span class="co"># 简单的凸函数</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'#2196f3'</span>, label<span class="op">=</span><span class="st">'Loss 曲线'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 梯度下降路径</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>x_path <span class="op">=</span> [<span class="fl">1.8</span>, <span class="fl">1.2</span>, <span class="fl">0.7</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.0</span>]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>y_path <span class="op">=</span> [xi<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span> <span class="cf">for</span> xi <span class="kw">in</span> x_path]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.plot(x_path, y_path, <span class="st">'ro-'</span>, markersize<span class="op">=</span><span class="dv">10</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'梯度下降路径'</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.scatter([<span class="dv">0</span>], [<span class="dv">1</span>], s<span class="op">=</span><span class="dv">300</span>, c<span class="op">=</span><span class="st">'green'</span>, marker<span class="op">=</span><span class="st">'*'</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'最优点'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'参数 W'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Loss'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'梯度下降：沿着坡度下山'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">'起点'</span>, xy<span class="op">=</span>(<span class="fl">1.8</span>, y_path[<span class="dv">0</span>]), xytext<span class="op">=</span>(<span class="dv">2</span>, <span class="fl">4.5</span>), </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'red'</span>), fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">'终点（最优）'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>), xytext<span class="op">=</span>(<span class="fl">0.5</span>, <span class="dv">2</span>), </span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'green'</span>), fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w6_neural_networks_files/figure-html/cell-6-output-1.png" width="956" height="527" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>类比</strong>：</p>
+<ul>
+<li>做菜太咸（Loss 大） → 下次少放盐（调整参数）</li>
+<li>通过不断尝试，找到最佳配方（最优参数）</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="优化器optimizer" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="优化器optimizer"><span class="header-section-number">13.4</span> 4.4 优化器（Optimizer）</h2>
+<section id="sgd-vs-adam" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="sgd-vs-adam"><span class="header-section-number">13.4.1</span> SGD vs Adam</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>优化器</th>
+<th>全称</th>
+<th>特点</th>
+<th>何时用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SGD</strong></td>
+<td>Stochastic Gradient Descent</td>
+<td>最基础<br>学习率固定</td>
+<td>简单问题<br>理论研究</td>
+</tr>
+<tr class="even">
+<td><strong>Adam</strong></td>
+<td>Adaptive Moment Estimation</td>
+<td>自适应学习率<br>收敛快</td>
+<td><strong>大多数情况首选</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>建议</strong>：</p>
+<ul>
+<li>初学者：<strong>直接用 Adam</strong></li>
+<li>效果不好再试 SGD</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="第五部分mlp-vs-树模型" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> 第五部分：MLP vs 树模型</h1>
+<hr>
+<section id="何时用树模型何时用-mlp" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="何时用树模型何时用-mlp"><span class="header-section-number">14.1</span> 何时用树模型，何时用 MLP？</h2>
+<section id="对比表" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="对比表"><span class="header-section-number">14.1.1</span> 对比表</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 42%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>维度</th>
+<th>树模型（RF/GBDT）</th>
+<th>MLP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>适用数据</strong></td>
+<td>表格数据<br>（行列结构）</td>
+<td>图像、文本、音频<br>（非结构化）</td>
+</tr>
+<tr class="even">
+<td><strong>特征工程</strong></td>
+<td>需要人工处理<br>（编码、缺失值）</td>
+<td>自动学习特征</td>
+</tr>
+<tr class="odd">
+<td><strong>训练速度</strong></td>
+<td>快（分钟级）</td>
+<td>慢（小时级）</td>
+</tr>
+<tr class="even">
+<td><strong>调参难度</strong></td>
+<td>简单（3-5个参数）</td>
+<td>复杂（层数、神经元数、学习率…）</td>
+</tr>
+<tr class="odd">
+<td><strong>可解释性</strong></td>
+<td>高（特征重要性、可视化）</td>
+<td>低（黑盒）</td>
+</tr>
+<tr class="even">
+<td><strong>样本量要求</strong></td>
+<td>小数据也可以（100+）</td>
+<td>需要大量数据（10000+）</td>
+</tr>
+<tr class="odd">
+<td><strong>过拟合</strong></td>
+<td>较容易控制</td>
+<td>容易过拟合</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="金融领域实际情况" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="金融领域实际情况"><span class="header-section-number">14.1.2</span> 金融领域实际情况</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>场景</th>
+<th>数据类型</th>
+<th>首选模型</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>贷款违约预测</td>
+<td>表格</td>
+<td>GBDT</td>
+<td>可解释</td>
+</tr>
+<tr class="even">
+<td>欺诈检测</td>
+<td>表格</td>
+<td>GBDT/RF</td>
+<td>速度快</td>
+</tr>
+<tr class="odd">
+<td>客户流失</td>
+<td>表格</td>
+<td>GBDT</td>
+<td>可解释</td>
+</tr>
+<tr class="even">
+<td>票据识别（OCR）</td>
+<td>图像</td>
+<td>CNN</td>
+<td>图像专用</td>
+</tr>
+<tr class="odd">
+<td>舆情分析</td>
+<td>文本</td>
+<td>BERT</td>
+<td>文本专用</td>
+</tr>
+<tr class="even">
+<td>股票预测</td>
+<td>时间序列</td>
+<td>LSTM/Transformer</td>
+<td>序列专用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心结论</strong>：</p>
+<ul>
+<li><strong>表格数据（90%的金融任务）</strong> → <strong>树模型</strong></li>
+<li><strong>图像/文本/音频</strong> → 深度学习</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="总结" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> 总结</h1>
+<hr>
+<section id="本讲知识回顾" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">15.1</span> 本讲知识回顾</h2>
+<section id="神经元模型" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="神经元模型"><span class="header-section-number">15.1.1</span> 神经元模型</h3>
+<ul>
+<li>生物神经元 → 人工神经元</li>
+<li>加权求和 + 激活函数</li>
+</ul>
+</section>
+<section id="激活函数" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="激活函数"><span class="header-section-number">15.1.2</span> 激活函数</h3>
+<ul>
+<li><strong>Sigmoid</strong>：输出层（二分类）</li>
+<li><strong>ReLU</strong>：隐藏层首选</li>
+<li><strong>Tanh</strong>：RNN 专用</li>
+</ul>
+</section>
+<section id="多层感知机" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="多层感知机"><span class="header-section-number">15.1.3</span> 多层感知机</h3>
+<ul>
+<li>输入层 → 隐藏层 → 输出层</li>
+<li>参数：权重 W + 偏置 b</li>
+<li>多层 → 学习复杂非线性模式</li>
+</ul>
+<hr>
+</section>
+<section id="训练过程" class="level3" data-number="15.1.4">
+<h3 data-number="15.1.4" class="anchored" data-anchor-id="训练过程"><span class="header-section-number">15.1.4</span> 训练过程</h3>
+<ul>
+<li><strong>前向传播</strong>：输入 → 输出</li>
+<li><strong>损失函数</strong>：衡量误差</li>
+<li><strong>反向传播</strong>：计算梯度</li>
+<li><strong>优化器</strong>：更新参数（推荐 Adam）</li>
+</ul>
+</section>
+<section id="mlp-vs-树模型" class="level3" data-number="15.1.5">
+<h3 data-number="15.1.5" class="anchored" data-anchor-id="mlp-vs-树模型"><span class="header-section-number">15.1.5</span> MLP vs 树模型</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>场景</th>
+<th>推荐模型</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>表格数据</td>
+<td>树模型</td>
+</tr>
+<tr class="even">
+<td>图像</td>
+<td>CNN</td>
+</tr>
+<tr class="odd">
+<td>文本</td>
+<td>Transformer</td>
+</tr>
+<tr class="even">
+<td>音频</td>
+<td>RNN/CNN</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="核心要点" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="核心要点"><span class="header-section-number">15.2</span> 核心要点</h2>
+<ol type="1">
+<li><p><strong>深度学习不神秘</strong><br>
+基于简单的数学运算累积</p></li>
+<li><p><strong>激活函数很重要</strong><br>
+隐藏层用 ReLU，输出层看任务</p></li>
+<li><p><strong>归一化是必须的</strong><br>
+神经网络对数据尺度敏感</p></li>
+<li><p><strong>表格数据树模型更好</strong><br>
+不要迷信深度学习</p></li>
+<li><p><strong>Keras 很简单</strong><br>
+Sequential API 易上手</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="qa" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Q&amp;A</h1>
+<p><strong>Q1：人工神经元是如何模拟生物神经元的？请写出人工神经元的基本数学模型。</strong></p>
+<p><strong>A：</strong> 人工神经元模拟生物神经元“接收信号-整合处理-激活发火”的过程。</p>
+<p>它的数学模型是：</p>
+<ol type="1">
+<li>加权求和： <span class="math inline">\(z = \sum_{i=1}^{n} w_i x_i + b\)</span></li>
+<li>激活函数： <span class="math inline">\(y = f(z)\)</span> （其中 <span class="math inline">\(x_i\)</span> 是输入特征，<span class="math inline">\(w_i\)</span> 是权重，<span class="math inline">\(b\)</span> 是偏置，<span class="math inline">\(f\)</span> 是激活函数）</li>
+</ol>
+<hr>
+<p><strong>Q2：为什么神经网络中必须使用“非线性”激活函数（如 ReLU）？如果只用线性激活（或不用激活），多层网络会退化成什么？</strong></p>
+<p><strong>A：</strong></p>
+<ul>
+<li>原因：激活函数的作用是引入非线性，使得网络能够学习和拟合复杂的非线性模式（例如 XOR 问题）。</li>
+<li>退化：如果只用线性激活，多层线性叠加的结果仍然是线性的（<span class="math inline">\(W'x + b'\)</span>）。这会导致整个深度神经网络退化成一个单层的线性模型（如逻辑回归），失去深度学习的意义。</li>
+</ul>
+<hr>
+<p><strong>Q3：为神经网络的“隐藏层”和“二分类输出层”选择激活函数时，首选的推荐分别是什么？</strong></p>
+<p><strong>A：</strong></p>
+<ul>
+<li>隐藏层首选：ReLU。因为它计算快，并能有效缓解梯度消失问题。</li>
+<li>二分类输出层首选：Sigmoid。因为它的输出范围是 (0, 1) ，可以将输出结果解释为概率。</li>
+</ul>
+<hr>
+<p><strong>Q4：请简要描述“前向传播”（Forward Propagation）和“反向传播”（Backward Propagation）在神经网络训练中的角色。</strong></p>
+<p><strong>A：</strong></p>
+<ul>
+<li>前向传播：是指数据从输入层开始，逐层计算，直到在输出层得到预测值（<span class="math inline">\(\hat{y}\)</span>）的过程。</li>
+<li>反向传播：是指在得到预测值并计算出 Loss（误差）后，从输出层反向逐层计算 Loss 对每个参数（W 和 b）的梯度（贡献度）的过程。</li>
+</ul>
+<hr>
+<p><strong>Q5：为什么 ReLU (<span class="math inline">\(\max(0, z)\)</span>) 作为隐藏层激活函数，通常优于 Sigmoid？Sigmoid 用在隐藏层时有什么主要缺陷？</strong></p>
+<p><strong>A：</strong> ReLU 之所以更优，主要是因为它解决了 Sigmoid 的一个主要缺陷：梯度消失（Gradient Vanishing）。</p>
+<ul>
+<li>Sigmoid 的缺陷：Sigmoid 函数在输入值（z）很大或很小时，其曲线非常平坦，导致梯度（导数）接近于 0。在反向传播时，这些接近 0 的梯度逐层相乘，导致深层网络的梯度变得极小，使得参数几乎无法更新。</li>
+<li>ReLU 的优势：当输入 <span class="math inline">\(z &gt; 0\)</span> 时，ReLU 的梯度恒为 1。这使得梯度在反向传播时能够更顺畅地流动，极大地缓解了梯度消失问题，让网络训练得更快、更深。</li>
+</ul>
+<hr>
+<p><strong>Q6：假设一个 MLP 网络结构为 <code>Input(10) -&gt; Dense(32, ReLU) -&gt; Output(1, Sigmoid)</code>。请问从 Input 层到 Dense(32) 层（第一个隐藏层）总共有多少个可训练参数？</strong></p>
+<p><strong>A：</strong> 可训练参数 = 权重（Weights）+ 偏置（Biases）。</p>
+<ol type="1">
+<li>权重 (W)：每个输入神经元都连接到每个隐藏神经元。
+<ul>
+<li>计算：<code>输入维度 × 隐藏层维度</code> = <span class="math inline">\(10 \times 32 = 320\)</span> 个。</li>
+</ul></li>
+<li>偏置 (b)：隐藏层中的每个神经元都有 1 个偏置项。
+<ul>
+<li>计算：<code>隐藏层维度</code> = <span class="math inline">\(32\)</span> 个。</li>
+</ul></li>
+<li>总计： <span class="math inline">\(320 + 32 = \mathbf{352}\)</span> 个可训练参数。</li>
+</ol>
+<hr>
+<p><strong>Q7：在反向传播中，我们计算出 Loss 对权重 W 的梯度（<span class="math inline">\(\frac{\partial \text{Loss}}{\partial W}\)</span>）后，是如何更新这个权重 W 的？（请写出更新规则）。在这个规则中，“学习率（<span class="math inline">\(\eta\)</span>）”扮演了什么角色？</strong></p>
+<p><strong>A：</strong></p>
+<ul>
+<li>更新规则： <span class="math inline">\(W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\partial W}\)</span> 。</li>
+<li>学习率（<span class="math inline">\(\eta\)</span>）的角色：学习率（Learning Rate）扮演着“步长”的角色。它控制了模型在“下山”（降低 Loss）时每一步迈多大。
+<ul>
+<li><span class="math inline">\(\eta\)</span> 太大：可能会导致“步子迈太大”，越过最低点，导致 Loss 震荡或发散。</li>
+<li><span class="math inline">\(\eta\)</span> 太小：会导致“小碎步”下山，训练速度过慢，可能需要很久才能收敛。</li>
+</ul></li>
+</ul>
+<hr>
+<p><strong>Q8：对于绝大多数金融场景中的“表格数据”（像一个 Excel 表格、数据库表类型的数据），推荐首选哪一类模型（树模型还是MLP）？为什么？</strong></p>
+<p><strong>A：</strong></p>
+<ul>
+<li>首选模型：树模型（特别是 GBDT）。</li>
+<li>原因：对于表格数据，树模型通常训练速度更快、调参更简单、可解释性更强，并且在中小规模的数据集上（金融领域很常见）表现往往优于需要大量数据和复杂调参的 MLP。</li>
+</ul>
+<hr>
+<p><strong>Q9：一个金融科技团队想用 MLP（神经网络）来预测客户流失，他们的数据集只有 5000 行（样本）和 20 个特征（表格数据）。你认为他们应该优先使用 MLP 吗？为什么？</strong></p>
+<p><strong>A：</strong> 不应该优先使用 MLP。</p>
+<p>理由如下：</p>
+<ul>
+<li>数据量太小：MLP 通常需要大量数据（例如 1 万条以上）才能学习其数千个参数并防止过拟合。5000 行数据对于 MLP 来说太少了。</li>
+<li>树模型更优：对于这种中小型表格数据，树模型（如 GBDT 或 随机森林）通常表现更好，并且训练更快、可解释性更强（这对业务很重要）。</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "已复制");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "已复制");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./w5_ensemble_learning.html" class="pagination-link" aria-label="第五讲：集成学习 - 随机森林与 GBDT">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./project_list.html" class="pagination-link" aria-label="入门级（难度系数 0.9）">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">入门级（难度系数 0.9）</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
