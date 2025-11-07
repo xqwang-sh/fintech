@@ -272,100 +272,40 @@ window.Quarto = {
     <h2 id="toc-title">目录</h2>
    
   <ul>
-  <li><a href="#开场为什么数据预处理如此重要" id="toc-开场为什么数据预处理如此重要" class="nav-link active" data-scroll-target="#开场为什么数据预处理如此重要"><span class="header-section-number">5</span> 开场：为什么数据预处理如此重要？</a>
+  <li><a href="#开场为什么数据预处理如此重要" id="toc-开场为什么数据预处理如此重要" class="nav-link active" data-scroll-target="#开场为什么数据预处理如此重要"><span class="header-section-number">4.1</span> 开场：为什么数据预处理如此重要？</a>
   <ul class="collapse">
-  <li><a href="#一个真实的场景" id="toc-一个真实的场景" class="nav-link" data-scroll-target="#一个真实的场景"><span class="header-section-number">5.1</span> 一个真实的场景</a></li>
-  <li><a href="#本周学习目标" id="toc-本周学习目标" class="nav-link" data-scroll-target="#本周学习目标"><span class="header-section-number">5.2</span> 本周学习目标</a>
+  <li><a href="#一个真实的场景" id="toc-一个真实的场景" class="nav-link" data-scroll-target="#一个真实的场景"><span class="header-section-number">4.1.1</span> 一个真实的场景</a></li>
+  <li><a href="#本周学习目标" id="toc-本周学习目标" class="nav-link" data-scroll-target="#本周学习目标"><span class="header-section-number">4.1.2</span> 本周学习目标</a></li>
+  </ul></li>
+  <li><a href="#第一部分数据预处理" id="toc-第一部分数据预处理" class="nav-link" data-scroll-target="#第一部分数据预处理"><span class="header-section-number">4.2</span> 第一部分：数据预处理</a>
   <ul class="collapse">
-  <li><a href="#知识目标" id="toc-知识目标" class="nav-link" data-scroll-target="#知识目标"><span class="header-section-number">5.2.1</span> 知识目标</a></li>
-  <li><a href="#技能目标" id="toc-技能目标" class="nav-link" data-scroll-target="#技能目标"><span class="header-section-number">5.2.2</span> 技能目标</a></li>
-  <li><a href="#核心理念" id="toc-核心理念" class="nav-link" data-scroll-target="#核心理念"><span class="header-section-number">5.2.3</span> 核心理念</a></li>
+  <li><a href="#缺失值处理" id="toc-缺失值处理" class="nav-link" data-scroll-target="#缺失值处理"><span class="header-section-number">4.2.1</span> 缺失值处理</a></li>
+  <li><a href="#异常值检测与处理" id="toc-异常值检测与处理" class="nav-link" data-scroll-target="#异常值检测与处理"><span class="header-section-number">4.2.2</span> 异常值检测与处理</a></li>
+  <li><a href="#归一化normalization" id="toc-归一化normalization" class="nav-link" data-scroll-target="#归一化normalization"><span class="header-section-number">4.2.3</span> 归一化（Normalization）</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#第一部分数据预处理" id="toc-第一部分数据预处理" class="nav-link" data-scroll-target="#第一部分数据预处理"><span class="header-section-number">6</span> 第一部分：数据预处理</a>
+  <li><a href="#第二部分回归模型评估" id="toc-第二部分回归模型评估" class="nav-link" data-scroll-target="#第二部分回归模型评估"><span class="header-section-number">4.3</span> 第二部分：回归模型评估</a>
   <ul class="collapse">
-  <li><a href="#缺失值处理" id="toc-缺失值处理" class="nav-link" data-scroll-target="#缺失值处理"><span class="header-section-number">6.1</span> 缺失值处理</a>
+  <li><a href="#残差residual" id="toc-残差residual" class="nav-link" data-scroll-target="#残差residual"><span class="header-section-number">4.3.1</span> 残差（Residual）</a></li>
+  <li><a href="#mae平均绝对误差" id="toc-mae平均绝对误差" class="nav-link" data-scroll-target="#mae平均绝对误差"><span class="header-section-number">4.3.2</span> MAE（平均绝对误差）</a></li>
+  <li><a href="#rmse均方根误差" id="toc-rmse均方根误差" class="nav-link" data-scroll-target="#rmse均方根误差"><span class="header-section-number">4.3.3</span> RMSE（均方根误差）</a></li>
+  <li><a href="#r²-决定系数" id="toc-r²-决定系数" class="nav-link" data-scroll-target="#r²-决定系数"><span class="header-section-number">4.3.4</span> R² 决定系数</a></li>
+  </ul></li>
+  <li><a href="#第三部分数据可视化" id="toc-第三部分数据可视化" class="nav-link" data-scroll-target="#第三部分数据可视化"><span class="header-section-number">4.4</span> 第三部分：数据可视化</a>
   <ul class="collapse">
-  <li><a href="#什么是缺失值" id="toc-什么是缺失值" class="nav-link" data-scroll-target="#什么是缺失值"><span class="header-section-number">6.1.1</span> 什么是缺失值？</a></li>
-  <li><a href="#缺失值处理的首要原则理解业务逻辑" id="toc-缺失值处理的首要原则理解业务逻辑" class="nav-link" data-scroll-target="#缺失值处理的首要原则理解业务逻辑"><span class="header-section-number">6.1.2</span> 🔍 缺失值处理的首要原则：理解业务逻辑</a></li>
-  <li><a href="#隐形缺失的经典案例" id="toc-隐形缺失的经典案例" class="nav-link" data-scroll-target="#隐形缺失的经典案例"><span class="header-section-number">6.1.3</span> 📊 隐形缺失的经典案例</a></li>
-  <li><a href="#缺失值处理决策流程" id="toc-缺失值处理决策流程" class="nav-link" data-scroll-target="#缺失值处理决策流程"><span class="header-section-number">6.1.4</span> 缺失值处理决策流程</a></li>
-  <li><a href="#删除法" id="toc-删除法" class="nav-link" data-scroll-target="#删除法"><span class="header-section-number">6.1.5</span> 删除法</a></li>
-  <li><a href="#填充法" id="toc-填充法" class="nav-link" data-scroll-target="#填充法"><span class="header-section-number">6.1.6</span> 填充法</a></li>
-  <li><a href="#高级方法简介" id="toc-高级方法简介" class="nav-link" data-scroll-target="#高级方法简介"><span class="header-section-number">6.1.7</span> 高级方法（简介）</a></li>
+  <li><a href="#为什么需要可视化" id="toc-为什么需要可视化" class="nav-link" data-scroll-target="#为什么需要可视化"><span class="header-section-number">4.4.1</span> 为什么需要可视化？</a></li>
+  <li><a href="#常用图表类型" id="toc-常用图表类型" class="nav-link" data-scroll-target="#常用图表类型"><span class="header-section-number">4.4.2</span> 常用图表类型</a></li>
+  <li><a href="#可视化陷阱" id="toc-可视化陷阱" class="nav-link" data-scroll-target="#可视化陷阱"><span class="header-section-number">4.4.3</span> 可视化陷阱</a></li>
   </ul></li>
-  <li><a href="#异常值检测与处理" id="toc-异常值检测与处理" class="nav-link" data-scroll-target="#异常值检测与处理"><span class="header-section-number">6.2</span> 异常值检测与处理</a>
+  <li><a href="#第四部分完整实战流程" id="toc-第四部分完整实战流程" class="nav-link" data-scroll-target="#第四部分完整实战流程"><span class="header-section-number">4.5</span> 第四部分：完整实战流程</a>
   <ul class="collapse">
-  <li><a href="#什么是异常值" id="toc-什么是异常值" class="nav-link" data-scroll-target="#什么是异常值"><span class="header-section-number">6.2.1</span> 什么是异常值？</a></li>
-  <li><a href="#异常值识别箱线图" id="toc-异常值识别箱线图" class="nav-link" data-scroll-target="#异常值识别箱线图"><span class="header-section-number">6.2.2</span> 异常值识别：箱线图</a></li>
-  <li><a href="#异常值识别统计方法" id="toc-异常值识别统计方法" class="nav-link" data-scroll-target="#异常值识别统计方法"><span class="header-section-number">6.2.3</span> 异常值识别：统计方法</a></li>
-  <li><a href="#异常值处理决策" id="toc-异常值处理决策" class="nav-link" data-scroll-target="#异常值处理决策"><span class="header-section-number">6.2.4</span> 异常值处理决策</a></li>
+  <li><a href="#完整流程概览" id="toc-完整流程概览" class="nav-link" data-scroll-target="#完整流程概览"><span class="header-section-number">4.5.1</span> 完整流程概览</a></li>
   </ul></li>
-  <li><a href="#归一化normalization" id="toc-归一化normalization" class="nav-link" data-scroll-target="#归一化normalization"><span class="header-section-number">6.3</span> 归一化（Normalization）</a>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">4.6</span> 总结</a>
   <ul class="collapse">
-  <li><a href="#为什么需要归一化" id="toc-为什么需要归一化" class="nav-link" data-scroll-target="#为什么需要归一化"><span class="header-section-number">6.3.1</span> 为什么需要归一化？</a></li>
-  <li><a href="#两种常用归一化方法" id="toc-两种常用归一化方法" class="nav-link" data-scroll-target="#两种常用归一化方法"><span class="header-section-number">6.3.2</span> 两种常用归一化方法</a></li>
-  <li><a href="#归一化前后对比" id="toc-归一化前后对比" class="nav-link" data-scroll-target="#归一化前后对比"><span class="header-section-number">6.3.3</span> 归一化前后对比</a></li>
-  <li><a href="#何时使用哪种归一化" id="toc-何时使用哪种归一化" class="nav-link" data-scroll-target="#何时使用哪种归一化"><span class="header-section-number">6.3.4</span> 何时使用哪种归一化？</a></li>
+  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">4.6.1</span> 本讲知识回顾</a></li>
+  <li><a href="#核心要点" id="toc-核心要点" class="nav-link" data-scroll-target="#核心要点"><span class="header-section-number">4.6.2</span> 核心要点</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#第二部分回归模型评估" id="toc-第二部分回归模型评估" class="nav-link" data-scroll-target="#第二部分回归模型评估"><span class="header-section-number">7</span> 第二部分：回归模型评估</a>
-  <ul class="collapse">
-  <li><a href="#残差residual" id="toc-残差residual" class="nav-link" data-scroll-target="#残差residual"><span class="header-section-number">7.1</span> 残差（Residual）</a>
-  <ul class="collapse">
-  <li><a href="#核心概念" id="toc-核心概念" class="nav-link" data-scroll-target="#核心概念"><span class="header-section-number">7.1.1</span> 核心概念</a></li>
-  <li><a href="#理想的残差" id="toc-理想的残差" class="nav-link" data-scroll-target="#理想的残差"><span class="header-section-number">7.1.2</span> 理想的残差</a></li>
-  </ul></li>
-  <li><a href="#mae平均绝对误差" id="toc-mae平均绝对误差" class="nav-link" data-scroll-target="#mae平均绝对误差"><span class="header-section-number">7.2</span> MAE（平均绝对误差）</a>
-  <ul class="collapse">
-  <li><a href="#定义" id="toc-定义" class="nav-link" data-scroll-target="#定义"><span class="header-section-number">7.2.1</span> 定义</a></li>
-  <li><a href="#mae-的优缺点" id="toc-mae-的优缺点" class="nav-link" data-scroll-target="#mae-的优缺点"><span class="header-section-number">7.2.2</span> MAE 的优缺点</a></li>
-  </ul></li>
-  <li><a href="#rmse均方根误差" id="toc-rmse均方根误差" class="nav-link" data-scroll-target="#rmse均方根误差"><span class="header-section-number">7.3</span> RMSE（均方根误差）</a>
-  <ul class="collapse">
-  <li><a href="#定义-1" id="toc-定义-1" class="nav-link" data-scroll-target="#定义-1"><span class="header-section-number">7.3.1</span> 定义</a></li>
-  <li><a href="#mae-vs-rmse-对比" id="toc-mae-vs-rmse-对比" class="nav-link" data-scroll-target="#mae-vs-rmse-对比"><span class="header-section-number">7.3.2</span> MAE vs RMSE 对比</a></li>
-  <li><a href="#mae-vs-rmse-总结" id="toc-mae-vs-rmse-总结" class="nav-link" data-scroll-target="#mae-vs-rmse-总结"><span class="header-section-number">7.3.3</span> MAE vs RMSE 总结</a></li>
-  </ul></li>
-  <li><a href="#r²-决定系数" id="toc-r²-决定系数" class="nav-link" data-scroll-target="#r²-决定系数"><span class="header-section-number">7.4</span> R² 决定系数</a>
-  <ul class="collapse">
-  <li><a href="#定义-2" id="toc-定义-2" class="nav-link" data-scroll-target="#定义-2"><span class="header-section-number">7.4.1</span> 定义</a></li>
-  <li><a href="#r²-的含义" id="toc-r²-的含义" class="nav-link" data-scroll-target="#r²-的含义"><span class="header-section-number">7.4.2</span> R² 的含义</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#第三部分数据可视化" id="toc-第三部分数据可视化" class="nav-link" data-scroll-target="#第三部分数据可视化"><span class="header-section-number">8</span> 第三部分：数据可视化</a>
-  <ul class="collapse">
-  <li><a href="#为什么需要可视化" id="toc-为什么需要可视化" class="nav-link" data-scroll-target="#为什么需要可视化"><span class="header-section-number">8.1</span> 为什么需要可视化？</a>
-  <ul class="collapse">
-  <li><a href="#anscombes-quartet安斯库姆四重奏" id="toc-anscombes-quartet安斯库姆四重奏" class="nav-link" data-scroll-target="#anscombes-quartet安斯库姆四重奏"><span class="header-section-number">8.1.1</span> Anscombe’s Quartet（安斯库姆四重奏）</a></li>
-  </ul></li>
-  <li><a href="#常用图表类型" id="toc-常用图表类型" class="nav-link" data-scroll-target="#常用图表类型"><span class="header-section-number">8.2</span> 常用图表类型</a>
-  <ul class="collapse">
-  <li><a href="#散点图scatter-plot" id="toc-散点图scatter-plot" class="nav-link" data-scroll-target="#散点图scatter-plot"><span class="header-section-number">8.2.1</span> 散点图（Scatter Plot）</a></li>
-  <li><a href="#直方图histogram" id="toc-直方图histogram" class="nav-link" data-scroll-target="#直方图histogram"><span class="header-section-number">8.2.2</span> 直方图（Histogram）</a></li>
-  <li><a href="#相关系数热力图heatmap" id="toc-相关系数热力图heatmap" class="nav-link" data-scroll-target="#相关系数热力图heatmap"><span class="header-section-number">8.2.3</span> 相关系数热力图（Heatmap）</a></li>
-  </ul></li>
-  <li><a href="#可视化陷阱" id="toc-可视化陷阱" class="nav-link" data-scroll-target="#可视化陷阱"><span class="header-section-number">8.3</span> 可视化陷阱</a>
-  <ul class="collapse">
-  <li><a href="#陷阱-1截断-y-轴" id="toc-陷阱-1截断-y-轴" class="nav-link" data-scroll-target="#陷阱-1截断-y-轴"><span class="header-section-number">8.3.1</span> 陷阱 1：截断 Y 轴</a></li>
-  <li><a href="#陷阱-2忽略样本量" id="toc-陷阱-2忽略样本量" class="nav-link" data-scroll-target="#陷阱-2忽略样本量"><span class="header-section-number">8.3.2</span> 陷阱 2：忽略样本量</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#第四部分完整实战流程" id="toc-第四部分完整实战流程" class="nav-link" data-scroll-target="#第四部分完整实战流程"><span class="header-section-number">9</span> 第四部分：完整实战流程</a>
-  <ul class="collapse">
-  <li><a href="#完整流程概览" id="toc-完整流程概览" class="nav-link" data-scroll-target="#完整流程概览"><span class="header-section-number">9.1</span> 完整流程概览</a></li>
-  </ul></li>
-  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">10</span> 总结</a>
-  <ul class="collapse">
-  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">10.1</span> 本讲知识回顾</a>
-  <ul class="collapse">
-  <li><a href="#数据预处理" id="toc-数据预处理" class="nav-link" data-scroll-target="#数据预处理"><span class="header-section-number">10.1.1</span> 数据预处理</a></li>
-  <li><a href="#模型评估" id="toc-模型评估" class="nav-link" data-scroll-target="#模型评估"><span class="header-section-number">10.1.2</span> 模型评估</a></li>
-  <li><a href="#数据可视化" id="toc-数据可视化" class="nav-link" data-scroll-target="#数据可视化"><span class="header-section-number">10.1.3</span> 数据可视化</a></li>
-  </ul></li>
-  <li><a href="#核心要点" id="toc-核心要点" class="nav-link" data-scroll-target="#核心要点"><span class="header-section-number">10.2</span> 核心要点</a></li>
-  </ul></li>
-  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">11</span> Q&amp;A</a></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">4.7</span> Q&amp;A</a></li>
   </ul>
 </nav>
     </div>
@@ -391,11 +331,11 @@ window.Quarto = {
 </header>
 
 
-<section id="开场为什么数据预处理如此重要" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> 开场：为什么数据预处理如此重要？</h1>
+<section id="开场为什么数据预处理如此重要" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="开场为什么数据预处理如此重要"><span class="header-section-number">4.1</span> 开场：为什么数据预处理如此重要？</h2>
 <hr>
-<section id="一个真实的场景" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="一个真实的场景"><span class="header-section-number">5.1</span> 一个真实的场景</h2>
+<section id="一个真实的场景" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="一个真实的场景"><span class="header-section-number">4.1.1</span> 一个真实的场景</h3>
 <p><strong>假设你收到这样一份数据…</strong></p>
 <table class="caption-top table">
 <thead>
@@ -445,10 +385,10 @@ window.Quarto = {
 </div>
 <hr>
 </section>
-<section id="本周学习目标" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="本周学习目标"><span class="header-section-number">5.2</span> 本周学习目标</h2>
-<section id="知识目标" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">5.2.1</span> 知识目标</h3>
+<section id="本周学习目标" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="本周学习目标"><span class="header-section-number">4.1.2</span> 本周学习目标</h3>
+<section id="知识目标" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">4.1.2.1</span> 知识目标</h4>
 <ol type="1">
 <li>理解数据预处理的重要性（缺失值、异常值、归一化）</li>
 <li>掌握回归模型的评估指标（MAE、RMSE、R²）</li>
@@ -456,8 +396,8 @@ window.Quarto = {
 <li>掌握数据可视化的基本原则</li>
 </ol>
 </section>
-<section id="技能目标" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">5.2.2</span> 技能目标</h3>
+<section id="技能目标" class="level4" data-number="4.1.2.2">
+<h4 data-number="4.1.2.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">4.1.2.2</span> 技能目标</h4>
 <ol type="1">
 <li>使用 pandas 探索和清洗数据</li>
 <li>使用 matplotlib/seaborn 绘制多种图表</li>
@@ -465,21 +405,21 @@ window.Quarto = {
 <li>进行残差分析</li>
 </ol>
 </section>
-<section id="核心理念" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="核心理念"><span class="header-section-number">5.2.3</span> 核心理念</h3>
+<section id="核心理念" class="level4" data-number="4.1.2.3">
+<h4 data-number="4.1.2.3" class="anchored" data-anchor-id="核心理念"><span class="header-section-number">4.1.2.3</span> 核心理念</h4>
 <p><strong>“垃圾进，垃圾出”（Garbage In, Garbage Out）</strong><br>
 数据质量决定模型质量！</p>
 <hr>
 </section>
 </section>
 </section>
-<section id="第一部分数据预处理" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> 第一部分：数据预处理</h1>
+<section id="第一部分数据预处理" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="第一部分数据预处理"><span class="header-section-number">4.2</span> 第一部分：数据预处理</h2>
 <hr>
-<section id="缺失值处理" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="缺失值处理"><span class="header-section-number">6.1</span> 缺失值处理</h2>
-<section id="什么是缺失值" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="什么是缺失值"><span class="header-section-number">6.1.1</span> 什么是缺失值？</h3>
+<section id="缺失值处理" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="缺失值处理"><span class="header-section-number">4.2.1</span> 缺失值处理</h3>
+<section id="什么是缺失值" class="level4" data-number="4.2.1.1">
+<h4 data-number="4.2.1.1" class="anchored" data-anchor-id="什么是缺失值"><span class="header-section-number">4.2.1.1</span> 什么是缺失值？</h4>
 <ul>
 <li>数据收集过程中未记录的值</li>
 <li>在 pandas 中显示为 <code>NaN</code>（Not a Number）</li>
@@ -487,8 +427,8 @@ window.Quarto = {
 </ul>
 <hr>
 </section>
-<section id="缺失值处理的首要原则理解业务逻辑" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="缺失值处理的首要原则理解业务逻辑"><span class="header-section-number">6.1.2</span> 🔍 缺失值处理的首要原则：理解业务逻辑</h3>
+<section id="缺失值处理的首要原则理解业务逻辑" class="level4" data-number="4.2.1.2">
+<h4 data-number="4.2.1.2" class="anchored" data-anchor-id="缺失值处理的首要原则理解业务逻辑"><span class="header-section-number">4.2.1.2</span> 🔍 缺失值处理的首要原则：理解业务逻辑</h4>
 <p><strong>业务理解优先于技术方法</strong></p>
 <ul>
 <li><strong>为什么缺失？</strong> 分析缺失的根本原因</li>
@@ -497,8 +437,8 @@ window.Quarto = {
 </ul>
 <hr>
 </section>
-<section id="隐形缺失的经典案例" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="隐形缺失的经典案例"><span class="header-section-number">6.1.3</span> 📊 隐形缺失的经典案例</h3>
+<section id="隐形缺失的经典案例" class="level4" data-number="4.2.1.3">
+<h4 data-number="4.2.1.3" class="anchored" data-anchor-id="隐形缺失的经典案例"><span class="header-section-number">4.2.1.3</span> 📊 隐形缺失的经典案例</h4>
 <p><strong>R&amp;D支出示例</strong>：</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -520,8 +460,8 @@ window.Quarto = {
 </ul>
 <hr>
 </section>
-<section id="缺失值处理决策流程" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="缺失值处理决策流程"><span class="header-section-number">6.1.4</span> 缺失值处理决策流程</h3>
+<section id="缺失值处理决策流程" class="level4" data-number="4.2.1.4">
+<h4 data-number="4.2.1.4" class="anchored" data-anchor-id="缺失值处理决策流程"><span class="header-section-number">4.2.1.4</span> 缺失值处理决策流程</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -553,8 +493,8 @@ window.Quarto = {
 </div>
 <hr>
 </section>
-<section id="删除法" class="level3" data-number="6.1.5">
-<h3 data-number="6.1.5" class="anchored" data-anchor-id="删除法"><span class="header-section-number">6.1.5</span> 删除法</h3>
+<section id="删除法" class="level4" data-number="4.2.1.5">
+<h4 data-number="4.2.1.5" class="anchored" data-anchor-id="删除法"><span class="header-section-number">4.2.1.5</span> 删除法</h4>
 <p><strong>原始数据</strong>：<code>[100, NaN, 120, 110, NaN]</code></p>
 <p><strong>删除后</strong>：<code>[100, 120, 110]</code></p>
 <p><strong>优点</strong>： - 简单直接 - 不引入偏差</p>
@@ -562,8 +502,8 @@ window.Quarto = {
 <p><strong>适用场景</strong>：缺失比例很小（&lt;5%）</p>
 <hr>
 </section>
-<section id="填充法" class="level3" data-number="6.1.6">
-<h3 data-number="6.1.6" class="anchored" data-anchor-id="填充法"><span class="header-section-number">6.1.6</span> 填充法</h3>
+<section id="填充法" class="level4" data-number="4.2.1.6">
+<h4 data-number="4.2.1.6" class="anchored" data-anchor-id="填充法"><span class="header-section-number">4.2.1.6</span> 填充法</h4>
 <p><strong>常用填充值</strong>：</p>
 <table class="caption-top table">
 <thead>
@@ -597,17 +537,17 @@ window.Quarto = {
 中位数填充: [10, 20, 25, 30, 100]  ← 更稳健 ✓</code></pre>
 <hr>
 </section>
-<section id="高级方法简介" class="level3" data-number="6.1.7">
-<h3 data-number="6.1.7" class="anchored" data-anchor-id="高级方法简介"><span class="header-section-number">6.1.7</span> 高级方法（简介）</h3>
+<section id="高级方法简介" class="level4" data-number="4.2.1.7">
+<h4 data-number="4.2.1.7" class="anchored" data-anchor-id="高级方法简介"><span class="header-section-number">4.2.1.7</span> 高级方法（简介）</h4>
 <p><strong>模型预测填充</strong>： - 用其他特征预测缺失值 - 例子：根据房屋面积、位置预测缺失的房龄 - 后续课程会学习</p>
 <p><strong>多重插补</strong>： - 生成多个填充版本 - 综合结果 - 统计学高级方法</p>
 <hr>
 </section>
 </section>
-<section id="异常值检测与处理" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="异常值检测与处理"><span class="header-section-number">6.2</span> 异常值检测与处理</h2>
-<section id="什么是异常值" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="什么是异常值"><span class="header-section-number">6.2.1</span> 什么是异常值？</h3>
+<section id="异常值检测与处理" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="异常值检测与处理"><span class="header-section-number">4.2.2</span> 异常值检测与处理</h3>
+<section id="什么是异常值" class="level4" data-number="4.2.2.1">
+<h4 data-number="4.2.2.1" class="anchored" data-anchor-id="什么是异常值"><span class="header-section-number">4.2.2.1</span> 什么是异常值？</h4>
 <p><strong>定义</strong>：明显偏离正常范围的数据点</p>
 <p><strong>例子</strong>：</p>
 <ul>
@@ -622,9 +562,9 @@ window.Quarto = {
 </ul>
 <hr>
 </section>
-<section id="异常值识别箱线图" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="异常值识别箱线图"><span class="header-section-number">6.2.2</span> 异常值识别：箱线图</h3>
-<div id="f6ccc39d" class="cell" data-execution_count="2">
+<section id="异常值识别箱线图" class="level4" data-number="4.2.2.2">
+<h4 data-number="4.2.2.2" class="anchored" data-anchor-id="异常值识别箱线图"><span class="header-section-number">4.2.2.2</span> 异常值识别：箱线图</h4>
+<div id="54f658b7" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -687,8 +627,8 @@ window.Quarto = {
 </ul>
 <hr>
 </section>
-<section id="异常值识别统计方法" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="异常值识别统计方法"><span class="header-section-number">6.2.3</span> 异常值识别：统计方法</h3>
+<section id="异常值识别统计方法" class="level4" data-number="4.2.2.3">
+<h4 data-number="4.2.2.3" class="anchored" data-anchor-id="异常值识别统计方法"><span class="header-section-number">4.2.2.3</span> 异常值识别：统计方法</h4>
 <p><strong>1. IQR 方法（四分位距）</strong></p>
 <pre><code>Q1 = 25% 分位数
 Q3 = 75% 分位数
@@ -701,8 +641,8 @@ IQR = Q3 - Q1
 <pre><code>异常值 = 超出 [均值 - 3×标准差, 均值 + 3×标准差]</code></pre>
 <hr>
 </section>
-<section id="异常值处理决策" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="异常值处理决策"><span class="header-section-number">6.2.4</span> 异常值处理决策</h3>
+<section id="异常值处理决策" class="level4" data-number="4.2.2.4">
+<h4 data-number="4.2.2.4" class="anchored" data-anchor-id="异常值处理决策"><span class="header-section-number">4.2.2.4</span> 异常值处理决策</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -732,10 +672,10 @@ IQR = Q3 - Q1
 <hr>
 </section>
 </section>
-<section id="归一化normalization" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="归一化normalization"><span class="header-section-number">6.3</span> 归一化（Normalization）</h2>
-<section id="为什么需要归一化" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="为什么需要归一化"><span class="header-section-number">6.3.1</span> 为什么需要归一化？</h3>
+<section id="归一化normalization" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="归一化normalization"><span class="header-section-number">4.2.3</span> 归一化（Normalization）</h3>
+<section id="为什么需要归一化" class="level4" data-number="4.2.3.1">
+<h4 data-number="4.2.3.1" class="anchored" data-anchor-id="为什么需要归一化"><span class="header-section-number">4.2.3.1</span> 为什么需要归一化？</h4>
 <p><strong>问题场景</strong>：</p>
 <table class="caption-top table">
 <thead>
@@ -772,8 +712,8 @@ IQR = Q3 - Q1
 <p><strong>线性回归影响较小，但归一化仍有益</strong></p>
 <hr>
 </section>
-<section id="两种常用归一化方法" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="两种常用归一化方法"><span class="header-section-number">6.3.2</span> 两种常用归一化方法</h3>
+<section id="两种常用归一化方法" class="level4" data-number="4.2.3.2">
+<h4 data-number="4.2.3.2" class="anchored" data-anchor-id="两种常用归一化方法"><span class="header-section-number">4.2.3.2</span> 两种常用归一化方法</h4>
 <p><strong>1. Min-Max 归一化（缩放到 [0, 1]）</strong></p>
 <p><span class="math display">\[
 x' = \frac{x - \min(x)}{\max(x) - \min(x)}
@@ -791,9 +731,9 @@ x' = \frac{x - \mu}{\sigma}
 <p><strong>缺点</strong>： - 结果无界</p>
 <hr>
 </section>
-<section id="归一化前后对比" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="归一化前后对比"><span class="header-section-number">6.3.3</span> 归一化前后对比</h3>
-<div id="118865d4" class="cell" data-execution_count="3">
+<section id="归一化前后对比" class="level4" data-number="4.2.3.3">
+<h4 data-number="4.2.3.3" class="anchored" data-anchor-id="归一化前后对比"><span class="header-section-number">4.2.3.3</span> 归一化前后对比</h4>
+<div id="d8ac1be5" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler, StandardScaler</span>
@@ -859,8 +799,8 @@ x' = \frac{x - \mu}{\sigma}
 </div>
 <hr>
 </section>
-<section id="何时使用哪种归一化" class="level3" data-number="6.3.4">
-<h3 data-number="6.3.4" class="anchored" data-anchor-id="何时使用哪种归一化"><span class="header-section-number">6.3.4</span> 何时使用哪种归一化？</h3>
+<section id="何时使用哪种归一化" class="level4" data-number="4.2.3.4">
+<h4 data-number="4.2.3.4" class="anchored" data-anchor-id="何时使用哪种归一化"><span class="header-section-number">4.2.3.4</span> 何时使用哪种归一化？</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 28%">
@@ -896,13 +836,13 @@ x' = \frac{x - \mu}{\sigma}
 </section>
 </section>
 </section>
-<section id="第二部分回归模型评估" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> 第二部分：回归模型评估</h1>
+<section id="第二部分回归模型评估" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="第二部分回归模型评估"><span class="header-section-number">4.3</span> 第二部分：回归模型评估</h2>
 <hr>
-<section id="残差residual" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="残差residual"><span class="header-section-number">7.1</span> 残差（Residual）</h2>
-<section id="核心概念" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="核心概念"><span class="header-section-number">7.1.1</span> 核心概念</h3>
+<section id="残差residual" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="残差residual"><span class="header-section-number">4.3.1</span> 残差（Residual）</h3>
+<section id="核心概念" class="level4" data-number="4.3.1.1">
+<h4 data-number="4.3.1.1" class="anchored" data-anchor-id="核心概念"><span class="header-section-number">4.3.1.1</span> 核心概念</h4>
 <p><strong>定义</strong>： <span class="math display">\[
 \text{残差} = \text{真实值} - \text{预测值} = y - \hat{y}
 \]</span></p>
@@ -939,9 +879,9 @@ x' = \frac{x - \mu}{\sigma}
 </table>
 <hr>
 </section>
-<section id="理想的残差" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="理想的残差"><span class="header-section-number">7.1.2</span> 理想的残差</h3>
-<div id="b70ff6d5" class="cell" data-execution_count="4">
+<section id="理想的残差" class="level4" data-number="4.3.1.2">
+<h4 data-number="4.3.1.2" class="anchored" data-anchor-id="理想的残差"><span class="header-section-number">4.3.1.2</span> 理想的残差</h4>
+<div id="e0dc2875" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟好的模型和差的模型</span></span>
@@ -997,11 +937,11 @@ x' = \frac{x - \mu}{\sigma}
 <span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_77909/1866215185.py:50: UserWarning:
+<pre><code>/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_80055/1866215185.py:50: UserWarning:
 
 Glyph 10003 (\N{CHECK MARK}) missing from current font.
 
-/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_77909/1866215185.py:50: UserWarning:
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_80055/1866215185.py:50: UserWarning:
 
 Glyph 10007 (\N{BALLOT X}) missing from current font.
 
@@ -1030,18 +970,18 @@ Glyph 10007 (\N{BALLOT X}) missing from current font.
 <hr>
 </section>
 </section>
-<section id="mae平均绝对误差" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="mae平均绝对误差"><span class="header-section-number">7.2</span> MAE（平均绝对误差）</h2>
-<section id="定义" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="定义"><span class="header-section-number">7.2.1</span> 定义</h3>
+<section id="mae平均绝对误差" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="mae平均绝对误差"><span class="header-section-number">4.3.2</span> MAE（平均绝对误差）</h3>
+<section id="定义" class="level4" data-number="4.3.2.1">
+<h4 data-number="4.3.2.1" class="anchored" data-anchor-id="定义"><span class="header-section-number">4.3.2.1</span> 定义</h4>
 <p><span class="math display">\[
 \text{MAE} = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|
 \]</span></p>
 <p><strong>直观理解</strong>：所有预测误差的绝对值的平均</p>
 <hr>
 </section>
-<section id="mae-的优缺点" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="mae-的优缺点"><span class="header-section-number">7.2.2</span> MAE 的优缺点</h3>
+<section id="mae-的优缺点" class="level4" data-number="4.3.2.2">
+<h4 data-number="4.3.2.2" class="anchored" data-anchor-id="mae-的优缺点"><span class="header-section-number">4.3.2.2</span> MAE 的优缺点</h4>
 <p><strong>优点</strong>：</p>
 <ul>
 <li>🎯 直观：单位与原数据相同</li>
@@ -1061,10 +1001,10 @@ Glyph 10007 (\N{BALLOT X}) missing from current font.
 <hr>
 </section>
 </section>
-<section id="rmse均方根误差" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="rmse均方根误差"><span class="header-section-number">7.3</span> RMSE（均方根误差）</h2>
-<section id="定义-1" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="定义-1"><span class="header-section-number">7.3.1</span> 定义</h3>
+<section id="rmse均方根误差" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="rmse均方根误差"><span class="header-section-number">4.3.3</span> RMSE（均方根误差）</h3>
+<section id="定义-1" class="level4" data-number="4.3.3.1">
+<h4 data-number="4.3.3.1" class="anchored" data-anchor-id="定义-1"><span class="header-section-number">4.3.3.1</span> 定义</h4>
 <p><span class="math display">\[
 \text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}
 \]</span></p>
@@ -1076,9 +1016,9 @@ Glyph 10007 (\N{BALLOT X}) missing from current font.
 </ol>
 <hr>
 </section>
-<section id="mae-vs-rmse-对比" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="mae-vs-rmse-对比"><span class="header-section-number">7.3.2</span> MAE vs RMSE 对比</h3>
-<div id="d146e7be" class="cell" data-execution_count="5">
+<section id="mae-vs-rmse-对比" class="level4" data-number="4.3.3.2">
+<h4 data-number="4.3.3.2" class="anchored" data-anchor-id="mae-vs-rmse-对比"><span class="header-section-number">4.3.3.2</span> MAE vs RMSE 对比</h4>
+<div id="a96bd1f6" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 对比两个场景</span></span>
@@ -1117,8 +1057,8 @@ Glyph 10007 (\N{BALLOT X}) missing from current font.
 </ul>
 <hr>
 </section>
-<section id="mae-vs-rmse-总结" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="mae-vs-rmse-总结"><span class="header-section-number">7.3.3</span> MAE vs RMSE 总结</h3>
+<section id="mae-vs-rmse-总结" class="level4" data-number="4.3.3.3">
+<h4 data-number="4.3.3.3" class="anchored" data-anchor-id="mae-vs-rmse-总结"><span class="header-section-number">4.3.3.3</span> MAE vs RMSE 总结</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -1162,10 +1102,10 @@ Glyph 10007 (\N{BALLOT X}) missing from current font.
 <hr>
 </section>
 </section>
-<section id="r²-决定系数" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="r²-决定系数"><span class="header-section-number">7.4</span> R² 决定系数</h2>
-<section id="定义-2" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="定义-2"><span class="header-section-number">7.4.1</span> 定义</h3>
+<section id="r²-决定系数" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="r²-决定系数"><span class="header-section-number">4.3.4</span> R² 决定系数</h3>
+<section id="定义-2" class="level4" data-number="4.3.4.1">
+<h4 data-number="4.3.4.1" class="anchored" data-anchor-id="定义-2"><span class="header-section-number">4.3.4.1</span> 定义</h4>
 <p><span class="math display">\[
 R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_i - \bar{y})^2}
 \]</span></p>
@@ -1176,8 +1116,8 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 </ul>
 <hr>
 </section>
-<section id="r²-的含义" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="r²-的含义"><span class="header-section-number">7.4.2</span> R² 的含义</h3>
+<section id="r²-的含义" class="level4" data-number="4.3.4.2">
+<h4 data-number="4.3.4.2" class="anchored" data-anchor-id="r²-的含义"><span class="header-section-number">4.3.4.2</span> R² 的含义</h4>
 <p><strong>取值范围</strong>：</p>
 <ul>
 <li>R² = 1：完美预测</li>
@@ -1185,7 +1125,7 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 <li>R² = 0：模型等同于预测平均值</li>
 <li>R² &lt; 0：模型比预测平均值还差（很糟糕）</li>
 </ul>
-<div id="5cea190d" class="cell" data-execution_count="6">
+<div id="b805ab67" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化 R² 的含义</span></span>
@@ -1245,19 +1185,19 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 </section>
 </section>
 </section>
-<section id="第三部分数据可视化" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> 第三部分：数据可视化</h1>
+<section id="第三部分数据可视化" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="第三部分数据可视化"><span class="header-section-number">4.4</span> 第三部分：数据可视化</h2>
 <hr>
-<section id="为什么需要可视化" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="为什么需要可视化"><span class="header-section-number">8.1</span> 为什么需要可视化？</h2>
-<section id="anscombes-quartet安斯库姆四重奏" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="anscombes-quartet安斯库姆四重奏"><span class="header-section-number">8.1.1</span> Anscombe’s Quartet（安斯库姆四重奏）</h3>
+<section id="为什么需要可视化" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="为什么需要可视化"><span class="header-section-number">4.4.1</span> 为什么需要可视化？</h3>
+<section id="anscombes-quartet安斯库姆四重奏" class="level4" data-number="4.4.1.1">
+<h4 data-number="4.4.1.1" class="anchored" data-anchor-id="anscombes-quartet安斯库姆四重奏"><span class="header-section-number">4.4.1.1</span> Anscombe’s Quartet（安斯库姆四重奏）</h4>
 <p><strong>四组数据，统计量完全相同</strong>：</p>
 <ul>
 <li>均值、方差、相关系数、回归线都一样</li>
 <li>但数据分布完全不同！</li>
 </ul>
-<div id="79095ed5" class="cell" data-execution_count="7">
+<div id="05a51d8c" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anscombe's Quartet</span></span>
@@ -1308,12 +1248,12 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 <hr>
 </section>
 </section>
-<section id="常用图表类型" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="常用图表类型"><span class="header-section-number">8.2</span> 常用图表类型</h2>
-<section id="散点图scatter-plot" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="散点图scatter-plot"><span class="header-section-number">8.2.1</span> 散点图（Scatter Plot）</h3>
+<section id="常用图表类型" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="常用图表类型"><span class="header-section-number">4.4.2</span> 常用图表类型</h3>
+<section id="散点图scatter-plot" class="level4" data-number="4.4.2.1">
+<h4 data-number="4.4.2.1" class="anchored" data-anchor-id="散点图scatter-plot"><span class="header-section-number">4.4.2.1</span> 散点图（Scatter Plot）</h4>
 <p><strong>用途</strong>：观察两个变量的关系</p>
-<div id="3c927639" class="cell" data-execution_count="8">
+<div id="5121479d" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成示例数据</span></span>
@@ -1351,10 +1291,10 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 </ul>
 <hr>
 </section>
-<section id="直方图histogram" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="直方图histogram"><span class="header-section-number">8.2.2</span> 直方图（Histogram）</h3>
+<section id="直方图histogram" class="level4" data-number="4.4.2.2">
+<h4 data-number="4.4.2.2" class="anchored" data-anchor-id="直方图histogram"><span class="header-section-number">4.4.2.2</span> 直方图（Histogram）</h4>
 <p><strong>用途</strong>：观察单个变量的分布</p>
-<div id="a63d77b6" class="cell" data-execution_count="9">
+<div id="150ac0b7" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>))</span>
@@ -1396,10 +1336,10 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 </div>
 <hr>
 </section>
-<section id="相关系数热力图heatmap" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="相关系数热力图heatmap"><span class="header-section-number">8.2.3</span> 相关系数热力图（Heatmap）</h3>
+<section id="相关系数热力图heatmap" class="level4" data-number="4.4.2.3">
+<h4 data-number="4.4.2.3" class="anchored" data-anchor-id="相关系数热力图heatmap"><span class="header-section-number">4.4.2.3</span> 相关系数热力图（Heatmap）</h4>
 <p><strong>用途</strong>：一次性看所有特征之间的相关性</p>
-<div id="10b5d654" class="cell" data-execution_count="10">
+<div id="df35b9d4" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成相关数据</span></span>
@@ -1439,11 +1379,11 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 <hr>
 </section>
 </section>
-<section id="可视化陷阱" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="可视化陷阱"><span class="header-section-number">8.3</span> 可视化陷阱</h2>
-<section id="陷阱-1截断-y-轴" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="陷阱-1截断-y-轴"><span class="header-section-number">8.3.1</span> 陷阱 1：截断 Y 轴</h3>
-<div id="8158e657" class="cell" data-execution_count="11">
+<section id="可视化陷阱" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="可视化陷阱"><span class="header-section-number">4.4.3</span> 可视化陷阱</h3>
+<section id="陷阱-1截断-y-轴" class="level4" data-number="4.4.3.1">
+<h4 data-number="4.4.3.1" class="anchored" data-anchor-id="陷阱-1截断-y-轴"><span class="header-section-number">4.4.3.1</span> 陷阱 1：截断 Y 轴</h4>
+<div id="0acaf57e" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例：夸大差异</span></span>
@@ -1480,9 +1420,9 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 <p><strong>教训</strong>：始终检查 Y 轴起点是否为 0</p>
 <hr>
 </section>
-<section id="陷阱-2忽略样本量" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="陷阱-2忽略样本量"><span class="header-section-number">8.3.2</span> 陷阱 2：忽略样本量</h3>
-<div id="04dc0c66" class="cell" data-execution_count="12">
+<section id="陷阱-2忽略样本量" class="level4" data-number="4.4.3.2">
+<h4 data-number="4.4.3.2" class="anchored" data-anchor-id="陷阱-2忽略样本量"><span class="header-section-number">4.4.3.2</span> 陷阱 2：忽略样本量</h4>
+<div id="068bf75e" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例：样本量差异</span></span>
@@ -1521,11 +1461,11 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 </section>
 </section>
 </section>
-<section id="第四部分完整实战流程" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> 第四部分：完整实战流程</h1>
+<section id="第四部分完整实战流程" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="第四部分完整实战流程"><span class="header-section-number">4.5</span> 第四部分：完整实战流程</h2>
 <hr>
-<section id="完整流程概览" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="完整流程概览"><span class="header-section-number">9.1</span> 完整流程概览</h2>
+<section id="完整流程概览" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="完整流程概览"><span class="header-section-number">4.5.1</span> 完整流程概览</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1558,21 +1498,21 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 <hr>
 </section>
 </section>
-<section id="总结" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> 总结</h1>
+<section id="总结" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="总结"><span class="header-section-number">4.6</span> 总结</h2>
 <hr>
-<section id="本讲知识回顾" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">10.1</span> 本讲知识回顾</h2>
-<section id="数据预处理" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="数据预处理"><span class="header-section-number">10.1.1</span> 数据预处理</h3>
+<section id="本讲知识回顾" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">4.6.1</span> 本讲知识回顾</h3>
+<section id="数据预处理" class="level4" data-number="4.6.1.1">
+<h4 data-number="4.6.1.1" class="anchored" data-anchor-id="数据预处理"><span class="header-section-number">4.6.1.1</span> 数据预处理</h4>
 <ul>
 <li><strong>缺失值</strong>：删除 vs 填充</li>
 <li><strong>异常值</strong>：IQR 方法、3σ 原则、业务判断</li>
 <li><strong>归一化</strong>：Min-Max vs Z-score</li>
 </ul>
 </section>
-<section id="模型评估" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="模型评估"><span class="header-section-number">10.1.2</span> 模型评估</h3>
+<section id="模型评估" class="level4" data-number="4.6.1.2">
+<h4 data-number="4.6.1.2" class="anchored" data-anchor-id="模型评估"><span class="header-section-number">4.6.1.2</span> 模型评估</h4>
 <ul>
 <li><strong>残差</strong>：模型诊断的核心</li>
 <li><strong>MAE</strong>：平均绝对误差，直观稳健</li>
@@ -1580,8 +1520,8 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 <li><strong>R²</strong>：解释变异的比例</li>
 </ul>
 </section>
-<section id="数据可视化" class="level3" data-number="10.1.3">
-<h3 data-number="10.1.3" class="anchored" data-anchor-id="数据可视化"><span class="header-section-number">10.1.3</span> 数据可视化</h3>
+<section id="数据可视化" class="level4" data-number="4.6.1.3">
+<h4 data-number="4.6.1.3" class="anchored" data-anchor-id="数据可视化"><span class="header-section-number">4.6.1.3</span> 数据可视化</h4>
 <ul>
 <li>散点图、直方图、箱线图、热力图</li>
 <li><strong>永远先可视化，再建模！</strong></li>
@@ -1589,8 +1529,8 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_
 <hr>
 </section>
 </section>
-<section id="核心要点" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="核心要点"><span class="header-section-number">10.2</span> 核心要点</h2>
+<section id="核心要点" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="核心要点"><span class="header-section-number">4.6.2</span> 核心要点</h3>
 <ol type="1">
 <li><p><strong>数据质量决定模型质量</strong><br>
 “Garbage In, Garbage Out” → 数据清洗是基础</p></li>
@@ -1604,8 +1544,8 @@ Anscombe’s Quartet 的教训</p></li>
 <hr>
 </section>
 </section>
-<section id="qa" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Q&amp;A</h1>
+<section id="qa" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="qa"><span class="header-section-number">4.7</span> Q&amp;A</h2>
 <p><strong>Q1：请简述 Min-Max 归一化和 Z-score 标准化各自的计算目标（或特点）。根据讲义，为什么树模型（如决策树、随机森林）通常不需要进行归一化处理？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
