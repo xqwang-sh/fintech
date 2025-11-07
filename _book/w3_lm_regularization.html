@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; 第三讲：线性回归的正则化 – 金融科技概论讲义（机器学习部分）</title>
+<title>5&nbsp; 开场：一个问题 – 金融科技概论讲义（机器学习部分）</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w3_lm_regularization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w3_lm_regularization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -153,37 +153,37 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w1_python_ml_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w2_data_processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第二讲：数据处理与线性回归实践</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w3_lm_regularization.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w4_classification_decision_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w5_ensemble_learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w6_neural_networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -238,51 +238,48 @@ window.Quarto = {
     <h2 id="toc-title">目录</h2>
    
   <ul>
-  <li><a href="#开场一个问题" id="toc-开场一个问题" class="nav-link active" data-scroll-target="#开场一个问题"><span class="header-section-number">5.1</span> 开场：一个问题</a>
+  <li><a href="#当模型太聪明时" id="toc-当模型太聪明时" class="nav-link active" data-scroll-target="#当模型太聪明时"><span class="header-section-number">5.0.1</span> 当模型”太聪明”时…</a></li>
+  <li><a href="#本周学习目标" id="toc-本周学习目标" class="nav-link" data-scroll-target="#本周学习目标"><span class="header-section-number">5.0.2</span> 本周学习目标</a></li>
+  <li><a href="#第一部分过拟合与欠拟合" id="toc-第一部分过拟合与欠拟合" class="nav-link" data-scroll-target="#第一部分过拟合与欠拟合"><span class="header-section-number">5.1</span> 第一部分：过拟合与欠拟合</a>
   <ul class="collapse">
-  <li><a href="#当模型太聪明时" id="toc-当模型太聪明时" class="nav-link" data-scroll-target="#当模型太聪明时"><span class="header-section-number">5.1.1</span> 当模型”太聪明”时…</a></li>
-  <li><a href="#本周学习目标" id="toc-本周学习目标" class="nav-link" data-scroll-target="#本周学习目标"><span class="header-section-number">5.1.2</span> 本周学习目标</a></li>
+  <li><a href="#用多项式回归理解过拟合" id="toc-用多项式回归理解过拟合" class="nav-link" data-scroll-target="#用多项式回归理解过拟合"><span class="header-section-number">5.1.1</span> 用多项式回归理解过拟合</a></li>
+  <li><a href="#欠拟合-vs-过拟合-vs-刚刚好" id="toc-欠拟合-vs-过拟合-vs-刚刚好" class="nav-link" data-scroll-target="#欠拟合-vs-过拟合-vs-刚刚好"><span class="header-section-number">5.1.2</span> 欠拟合 vs 过拟合 vs 刚刚好</a></li>
+  <li><a href="#bias-variance-tradeoff偏差-方差权衡" id="toc-bias-variance-tradeoff偏差-方差权衡" class="nav-link" data-scroll-target="#bias-variance-tradeoff偏差-方差权衡"><span class="header-section-number">5.1.3</span> Bias-Variance Tradeoff（偏差-方差权衡）</a></li>
   </ul></li>
-  <li><a href="#第一部分过拟合与欠拟合" id="toc-第一部分过拟合与欠拟合" class="nav-link" data-scroll-target="#第一部分过拟合与欠拟合"><span class="header-section-number">5.2</span> 第一部分：过拟合与欠拟合</a>
+  <li><a href="#第二部分正则化的直觉" id="toc-第二部分正则化的直觉" class="nav-link" data-scroll-target="#第二部分正则化的直觉"><span class="header-section-number">5.2</span> 第二部分：正则化的直觉</a>
   <ul class="collapse">
-  <li><a href="#用多项式回归理解过拟合" id="toc-用多项式回归理解过拟合" class="nav-link" data-scroll-target="#用多项式回归理解过拟合"><span class="header-section-number">5.2.1</span> 用多项式回归理解过拟合</a></li>
-  <li><a href="#欠拟合-vs-过拟合-vs-刚刚好" id="toc-欠拟合-vs-过拟合-vs-刚刚好" class="nav-link" data-scroll-target="#欠拟合-vs-过拟合-vs-刚刚好"><span class="header-section-number">5.2.2</span> 欠拟合 vs 过拟合 vs 刚刚好</a></li>
-  <li><a href="#bias-variance-tradeoff偏差-方差权衡" id="toc-bias-variance-tradeoff偏差-方差权衡" class="nav-link" data-scroll-target="#bias-variance-tradeoff偏差-方差权衡"><span class="header-section-number">5.2.3</span> Bias-Variance Tradeoff（偏差-方差权衡）</a></li>
+  <li><a href="#什么是正则化" id="toc-什么是正则化" class="nav-link" data-scroll-target="#什么是正则化"><span class="header-section-number">5.2.1</span> 什么是正则化？</a></li>
+  <li><a href="#正则化的类比" id="toc-正则化的类比" class="nav-link" data-scroll-target="#正则化的类比"><span class="header-section-number">5.2.2</span> 正则化的类比</a></li>
+  <li><a href="#正则化的几何直觉" id="toc-正则化的几何直觉" class="nav-link" data-scroll-target="#正则化的几何直觉"><span class="header-section-number">5.2.3</span> 正则化的几何直觉</a></li>
   </ul></li>
-  <li><a href="#第二部分正则化的直觉" id="toc-第二部分正则化的直觉" class="nav-link" data-scroll-target="#第二部分正则化的直觉"><span class="header-section-number">5.3</span> 第二部分：正则化的直觉</a>
+  <li><a href="#第三部分三种正则化方法" id="toc-第三部分三种正则化方法" class="nav-link" data-scroll-target="#第三部分三种正则化方法"><span class="header-section-number">5.3</span> 第三部分：三种正则化方法</a>
   <ul class="collapse">
-  <li><a href="#什么是正则化" id="toc-什么是正则化" class="nav-link" data-scroll-target="#什么是正则化"><span class="header-section-number">5.3.1</span> 什么是正则化？</a></li>
-  <li><a href="#正则化的类比" id="toc-正则化的类比" class="nav-link" data-scroll-target="#正则化的类比"><span class="header-section-number">5.3.2</span> 正则化的类比</a></li>
-  <li><a href="#正则化的几何直觉" id="toc-正则化的几何直觉" class="nav-link" data-scroll-target="#正则化的几何直觉"><span class="header-section-number">5.3.3</span> 正则化的几何直觉</a></li>
+  <li><a href="#ridge-回归l2-正则化" id="toc-ridge-回归l2-正则化" class="nav-link" data-scroll-target="#ridge-回归l2-正则化"><span class="header-section-number">5.3.1</span> Ridge 回归（L2 正则化）</a></li>
+  <li><a href="#lasso-回归l1-正则化" id="toc-lasso-回归l1-正则化" class="nav-link" data-scroll-target="#lasso-回归l1-正则化"><span class="header-section-number">5.3.2</span> Lasso 回归（L1 正则化）</a></li>
+  <li><a href="#elastic-netl1-l2" id="toc-elastic-netl1-l2" class="nav-link" data-scroll-target="#elastic-netl1-l2"><span class="header-section-number">5.3.3</span> Elastic Net（L1 + L2）</a></li>
+  <li><a href="#三种方法对比总结" id="toc-三种方法对比总结" class="nav-link" data-scroll-target="#三种方法对比总结"><span class="header-section-number">5.3.4</span> 三种方法对比总结</a></li>
   </ul></li>
-  <li><a href="#第三部分三种正则化方法" id="toc-第三部分三种正则化方法" class="nav-link" data-scroll-target="#第三部分三种正则化方法"><span class="header-section-number">5.4</span> 第三部分：三种正则化方法</a>
+  <li><a href="#第四部分正则化参数-α-的选择" id="toc-第四部分正则化参数-α-的选择" class="nav-link" data-scroll-target="#第四部分正则化参数-α-的选择"><span class="header-section-number">5.4</span> 第四部分：正则化参数 α 的选择</a>
   <ul class="collapse">
-  <li><a href="#ridge-回归l2-正则化" id="toc-ridge-回归l2-正则化" class="nav-link" data-scroll-target="#ridge-回归l2-正则化"><span class="header-section-number">5.4.1</span> Ridge 回归（L2 正则化）</a></li>
-  <li><a href="#lasso-回归l1-正则化" id="toc-lasso-回归l1-正则化" class="nav-link" data-scroll-target="#lasso-回归l1-正则化"><span class="header-section-number">5.4.2</span> Lasso 回归（L1 正则化）</a></li>
-  <li><a href="#elastic-netl1-l2" id="toc-elastic-netl1-l2" class="nav-link" data-scroll-target="#elastic-netl1-l2"><span class="header-section-number">5.4.3</span> Elastic Net（L1 + L2）</a></li>
-  <li><a href="#三种方法对比总结" id="toc-三种方法对比总结" class="nav-link" data-scroll-target="#三种方法对比总结"><span class="header-section-number">5.4.4</span> 三种方法对比总结</a></li>
+  <li><a href="#α-的作用" id="toc-α-的作用" class="nav-link" data-scroll-target="#α-的作用"><span class="header-section-number">5.4.1</span> α 的作用</a></li>
+  <li><a href="#交叉验证cross-validation" id="toc-交叉验证cross-validation" class="nav-link" data-scroll-target="#交叉验证cross-validation"><span class="header-section-number">5.4.2</span> 交叉验证（Cross-Validation）</a></li>
   </ul></li>
-  <li><a href="#第四部分正则化参数-α-的选择" id="toc-第四部分正则化参数-α-的选择" class="nav-link" data-scroll-target="#第四部分正则化参数-α-的选择"><span class="header-section-number">5.5</span> 第四部分：正则化参数 α 的选择</a>
+  <li><a href="#第五部分正则化路径与可视化" id="toc-第五部分正则化路径与可视化" class="nav-link" data-scroll-target="#第五部分正则化路径与可视化"><span class="header-section-number">5.5</span> 第五部分：正则化路径与可视化</a>
   <ul class="collapse">
-  <li><a href="#α-的作用" id="toc-α-的作用" class="nav-link" data-scroll-target="#α-的作用"><span class="header-section-number">5.5.1</span> α 的作用</a></li>
-  <li><a href="#交叉验证cross-validation" id="toc-交叉验证cross-validation" class="nav-link" data-scroll-target="#交叉验证cross-validation"><span class="header-section-number">5.5.2</span> 交叉验证（Cross-Validation）</a></li>
+  <li><a href="#正则化路径图regularization-path" id="toc-正则化路径图regularization-path" class="nav-link" data-scroll-target="#正则化路径图regularization-path"><span class="header-section-number">5.5.1</span> 正则化路径图（Regularization Path）</a></li>
   </ul></li>
-  <li><a href="#第五部分正则化路径与可视化" id="toc-第五部分正则化路径与可视化" class="nav-link" data-scroll-target="#第五部分正则化路径与可视化"><span class="header-section-number">5.6</span> 第五部分：正则化路径与可视化</a>
+  <li><a href="#第六部分实践建议" id="toc-第六部分实践建议" class="nav-link" data-scroll-target="#第六部分实践建议"><span class="header-section-number">5.6</span> 第六部分：实践建议</a>
   <ul class="collapse">
-  <li><a href="#正则化路径图regularization-path" id="toc-正则化路径图regularization-path" class="nav-link" data-scroll-target="#正则化路径图regularization-path"><span class="header-section-number">5.6.1</span> 正则化路径图（Regularization Path）</a></li>
+  <li><a href="#正则化回归完整流程" id="toc-正则化回归完整流程" class="nav-link" data-scroll-target="#正则化回归完整流程"><span class="header-section-number">5.6.1</span> 正则化回归完整流程</a></li>
+  <li><a href="#常见错误与注意事项" id="toc-常见错误与注意事项" class="nav-link" data-scroll-target="#常见错误与注意事项"><span class="header-section-number">5.6.2</span> 常见错误与注意事项</a></li>
+  <li><a href="#实用技巧" id="toc-实用技巧" class="nav-link" data-scroll-target="#实用技巧"><span class="header-section-number">5.6.3</span> 实用技巧</a></li>
   </ul></li>
-  <li><a href="#第六部分实践建议" id="toc-第六部分实践建议" class="nav-link" data-scroll-target="#第六部分实践建议"><span class="header-section-number">5.7</span> 第六部分：实践建议</a>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">5.7</span> 总结</a>
   <ul class="collapse">
-  <li><a href="#正则化回归完整流程" id="toc-正则化回归完整流程" class="nav-link" data-scroll-target="#正则化回归完整流程"><span class="header-section-number">5.7.1</span> 正则化回归完整流程</a></li>
-  <li><a href="#常见错误与注意事项" id="toc-常见错误与注意事项" class="nav-link" data-scroll-target="#常见错误与注意事项"><span class="header-section-number">5.7.2</span> 常见错误与注意事项</a></li>
-  <li><a href="#实用技巧" id="toc-实用技巧" class="nav-link" data-scroll-target="#实用技巧"><span class="header-section-number">5.7.3</span> 实用技巧</a></li>
+  <li><a href="#本讲核心概念" id="toc-本讲核心概念" class="nav-link" data-scroll-target="#本讲核心概念"><span class="header-section-number">5.7.1</span> 本讲核心概念</a></li>
+  <li><a href="#重要提醒" id="toc-重要提醒" class="nav-link" data-scroll-target="#重要提醒"><span class="header-section-number">5.7.2</span> 重要提醒</a></li>
   </ul></li>
-  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">5.8</span> 总结</a>
-  <ul class="collapse">
-  <li><a href="#本讲核心概念" id="toc-本讲核心概念" class="nav-link" data-scroll-target="#本讲核心概念"><span class="header-section-number">5.8.1</span> 本讲核心概念</a></li>
-  <li><a href="#重要提醒" id="toc-重要提醒" class="nav-link" data-scroll-target="#重要提醒"><span class="header-section-number">5.8.2</span> 重要提醒</a></li>
-  </ul></li>
-  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">5.9</span> Q&amp;A</a></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">5.8</span> Q&amp;A</a></li>
   </ul>
 </nav>
     </div>
@@ -291,7 +288,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">开场：一个问题</span></h1>
 </div>
 
 
@@ -308,11 +305,9 @@ window.Quarto = {
 </header>
 
 
-<section id="开场一个问题" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="开场一个问题"><span class="header-section-number">5.1</span> 开场：一个问题</h2>
-<hr>
-<section id="当模型太聪明时" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="当模型太聪明时"><span class="header-section-number">5.1.1</span> 当模型”太聪明”时…</h3>
+<p>title: 第三讲：线性回归的正则化</p>
+<section id="当模型太聪明时" class="level3" data-number="5.0.1">
+<h3 data-number="5.0.1" class="anchored" data-anchor-id="当模型太聪明时"><span class="header-section-number">5.0.1</span> 当模型”太聪明”时…</h3>
 <p><strong>场景</strong>：你训练了一个房价预测模型</p>
 <table class="caption-top table">
 <thead>
@@ -339,12 +334,11 @@ window.Quarto = {
 <div class="fragment">
 <p>🚨 <strong>过拟合（Overfitting）</strong>：模型记住了训练数据的细节（包括噪声），但不能泛化到新数据！</p>
 </div>
-<hr>
 </section>
-<section id="本周学习目标" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="本周学习目标"><span class="header-section-number">5.1.2</span> 本周学习目标</h3>
-<section id="知识目标" class="level4" data-number="5.1.2.1">
-<h4 data-number="5.1.2.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">5.1.2.1</span> 知识目标</h4>
+<section id="本周学习目标" class="level3" data-number="5.0.2">
+<h3 data-number="5.0.2" class="anchored" data-anchor-id="本周学习目标"><span class="header-section-number">5.0.2</span> 本周学习目标</h3>
+<section id="知识目标" class="level4" data-number="5.0.2.1">
+<h4 data-number="5.0.2.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">5.0.2.1</span> 知识目标</h4>
 <ol type="1">
 <li>理解过拟合与欠拟合的概念</li>
 <li>理解正则化的基本思想（限制模型复杂度）</li>
@@ -352,8 +346,8 @@ window.Quarto = {
 <li>了解交叉验证的作用</li>
 </ol>
 </section>
-<section id="技能目标" class="level4" data-number="5.1.2.2">
-<h4 data-number="5.1.2.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">5.1.2.2</span> 技能目标</h4>
+<section id="技能目标" class="level4" data-number="5.0.2.2">
+<h4 data-number="5.0.2.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">5.0.2.2</span> 技能目标</h4>
 <ol type="1">
 <li>使用 sklearn 训练正则化回归模型</li>
 <li>使用交叉验证选择最优正则化参数</li>
@@ -361,24 +355,21 @@ window.Quarto = {
 <li>解释 Lasso 的特征选择结果</li>
 </ol>
 </section>
-<section id="核心理念" class="level4" data-number="5.1.2.3">
-<h4 data-number="5.1.2.3" class="anchored" data-anchor-id="核心理念"><span class="header-section-number">5.1.2.3</span> 核心理念</h4>
+<section id="核心理念" class="level4" data-number="5.0.2.3">
+<h4 data-number="5.0.2.3" class="anchored" data-anchor-id="核心理念"><span class="header-section-number">5.0.2.3</span> 核心理念</h4>
 <p><strong>“简单的模型往往更好”（Occam’s Razor）</strong><br>
 复杂度与泛化能力的权衡是机器学习的核心！</p>
-<hr>
 </section>
 </section>
-</section>
-<section id="第一部分过拟合与欠拟合" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="第一部分过拟合与欠拟合"><span class="header-section-number">5.2</span> 第一部分：过拟合与欠拟合</h2>
-<hr>
-<section id="用多项式回归理解过拟合" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="用多项式回归理解过拟合"><span class="header-section-number">5.2.1</span> 用多项式回归理解过拟合</h3>
-<section id="真实场景模拟" class="level4" data-number="5.2.1.1">
-<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="真实场景模拟"><span class="header-section-number">5.2.1.1</span> 真实场景模拟</h4>
+<section id="第一部分过拟合与欠拟合" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="第一部分过拟合与欠拟合"><span class="header-section-number">5.1</span> 第一部分：过拟合与欠拟合</h2>
+<section id="用多项式回归理解过拟合" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="用多项式回归理解过拟合"><span class="header-section-number">5.1.1</span> 用多项式回归理解过拟合</h3>
+<section id="真实场景模拟" class="level4" data-number="5.1.1.1">
+<h4 data-number="5.1.1.1" class="anchored" data-anchor-id="真实场景模拟"><span class="header-section-number">5.1.1.1</span> 真实场景模拟</h4>
 <p>假设真实关系是： <span class="math inline">\(y = 2x + 1 + \epsilon\)</span>，其中 <span class="math inline">\(\epsilon\)</span> 是噪声。</p>
 <p>我们用不同次数的多项式拟合：</p>
-<div id="96bebd4e" class="cell" data-fig-height="5" data-fig-width="14" data-execution_count="2">
+<div id="f0bb99b3" class="cell" data-fig-height="5" data-fig-width="14" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -387,11 +378,10 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<hr>
 </section>
 </section>
-<section id="欠拟合-vs-过拟合-vs-刚刚好" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="欠拟合-vs-过拟合-vs-刚刚好"><span class="header-section-number">5.2.2</span> 欠拟合 vs 过拟合 vs 刚刚好</h3>
+<section id="欠拟合-vs-过拟合-vs-刚刚好" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="欠拟合-vs-过拟合-vs-刚刚好"><span class="header-section-number">5.1.2</span> 欠拟合 vs 过拟合 vs 刚刚好</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 12%">
@@ -444,11 +434,10 @@ window.Quarto = {
 <li>过拟合：训练很好，测试很差（<strong>差距大</strong>是关键信号）</li>
 <li>刚刚好：训练和测试都还不错，且差距小</li>
 </ul>
-<hr>
 </section>
-<section id="bias-variance-tradeoff偏差-方差权衡" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="bias-variance-tradeoff偏差-方差权衡"><span class="header-section-number">5.2.3</span> Bias-Variance Tradeoff（偏差-方差权衡）</h3>
-<div id="abc6dbc8" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="3">
+<section id="bias-variance-tradeoff偏差-方差权衡" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="bias-variance-tradeoff偏差-方差权衡"><span class="header-section-number">5.1.3</span> Bias-Variance Tradeoff（偏差-方差权衡）</h3>
+<div id="e5579004" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -463,23 +452,21 @@ window.Quarto = {
 <li><strong>方差（Variance）</strong>：模型对训练数据的”过度敏感”，训练数据稍有变化预测就变很多</li>
 <li><strong>目标</strong>：找到偏差和方差都较低的平衡点</li>
 </ul>
-<hr>
 </section>
 </section>
-<section id="第二部分正则化的直觉" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="第二部分正则化的直觉"><span class="header-section-number">5.3</span> 第二部分：正则化的直觉</h2>
-<hr>
-<section id="什么是正则化" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="什么是正则化"><span class="header-section-number">5.3.1</span> 什么是正则化？</h3>
-<section id="问题" class="level4" data-number="5.3.1.1">
-<h4 data-number="5.3.1.1" class="anchored" data-anchor-id="问题"><span class="header-section-number">5.3.1.1</span> 问题</h4>
+<section id="第二部分正则化的直觉" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="第二部分正则化的直觉"><span class="header-section-number">5.2</span> 第二部分：正则化的直觉</h2>
+<section id="什么是正则化" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="什么是正则化"><span class="header-section-number">5.2.1</span> 什么是正则化？</h3>
+<section id="问题" class="level4" data-number="5.2.1.1">
+<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="问题"><span class="header-section-number">5.2.1.1</span> 问题</h4>
 <p><strong>普通线性回归</strong>的目标： <span class="math display">\[
 \min \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = \min \text{MSE}
 \]</span></p>
 <p>只关心<strong>拟合训练数据</strong>，不管模型复杂度！</p>
 </section>
-<section id="正则化的想法" class="level4" data-number="5.3.1.2">
-<h4 data-number="5.3.1.2" class="anchored" data-anchor-id="正则化的想法"><span class="header-section-number">5.3.1.2</span> 正则化的想法</h4>
+<section id="正则化的想法" class="level4" data-number="5.2.1.2">
+<h4 data-number="5.2.1.2" class="anchored" data-anchor-id="正则化的想法"><span class="header-section-number">5.2.1.2</span> 正则化的想法</h4>
 <p><strong>在损失函数中加入惩罚项</strong>： <span class="math display">\[
 \min \underbrace{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}_{\text{拟合误差}} + \underbrace{\alpha \times \text{惩罚项}}_{\text{复杂度惩罚}}
 \]</span></p>
@@ -488,11 +475,10 @@ window.Quarto = {
 <li><strong>复杂度惩罚</strong>：防止模型过于复杂</li>
 <li><strong>α（alpha）</strong>：权衡两者的超参数</li>
 </ul>
-<hr>
 </section>
 </section>
-<section id="正则化的类比" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="正则化的类比"><span class="header-section-number">5.3.2</span> 正则化的类比</h3>
+<section id="正则化的类比" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="正则化的类比"><span class="header-section-number">5.2.2</span> 正则化的类比</h3>
 <p><strong>类比 1：给模型”戴镣铐”</strong></p>
 <ul>
 <li>不正则化 = 模型完全自由，可能”乱跑”（过拟合）</li>
@@ -506,33 +492,14 @@ window.Quarto = {
 <li>在同等拟合效果下，选择更简单的模型</li>
 <li>简单模型 = 系数小、特征少</li>
 </ul>
-<hr>
 </section>
-<section id="正则化的几何直觉" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="正则化的几何直觉"><span class="header-section-number">5.3.3</span> 正则化的几何直觉</h3>
-<div id="f49ab261" class="cell" data-fig-height="5" data-fig-width="12" data-execution_count="4">
-<div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_80120/3492466871.py:40: UserWarning:
-
-Glyph 8321 (\N{SUBSCRIPT ONE}) missing from current font.
-
-/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_80120/3492466871.py:40: UserWarning:
-
-Glyph 8322 (\N{SUBSCRIPT TWO}) missing from current font.
-
-/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
-
-Glyph 8322 (\N{SUBSCRIPT TWO}) missing from current font.
-
-/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
-
-Glyph 8321 (\N{SUBSCRIPT ONE}) missing from current font.
-</code></pre>
-</div>
+<section id="正则化的几何直觉" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="正则化的几何直觉"><span class="header-section-number">5.2.3</span> 正则化的几何直觉</h3>
+<div id="08055812" class="cell" data-fig-height="5" data-fig-width="12" data-message="false" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w3_lm_regularization_files/figure-html/cell-5-output-2.png" width="1142" height="473" class="figure-img"></p>
+<p><img src="w3_lm_regularization_files/figure-html/cell-5-output-1.png" width="1142" height="473" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -542,52 +509,48 @@ Glyph 8321 (\N{SUBSCRIPT ONE}) missing from current font.
 <li><strong>L2（圆形）</strong>：约束边界是平滑的，最优解很少正好在坐标轴上 → 系数小但不为0</li>
 <li><strong>L1（菱形）</strong>：约束边界有”尖角”在坐标轴上，最优解容易碰到尖角 → 某些系数直接为0</li>
 </ul>
-<hr>
 </section>
 </section>
-<section id="第三部分三种正则化方法" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="第三部分三种正则化方法"><span class="header-section-number">5.4</span> 第三部分：三种正则化方法</h2>
-<hr>
-<section id="ridge-回归l2-正则化" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="ridge-回归l2-正则化"><span class="header-section-number">5.4.1</span> Ridge 回归（L2 正则化）</h3>
-<section id="损失函数" class="level4" data-number="5.4.1.1">
-<h4 data-number="5.4.1.1" class="anchored" data-anchor-id="损失函数"><span class="header-section-number">5.4.1.1</span> 损失函数</h4>
+<section id="第三部分三种正则化方法" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="第三部分三种正则化方法"><span class="header-section-number">5.3</span> 第三部分：三种正则化方法</h2>
+<section id="ridge-回归l2-正则化" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="ridge-回归l2-正则化"><span class="header-section-number">5.3.1</span> Ridge 回归（L2 正则化）</h3>
+<section id="损失函数" class="level4" data-number="5.3.1.1">
+<h4 data-number="5.3.1.1" class="anchored" data-anchor-id="损失函数"><span class="header-section-number">5.3.1.1</span> 损失函数</h4>
 <p><span class="math display">\[
 \min \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \alpha \sum_{j=1}^{p}w_j^2
 \]</span></p>
 <p><strong>惩罚项</strong>：$ _{j=1}<sup>{p}w_j</sup>2 $ = 权重的平方和</p>
 </section>
-<section id="特点" class="level4" data-number="5.4.1.2">
-<h4 data-number="5.4.1.2" class="anchored" data-anchor-id="特点"><span class="header-section-number">5.4.1.2</span> 特点</h4>
+<section id="特点" class="level4" data-number="5.3.1.2">
+<h4 data-number="5.3.1.2" class="anchored" data-anchor-id="特点"><span class="header-section-number">5.3.1.2</span> 特点</h4>
 <p>✅ <strong>让所有权重变小</strong><br>
 ✅ <strong>不会让权重变成 0</strong><br>
 ✅ <strong>适合所有特征都重要的情况</strong><br>
 ✅ <strong>对多重共线性有帮助</strong></p>
-<hr>
 </section>
 </section>
-<section id="lasso-回归l1-正则化" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="lasso-回归l1-正则化"><span class="header-section-number">5.4.2</span> Lasso 回归（L1 正则化）</h3>
-<section id="损失函数-1" class="level4" data-number="5.4.2.1">
-<h4 data-number="5.4.2.1" class="anchored" data-anchor-id="损失函数-1"><span class="header-section-number">5.4.2.1</span> 损失函数</h4>
+<section id="lasso-回归l1-正则化" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="lasso-回归l1-正则化"><span class="header-section-number">5.3.2</span> Lasso 回归（L1 正则化）</h3>
+<section id="损失函数-1" class="level4" data-number="5.3.2.1">
+<h4 data-number="5.3.2.1" class="anchored" data-anchor-id="损失函数-1"><span class="header-section-number">5.3.2.1</span> 损失函数</h4>
 <p><span class="math display">\[
 \min \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \alpha \sum_{j=1}^{p}|w_j|
 \]</span></p>
 <p><strong>惩罚项</strong>： $ _{j=1}^{p}|w_j| $ = 权重的绝对值和</p>
 </section>
-<section id="特点-1" class="level4" data-number="5.4.2.2">
-<h4 data-number="5.4.2.2" class="anchored" data-anchor-id="特点-1"><span class="header-section-number">5.4.2.2</span> 特点</h4>
+<section id="特点-1" class="level4" data-number="5.3.2.2">
+<h4 data-number="5.3.2.2" class="anchored" data-anchor-id="特点-1"><span class="header-section-number">5.3.2.2</span> 特点</h4>
 <p>✅ <strong>让某些权重直接变为 0</strong>（自动特征选择）<br>
 ✅ <strong>产生稀疏模型</strong>（只保留重要特征）<br>
 ✅ <strong>适合认为只有少数特征重要的情况</strong><br>
 ✅ <strong>结果易解释</strong>（特征少）</p>
-<hr>
 </section>
 </section>
-<section id="elastic-netl1-l2" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="elastic-netl1-l2"><span class="header-section-number">5.4.3</span> Elastic Net（L1 + L2）</h3>
-<section id="损失函数-2" class="level4" data-number="5.4.3.1">
-<h4 data-number="5.4.3.1" class="anchored" data-anchor-id="损失函数-2"><span class="header-section-number">5.4.3.1</span> 损失函数</h4>
+<section id="elastic-netl1-l2" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="elastic-netl1-l2"><span class="header-section-number">5.3.3</span> Elastic Net（L1 + L2）</h3>
+<section id="损失函数-2" class="level4" data-number="5.3.3.1">
+<h4 data-number="5.3.3.1" class="anchored" data-anchor-id="损失函数-2"><span class="header-section-number">5.3.3.1</span> 损失函数</h4>
 <p><span class="math display">\[
 \min \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \alpha \left( \rho \sum_{j=1}^{p}|w_j| + \frac{1-\rho}{2} \sum_{j=1}^{p}w_j^2 \right)
 \]</span></p>
@@ -597,16 +560,15 @@ Glyph 8321 (\N{SUBSCRIPT ONE}) missing from current font.
 <li><strong>ρ</strong>（l1_ratio）：L1 和 L2 的混合比例（0 = 纯 L2，1 = 纯 L1）</li>
 </ul>
 </section>
-<section id="特点-2" class="level4" data-number="5.4.3.2">
-<h4 data-number="5.4.3.2" class="anchored" data-anchor-id="特点-2"><span class="header-section-number">5.4.3.2</span> 特点</h4>
+<section id="特点-2" class="level4" data-number="5.3.3.2">
+<h4 data-number="5.3.3.2" class="anchored" data-anchor-id="特点-2"><span class="header-section-number">5.3.3.2</span> 特点</h4>
 <p>✅ <strong>结合 Ridge 和 Lasso 的优点</strong><br>
 ✅ <strong>在相关特征较多时表现更好</strong><br>
 ✅ <strong>不确定用哪个时的折中选择</strong></p>
-<hr>
 </section>
 </section>
-<section id="三种方法对比总结" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="三种方法对比总结"><span class="header-section-number">5.4.4</span> 三种方法对比总结</h3>
+<section id="三种方法对比总结" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="三种方法对比总结"><span class="header-section-number">5.3.4</span> 三种方法对比总结</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 17%">
@@ -661,39 +623,17 @@ Glyph 8321 (\N{SUBSCRIPT ONE}) missing from current font.
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
 </section>
-<section id="第四部分正则化参数-α-的选择" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="第四部分正则化参数-α-的选择"><span class="header-section-number">5.5</span> 第四部分：正则化参数 α 的选择</h2>
-<hr>
-<section id="α-的作用" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="α-的作用"><span class="header-section-number">5.5.1</span> α 的作用</h3>
-<div id="7d35fc1d" class="cell" data-fig-height="5" data-fig-width="12" data-execution_count="5">
-<div class="cell-output cell-output-stderr">
-<pre><code>Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.</code></pre>
-</div>
+<section id="第四部分正则化参数-α-的选择" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="第四部分正则化参数-α-的选择"><span class="header-section-number">5.4</span> 第四部分：正则化参数 α 的选择</h2>
+<section id="α-的作用" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="α-的作用"><span class="header-section-number">5.4.1</span> α 的作用</h3>
+<div id="1c5686c0" class="cell" data-fig-height="5" data-fig-width="12" data-message="false" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w3_lm_regularization_files/figure-html/cell-6-output-2.png" width="1334" height="469" class="figure-img"></p>
+<p><img src="w3_lm_regularization_files/figure-html/cell-6-output-1.png" width="1334" height="469" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -705,12 +645,11 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 <li><strong>α 适中</strong>：平衡拟合与复杂度 ✓</li>
 <li><strong>α 很大</strong>：强正则化，可能欠拟合</li>
 </ul>
-<hr>
 </section>
-<section id="交叉验证cross-validation" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="交叉验证cross-validation"><span class="header-section-number">5.5.2</span> 交叉验证（Cross-Validation）</h3>
-<section id="为什么需要交叉验证" class="level4" data-number="5.5.2.1">
-<h4 data-number="5.5.2.1" class="anchored" data-anchor-id="为什么需要交叉验证"><span class="header-section-number">5.5.2.1</span> 为什么需要交叉验证？</h4>
+<section id="交叉验证cross-validation" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="交叉验证cross-validation"><span class="header-section-number">5.4.2</span> 交叉验证（Cross-Validation）</h3>
+<section id="为什么需要交叉验证" class="level4" data-number="5.4.2.1">
+<h4 data-number="5.4.2.1" class="anchored" data-anchor-id="为什么需要交叉验证"><span class="header-section-number">5.4.2.1</span> 为什么需要交叉验证？</h4>
 <p><strong>错误做法</strong> ❌：在测试集上尝试不同的 α，选最好的</p>
 <ul>
 <li>这样会”泄露”测试集信息</li>
@@ -718,9 +657,9 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 </ul>
 <p><strong>正确做法</strong> ✓：用交叉验证在训练集上选 α</p>
 </section>
-<section id="k-fold-交叉验证" class="level4" data-number="5.5.2.2">
-<h4 data-number="5.5.2.2" class="anchored" data-anchor-id="k-fold-交叉验证"><span class="header-section-number">5.5.2.2</span> K-Fold 交叉验证</h4>
-<div id="8033a51f" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="6">
+<section id="k-fold-交叉验证" class="level4" data-number="5.4.2.2">
+<h4 data-number="5.4.2.2" class="anchored" data-anchor-id="k-fold-交叉验证"><span class="header-section-number">5.4.2.2</span> K-Fold 交叉验证</h4>
+<div id="130fd589" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -737,41 +676,19 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 <li>取平均作为该 α 的评估分数</li>
 <li>选择评分最好的 α</li>
 </ol>
-<hr>
 </section>
 </section>
 </section>
-<section id="第五部分正则化路径与可视化" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="第五部分正则化路径与可视化"><span class="header-section-number">5.6</span> 第五部分：正则化路径与可视化</h2>
-<hr>
-<section id="正则化路径图regularization-path" class="level3" data-number="5.6.1">
-<h3 data-number="5.6.1" class="anchored" data-anchor-id="正则化路径图regularization-path"><span class="header-section-number">5.6.1</span> 正则化路径图（Regularization Path）</h3>
+<section id="第五部分正则化路径与可视化" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="第五部分正则化路径与可视化"><span class="header-section-number">5.5</span> 第五部分：正则化路径与可视化</h2>
+<section id="正则化路径图regularization-path" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="正则化路径图regularization-path"><span class="header-section-number">5.5.1</span> 正则化路径图（Regularization Path）</h3>
 <p><strong>问题</strong>：随着 α 增大，各特征的系数如何变化？</p>
-<div id="f7ffc4a0" class="cell" data-fig-height="5" data-fig-width="12" data-execution_count="7">
-<div class="cell-output cell-output-stderr">
-<pre><code>Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
-Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.</code></pre>
-</div>
+<div id="91344fa7" class="cell" data-fig-height="5" data-fig-width="12" data-message="false" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w3_lm_regularization_files/figure-html/cell-8-output-2.png" width="1334" height="470" class="figure-img"></p>
+<p><img src="w3_lm_regularization_files/figure-html/cell-8-output-1.png" width="1334" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -782,14 +699,12 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 <li>α 逐渐增大：不重要的特征系数先变为 0</li>
 <li>α 很大时：几乎所有特征都被剔除</li>
 </ul>
-<hr>
 </section>
 </section>
-<section id="第六部分实践建议" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="第六部分实践建议"><span class="header-section-number">5.7</span> 第六部分：实践建议</h2>
-<hr>
-<section id="正则化回归完整流程" class="level3" data-number="5.7.1">
-<h3 data-number="5.7.1" class="anchored" data-anchor-id="正则化回归完整流程"><span class="header-section-number">5.7.1</span> 正则化回归完整流程</h3>
+<section id="第六部分实践建议" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="第六部分实践建议"><span class="header-section-number">5.6</span> 第六部分：实践建议</h2>
+<section id="正则化回归完整流程" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="正则化回归完整流程"><span class="header-section-number">5.6.1</span> 正则化回归完整流程</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -825,12 +740,11 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="常见错误与注意事项" class="level3" data-number="5.7.2">
-<h3 data-number="5.7.2" class="anchored" data-anchor-id="常见错误与注意事项"><span class="header-section-number">5.7.2</span> 常见错误与注意事项</h3>
-<section id="错误-1忘记标准化" class="level4" data-number="5.7.2.1">
-<h4 data-number="5.7.2.1" class="anchored" data-anchor-id="错误-1忘记标准化"><span class="header-section-number">5.7.2.1</span> ❌ 错误 1：忘记标准化</h4>
+<section id="常见错误与注意事项" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="常见错误与注意事项"><span class="header-section-number">5.6.2</span> 常见错误与注意事项</h3>
+<section id="错误-1忘记标准化" class="level4" data-number="5.6.2.1">
+<h4 data-number="5.6.2.1" class="anchored" data-anchor-id="错误-1忘记标准化"><span class="header-section-number">5.6.2.1</span> ❌ 错误 1：忘记标准化</h4>
 <p><strong>错误做法</strong>：直接在原始数据上训练正则化模型</p>
 <ul>
 <li>特征尺度差异很大时，正则化会不公平地惩罚大尺度特征</li>
@@ -843,10 +757,9 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 <li>确保所有特征都在同一尺度（均值0，标准差1）</li>
 </ol>
 <p><strong>为什么重要</strong>：正则化惩罚权重的大小，如果特征尺度不同，会导致不公平的惩罚。</p>
-<hr>
 </section>
-<section id="错误-2在测试集上选-α" class="level4" data-number="5.7.2.2">
-<h4 data-number="5.7.2.2" class="anchored" data-anchor-id="错误-2在测试集上选-α"><span class="header-section-number">5.7.2.2</span> ❌ 错误 2：在测试集上选 α</h4>
+<section id="错误-2在测试集上选-α" class="level4" data-number="5.6.2.2">
+<h4 data-number="5.6.2.2" class="anchored" data-anchor-id="错误-2在测试集上选-α"><span class="header-section-number">5.6.2.2</span> ❌ 错误 2：在测试集上选 α</h4>
 <p><strong>错误做法</strong>：尝试不同的 α 值，在测试集上选择表现最好的</p>
 <ul>
 <li>这会”泄露”测试集信息，导致对模型效果的过于乐观估计</li>
@@ -859,10 +772,9 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 <li>确保测试集只用于最终评估</li>
 </ol>
 <p><strong>为什么重要</strong>：避免数据泄露，得到真实的模型评估结果。</p>
-<hr>
 </section>
-<section id="错误-3选择不合适的正则化方法" class="level4" data-number="5.7.2.3">
-<h4 data-number="5.7.2.3" class="anchored" data-anchor-id="错误-3选择不合适的正则化方法"><span class="header-section-number">5.7.2.3</span> ❌ 错误 3：选择不合适的正则化方法</h4>
+<section id="错误-3选择不合适的正则化方法" class="level4" data-number="5.6.2.3">
+<h4 data-number="5.6.2.3" class="anchored" data-anchor-id="错误-3选择不合适的正则化方法"><span class="header-section-number">5.6.2.3</span> ❌ 错误 3：选择不合适的正则化方法</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -899,13 +811,12 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
 </section>
-<section id="实用技巧" class="level3" data-number="5.7.3">
-<h3 data-number="5.7.3" class="anchored" data-anchor-id="实用技巧"><span class="header-section-number">5.7.3</span> 实用技巧</h3>
-<section id="技巧-1先尝试-lasso" class="level4" data-number="5.7.3.1">
-<h4 data-number="5.7.3.1" class="anchored" data-anchor-id="技巧-1先尝试-lasso"><span class="header-section-number">5.7.3.1</span> 技巧 1：先尝试 Lasso</h4>
+<section id="实用技巧" class="level3" data-number="5.6.3">
+<h3 data-number="5.6.3" class="anchored" data-anchor-id="实用技巧"><span class="header-section-number">5.6.3</span> 实用技巧</h3>
+<section id="技巧-1先尝试-lasso" class="level4" data-number="5.6.3.1">
+<h4 data-number="5.6.3.1" class="anchored" data-anchor-id="技巧-1先尝试-lasso"><span class="header-section-number">5.6.3.1</span> 技巧 1：先尝试 Lasso</h4>
 <p><strong>为什么</strong>：Lasso 可以自动做特征选择，告诉你哪些特征真正重要</p>
 <ul>
 <li>如果 Lasso 把很多特征剔除了，说明数据有稀疏性</li>
@@ -913,8 +824,8 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 <li>帮助理解数据的特征重要性分布</li>
 </ul>
 </section>
-<section id="技巧-2绘制验证曲线" class="level4" data-number="5.7.3.2">
-<h4 data-number="5.7.3.2" class="anchored" data-anchor-id="技巧-2绘制验证曲线"><span class="header-section-number">5.7.3.2</span> 技巧 2：绘制验证曲线</h4>
+<section id="技巧-2绘制验证曲线" class="level4" data-number="5.6.3.2">
+<h4 data-number="5.6.3.2" class="anchored" data-anchor-id="技巧-2绘制验证曲线"><span class="header-section-number">5.6.3.2</span> 技巧 2：绘制验证曲线</h4>
 <p><strong>目的</strong>：观察 α 参数如何影响模型性能</p>
 <ul>
 <li>X轴：α 值（对数刻度，从 0.001 到 1000）</li>
@@ -928,8 +839,8 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 <li>α 太大：训练和验证都表现差（欠拟合）</li>
 </ul>
 </section>
-<section id="技巧-3对比多种方法" class="level4" data-number="5.7.3.3">
-<h4 data-number="5.7.3.3" class="anchored" data-anchor-id="技巧-3对比多种方法"><span class="header-section-number">5.7.3.3</span> 技巧 3：对比多种方法</h4>
+<section id="技巧-3对比多种方法" class="level4" data-number="5.6.3.3">
+<h4 data-number="5.6.3.3" class="anchored" data-anchor-id="技巧-3对比多种方法"><span class="header-section-number">5.6.3.3</span> 技巧 3：对比多种方法</h4>
 <p><strong>推荐做法</strong>：</p>
 <ol type="1">
 <li>同时训练 Ridge、Lasso 和 Elastic Net（都用 CV 自动选参）</li>
@@ -938,43 +849,40 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 <li>记录不同方法的优缺点，便于后续解释</li>
 </ol>
 <p><strong>为什么重要</strong>：不同正则化方法适合不同场景，盲目选择可能错过最佳方案。</p>
-<hr>
 </section>
 </section>
 </section>
-<section id="总结" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="总结"><span class="header-section-number">5.8</span> 总结</h2>
-<hr>
-<section id="本讲核心概念" class="level3" data-number="5.8.1">
-<h3 data-number="5.8.1" class="anchored" data-anchor-id="本讲核心概念"><span class="header-section-number">5.8.1</span> 本讲核心概念</h3>
-<section id="过拟合与正则化" class="level4" data-number="5.8.1.1">
-<h4 data-number="5.8.1.1" class="anchored" data-anchor-id="过拟合与正则化"><span class="header-section-number">5.8.1.1</span> 过拟合与正则化</h4>
+<section id="总结" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="总结"><span class="header-section-number">5.7</span> 总结</h2>
+<section id="本讲核心概念" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="本讲核心概念"><span class="header-section-number">5.7.1</span> 本讲核心概念</h3>
+<section id="过拟合与正则化" class="level4" data-number="5.7.1.1">
+<h4 data-number="5.7.1.1" class="anchored" data-anchor-id="过拟合与正则化"><span class="header-section-number">5.7.1.1</span> 过拟合与正则化</h4>
 <ul>
 <li><strong>过拟合</strong>：模型太复杂，记住了训练数据的噪声</li>
 <li><strong>正则化</strong>：在损失函数中加入复杂度惩罚，限制模型复杂度</li>
 <li><strong>Bias-Variance Tradeoff</strong>：找到偏差和方差的平衡点</li>
 </ul>
 </section>
-<section id="三种正则化方法" class="level4" data-number="5.8.1.2">
-<h4 data-number="5.8.1.2" class="anchored" data-anchor-id="三种正则化方法"><span class="header-section-number">5.8.1.2</span> 三种正则化方法</h4>
+<section id="三种正则化方法" class="level4" data-number="5.7.1.2">
+<h4 data-number="5.7.1.2" class="anchored" data-anchor-id="三种正则化方法"><span class="header-section-number">5.7.1.2</span> 三种正则化方法</h4>
 <ul>
 <li><strong>Ridge (L2)</strong>：让系数变小但不为 0，适合所有特征都重要</li>
 <li><strong>Lasso (L1)</strong>：让某些系数变为 0，自动特征选择</li>
 <li><strong>Elastic Net</strong>：结合 Ridge 和 Lasso，折中方案</li>
 </ul>
 </section>
-<section id="参数选择" class="level4" data-number="5.8.1.3">
-<h4 data-number="5.8.1.3" class="anchored" data-anchor-id="参数选择"><span class="header-section-number">5.8.1.3</span> 参数选择</h4>
+<section id="参数选择" class="level4" data-number="5.7.1.3">
+<h4 data-number="5.7.1.3" class="anchored" data-anchor-id="参数选择"><span class="header-section-number">5.7.1.3</span> 参数选择</h4>
 <ul>
 <li><strong>交叉验证</strong>：避免在测试集上调参</li>
 <li><strong>RidgeCV/LassoCV</strong>：自动选择最优 α</li>
 <li><strong>正则化路径</strong>：观察 α 变化时系数的变化</li>
 </ul>
-<hr>
 </section>
 </section>
-<section id="重要提醒" class="level3" data-number="5.8.2">
-<h3 data-number="5.8.2" class="anchored" data-anchor-id="重要提醒"><span class="header-section-number">5.8.2</span> 重要提醒</h3>
+<section id="重要提醒" class="level3" data-number="5.7.2">
+<h3 data-number="5.7.2" class="anchored" data-anchor-id="重要提醒"><span class="header-section-number">5.7.2</span> 重要提醒</h3>
 <ol type="1">
 <li><p><strong>正则化前必须标准化特征</strong> ⚠️<br>
 否则正则化会不公平地惩罚某些特征</p></li>
@@ -985,18 +893,16 @@ Ridge、Lasso、Elastic Net 都试试，对比效果</p></li>
 <li><p><strong>可视化很重要</strong> ⚠️<br>
 正则化路径图、系数图、残差图</p></li>
 </ol>
-<hr>
 </section>
 </section>
-<section id="qa" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="qa"><span class="header-section-number">5.9</span> Q&amp;A</h2>
+<section id="qa" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="qa"><span class="header-section-number">5.8</span> Q&amp;A</h2>
 <p><strong>Q1：什么是“过拟合” (Overfitting)？根据讲义的开场案例，它的关键信号是什么？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
 <li>定义：过拟合是指模型过度学习了训练数据中的细节和噪声，导致它无法很好地泛化到未见过的新数据上。</li>
 <li>关键信号：模型在训练集上表现很好（例如RMSE 5万），但在测试集上表现很差（例如RMSE 50万）。训练集表现和测试集表现之间存在巨大差距是过拟合的关键信号。</li>
 </ul>
-<hr>
 <p><strong>Q2：什么是“正则化”？它如何修改普通线性回归的损失函数？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
@@ -1004,28 +910,24 @@ Ridge、Lasso、Elastic Net 都试试，对比效果</p></li>
 <li>修改方式：它在普通线性回归的损失函数（拟合误差，如MSE）基础上，额外加入一个“复杂度惩罚项”。</li>
 <li>新目标：<span class="math inline">\(\min(\text{拟合误差} + \alpha \times \text{复杂度惩罚})\)</span>。这迫使模型在“拟合数据”和“保持简单”之间找到一个平衡。</li>
 </ul>
-<hr>
 <p><strong>Q3：Ridge 回归和 Lasso 回归各自使用的是哪种正则化惩罚项（L1 还是 L2）？它们的惩罚项在数学上有什么不同？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
 <li>Ridge (L2)：使用 L2 正则化。惩罚项是所有特征系数（权重）的平方和 (<span class="math inline">\(\sum w_j^2\)</span>)。</li>
 <li>Lasso (L1)：使用 L1 正则化。惩罚项是所有特征系数（权重）的绝对值和 (<span class="math inline">\(\sum |w_j|\)</span>)。</li>
 </ul>
-<hr>
 <p><strong>Q4：Lasso (L1) 正则化最独特的特点是什么？这使它在实践中有什么重要应用？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
 <li>最独特的特点：Lasso 最独特的特点是它能将某些不重要特征的系数（权重）直接压缩到 0。</li>
 <li>重要应用：这使 Lasso 具有自动特征选择的功能。它可以帮助我们从大量特征中筛选出真正重要的特征，从而得到一个更简单（稀疏）、可解释性更强的模型。</li>
 </ul>
-<hr>
 <p><strong>Q5：为什么我们必须使用“交叉验证” (Cross-Validation) 来选择正则化参数 <span class="math inline">\(\alpha\)</span>，而不是直接在测试集上选择？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
 <li>因为测试集的核心原则是“只在最后使用一次”，它用来评估最终模型的泛化能力。</li>
 <li>如果在测试集上反复尝试不同的 <span class="math inline">\(\alpha\)</span> 值来“调参”，就相当于让模型在训练过程中“偷看”到了测试集的信息，这称为“数据泄露”。这会导致我们对模型性能的评估过于乐观，得到的不是模型真实的泛化能力。交叉验证允许我们在训练集内部安全地模拟这一评估过程，以找到最优的 <span class="math inline">\(\alpha\)</span>。</li>
 </ul>
-<hr>
 <p><strong>Q6：正则化是如何体现在“偏差-方差权衡” (Bias-Variance Tradeoff) 上的？增加正则化强度（即增大 <span class="math inline">\(\alpha\)</span>）时，偏差和方差分别会如何变化？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
@@ -1037,7 +939,6 @@ Ridge、Lasso、Elastic Net 都试试，对比效果</p></li>
 </ol></li>
 <li>目标：正则化的目标是找到一个最优的 <span class="math inline">\(\alpha\)</span>，在“欠拟合”（偏差高）和“过拟合”（方差高）之间找到一个平衡点，使得总误差（偏差 + 方差）最小。</li>
 </ul>
-<hr>
 <p><strong>Q7：为什么讲义中反复强调“在应用正则化之前必须标准化特征”？如果忘记标准化（例如，一个特征“面积”范围 50-200，另一个“卧室数”范围 1-5），会导致什么严重后果？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
@@ -1049,7 +950,6 @@ Ridge、Lasso、Elastic Net 都试试，对比效果</p></li>
 <li>结论：忘记标准化会导致正则化的惩罚变得不公平且毫无意义。它会错误地惩罚那些仅仅因为单位尺度小而系数大的特征，而不是真正“不重要”的特征。标准化（如 Z-score）使所有特征处于同一尺度（例如均值0，标准差1），惩罚才会公平有效。</li>
 </ol></li>
 </ul>
-<hr>
 <p><strong>Q8：在以下三种场景中，你应优先选择哪种正则化方法（Ridge, Lasso, Elastic Net），并说明理由？</strong></p>
 <ol type="1">
 <li><strong>你有 500 个特征，但你怀疑其中只有约 20 个真正有用。</strong></li>
@@ -1489,13 +1389,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./w2_data_processing.html" class="pagination-link" aria-label="第二讲：数据处理与线性回归实践">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第二讲：数据处理与线性回归实践</span></span>
+      <a href="./w2_data_processing.html" class="pagination-link" aria-label="根据操作系统设置不同的字体">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./w4_classification_decision_tree.html" class="pagination-link" aria-label="第四讲：分类问题、决策树与评估指标">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./w4_classification_decision_tree.html" class="pagination-link" aria-label="根据操作系统设置不同的字体">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
