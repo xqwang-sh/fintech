@@ -39,7 +39,7 @@ description: "金融科技导论课程之机器学习部分的完整讲义，系
 - **第14周**：[集成学习 - 随机森林与 GBDT](w5_ensemble_learning.qmd)
 - **第15周**：[神经网络基础](w6_neural_networks.qmd)
 
-所有上机课jupyter notebook请通过百度网盘获取（）
+所有上机课jupyter notebook请通过百度网盘获取（链接: https://pan.baidu.com/s/1DlM2Mt7gS_Jn2C5V4JfBZA?pwd=dhc6 提取码: dhc6）
 
 ## 项目列表与要求
 
@@ -51,7 +51,7 @@ description: "金融科技导论课程之机器学习部分的完整讲义，系
     - [Home Credit Default Risk](4_homecredit.qmd)
     - [IEEE-CIS Fraud Detection](5_ieee-cis.qmd)
     - [G-Research Crypto Forecasting](6_gresearch.qmd)
-- 项目数据与模板请通过百度网盘获取（）
+- 项目数据与模板请通过百度网盘获取（链接: https://pan.baidu.com/s/1DlM2Mt7gS_Jn2C5V4JfBZA?pwd=dhc6 提取码: dhc6）
 
 ## 技术栈
 
