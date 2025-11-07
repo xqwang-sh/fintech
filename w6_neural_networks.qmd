@@ -228,6 +228,7 @@ $$
 $$
 
 ```{python}
+#| message: false
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -247,7 +248,7 @@ axes[0].axhline(y=1, color='k', linestyle='--', alpha=0.3)
 axes[0].axvline(x=0, color='k', linestyle='--', alpha=0.3)
 axes[0].set_xlabel('z', fontsize=12)
 axes[0].set_ylabel('σ(z)', fontsize=12)
-axes[0].set_title('Sigmoid\nσ(z) = 1/(1+e⁻ᶻ)', fontsize=14)
+axes[0].set_title('Sigmoid', fontsize=14)
 axes[0].grid(True, alpha=0.3)
 axes[0].set_ylim(-0.1, 1.1)
 axes[0].text(3, 0.5, '输出: (0, 1)', fontsize=11, bbox=dict(boxstyle='round', facecolor='wheat'))
@@ -258,7 +259,7 @@ axes[1].axhline(y=0, color='k', linestyle='--', alpha=0.3)
 axes[1].axvline(x=0, color='k', linestyle='--', alpha=0.3)
 axes[1].set_xlabel('z', fontsize=12)
 axes[1].set_ylabel('ReLU(z)', fontsize=12)
-axes[1].set_title('ReLU\nReLU(z) = max(0, z)', fontsize=14)
+axes[1].set_title('ReLU', fontsize=14)
 axes[1].grid(True, alpha=0.3)
 axes[1].text(3, 3, '输出: [0, ∞)', fontsize=11, bbox=dict(boxstyle='round', facecolor='wheat'))
 
@@ -270,7 +271,7 @@ axes[2].axhline(y=-1, color='k', linestyle='--', alpha=0.3)
 axes[2].axvline(x=0, color='k', linestyle='--', alpha=0.3)
 axes[2].set_xlabel('z', fontsize=12)
 axes[2].set_ylabel('tanh(z)', fontsize=12)
-axes[2].set_title('Tanh\ntanh(z) = (eᶻ-e⁻ᶻ)/(eᶻ+e⁻ᶻ)', fontsize=14)
+axes[2].set_title('Tanh', fontsize=14)
 axes[2].grid(True, alpha=0.3)
 axes[2].set_ylim(-1.1, 1.1)
 axes[2].text(3, 0, '输出: (-1, 1)', fontsize=11, bbox=dict(boxstyle='round', facecolor='wheat'))
@@ -510,6 +511,7 @@ Input(8) → Dense(64, ReLU) → Dense(32, ReLU) → Output(1, Sigmoid)
 - 无法解决 XOR 问题
 
 ```{python}
+#| message: false
 # XOR 问题示例
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
@@ -647,6 +649,7 @@ $$
 #### 损失函数可视化
 
 ```{python}
+#| message: false
 # Binary Cross-Entropy 可视化
 y_true_demo = 1  # 真实标签
 y_pred_range = np.linspace(0.01, 0.99, 100)
