@@ -1,0 +1,191 @@
+# W2 上机：数据处理与线性回归实践
+
+本上机讲义覆盖 W2 上机大纲：
+
+- Pandas 读取/探索
+- 缺失值与异常值处理
+- 可视化（散点图、直方图、箱线图、相关矩阵）
+- 线性回归训练、评估（MAE/RMSE）、残差分析
+
+数据：使用经典的 Boston Housing 数据集（房价预测数据集）。
+
+```{python}
+# 导入库
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Boston housing 数据集已从 sklearn 中移除，我们从原始数据源获取
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+
+%matplotlib inline
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+```
+
+```{python}
+# 读取数据与基本概览
+# 加载 Boston Housing 数据集
+data_url = "http://lib.stat.cmu.edu/datasets/boston"
+raw_df = pd.read_csv(data_url, sep="\s+", skiprows=22, header=None)
+data = np.hstack([raw_df.values[::2, :], raw_df.values[1::2, :2]])
+target = raw_df.values[1::2, 2]
+
+# 创建DataFrame
+feature_names = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT']
+df = pd.DataFrame(data, columns=feature_names)
+df['MEDV'] = target  # 添加目标变量（房价）
+
+print("Boston Housing 数据集描述:")
+print("经典的房价预测数据集，包含506个样本和13个特征变量。")
+print("目标变量：MEDV (房价，单位：千美元)")
+print("\n特征说明:")
+print("- CRIM: 城镇人均犯罪率")
+print("- ZN: 占地面积超过25,000平方英尺的住宅用地比例")
+print("- INDUS: 城镇非零售商业用地比例")
+print("- CHAS: Charles River虚拟变量 (= 1 if tract bounds river; 0 otherwise)")
+print("- NOX: 一氧化氮浓度 (parts per 10 million)")
+print("- RM: 平均每户房间数")
+print("- AGE: 1940年以前建造的自住单位比例")
+print("- DIS: 到五个波士顿就业中心的加权距离")
+print("- RAD: 径向公路可达性指数")
+print("- TAX: 每10,000美元的全值财产税率")
+print("- PTRATIO: 城镇师生比例")
+print("- B: 1000(Bk - 0.63)^2，其中Bk是城镇黑人比例")
+print("- LSTAT: 低地位人口百分比")
+
+print("\n数据形状:", df.shape)
+print("\n特征名称:", list(feature_names))
+print("\n目标变量: MEDV (房价，单位：千美元)")
+
+print("\n数据预览:")
+print(df.head())
+print("\n数据信息:")
+print(df.info())
+print("\n数据统计:")
+print(df.describe())
+```
+
+```{python}
+# 缺失值检查（Boston Housing 数据集通常没有缺失值）
+print('缺失值统计:')
+print(df.isnull().sum())
+print(f"\n总缺失值数量: {df.isnull().sum().sum()}")
+print("Boston Housing 数据集通常没有缺失值，无需额外处理")
+```
+
+```{python}
+# 异常值可视化与简单检测（以房价为例）
+fig, ax = plt.subplots(1, 2, figsize=(10, 4))
+df.boxplot(column=['MEDV'], ax=ax[0])
+ax[0].set_title('房价箱线图')
+ax[1].scatter(df['RM'], df['MEDV'], s=10)
+ax[1].set_xlabel('平均房间数')
+ax[1].set_ylabel('房价（千美元）')
+ax[1].set_title('房间数 vs 房价')
+plt.tight_layout(); plt.show()
+
+Q1 = df['MEDV'].quantile(0.25)
+Q3 = df['MEDV'].quantile(0.75)
+IQR = Q3 - Q1
+outliers = df[(df['MEDV'] < Q1 - 1.5*IQR) | (df['MEDV'] > Q3 + 1.5*IQR)]
+print(f"房价异常值数量: {len(outliers)}")
+```
+
+```{python}
+# 可视化：散点图、直方图、相关矩阵
+sns.scatterplot(data=df, x='RM', y='MEDV')
+plt.title('房间数 vs 房价'); plt.show()
+
+fig, axes = plt.subplots(2, 2, figsize=(10, 8))
+df['RM'].hist(ax=axes[0,0], bins=30); axes[0,0].set_title('房间数分布')
+df['AGE'].hist(ax=axes[0,1], bins=30); axes[0,1].set_title('房龄分布')
+df['CRIM'].hist(ax=axes[1,0], bins=30); axes[1,0].set_title('犯罪率分布')
+df['MEDV'].hist(ax=axes[1,1], bins=30); axes[1,1].set_title('房价分布')
+plt.tight_layout(); plt.show()
+
+corr = df.corr(numeric_only=True)
+plt.figure(figsize=(12,10))
+sns.heatmap(corr, annot=True, cmap='coolwarm', center=0, fmt='.2f')
+plt.title('相关系数热力图'); plt.show()
+
+print('与房价的相关系数：')
+print(corr['MEDV'].sort_values(ascending=False))
+```
+
+```{python}
+# 训练线性回归并评估（MAE/RMSE）
+features = ['RM', 'AGE', 'CRIM']  # 房间数、房龄、犯罪率
+X = df[features]
+y = df['MEDV']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+y_train_pred = model.predict(X_train)
+y_test_pred = model.predict(X_test)
+
+mae_train = mean_absolute_error(y_train, y_train_pred)
+mae_test = mean_absolute_error(y_test, y_test_pred)
+rmse_train = np.sqrt(mean_squared_error(y_train, y_train_pred))
+rmse_test = np.sqrt(mean_squared_error(y_test, y_test_pred))
+
+print(f"训练集 MAE: {mae_train:.2f} 千美元, RMSE: {rmse_train:.2f} 千美元")
+print(f"测试集 MAE: {mae_test:.2f} 千美元, RMSE: {rmse_test:.2f} 千美元")
+print('系数:')
+for name, coef in zip(features, model.coef_):
+    print(f"  {name}: {coef:.3f}")
+print('截距:', round(model.intercept_, 3))
+```
+
+```{python}
+# 残差分析
+residuals = y_test - y_test_pred
+plt.figure(figsize=(10,4))
+plt.subplot(1,2,1)
+plt.scatter(y_test_pred, residuals, s=12)
+plt.axhline(0, color='red', linestyle='--')
+plt.xlabel('预测值'); plt.ylabel('残差'); plt.title('残差图')
+
+plt.subplot(1,2,2)
+plt.hist(residuals, bins=30, edgecolor='black')
+plt.title('残差分布')
+plt.tight_layout(); plt.show()
+```
+
+## 总结与实战经验
+
+**本周学习的核心内容：**
+
+1. **数据处理基础**
+   - Pandas 数据读取与探索（head, info, describe）
+   - 缺失值处理策略（删除 vs 填充）
+   - 异常值检测与处理（箱线图、IQR 方法）
+
+2. **数据可视化**
+   - 散点图：观察变量间关系
+   - 直方图：了解数据分布
+   - 箱线图：识别异常值
+   - 相关矩阵热力图：发现特征间的相关性
+
+3. **线性回归模型**
+   - 模型训练：使用 sklearn 的 LinearRegression
+   - 评估指标：MAE（平均绝对误差）和 RMSE（均方根误差）
+   - 模型解释：系数和截距的含义
+
+4. **模型诊断**
+   - 残差分析：检查模型假设
+   - 残差图：识别非线性关系
+   - 残差分布：检验正态性假设
+
+**实战经验：**
+
+- ✅ **数据清洗是第一步**：缺失值和异常值会严重影响模型性能
+- ✅ **可视化很重要**：图表能帮我们发现数据中的模式和问题
+- ✅ **理解评估指标**：MAE 和 RMSE 有不同的业务含义，需要根据场景选择
+- ✅ **模型诊断不能忽略**：残差分析帮助我们理解模型的局限性
+- ✅ **特征选择很重要**：多特征模型不一定比单特征模型好，需要实际验证

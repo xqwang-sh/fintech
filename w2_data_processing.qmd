@@ -197,7 +197,7 @@ graph TD
 
 **例子**：
 
-- 房价数据中出现 1 元/平米（可能是录入错误）
+- 房价数据中出现 1 美元（可能是录入错误）
 - 年龄数据中出现 999 岁（占位符未替换）
 - 收入数据中出现负值（除非是亏损）
 
@@ -223,7 +223,7 @@ price_data = np.concatenate([normal_data, outliers])
 plt.figure(figsize=(10, 6))
 plt.subplot(1, 2, 1)
 plt.boxplot(price_data, vert=True)
-plt.ylabel('房价 (万元)')
+plt.ylabel('房价 (千美元)')
 plt.title('箱线图：异常值检测')
 plt.grid(True, alpha=0.3)
 
@@ -242,7 +242,7 @@ plt.legend(fontsize=8)
 
 plt.subplot(1, 2, 2)
 plt.hist(price_data, bins=20, edgecolor='black', alpha=0.7)
-plt.xlabel('房价 (万元)')
+plt.xlabel('房价 (千美元)')
 plt.ylabel('频数')
 plt.title('直方图：数据分布')
 plt.axvline(x=lower_bound, color='red', linestyle='--', label='异常值边界')
@@ -743,7 +743,7 @@ price_demo = 2*area_demo + np.random.randn(100)*30 + 50
 plt.figure(figsize=(10, 6))
 plt.scatter(area_demo, price_demo, alpha=0.6, s=50)
 plt.xlabel('面积 (平米)', fontsize=12)
-plt.ylabel('价格 (万元)', fontsize=12)
+plt.ylabel('价格 (千美元)', fontsize=12)
 plt.title('散点图示例：房屋面积 vs 价格', fontsize=14)
 plt.grid(True, alpha=0.3)
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; 第五讲：集成学习 - 随机森林与 GBDT – 金融科技概论讲义（机器学习部分）</title>
+<title>11&nbsp; 第五讲：集成学习 - 随机森林与 GBDT – 金融科技概论讲义（机器学习部分）</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./w6_neural_networks.html" rel="next">
-<link href="./w4_classification_decision_tree.html" rel="prev">
+<link href="./w5_practice.html" rel="next">
+<link href="./w4_practice.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w5_ensemble_learning.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w5_ensemble_learning.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -192,74 +192,110 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./w1_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">W1 上机：环境安装 + Python 速成 + 第一个回归模型</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./w2_data_processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第二讲：数据处理与线性回归实践</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第二讲：数据处理与线性回归实践</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w2_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">W2 上机：数据处理与线性回归实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w3_lm_regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w3_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">W3 上机：线性回归的正则化</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w4_classification_decision_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w4_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">W4 上机：分类、决策树与评估</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w5_ensemble_learning.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w5_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">W5 上机：随机森林与 GBDT 实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w6_neural_networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w6_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W6 上机：Keras MLP 实战</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_list.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">项目列表</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">项目列表</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./1_california.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">项目1：California House Prices 学生项目要求</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">项目1：California House Prices 学生项目要求</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2_uci.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">项目2：UCI Credit Card Default 学生项目要求</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">项目2：UCI Credit Card Default 学生项目要求</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./3_lendingclub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">项目3：Lending Club（借贷违约风险）学生项目要求</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">项目3：Lending Club（借贷违约风险）学生项目要求</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4_homecredit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">项目4：Home Credit Default Risk 学生项目要求</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">项目4：Home Credit Default Risk 学生项目要求</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./5_ieee-cis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">项目5：IEEE‑CIS Fraud Detection 学生项目要求</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">项目5：IEEE‑CIS Fraud Detection 学生项目要求</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./6_gresearch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">项目6：G‑Research Crypto Forecasting 学生项目要求</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">项目6：G‑Research Crypto Forecasting 学生项目要求</span></span></a>
   </div>
 </li>
     </ul>
@@ -272,39 +308,39 @@ window.Quarto = {
     <h2 id="toc-title">目录</h2>
    
   <ul>
-  <li><a href="#开场单棵树的困境" id="toc-开场单棵树的困境" class="nav-link active" data-scroll-target="#开场单棵树的困境"><span class="header-section-number">7.1</span> 开场：单棵树的困境</a>
+  <li><a href="#开场单棵树的困境" id="toc-开场单棵树的困境" class="nav-link active" data-scroll-target="#开场单棵树的困境"><span class="header-section-number">11.1</span> 开场：单棵树的困境</a>
   <ul class="collapse">
-  <li><a href="#上周回顾" id="toc-上周回顾" class="nav-link" data-scroll-target="#上周回顾"><span class="header-section-number">7.1.1</span> 上周回顾</a></li>
-  <li><a href="#过拟合演示" id="toc-过拟合演示" class="nav-link" data-scroll-target="#过拟合演示"><span class="header-section-number">7.1.2</span> 过拟合演示</a></li>
-  <li><a href="#本周的解决方案" id="toc-本周的解决方案" class="nav-link" data-scroll-target="#本周的解决方案"><span class="header-section-number">7.1.3</span> 本周的解决方案</a></li>
-  <li><a href="#本周学习目标" id="toc-本周学习目标" class="nav-link" data-scroll-target="#本周学习目标"><span class="header-section-number">7.1.4</span> 本周学习目标</a></li>
+  <li><a href="#上周回顾" id="toc-上周回顾" class="nav-link" data-scroll-target="#上周回顾"><span class="header-section-number">11.1.1</span> 上周回顾</a></li>
+  <li><a href="#过拟合演示" id="toc-过拟合演示" class="nav-link" data-scroll-target="#过拟合演示"><span class="header-section-number">11.1.2</span> 过拟合演示</a></li>
+  <li><a href="#本周的解决方案" id="toc-本周的解决方案" class="nav-link" data-scroll-target="#本周的解决方案"><span class="header-section-number">11.1.3</span> 本周的解决方案</a></li>
+  <li><a href="#本周学习目标" id="toc-本周学习目标" class="nav-link" data-scroll-target="#本周学习目标"><span class="header-section-number">11.1.4</span> 本周学习目标</a></li>
   </ul></li>
-  <li><a href="#第一部分集成学习核心思想" id="toc-第一部分集成学习核心思想" class="nav-link" data-scroll-target="#第一部分集成学习核心思想"><span class="header-section-number">7.2</span> 第一部分：集成学习核心思想</a>
+  <li><a href="#第一部分集成学习核心思想" id="toc-第一部分集成学习核心思想" class="nav-link" data-scroll-target="#第一部分集成学习核心思想"><span class="header-section-number">11.2</span> 第一部分：集成学习核心思想</a>
   <ul class="collapse">
-  <li><a href="#类比专家团队-vs-单个专家" id="toc-类比专家团队-vs-单个专家" class="nav-link" data-scroll-target="#类比专家团队-vs-单个专家"><span class="header-section-number">7.2.1</span> 类比：专家团队 vs 单个专家</a></li>
-  <li><a href="#集成学习的数学直觉" id="toc-集成学习的数学直觉" class="nav-link" data-scroll-target="#集成学习的数学直觉"><span class="header-section-number">7.2.2</span> 集成学习的数学直觉</a></li>
-  <li><a href="#如何保证模型不一样" id="toc-如何保证模型不一样" class="nav-link" data-scroll-target="#如何保证模型不一样"><span class="header-section-number">7.2.3</span> 如何保证模型”不一样”？</a></li>
+  <li><a href="#类比专家团队-vs-单个专家" id="toc-类比专家团队-vs-单个专家" class="nav-link" data-scroll-target="#类比专家团队-vs-单个专家"><span class="header-section-number">11.2.1</span> 类比：专家团队 vs 单个专家</a></li>
+  <li><a href="#集成学习的数学直觉" id="toc-集成学习的数学直觉" class="nav-link" data-scroll-target="#集成学习的数学直觉"><span class="header-section-number">11.2.2</span> 集成学习的数学直觉</a></li>
+  <li><a href="#如何保证模型不一样" id="toc-如何保证模型不一样" class="nav-link" data-scroll-target="#如何保证模型不一样"><span class="header-section-number">11.2.3</span> 如何保证模型”不一样”？</a></li>
   </ul></li>
-  <li><a href="#第二部分bagging-与随机森林" id="toc-第二部分bagging-与随机森林" class="nav-link" data-scroll-target="#第二部分bagging-与随机森林"><span class="header-section-number">7.3</span> 第二部分：Bagging 与随机森林</a>
+  <li><a href="#第二部分bagging-与随机森林" id="toc-第二部分bagging-与随机森林" class="nav-link" data-scroll-target="#第二部分bagging-与随机森林"><span class="header-section-number">11.3</span> 第二部分：Bagging 与随机森林</a>
   <ul class="collapse">
-  <li><a href="#bagging-原理" id="toc-bagging-原理" class="nav-link" data-scroll-target="#bagging-原理"><span class="header-section-number">7.3.1</span> Bagging 原理</a></li>
-  <li><a href="#随机森林random-forest" id="toc-随机森林random-forest" class="nav-link" data-scroll-target="#随机森林random-forest"><span class="header-section-number">7.3.2</span> 随机森林（Random Forest）</a></li>
-  <li><a href="#随机森林关键参数" id="toc-随机森林关键参数" class="nav-link" data-scroll-target="#随机森林关键参数"><span class="header-section-number">7.3.3</span> 随机森林关键参数</a></li>
-  <li><a href="#随机森林-vs-单棵决策树" id="toc-随机森林-vs-单棵决策树" class="nav-link" data-scroll-target="#随机森林-vs-单棵决策树"><span class="header-section-number">7.3.4</span> 随机森林 vs 单棵决策树</a></li>
+  <li><a href="#bagging-原理" id="toc-bagging-原理" class="nav-link" data-scroll-target="#bagging-原理"><span class="header-section-number">11.3.1</span> Bagging 原理</a></li>
+  <li><a href="#随机森林random-forest" id="toc-随机森林random-forest" class="nav-link" data-scroll-target="#随机森林random-forest"><span class="header-section-number">11.3.2</span> 随机森林（Random Forest）</a></li>
+  <li><a href="#随机森林关键参数" id="toc-随机森林关键参数" class="nav-link" data-scroll-target="#随机森林关键参数"><span class="header-section-number">11.3.3</span> 随机森林关键参数</a></li>
+  <li><a href="#随机森林-vs-单棵决策树" id="toc-随机森林-vs-单棵决策树" class="nav-link" data-scroll-target="#随机森林-vs-单棵决策树"><span class="header-section-number">11.3.4</span> 随机森林 vs 单棵决策树</a></li>
   </ul></li>
-  <li><a href="#第三部分boosting-与-gbdt" id="toc-第三部分boosting-与-gbdt" class="nav-link" data-scroll-target="#第三部分boosting-与-gbdt"><span class="header-section-number">7.4</span> 第三部分：Boosting 与 GBDT</a>
+  <li><a href="#第三部分boosting-与-gbdt" id="toc-第三部分boosting-与-gbdt" class="nav-link" data-scroll-target="#第三部分boosting-与-gbdt"><span class="header-section-number">11.4</span> 第三部分：Boosting 与 GBDT</a>
   <ul class="collapse">
-  <li><a href="#boosting-核心思想" id="toc-boosting-核心思想" class="nav-link" data-scroll-target="#boosting-核心思想"><span class="header-section-number">7.4.1</span> Boosting 核心思想</a></li>
-  <li><a href="#gbdt-原理" id="toc-gbdt-原理" class="nav-link" data-scroll-target="#gbdt-原理"><span class="header-section-number">7.4.2</span> GBDT 原理</a></li>
-  <li><a href="#gbdt-关键参数" id="toc-gbdt-关键参数" class="nav-link" data-scroll-target="#gbdt-关键参数"><span class="header-section-number">7.4.3</span> GBDT 关键参数</a></li>
+  <li><a href="#boosting-核心思想" id="toc-boosting-核心思想" class="nav-link" data-scroll-target="#boosting-核心思想"><span class="header-section-number">11.4.1</span> Boosting 核心思想</a></li>
+  <li><a href="#gbdt-原理" id="toc-gbdt-原理" class="nav-link" data-scroll-target="#gbdt-原理"><span class="header-section-number">11.4.2</span> GBDT 原理</a></li>
+  <li><a href="#gbdt-关键参数" id="toc-gbdt-关键参数" class="nav-link" data-scroll-target="#gbdt-关键参数"><span class="header-section-number">11.4.3</span> GBDT 关键参数</a></li>
   </ul></li>
-  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">7.5</span> 总结</a>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">11.5</span> 总结</a>
   <ul class="collapse">
-  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">7.5.1</span> 本讲知识回顾</a></li>
-  <li><a href="#bagging-vs-boosting-总结" id="toc-bagging-vs-boosting-总结" class="nav-link" data-scroll-target="#bagging-vs-boosting-总结"><span class="header-section-number">7.5.2</span> Bagging vs Boosting 总结</a></li>
-  <li><a href="#实战要点" id="toc-实战要点" class="nav-link" data-scroll-target="#实战要点"><span class="header-section-number">7.5.3</span> 实战要点</a></li>
+  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">11.5.1</span> 本讲知识回顾</a></li>
+  <li><a href="#bagging-vs-boosting-总结" id="toc-bagging-vs-boosting-总结" class="nav-link" data-scroll-target="#bagging-vs-boosting-总结"><span class="header-section-number">11.5.2</span> Bagging vs Boosting 总结</a></li>
+  <li><a href="#实战要点" id="toc-实战要点" class="nav-link" data-scroll-target="#实战要点"><span class="header-section-number">11.5.3</span> 实战要点</a></li>
   </ul></li>
-  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">7.6</span> Q&amp;A</a></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">11.6</span> Q&amp;A</a></li>
   </ul>
 </nav>
     </div>
@@ -313,7 +349,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></h1>
 </div>
 
 
@@ -330,10 +366,10 @@ window.Quarto = {
 </header>
 
 
-<section id="开场单棵树的困境" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="开场单棵树的困境"><span class="header-section-number">7.1</span> 开场：单棵树的困境</h2>
-<section id="上周回顾" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="上周回顾"><span class="header-section-number">7.1.1</span> 上周回顾</h3>
+<section id="开场单棵树的困境" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="开场单棵树的困境"><span class="header-section-number">11.1</span> 开场：单棵树的困境</h2>
+<section id="上周回顾" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="上周回顾"><span class="header-section-number">11.1.1</span> 上周回顾</h3>
 <p><strong>决策树</strong>：</p>
 <ul>
 <li>易于理解和可视化</li>
@@ -341,8 +377,8 @@ window.Quarto = {
 <li>但有一个致命问题…</li>
 </ul>
 </section>
-<section id="过拟合演示" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="过拟合演示"><span class="header-section-number">7.1.2</span> 过拟合演示</h3>
+<section id="过拟合演示" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="过拟合演示"><span class="header-section-number">11.1.2</span> 过拟合演示</h3>
 <div id="007fb582" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
@@ -402,8 +438,8 @@ window.Quarto = {
 <li>深度=10 或无限制：<strong>过拟合</strong>（训练完美，测试很差）</li>
 </ul>
 </section>
-<section id="本周的解决方案" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="本周的解决方案"><span class="header-section-number">7.1.3</span> 本周的解决方案</h3>
+<section id="本周的解决方案" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="本周的解决方案"><span class="header-section-number">11.1.3</span> 本周的解决方案</h3>
 <p><strong>核心思想</strong>：“三个臭皮匠，顶个诸葛亮”</p>
 <p>不再依赖单棵树，而是：</p>
 <ol type="1">
@@ -413,10 +449,10 @@ window.Quarto = {
 </ol>
 <p>这就是 <strong>集成学习（Ensemble Learning）</strong></p>
 </section>
-<section id="本周学习目标" class="level3" data-number="7.1.4">
-<h3 data-number="7.1.4" class="anchored" data-anchor-id="本周学习目标"><span class="header-section-number">7.1.4</span> 本周学习目标</h3>
-<section id="知识目标" class="level4" data-number="7.1.4.1">
-<h4 data-number="7.1.4.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">7.1.4.1</span> 知识目标</h4>
+<section id="本周学习目标" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="本周学习目标"><span class="header-section-number">11.1.4</span> 本周学习目标</h3>
+<section id="知识目标" class="level4" data-number="11.1.4.1">
+<h4 data-number="11.1.4.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">11.1.4.1</span> 知识目标</h4>
 <ol type="1">
 <li>理解集成学习的核心思想</li>
 <li>掌握 Bagging 和 Boosting 的本质区别</li>
@@ -425,8 +461,8 @@ window.Quarto = {
 <li>理解关键超参数的作用</li>
 </ol>
 </section>
-<section id="技能目标" class="level4" data-number="7.1.4.2">
-<h4 data-number="7.1.4.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">7.1.4.2</span> 技能目标</h4>
+<section id="技能目标" class="level4" data-number="11.1.4.2">
+<h4 data-number="11.1.4.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">11.1.4.2</span> 技能目标</h4>
 <ol type="1">
 <li>使用 sklearn 训练随机森林</li>
 <li>使用 LightGBM 训练 GBDT</li>
@@ -437,20 +473,20 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="第一部分集成学习核心思想" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="第一部分集成学习核心思想"><span class="header-section-number">7.2</span> 第一部分：集成学习核心思想</h2>
-<section id="类比专家团队-vs-单个专家" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="类比专家团队-vs-单个专家"><span class="header-section-number">7.2.1</span> 类比：专家团队 vs 单个专家</h3>
-<section id="单个专家单棵树" class="level4" data-number="7.2.1.1">
-<h4 data-number="7.2.1.1" class="anchored" data-anchor-id="单个专家单棵树"><span class="header-section-number">7.2.1.1</span> 单个专家（单棵树）</h4>
+<section id="第一部分集成学习核心思想" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="第一部分集成学习核心思想"><span class="header-section-number">11.2</span> 第一部分：集成学习核心思想</h2>
+<section id="类比专家团队-vs-单个专家" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="类比专家团队-vs-单个专家"><span class="header-section-number">11.2.1</span> 类比：专家团队 vs 单个专家</h3>
+<section id="单个专家单棵树" class="level4" data-number="11.2.1.1">
+<h4 data-number="11.2.1.1" class="anchored" data-anchor-id="单个专家单棵树"><span class="header-section-number">11.2.1.1</span> 单个专家（单棵树）</h4>
 <ul>
 <li>可能有盲点</li>
 <li>受个人经验限制</li>
 <li>容易出错</li>
 </ul>
 </section>
-<section id="专家团队多棵树" class="level4" data-number="7.2.1.2">
-<h4 data-number="7.2.1.2" class="anchored" data-anchor-id="专家团队多棵树"><span class="header-section-number">7.2.1.2</span> 专家团队（多棵树）</h4>
+<section id="专家团队多棵树" class="level4" data-number="11.2.1.2">
+<h4 data-number="11.2.1.2" class="anchored" data-anchor-id="专家团队多棵树"><span class="header-section-number">11.2.1.2</span> 专家团队（多棵树）</h4>
 <ul>
 <li>多个视角</li>
 <li>互补长短</li>
@@ -458,8 +494,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="集成学习的数学直觉" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="集成学习的数学直觉"><span class="header-section-number">7.2.2</span> 集成学习的数学直觉</h3>
+<section id="集成学习的数学直觉" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="集成学习的数学直觉"><span class="header-section-number">11.2.2</span> 集成学习的数学直觉</h3>
 <p>假设每个模型准确率 60%（略强于随机猜测 50%）</p>
 <ul>
 <li><strong>1 个模型</strong>：准确率 60%</li>
@@ -469,8 +505,8 @@ window.Quarto = {
 </ul>
 <p><strong>前提</strong>：各模型的错误要<strong>独立</strong>（不能都在同一个地方出错）</p>
 </section>
-<section id="如何保证模型不一样" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="如何保证模型不一样"><span class="header-section-number">7.2.3</span> 如何保证模型”不一样”？</h3>
+<section id="如何保证模型不一样" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="如何保证模型不一样"><span class="header-section-number">11.2.3</span> 如何保证模型”不一样”？</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -496,13 +532,13 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="第二部分bagging-与随机森林" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="第二部分bagging-与随机森林"><span class="header-section-number">7.3</span> 第二部分：Bagging 与随机森林</h2>
-<section id="bagging-原理" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="bagging-原理"><span class="header-section-number">7.3.1</span> Bagging 原理</h3>
+<section id="第二部分bagging-与随机森林" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="第二部分bagging-与随机森林"><span class="header-section-number">11.3</span> 第二部分：Bagging 与随机森林</h2>
+<section id="bagging-原理" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="bagging-原理"><span class="header-section-number">11.3.1</span> Bagging 原理</h3>
 <p><strong>Bagging = Bootstrap Aggregating</strong></p>
-<section id="step-1-bootstrap自助采样" class="level4" data-number="7.3.1.1">
-<h4 data-number="7.3.1.1" class="anchored" data-anchor-id="step-1-bootstrap自助采样"><span class="header-section-number">7.3.1.1</span> Step 1: Bootstrap（自助采样）</h4>
+<section id="step-1-bootstrap自助采样" class="level4" data-number="11.3.1.1">
+<h4 data-number="11.3.1.1" class="anchored" data-anchor-id="step-1-bootstrap自助采样"><span class="header-section-number">11.3.1.1</span> Step 1: Bootstrap（自助采样）</h4>
 <p><strong>问题</strong>：只有一份训练数据，如何创造多份不同的数据？</p>
 <p><strong>方法</strong>：有放回地随机抽样</p>
 <div id="aec34484" class="cell" data-execution_count="3">
@@ -549,8 +585,8 @@ window.Quarto = {
 <li>约 63% 的唯一样本（其余是重复）</li>
 </ul>
 </section>
-<section id="step-2-aggregating聚合" class="level4" data-number="7.3.1.2">
-<h4 data-number="7.3.1.2" class="anchored" data-anchor-id="step-2-aggregating聚合"><span class="header-section-number">7.3.1.2</span> Step 2: Aggregating（聚合）</h4>
+<section id="step-2-aggregating聚合" class="level4" data-number="11.3.1.2">
+<h4 data-number="11.3.1.2" class="anchored" data-anchor-id="step-2-aggregating聚合"><span class="header-section-number">11.3.1.2</span> Step 2: Aggregating（聚合）</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -587,8 +623,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="bagging-完整流程" class="level4" data-number="7.3.1.3">
-<h4 data-number="7.3.1.3" class="anchored" data-anchor-id="bagging-完整流程"><span class="header-section-number">7.3.1.3</span> Bagging 完整流程</h4>
+<section id="bagging-完整流程" class="level4" data-number="11.3.1.3">
+<h4 data-number="11.3.1.3" class="anchored" data-anchor-id="bagging-完整流程"><span class="header-section-number">11.3.1.3</span> Bagging 完整流程</h4>
 <ol type="1">
 <li><strong>重复 M 次</strong>：
 <ul>
@@ -609,16 +645,16 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section id="随机森林random-forest" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="随机森林random-forest"><span class="header-section-number">7.3.2</span> 随机森林（Random Forest）</h3>
+<section id="随机森林random-forest" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="随机森林random-forest"><span class="header-section-number">11.3.2</span> 随机森林（Random Forest）</h3>
 <p><strong>随机森林 = Bagging + 特征随机</strong></p>
-<section id="额外的随机性特征随机选择" class="level4" data-number="7.3.2.1">
-<h4 data-number="7.3.2.1" class="anchored" data-anchor-id="额外的随机性特征随机选择"><span class="header-section-number">7.3.2.1</span> 额外的随机性：特征随机选择</h4>
+<section id="额外的随机性特征随机选择" class="level4" data-number="11.3.2.1">
+<h4 data-number="11.3.2.1" class="anchored" data-anchor-id="额外的随机性特征随机选择"><span class="header-section-number">11.3.2.1</span> 额外的随机性：特征随机选择</h4>
 <p><strong>问题</strong>：如果某个特征特别强（如 Titanic 中的性别），所有树都会优先用它分裂 → 树之间太相似</p>
 <p><strong>解决</strong>：每次分裂时，只考虑 <strong>随机选择的一部分特征</strong></p>
 </section>
-<section id="特征随机演示" class="level4" data-number="7.3.2.2">
-<h4 data-number="7.3.2.2" class="anchored" data-anchor-id="特征随机演示"><span class="header-section-number">7.3.2.2</span> 特征随机演示</h4>
+<section id="特征随机演示" class="level4" data-number="11.3.2.2">
+<h4 data-number="11.3.2.2" class="anchored" data-anchor-id="特征随机演示"><span class="header-section-number">11.3.2.2</span> 特征随机演示</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -653,8 +689,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="随机森林关键参数" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="随机森林关键参数"><span class="header-section-number">7.3.3</span> 随机森林关键参数</h3>
+<section id="随机森林关键参数" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="随机森林关键参数"><span class="header-section-number">11.3.3</span> 随机森林关键参数</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -704,8 +740,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="随机森林-vs-单棵决策树" class="level3" data-number="7.3.4">
-<h3 data-number="7.3.4" class="anchored" data-anchor-id="随机森林-vs-单棵决策树"><span class="header-section-number">7.3.4</span> 随机森林 vs 单棵决策树</h3>
+<section id="随机森林-vs-单棵决策树" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="随机森林-vs-单棵决策树"><span class="header-section-number">11.3.4</span> 随机森林 vs 单棵决策树</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -750,14 +786,14 @@ window.Quarto = {
 <p><strong>核心优势</strong>：<strong>降低方差，防止过拟合</strong></p>
 </section>
 </section>
-<section id="第三部分boosting-与-gbdt" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="第三部分boosting-与-gbdt"><span class="header-section-number">7.4</span> 第三部分：Boosting 与 GBDT</h2>
-<section id="boosting-核心思想" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="boosting-核心思想"><span class="header-section-number">7.4.1</span> Boosting 核心思想</h3>
+<section id="第三部分boosting-与-gbdt" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="第三部分boosting-与-gbdt"><span class="header-section-number">11.4</span> 第三部分：Boosting 与 GBDT</h2>
+<section id="boosting-核心思想" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="boosting-核心思想"><span class="header-section-number">11.4.1</span> Boosting 核心思想</h3>
 <p><strong>Bagging</strong>：独立专家各自诊断，最后投票</p>
 <p><strong>Boosting</strong>：第一个医生诊断，第二个医生专门看第一个医生漏掉的症状</p>
-<section id="bagging-vs-boosting" class="level4" data-number="7.4.1.1">
-<h4 data-number="7.4.1.1" class="anchored" data-anchor-id="bagging-vs-boosting"><span class="header-section-number">7.4.1.1</span> Bagging vs Boosting</h4>
+<section id="bagging-vs-boosting" class="level4" data-number="11.4.1.1">
+<h4 data-number="11.4.1.1" class="anchored" data-anchor-id="bagging-vs-boosting"><span class="header-section-number">11.4.1.1</span> Bagging vs Boosting</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -783,8 +819,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="boosting-流程" class="level4" data-number="7.4.1.2">
-<h4 data-number="7.4.1.2" class="anchored" data-anchor-id="boosting-流程"><span class="header-section-number">7.4.1.2</span> Boosting 流程</h4>
+<section id="boosting-流程" class="level4" data-number="11.4.1.2">
+<h4 data-number="11.4.1.2" class="anchored" data-anchor-id="boosting-流程"><span class="header-section-number">11.4.1.2</span> Boosting 流程</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -812,12 +848,12 @@ window.Quarto = {
 <p><strong>关键</strong>：后面的树专注于前面树的错误</p>
 </section>
 </section>
-<section id="gbdt-原理" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="gbdt-原理"><span class="header-section-number">7.4.2</span> GBDT 原理</h3>
+<section id="gbdt-原理" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="gbdt-原理"><span class="header-section-number">11.4.2</span> GBDT 原理</h3>
 <p><strong>GBDT = Gradient Boosting Decision Tree</strong></p>
 <p><strong>核心思想</strong>：每棵新树去拟合之前所有树的”预测误差”（残差）</p>
-<section id="gbdt-示例回归" class="level4" data-number="7.4.2.1">
-<h4 data-number="7.4.2.1" class="anchored" data-anchor-id="gbdt-示例回归"><span class="header-section-number">7.4.2.1</span> GBDT 示例（回归）</h4>
+<section id="gbdt-示例回归" class="level4" data-number="11.4.2.1">
+<h4 data-number="11.4.2.1" class="anchored" data-anchor-id="gbdt-示例回归"><span class="header-section-number">11.4.2.1</span> GBDT 示例（回归）</h4>
 <p><strong>数据</strong>：真实房价 [100, 150, 200]</p>
 <p><strong>Step 1</strong>：初始预测 = 平均值 = 150</p>
 <pre><code>真实值: [100, 150, 200]
@@ -833,8 +869,8 @@ window.Quarto = {
 新残差: [-45.5,   0,  45.5]</code></pre>
 <p><strong>Step 4</strong>：训练树2 拟合新残差，继续更新…</p>
 </section>
-<section id="gbdt-可视化" class="level4" data-number="7.4.2.2">
-<h4 data-number="7.4.2.2" class="anchored" data-anchor-id="gbdt-可视化"><span class="header-section-number">7.4.2.2</span> GBDT 可视化</h4>
+<section id="gbdt-可视化" class="level4" data-number="11.4.2.2">
+<h4 data-number="11.4.2.2" class="anchored" data-anchor-id="gbdt-可视化"><span class="header-section-number">11.4.2.2</span> GBDT 可视化</h4>
 <div id="cb5a33d4" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
@@ -878,8 +914,8 @@ window.Quarto = {
 <p><strong>观察</strong>：随着树数量增加，拟合越来越精确</p>
 </section>
 </section>
-<section id="gbdt-关键参数" class="level3" data-number="7.4.3">
-<h3 data-number="7.4.3" class="anchored" data-anchor-id="gbdt-关键参数"><span class="header-section-number">7.4.3</span> GBDT 关键参数</h3>
+<section id="gbdt-关键参数" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="gbdt-关键参数"><span class="header-section-number">11.4.3</span> GBDT 关键参数</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -916,8 +952,8 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<section id="学习率的作用" class="level4" data-number="7.4.3.1">
-<h4 data-number="7.4.3.1" class="anchored" data-anchor-id="学习率的作用"><span class="header-section-number">7.4.3.1</span> 学习率的作用</h4>
+<section id="学习率的作用" class="level4" data-number="11.4.3.1">
+<h4 data-number="11.4.3.1" class="anchored" data-anchor-id="学习率的作用"><span class="header-section-number">11.4.3.1</span> 学习率的作用</h4>
 <div id="ad3a76e7" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
@@ -964,27 +1000,27 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="总结" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="总结"><span class="header-section-number">7.5</span> 总结</h2>
-<section id="本讲知识回顾" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">7.5.1</span> 本讲知识回顾</h3>
-<section id="集成学习" class="level4" data-number="7.5.1.1">
-<h4 data-number="7.5.1.1" class="anchored" data-anchor-id="集成学习"><span class="header-section-number">7.5.1.1</span> 集成学习</h4>
+<section id="总结" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="总结"><span class="header-section-number">11.5</span> 总结</h2>
+<section id="本讲知识回顾" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">11.5.1</span> 本讲知识回顾</h3>
+<section id="集成学习" class="level4" data-number="11.5.1.1">
+<h4 data-number="11.5.1.1" class="anchored" data-anchor-id="集成学习"><span class="header-section-number">11.5.1.1</span> 集成学习</h4>
 <ul>
 <li><strong>核心思想</strong>：“三个臭皮匠顶个诸葛亮”</li>
 <li><strong>关键</strong>：让多个模型”不一样”</li>
 </ul>
 </section>
-<section id="bagging随机森林" class="level4" data-number="7.5.1.2">
-<h4 data-number="7.5.1.2" class="anchored" data-anchor-id="bagging随机森林"><span class="header-section-number">7.5.1.2</span> Bagging（随机森林）</h4>
+<section id="bagging随机森林" class="level4" data-number="11.5.1.2">
+<h4 data-number="11.5.1.2" class="anchored" data-anchor-id="bagging随机森林"><span class="header-section-number">11.5.1.2</span> Bagging（随机森林）</h4>
 <ul>
 <li><strong>方法</strong>：Bootstrap 采样 + 特征随机</li>
 <li><strong>优点</strong>：降低方差，防止过拟合</li>
 <li><strong>适用</strong>：数据噪声大、需要稳定模型</li>
 </ul>
 </section>
-<section id="boostinggbdt" class="level4" data-number="7.5.1.3">
-<h4 data-number="7.5.1.3" class="anchored" data-anchor-id="boostinggbdt"><span class="header-section-number">7.5.1.3</span> Boosting（GBDT）</h4>
+<section id="boostinggbdt" class="level4" data-number="11.5.1.3">
+<h4 data-number="11.5.1.3" class="anchored" data-anchor-id="boostinggbdt"><span class="header-section-number">11.5.1.3</span> Boosting（GBDT）</h4>
 <ul>
 <li><strong>方法</strong>：串行训练，逐步修正错误</li>
 <li><strong>优点</strong>：降低偏差，精度高</li>
@@ -992,8 +1028,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="bagging-vs-boosting-总结" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="bagging-vs-boosting-总结"><span class="header-section-number">7.5.2</span> Bagging vs Boosting 总结</h3>
+<section id="bagging-vs-boosting-总结" class="level3" data-number="11.5.2">
+<h3 data-number="11.5.2" class="anchored" data-anchor-id="bagging-vs-boosting-总结"><span class="header-section-number">11.5.2</span> Bagging vs Boosting 总结</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1047,8 +1083,8 @@ window.Quarto = {
 <li>追求精度 → GBDT</li>
 </ul>
 </section>
-<section id="实战要点" class="level3" data-number="7.5.3">
-<h3 data-number="7.5.3" class="anchored" data-anchor-id="实战要点"><span class="header-section-number">7.5.3</span> 实战要点</h3>
+<section id="实战要点" class="level3" data-number="11.5.3">
+<h3 data-number="11.5.3" class="anchored" data-anchor-id="实战要点"><span class="header-section-number">11.5.3</span> 实战要点</h3>
 <ol type="1">
 <li><p><strong>先用默认参数跑通</strong><br>
 了解基线性能</p></li>
@@ -1063,8 +1099,8 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section id="qa" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="qa"><span class="header-section-number">7.6</span> Q&amp;A</h2>
+<section id="qa" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="qa"><span class="header-section-number">11.6</span> Q&amp;A</h2>
 <p><strong>Q1：集成学习（Ensemble Learning）试图解决单棵决策树的什么核心问题？</strong></p>
 <p><strong>A：</strong> 核心问题是过拟合（Overfitting）。单棵决策树如果深度没有限制，很容易学到训练数据中的噪声，导致训练集表现完美，但测试集表现很差。集成学习通过组合多棵树的决策来降低这种过拟合，提高模型的稳定性和泛化能力。</p>
 <p><strong>Q2：Bagging（例如随机森林）和 Boosting（例如 GBDT）在训练模型时，最核心的区别是什么？</strong></p>
@@ -1551,13 +1587,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./w4_classification_decision_tree.html" class="pagination-link" aria-label="第四讲：分类问题、决策树与评估指标">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span>
+      <a href="./w4_practice.html" class="pagination-link" aria-label="W4 上机：分类、决策树与评估">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">W4 上机：分类、决策树与评估</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./w6_neural_networks.html" class="pagination-link" aria-label="第六讲：神经网络基础">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./w5_practice.html" class="pagination-link" aria-label="W5 上机：随机森林与 GBDT 实践">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">W5 上机：随机森林与 GBDT 实践</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; W6 上机：Keras MLP 实战 – 金融科技概论讲义（机器学习部分）</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./project_list.html" rel="next">
+<link href="./w6_neural_networks.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ed6da6eef3892af8a4b5ed59bfb951f5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w6_practice.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W6 上机：Keras MLP 实战</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">金融科技概论讲义（机器学习部分）</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="搜索"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">金融科技导论</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w0_syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程安排与考核要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w1_python_ml_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w1_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">W1 上机：环境安装 + Python 速成 + 第一个回归模型</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w2_data_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第二讲：数据处理与线性回归实践</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w2_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">W2 上机：数据处理与线性回归实践</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w3_lm_regularization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w3_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">W3 上机：线性回归的正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w4_classification_decision_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w4_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">W4 上机：分类、决策树与评估</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w5_ensemble_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w5_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">W5 上机：随机森林与 GBDT 实践</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w6_neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w6_practice.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W6 上机：Keras MLP 实战</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_list.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">项目列表</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_california.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">项目1：California House Prices 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_uci.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">项目2：UCI Credit Card Default 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_lendingclub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">项目3：Lending Club（借贷违约风险）学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_homecredit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">项目4：Home Credit Default Risk 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_ieee-cis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">项目5：IEEE‑CIS Fraud Detection 学生项目要求</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_gresearch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">项目6：G‑Research Crypto Forecasting 学生项目要求</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目录</h2>
+   
+  <ul>
+  <li><a href="#环境准备" id="toc-环境准备" class="nav-link active" data-scroll-target="#环境准备"><span class="header-section-number">14.1</span> 6.1 环境准备</a></li>
+  <li><a href="#数据准备" id="toc-数据准备" class="nav-link" data-scroll-target="#数据准备"><span class="header-section-number">14.2</span> 6.2 数据准备</a></li>
+  <li><a href="#搭建-mlp-模型" id="toc-搭建-mlp-模型" class="nav-link" data-scroll-target="#搭建-mlp-模型"><span class="header-section-number">14.3</span> 6.3 搭建 MLP 模型</a></li>
+  <li><a href="#编译模型" id="toc-编译模型" class="nav-link" data-scroll-target="#编译模型"><span class="header-section-number">14.4</span> 6.4 编译模型</a></li>
+  <li><a href="#训练模型" id="toc-训练模型" class="nav-link" data-scroll-target="#训练模型"><span class="header-section-number">14.5</span> 6.5 训练模型</a></li>
+  <li><a href="#可视化学习曲线" id="toc-可视化学习曲线" class="nav-link" data-scroll-target="#可视化学习曲线"><span class="header-section-number">14.6</span> 6.6 可视化学习曲线</a></li>
+  <li><a href="#模型评估" id="toc-模型评估" class="nav-link" data-scroll-target="#模型评估"><span class="header-section-number">14.7</span> 6.7 模型评估</a></li>
+  <li><a href="#mlp-vs-随机森林对比" id="toc-mlp-vs-随机森林对比" class="nav-link" data-scroll-target="#mlp-vs-随机森林对比"><span class="header-section-number">14.8</span> 6.8 MLP vs 随机森林对比</a></li>
+  <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结"><span class="header-section-number">14.9</span> 小结</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W6 上机：Keras MLP 实战</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>本上机讲义覆盖 W6 上机大纲：</p>
+<ul>
+<li>环境准备：安装/验证 TensorFlow/Keras</li>
+<li>数据准备：加载 Titanic 数据集，预处理和标准化</li>
+<li>搭建 MLP：使用 Sequential API 构建多层感知机</li>
+<li>训练模型：设置超参数并训练</li>
+<li>可视化学习曲线：观察训练过程</li>
+<li>模型评估：计算准确率、AUC 等指标</li>
+<li>模型对比：MLP vs 随机森林</li>
+</ul>
+<p><strong>目标：</strong> 掌握 Keras 构建、训练和评估神经网络的基本流程</p>
+<section id="环境准备" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="环境准备"><span class="header-section-number">14.1</span> 6.1 环境准备</h2>
+<p>首先，我们需要导入必要的库并验证 TensorFlow/Keras 的安装。</p>
+<div id="d41e1ef3" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, LabelEncoder</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score, accuracy_score, classification_report, roc_curve</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_openml</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置中文字体</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"TensorFlow 版本: </span><span class="sc">{</span>tf<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>TensorFlow 版本: 2.15.0</code></pre>
+</div>
+</div>
+</section>
+<section id="数据准备" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="数据准备"><span class="header-section-number">14.2</span> 6.2 数据准备</h2>
+<p>我们使用 sklearn 的 <code>fetch_openml</code> 直接加载 Titanic 数据集，然后进行数据预处理：</p>
+<ul>
+<li>处理缺失值</li>
+<li>编码分类变量</li>
+<li>划分训练/测试集</li>
+<li><strong>重要：</strong> 对数值特征进行标准化（神经网络对特征尺度敏感）</li>
+</ul>
+<div id="a0838279" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载 Titanic 数据集</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>titanic <span class="op">=</span> fetch_openml(<span class="st">'titanic'</span>, version<span class="op">=</span><span class="dv">1</span>, as_frame<span class="op">=</span><span class="va">True</span>, parser<span class="op">=</span><span class="st">'auto'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> titanic.frame</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 选择相关特征</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[[<span class="st">'pclass'</span>, <span class="st">'sex'</span>, <span class="st">'age'</span>, <span class="st">'sibsp'</span>, <span class="st">'parch'</span>, <span class="st">'fare'</span>, <span class="st">'embarked'</span>, <span class="st">'survived'</span>]].copy()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df_clean.columns <span class="op">=</span> [<span class="st">'Pclass'</span>, <span class="st">'Sex'</span>, <span class="st">'Age'</span>, <span class="st">'SibSp'</span>, <span class="st">'Parch'</span>, <span class="st">'Fare'</span>, <span class="st">'Embarked'</span>, <span class="st">'Survived'</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据预处理：处理缺失值</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'Age'</span>].fillna(df_clean[<span class="st">'Age'</span>].median(), inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'Fare'</span>].fillna(df_clean[<span class="st">'Fare'</span>].median(), inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'Embarked'</span>].fillna(df_clean[<span class="st">'Embarked'</span>].mode()[<span class="dv">0</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 编码分类变量</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>le_sex <span class="op">=</span> LabelEncoder()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'Sex'</span>] <span class="op">=</span> le_sex.fit_transform(df_clean[<span class="st">'Sex'</span>])</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> pd.get_dummies(df_clean, columns<span class="op">=</span>[<span class="st">'Embarked'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 分离特征和标签</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_clean.drop(<span class="st">'Survived'</span>, axis<span class="op">=</span><span class="dv">1</span>).values</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_clean[<span class="st">'Survived'</span>].astype(<span class="bu">int</span>).values</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 划分训练/测试集</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 归一化（重要！神经网络对特征尺度敏感）</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> scaler.fit_transform(X_train)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> scaler.transform(X_test)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"训练集形状: </span><span class="sc">{</span>X_train<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"测试集形状: </span><span class="sc">{</span>X_test<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"特征数量: </span><span class="sc">{</span>X_train<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>训练集形状: (1047, 8)
+测试集形状: (262, 8)
+特征数量: 8</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/1578517670.py:10: FutureWarning:
+
+A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/1578517670.py:11: FutureWarning:
+
+A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/1578517670.py:12: FutureWarning:
+
+A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+</code></pre>
+</div>
+</div>
+</section>
+<section id="搭建-mlp-模型" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="搭建-mlp-模型"><span class="header-section-number">14.3</span> 6.3 搭建 MLP 模型</h2>
+<p>使用 Keras 的 Sequential API 构建多层感知机：</p>
+<div id="d94feb69" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 搭建 MLP 模型</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Sequential([</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 输入层 + 第一个隐藏层</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(X_train.shape[<span class="dv">1</span>],)),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dropout 层（防止过拟合）</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    layers.Dropout(<span class="fl">0.2</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 第二个隐藏层</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">32</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dropout 层</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    layers.Dropout(<span class="fl">0.2</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 输出层（二分类，使用 sigmoid 激活函数）</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">'sigmoid'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看模型结构</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 64)                576       
+                                                                 
+ dropout (Dropout)           (None, 64)                0         
+                                                                 
+ dense_1 (Dense)             (None, 32)                2080      
+                                                                 
+ dropout_1 (Dropout)         (None, 32)                0         
+                                                                 
+ dense_2 (Dense)             (None, 1)                 33        
+                                                                 
+=================================================================
+Total params: 2689 (10.50 KB)
+Trainable params: 2689 (10.50 KB)
+Non-trainable params: 0 (0.00 Byte)
+_________________________________________________________________</code></pre>
+</div>
+</div>
+</section>
+<section id="编译模型" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="编译模型"><span class="header-section-number">14.4</span> 6.4 编译模型</h2>
+<p>设置损失函数、优化器和评估指标：</p>
+<div id="75ae2a2d" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 编译模型</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span><span class="st">'adam'</span>,                    <span class="co"># 优化器</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span><span class="st">'binary_crossentropy'</span>,          <span class="co"># 二分类损失函数</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[<span class="st">'accuracy'</span>,                 <span class="co"># 准确率</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>             tf.keras.metrics.AUC()]     <span class="co"># AUC 指标</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="训练模型" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="训练模型"><span class="header-section-number">14.5</span> 6.5 训练模型</h2>
+<p>设置训练参数并开始训练：</p>
+<div id="b4371d24" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练参数</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">50</span>          <span class="co"># 训练轮数</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">32</span>      <span class="co"># 批次大小</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    X_train, y_train,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span>epochs,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span>batch_size,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    validation_split<span class="op">=</span><span class="fl">0.2</span>,  <span class="co"># 从训练集中划分验证集</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 1/50
+ 1/27 [&gt;.............................] - ETA: 4s - loss: 0.7432 - accuracy: 0.4375 - auc: 0.396527/27 [==============================] - 0s 4ms/step - loss: 0.6521 - accuracy: 0.6476 - auc: 0.6625 - val_loss: 0.5662 - val_accuracy: 0.7429 - val_auc: 0.7861
+Epoch 2/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.6170 - accuracy: 0.5938 - auc: 0.700027/27 [==============================] - 0s 857us/step - loss: 0.5487 - accuracy: 0.7599 - auc: 0.7998 - val_loss: 0.5169 - val_accuracy: 0.7667 - val_auc: 0.8010
+Epoch 3/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.5208 - accuracy: 0.7500 - auc: 0.831227/27 [==============================] - 0s 798us/step - loss: 0.5031 - accuracy: 0.7790 - auc: 0.8294 - val_loss: 0.4963 - val_accuracy: 0.7810 - val_auc: 0.8069
+Epoch 4/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4003 - accuracy: 0.8750 - auc: 0.895827/27 [==============================] - 0s 782us/step - loss: 0.4862 - accuracy: 0.7861 - auc: 0.8303 - val_loss: 0.4913 - val_accuracy: 0.7667 - val_auc: 0.8059
+Epoch 5/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.5835 - accuracy: 0.7188 - auc: 0.755927/27 [==============================] - 0s 786us/step - loss: 0.4917 - accuracy: 0.7730 - auc: 0.8234 - val_loss: 0.4892 - val_accuracy: 0.7762 - val_auc: 0.8042
+Epoch 6/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3792 - accuracy: 0.9062 - auc: 0.915727/27 [==============================] - 0s 768us/step - loss: 0.4665 - accuracy: 0.7790 - auc: 0.8432 - val_loss: 0.4936 - val_accuracy: 0.7619 - val_auc: 0.8012
+Epoch 7/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3818 - accuracy: 0.8750 - auc: 0.916727/27 [==============================] - 0s 775us/step - loss: 0.4707 - accuracy: 0.7873 - auc: 0.8368 - val_loss: 0.4936 - val_accuracy: 0.7667 - val_auc: 0.7984
+Epoch 8/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.5594 - accuracy: 0.7188 - auc: 0.801627/27 [==============================] - 0s 773us/step - loss: 0.4591 - accuracy: 0.7885 - auc: 0.8441 - val_loss: 0.4957 - val_accuracy: 0.7714 - val_auc: 0.7986
+Epoch 9/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4474 - accuracy: 0.7188 - auc: 0.876627/27 [==============================] - 0s 770us/step - loss: 0.4418 - accuracy: 0.7957 - auc: 0.8571 - val_loss: 0.5036 - val_accuracy: 0.7619 - val_auc: 0.7911
+Epoch 10/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3945 - accuracy: 0.8125 - auc: 0.894727/27 [==============================] - 0s 781us/step - loss: 0.4481 - accuracy: 0.7981 - auc: 0.8468 - val_loss: 0.4959 - val_accuracy: 0.7762 - val_auc: 0.7964
+Epoch 11/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3706 - accuracy: 0.8750 - auc: 0.888727/27 [==============================] - 0s 789us/step - loss: 0.4369 - accuracy: 0.7993 - auc: 0.8617 - val_loss: 0.5018 - val_accuracy: 0.7762 - val_auc: 0.7914
+Epoch 12/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.5715 - accuracy: 0.6875 - auc: 0.775327/27 [==============================] - 0s 771us/step - loss: 0.4347 - accuracy: 0.8053 - auc: 0.8582 - val_loss: 0.5036 - val_accuracy: 0.7762 - val_auc: 0.7935
+Epoch 13/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3497 - accuracy: 0.9062 - auc: 0.913427/27 [==============================] - 0s 779us/step - loss: 0.4313 - accuracy: 0.8172 - auc: 0.8650 - val_loss: 0.5029 - val_accuracy: 0.7714 - val_auc: 0.7937
+Epoch 14/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4475 - accuracy: 0.7500 - auc: 0.840627/27 [==============================] - 0s 765us/step - loss: 0.4263 - accuracy: 0.7957 - auc: 0.8668 - val_loss: 0.5051 - val_accuracy: 0.7619 - val_auc: 0.7942
+Epoch 15/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4311 - accuracy: 0.7500 - auc: 0.890927/27 [==============================] - 0s 774us/step - loss: 0.4419 - accuracy: 0.8029 - auc: 0.8560 - val_loss: 0.5066 - val_accuracy: 0.7667 - val_auc: 0.7923
+Epoch 16/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4042 - accuracy: 0.8125 - auc: 0.863627/27 [==============================] - 0s 776us/step - loss: 0.4467 - accuracy: 0.7981 - auc: 0.8524 - val_loss: 0.5080 - val_accuracy: 0.7810 - val_auc: 0.7922
+Epoch 17/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4534 - accuracy: 0.7500 - auc: 0.840627/27 [==============================] - 0s 758us/step - loss: 0.4435 - accuracy: 0.8005 - auc: 0.8509 - val_loss: 0.5068 - val_accuracy: 0.7667 - val_auc: 0.7939
+Epoch 18/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4941 - accuracy: 0.8438 - auc: 0.789527/27 [==============================] - 0s 773us/step - loss: 0.4298 - accuracy: 0.7945 - auc: 0.8658 - val_loss: 0.5097 - val_accuracy: 0.7714 - val_auc: 0.7944
+Epoch 19/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.5516 - accuracy: 0.7500 - auc: 0.798827/27 [==============================] - 0s 760us/step - loss: 0.4363 - accuracy: 0.8088 - auc: 0.8595 - val_loss: 0.5063 - val_accuracy: 0.7667 - val_auc: 0.7976
+Epoch 20/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4379 - accuracy: 0.8438 - auc: 0.740427/27 [==============================] - 0s 770us/step - loss: 0.4222 - accuracy: 0.8124 - auc: 0.8692 - val_loss: 0.5048 - val_accuracy: 0.7714 - val_auc: 0.7964
+Epoch 21/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.2775 - accuracy: 0.9375 - auc: 0.966227/27 [==============================] - 0s 773us/step - loss: 0.4257 - accuracy: 0.8029 - auc: 0.8686 - val_loss: 0.5035 - val_accuracy: 0.7714 - val_auc: 0.7979
+Epoch 22/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3028 - accuracy: 0.9062 - auc: 0.956827/27 [==============================] - 0s 788us/step - loss: 0.4226 - accuracy: 0.8088 - auc: 0.8665 - val_loss: 0.5044 - val_accuracy: 0.7857 - val_auc: 0.7978
+Epoch 23/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3619 - accuracy: 0.8438 - auc: 0.896127/27 [==============================] - 0s 771us/step - loss: 0.4165 - accuracy: 0.8100 - auc: 0.8681 - val_loss: 0.5065 - val_accuracy: 0.7810 - val_auc: 0.7973
+Epoch 24/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.5419 - accuracy: 0.7188 - auc: 0.720527/27 [==============================] - 0s 769us/step - loss: 0.4244 - accuracy: 0.8112 - auc: 0.8704 - val_loss: 0.5072 - val_accuracy: 0.7762 - val_auc: 0.7951
+Epoch 25/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4701 - accuracy: 0.7812 - auc: 0.886727/27 [==============================] - 0s 762us/step - loss: 0.4215 - accuracy: 0.8184 - auc: 0.8700 - val_loss: 0.5038 - val_accuracy: 0.7810 - val_auc: 0.7972
+Epoch 26/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4029 - accuracy: 0.8438 - auc: 0.872027/27 [==============================] - 0s 758us/step - loss: 0.4247 - accuracy: 0.8160 - auc: 0.8703 - val_loss: 0.5075 - val_accuracy: 0.7762 - val_auc: 0.7949
+Epoch 27/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4680 - accuracy: 0.7500 - auc: 0.864427/27 [==============================] - 0s 760us/step - loss: 0.4192 - accuracy: 0.8136 - auc: 0.8696 - val_loss: 0.5040 - val_accuracy: 0.7810 - val_auc: 0.7990
+Epoch 28/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3969 - accuracy: 0.8125 - auc: 0.871827/27 [==============================] - 0s 768us/step - loss: 0.4345 - accuracy: 0.8076 - auc: 0.8675 - val_loss: 0.5073 - val_accuracy: 0.7810 - val_auc: 0.7962
+Epoch 29/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4436 - accuracy: 0.7812 - auc: 0.816427/27 [==============================] - 0s 758us/step - loss: 0.4245 - accuracy: 0.8112 - auc: 0.8684 - val_loss: 0.5082 - val_accuracy: 0.7762 - val_auc: 0.7956
+Epoch 30/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.2955 - accuracy: 0.9062 - auc: 0.968827/27 [==============================] - 0s 777us/step - loss: 0.4159 - accuracy: 0.8148 - auc: 0.8734 - val_loss: 0.5091 - val_accuracy: 0.7810 - val_auc: 0.7949
+Epoch 31/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4779 - accuracy: 0.8438 - auc: 0.770527/27 [==============================] - 0s 838us/step - loss: 0.4258 - accuracy: 0.8184 - auc: 0.8709 - val_loss: 0.5090 - val_accuracy: 0.7810 - val_auc: 0.7960
+Epoch 32/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3458 - accuracy: 0.8750 - auc: 0.914627/27 [==============================] - 0s 800us/step - loss: 0.4067 - accuracy: 0.8065 - auc: 0.8810 - val_loss: 0.5118 - val_accuracy: 0.7810 - val_auc: 0.7948
+Epoch 33/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.2071 - accuracy: 0.9688 - auc: 0.996027/27 [==============================] - 0s 785us/step - loss: 0.4015 - accuracy: 0.8220 - auc: 0.8848 - val_loss: 0.5137 - val_accuracy: 0.7762 - val_auc: 0.7932
+Epoch 34/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3283 - accuracy: 0.9062 - auc: 0.932527/27 [==============================] - 0s 771us/step - loss: 0.4231 - accuracy: 0.8100 - auc: 0.8711 - val_loss: 0.5084 - val_accuracy: 0.7810 - val_auc: 0.7942
+Epoch 35/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4881 - accuracy: 0.8750 - auc: 0.842127/27 [==============================] - 0s 776us/step - loss: 0.4142 - accuracy: 0.8088 - auc: 0.8767 - val_loss: 0.5165 - val_accuracy: 0.7810 - val_auc: 0.7936
+Epoch 36/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.5313 - accuracy: 0.7500 - auc: 0.819827/27 [==============================] - 0s 758us/step - loss: 0.4066 - accuracy: 0.8172 - auc: 0.8820 - val_loss: 0.5189 - val_accuracy: 0.7810 - val_auc: 0.7927
+Epoch 37/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4071 - accuracy: 0.8125 - auc: 0.850027/27 [==============================] - 0s 769us/step - loss: 0.4138 - accuracy: 0.8184 - auc: 0.8714 - val_loss: 0.5130 - val_accuracy: 0.7714 - val_auc: 0.7946
+Epoch 38/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.2906 - accuracy: 0.8750 - auc: 0.943727/27 [==============================] - 0s 751us/step - loss: 0.4139 - accuracy: 0.8100 - auc: 0.8734 - val_loss: 0.5132 - val_accuracy: 0.7714 - val_auc: 0.7952
+Epoch 39/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3857 - accuracy: 0.8438 - auc: 0.885327/27 [==============================] - 0s 771us/step - loss: 0.4092 - accuracy: 0.8136 - auc: 0.8747 - val_loss: 0.5152 - val_accuracy: 0.7810 - val_auc: 0.7937
+Epoch 40/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4638 - accuracy: 0.8125 - auc: 0.831327/27 [==============================] - 0s 771us/step - loss: 0.4207 - accuracy: 0.8088 - auc: 0.8742 - val_loss: 0.5166 - val_accuracy: 0.7762 - val_auc: 0.7922
+Epoch 41/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.2654 - accuracy: 0.9062 - auc: 0.943727/27 [==============================] - 0s 783us/step - loss: 0.4078 - accuracy: 0.8220 - auc: 0.8811 - val_loss: 0.5201 - val_accuracy: 0.7857 - val_auc: 0.7927
+Epoch 42/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.5443 - accuracy: 0.6875 - auc: 0.870627/27 [==============================] - 0s 796us/step - loss: 0.4066 - accuracy: 0.8148 - auc: 0.8765 - val_loss: 0.5206 - val_accuracy: 0.7762 - val_auc: 0.7906
+Epoch 43/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.2557 - accuracy: 0.9062 - auc: 0.969727/27 [==============================] - 0s 783us/step - loss: 0.4061 - accuracy: 0.8208 - auc: 0.8829 - val_loss: 0.5196 - val_accuracy: 0.7762 - val_auc: 0.7919
+Epoch 44/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3885 - accuracy: 0.7812 - auc: 0.906927/27 [==============================] - 0s 798us/step - loss: 0.4154 - accuracy: 0.8148 - auc: 0.8739 - val_loss: 0.5281 - val_accuracy: 0.7762 - val_auc: 0.7872
+Epoch 45/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.6133 - accuracy: 0.6875 - auc: 0.734827/27 [==============================] - 0s 770us/step - loss: 0.4134 - accuracy: 0.8053 - auc: 0.8754 - val_loss: 0.5203 - val_accuracy: 0.7762 - val_auc: 0.7893
+Epoch 46/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4815 - accuracy: 0.7500 - auc: 0.813827/27 [==============================] - 0s 766us/step - loss: 0.4204 - accuracy: 0.8088 - auc: 0.8767 - val_loss: 0.5224 - val_accuracy: 0.7857 - val_auc: 0.7901
+Epoch 47/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4844 - accuracy: 0.8125 - auc: 0.827327/27 [==============================] - 0s 760us/step - loss: 0.4141 - accuracy: 0.8172 - auc: 0.8771 - val_loss: 0.5217 - val_accuracy: 0.7810 - val_auc: 0.7885
+Epoch 48/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4025 - accuracy: 0.8750 - auc: 0.854227/27 [==============================] - 0s 771us/step - loss: 0.4060 - accuracy: 0.8136 - auc: 0.8818 - val_loss: 0.5213 - val_accuracy: 0.7810 - val_auc: 0.7902
+Epoch 49/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.4923 - accuracy: 0.7812 - auc: 0.799627/27 [==============================] - 0s 754us/step - loss: 0.4069 - accuracy: 0.8292 - auc: 0.8825 - val_loss: 0.5249 - val_accuracy: 0.7762 - val_auc: 0.7918
+Epoch 50/50
+ 1/27 [&gt;.............................] - ETA: 0s - loss: 0.3923 - accuracy: 0.8125 - auc: 0.896827/27 [==============================] - 0s 767us/step - loss: 0.4097 - accuracy: 0.8208 - auc: 0.8832 - val_loss: 0.5203 - val_accuracy: 0.7762 - val_auc: 0.7904</code></pre>
+</div>
+</div>
+</section>
+<section id="可视化学习曲线" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="可视化学习曲线"><span class="header-section-number">14.6</span> 6.6 可视化学习曲线</h2>
+<p>观察训练过程中的损失和准确率变化：</p>
+<div id="83227c24" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制学习曲线</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">5</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 损失曲线</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(history.history[<span class="st">'loss'</span>], label<span class="op">=</span><span class="st">'训练损失'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(history.history[<span class="st">'val_loss'</span>], label<span class="op">=</span><span class="st">'验证损失'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'训练轮数'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'损失'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'损失曲线'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 准确率曲线</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(history.history[<span class="st">'accuracy'</span>], label<span class="op">=</span><span class="st">'训练准确率'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(history.history[<span class="st">'val_accuracy'</span>], label<span class="op">=</span><span class="st">'验证准确率'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'训练轮数'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'准确率'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'准确率曲线'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend()</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># AUC 曲线</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].plot(history.history[<span class="st">'auc'</span>], label<span class="op">=</span><span class="st">'训练 AUC'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].plot(history.history[<span class="st">'val_auc'</span>], label<span class="op">=</span><span class="st">'验证 AUC'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'训练轮数'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">'AUC'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">'AUC 曲线'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].legend()</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"学习曲线观察:"</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"- 训练损失应该逐渐下降"</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"- 验证损失开始上升可能表示过拟合"</span>)</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"- 训练和验证指标差距过大也可能表示过拟合"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 35757 (\N{CJK UNIFIED IDEOGRAPH-8BAD}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 32451 (\N{CJK UNIFIED IDEOGRAPH-7EC3}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 36718 (\N{CJK UNIFIED IDEOGRAPH-8F6E}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 25968 (\N{CJK UNIFIED IDEOGRAPH-6570}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 25439 (\N{CJK UNIFIED IDEOGRAPH-635F}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 22833 (\N{CJK UNIFIED IDEOGRAPH-5931}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 26354 (\N{CJK UNIFIED IDEOGRAPH-66F2}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 32447 (\N{CJK UNIFIED IDEOGRAPH-7EBF}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 39564 (\N{CJK UNIFIED IDEOGRAPH-9A8C}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 35777 (\N{CJK UNIFIED IDEOGRAPH-8BC1}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 20934 (\N{CJK UNIFIED IDEOGRAPH-51C6}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 30830 (\N{CJK UNIFIED IDEOGRAPH-786E}) missing from current font.
+
+/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_149/2172824844.py:31: UserWarning:
+
+Glyph 29575 (\N{CJK UNIFIED IDEOGRAPH-7387}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 25439 (\N{CJK UNIFIED IDEOGRAPH-635F}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 22833 (\N{CJK UNIFIED IDEOGRAPH-5931}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 26354 (\N{CJK UNIFIED IDEOGRAPH-66F2}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 32447 (\N{CJK UNIFIED IDEOGRAPH-7EBF}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 35757 (\N{CJK UNIFIED IDEOGRAPH-8BAD}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 32451 (\N{CJK UNIFIED IDEOGRAPH-7EC3}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 36718 (\N{CJK UNIFIED IDEOGRAPH-8F6E}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 25968 (\N{CJK UNIFIED IDEOGRAPH-6570}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 39564 (\N{CJK UNIFIED IDEOGRAPH-9A8C}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 35777 (\N{CJK UNIFIED IDEOGRAPH-8BC1}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 20934 (\N{CJK UNIFIED IDEOGRAPH-51C6}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 30830 (\N{CJK UNIFIED IDEOGRAPH-786E}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 29575 (\N{CJK UNIFIED IDEOGRAPH-7387}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w6_practice_files/figure-html/cell-7-output-2.png" width="1719" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>学习曲线观察:
+- 训练损失应该逐渐下降
+- 验证损失开始上升可能表示过拟合
+- 训练和验证指标差距过大也可能表示过拟合</code></pre>
+</div>
+</div>
+</section>
+<section id="模型评估" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="模型评估"><span class="header-section-number">14.7</span> 6.7 模型评估</h2>
+<p>在训练集和测试集上评估模型性能：</p>
+<ul>
+<li>准确率 (Accuracy)</li>
+<li>AUC (Area Under ROC Curve)</li>
+<li>分类报告：精确率、召回率、F1 分数</li>
+</ul>
+<div id="474d56a4" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 预测</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y_train_pred_prob <span class="op">=</span> model.predict(X_train).flatten()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>y_test_pred_prob <span class="op">=</span> model.predict(X_test).flatten()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>y_train_pred <span class="op">=</span> (y_train_pred_prob <span class="op">&gt;</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>y_test_pred <span class="op">=</span> (y_test_pred_prob <span class="op">&gt;</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 评估</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== 训练集 ==="</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"准确率: </span><span class="sc">{</span>accuracy_score(y_train, y_train_pred)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"AUC: </span><span class="sc">{</span>roc_auc_score(y_train, y_train_pred_prob)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== 测试集 ==="</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"准确率: </span><span class="sc">{</span>accuracy_score(y_test, y_test_pred)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"AUC: </span><span class="sc">{</span>roc_auc_score(y_test, y_test_pred_prob)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">分类报告:"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_test_pred, target_names<span class="op">=</span>[<span class="st">'死亡'</span>, <span class="st">'存活'</span>]))</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> 1/33 [..............................] - ETA: 0s33/33 [==============================] - 0s 254us/step
+1/9 [==&gt;...........................] - ETA: 0s9/9 [==============================] - 0s 286us/step
+=== 训练集 ===
+准确率: 0.815
+AUC: 0.872
+
+=== 测试集 ===
+准确率: 0.851
+AUC: 0.861
+
+分类报告:
+              precision    recall  f1-score   support
+
+          死亡       0.84      0.93      0.89       162
+          存活       0.87      0.72      0.79       100
+
+    accuracy                           0.85       262
+   macro avg       0.86      0.83      0.84       262
+weighted avg       0.85      0.85      0.85       262
+</code></pre>
+</div>
+</div>
+</section>
+<section id="mlp-vs-随机森林对比" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="mlp-vs-随机森林对比"><span class="header-section-number">14.8</span> 6.8 MLP vs 随机森林对比</h2>
+<p>将 MLP 与传统的机器学习算法（随机森林）进行对比。</p>
+<p><strong>注意：</strong> 随机森林不需要特征标准化，所以使用原始特征。</p>
+<div id="0b0c68e6" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 准备随机森林的数据（不需要标准化）</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X_train_orig, X_test_orig, _, _ <span class="op">=</span> train_test_split(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    df_clean.drop(<span class="st">'Survived'</span>, axis<span class="op">=</span><span class="dv">1</span>).values,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    df_clean[<span class="st">'Survived'</span>].astype(<span class="bu">int</span>).values,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>df_clean[<span class="st">'Survived'</span>].astype(<span class="bu">int</span>).values</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练随机森林</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>rf <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>rf.fit(X_train_orig, y_train)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>y_test_pred_rf <span class="op">=</span> rf.predict_proba(X_test_orig)[:, <span class="dv">1</span>]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算 AUC</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>mlp_auc <span class="op">=</span> roc_auc_score(y_test, y_test_pred_prob)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>rf_auc <span class="op">=</span> roc_auc_score(y_test, y_test_pred_rf)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 对比表格</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>comparison <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'模型'</span>: [<span class="st">'MLP'</span>, <span class="st">'随机森林'</span>],</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'测试集 AUC'</span>: [mlp_auc, rf_auc]</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"模型对比:"</span>)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(comparison.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">MLP 优势: </span><span class="sc">{</span>mlp_auc <span class="op">-</span> rf_auc<span class="sc">:+.3f}</span><span class="ss"> (AUC 差异)"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>模型对比:
+  模型  测试集 AUC
+ MLP 0.861451
+随机森林 0.888920
+
+MLP 优势: -0.027 (AUC 差异)</code></pre>
+</div>
+</div>
+<div id="030c7eb8" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC 曲线对比</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fpr_mlp, tpr_mlp, _ <span class="op">=</span> roc_curve(y_test, y_test_pred_prob)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fpr_rf, tpr_rf, _ <span class="op">=</span> roc_curve(y_test, y_test_pred_rf)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr_mlp, tpr_mlp, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'MLP (AUC=</span><span class="sc">{</span>mlp_auc<span class="sc">:.3f}</span><span class="ss">)'</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr_rf, tpr_rf, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'随机森林 (AUC=</span><span class="sc">{</span>rf_auc<span class="sc">:.3f}</span><span class="ss">)'</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'随机猜测'</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'FPR (False Positive Rate)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'TPR (True Positive Rate)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'MLP vs 随机森林 - ROC 曲线对比'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 38543 (\N{CJK UNIFIED IDEOGRAPH-968F}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 26426 (\N{CJK UNIFIED IDEOGRAPH-673A}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 26862 (\N{CJK UNIFIED IDEOGRAPH-68EE}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 26519 (\N{CJK UNIFIED IDEOGRAPH-6797}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 26354 (\N{CJK UNIFIED IDEOGRAPH-66F2}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 32447 (\N{CJK UNIFIED IDEOGRAPH-7EBF}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 23545 (\N{CJK UNIFIED IDEOGRAPH-5BF9}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 27604 (\N{CJK UNIFIED IDEOGRAPH-6BD4}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 29468 (\N{CJK UNIFIED IDEOGRAPH-731C}) missing from current font.
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+Glyph 27979 (\N{CJK UNIFIED IDEOGRAPH-6D4B}) missing from current font.
+
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei
+findfont: Generic family 'sans-serif' not found because none of the following families were found: SimHei</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w6_practice_files/figure-html/cell-10-output-2.png" width="815" height="676" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="小结" class="level2" data-number="14.9">
+<h2 data-number="14.9" class="anchored" data-anchor-id="小结"><span class="header-section-number">14.9</span> 小结</h2>
+<p><strong>结论：</strong> 在 Titanic 数据集上，随机森林通常表现略好于或持平于基础 MLP。这是正常的，因为：</p>
+<ol type="1">
+<li><strong>数据集较小</strong>：神经网络需要大量数据才能充分发挥优势</li>
+<li><strong>特征工程</strong>：随机森林对特征预处理要求较低</li>
+<li><strong>模型复杂度</strong>：我们使用的 MLP 结构相对简单</li>
+</ol>
+<p><strong>MLP 的优势将在更大规模的数据集和更复杂的任务中体现。</strong></p>
+<p><strong>练习任务：</strong></p>
+<ul>
+<li>尝试调整 MLP 的隐藏层神经元数量</li>
+<li>尝试不同的激活函数</li>
+<li>观察过拟合现象（增加 epochs）</li>
+<li>尝试其他数据集（如 MNIST 手写数字识别）</li>
+</ul>
+<p><strong>神经网络的关键概念：</strong></p>
+<ul>
+<li><strong>层（Layers）</strong>：神经网络的基本构建块</li>
+<li><strong>激活函数（Activation）</strong>：为网络引入非线性</li>
+<li><strong>损失函数（Loss）</strong>：衡量预测与真实值的差距</li>
+<li><strong>优化器（Optimizer）</strong>：更新网络参数的算法</li>
+<li><strong>批次（Batch）</strong>：每次更新使用的样本数量</li>
+<li><strong>轮次（Epoch）</strong>：完整遍历训练集的次数</li>
+</ul>
+<p><strong>超参数调优建议：</strong></p>
+<ul>
+<li><strong>网络结构</strong>：尝试不同的隐藏层数量和神经元数量</li>
+<li><strong>学习率</strong>：太大会震荡，太小会收敛慢</li>
+<li><strong>批次大小</strong>：通常 32-128 之间</li>
+<li><strong>正则化</strong>：Dropout、L1/L2 正则化防止过拟合</li>
+<li><strong>早停（Early Stopping）</strong>：监控验证损失，防止过拟合</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "已复制");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "已复制");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./w6_neural_networks.html" class="pagination-link" aria-label="第六讲：神经网络基础">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./project_list.html" class="pagination-link" aria-label="项目列表">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">项目列表</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

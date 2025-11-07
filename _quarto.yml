@@ -10,11 +10,17 @@ book:
     - index.qmd
     - w0_syllabus.qmd
     - w1_python_ml_intro.qmd
+    - w1_practice.qmd
     - w2_data_processing.qmd
+    - w2_practice.qmd
     - w3_lm_regularization.qmd
+    - w3_practice.qmd
     - w4_classification_decision_tree.qmd
+    - w4_practice.qmd
     - w5_ensemble_learning.qmd
+    - w5_practice.qmd
     - w6_neural_networks.qmd
+    - w6_practice.qmd
     - project_list.qmd
     - 1_california.qmd
     - 2_uci.qmd

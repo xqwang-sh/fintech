@@ -1,0 +1,299 @@
+# W6 上机：Keras MLP 实战
+
+本上机讲义覆盖 W6 上机大纲：
+
+- 环境准备：安装/验证 TensorFlow/Keras
+- 数据准备：加载 Titanic 数据集，预处理和标准化
+- 搭建 MLP：使用 Sequential API 构建多层感知机
+- 训练模型：设置超参数并训练
+- 可视化学习曲线：观察训练过程
+- 模型评估：计算准确率、AUC 等指标
+- 模型对比：MLP vs 随机森林
+
+**目标：** 掌握 Keras 构建、训练和评估神经网络的基本流程
+
+## 6.1 环境准备
+
+首先，我们需要导入必要的库并验证 TensorFlow/Keras 的安装。
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.metrics import roc_auc_score, accuracy_score, classification_report, roc_curve
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import fetch_openml
+
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+# 设置中文字体
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+%matplotlib inline
+
+print(f"TensorFlow 版本: {tf.__version__}")
+```
+
+## 6.2 数据准备
+
+我们使用 sklearn 的 `fetch_openml` 直接加载 Titanic 数据集，然后进行数据预处理：
+
+- 处理缺失值
+- 编码分类变量
+- 划分训练/测试集
+- **重要：** 对数值特征进行标准化（神经网络对特征尺度敏感）
+
+```{python}
+# 加载 Titanic 数据集
+titanic = fetch_openml('titanic', version=1, as_frame=True, parser='auto')
+df = titanic.frame
+
+# 选择相关特征
+df_clean = df[['pclass', 'sex', 'age', 'sibsp', 'parch', 'fare', 'embarked', 'survived']].copy()
+df_clean.columns = ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Survived']
+
+# 数据预处理：处理缺失值
+df_clean['Age'].fillna(df_clean['Age'].median(), inplace=True)
+df_clean['Fare'].fillna(df_clean['Fare'].median(), inplace=True)
+df_clean['Embarked'].fillna(df_clean['Embarked'].mode()[0], inplace=True)
+
+# 编码分类变量
+le_sex = LabelEncoder()
+df_clean['Sex'] = le_sex.fit_transform(df_clean['Sex'])
+df_clean = pd.get_dummies(df_clean, columns=['Embarked'], drop_first=True)
+
+# 分离特征和标签
+X = df_clean.drop('Survived', axis=1).values
+y = df_clean['Survived'].astype(int).values
+
+# 划分训练/测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
+# 归一化（重要！神经网络对特征尺度敏感）
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+print(f"训练集形状: {X_train.shape}")
+print(f"测试集形状: {X_test.shape}")
+print(f"特征数量: {X_train.shape[1]}")
+```
+
+## 6.3 搭建 MLP 模型
+
+使用 Keras 的 Sequential API 构建多层感知机：
+
+```{python}
+# 搭建 MLP 模型
+model = keras.Sequential([
+    # 输入层 + 第一个隐藏层
+    layers.Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
+    # Dropout 层（防止过拟合）
+    layers.Dropout(0.2),
+    # 第二个隐藏层
+    layers.Dense(32, activation='relu'),
+    # Dropout 层
+    layers.Dropout(0.2),
+    # 输出层（二分类，使用 sigmoid 激活函数）
+    layers.Dense(1, activation='sigmoid')
+])
+
+# 查看模型结构
+model.summary()
+```
+
+## 6.4 编译模型
+
+设置损失函数、优化器和评估指标：
+
+```{python}
+# 编译模型
+model.compile(
+    optimizer='adam',                    # 优化器
+    loss='binary_crossentropy',          # 二分类损失函数
+    metrics=['accuracy',                 # 准确率
+             tf.keras.metrics.AUC()]     # AUC 指标
+)
+```
+
+## 6.5 训练模型
+
+设置训练参数并开始训练：
+
+```{python}
+# 训练参数
+epochs = 50          # 训练轮数
+batch_size = 32      # 批次大小
+
+# 训练模型
+history = model.fit(
+    X_train, y_train,
+    epochs=epochs,
+    batch_size=batch_size,
+    validation_split=0.2,  # 从训练集中划分验证集
+    verbose=1
+)
+```
+
+## 6.6 可视化学习曲线
+
+观察训练过程中的损失和准确率变化：
+
+```{python}
+# 绘制学习曲线
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+# 损失曲线
+axes[0].plot(history.history['loss'], label='训练损失', linewidth=2)
+axes[0].plot(history.history['val_loss'], label='验证损失', linewidth=2)
+axes[0].set_xlabel('训练轮数', fontsize=12)
+axes[0].set_ylabel('损失', fontsize=12)
+axes[0].set_title('损失曲线', fontsize=14)
+axes[0].legend()
+axes[0].grid(True, alpha=0.3)
+
+# 准确率曲线
+axes[1].plot(history.history['accuracy'], label='训练准确率', linewidth=2)
+axes[1].plot(history.history['val_accuracy'], label='验证准确率', linewidth=2)
+axes[1].set_xlabel('训练轮数', fontsize=12)
+axes[1].set_ylabel('准确率', fontsize=12)
+axes[1].set_title('准确率曲线', fontsize=14)
+axes[1].legend()
+axes[1].grid(True, alpha=0.3)
+
+# AUC 曲线
+axes[2].plot(history.history['auc'], label='训练 AUC', linewidth=2)
+axes[2].plot(history.history['val_auc'], label='验证 AUC', linewidth=2)
+axes[2].set_xlabel('训练轮数', fontsize=12)
+axes[2].set_ylabel('AUC', fontsize=12)
+axes[2].set_title('AUC 曲线', fontsize=14)
+axes[2].legend()
+axes[2].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+print("学习曲线观察:")
+print("- 训练损失应该逐渐下降")
+print("- 验证损失开始上升可能表示过拟合")
+print("- 训练和验证指标差距过大也可能表示过拟合")
+```
+
+## 6.7 模型评估
+
+在训练集和测试集上评估模型性能：
+
+- 准确率 (Accuracy)
+- AUC (Area Under ROC Curve)
+- 分类报告：精确率、召回率、F1 分数
+
+```{python}
+# 预测
+y_train_pred_prob = model.predict(X_train).flatten()
+y_test_pred_prob = model.predict(X_test).flatten()
+
+y_train_pred = (y_train_pred_prob > 0.5).astype(int)
+y_test_pred = (y_test_pred_prob > 0.5).astype(int)
+
+# 评估
+print("=== 训练集 ===")
+print(f"准确率: {accuracy_score(y_train, y_train_pred):.3f}")
+print(f"AUC: {roc_auc_score(y_train, y_train_pred_prob):.3f}")
+
+print("\n=== 测试集 ===")
+print(f"准确率: {accuracy_score(y_test, y_test_pred):.3f}")
+print(f"AUC: {roc_auc_score(y_test, y_test_pred_prob):.3f}")
+
+print("\n分类报告:")
+print(classification_report(y_test, y_test_pred, target_names=['死亡', '存活']))
+```
+
+## 6.8 MLP vs 随机森林对比
+
+将 MLP 与传统的机器学习算法（随机森林）进行对比。
+
+**注意：** 随机森林不需要特征标准化，所以使用原始特征。
+
+```{python}
+# 准备随机森林的数据（不需要标准化）
+X_train_orig, X_test_orig, _, _ = train_test_split(
+    df_clean.drop('Survived', axis=1).values,
+    df_clean['Survived'].astype(int).values,
+    test_size=0.2, random_state=42, stratify=df_clean['Survived'].astype(int).values
+)
+
+# 训练随机森林
+rf = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
+rf.fit(X_train_orig, y_train)
+y_test_pred_rf = rf.predict_proba(X_test_orig)[:, 1]
+
+# 计算 AUC
+mlp_auc = roc_auc_score(y_test, y_test_pred_prob)
+rf_auc = roc_auc_score(y_test, y_test_pred_rf)
+
+# 对比表格
+comparison = pd.DataFrame({
+    '模型': ['MLP', '随机森林'],
+    '测试集 AUC': [mlp_auc, rf_auc]
+})
+
+print("模型对比:")
+print(comparison.to_string(index=False))
+print(f"\nMLP 优势: {mlp_auc - rf_auc:+.3f} (AUC 差异)")
+```
+
+```{python}
+# ROC 曲线对比
+fpr_mlp, tpr_mlp, _ = roc_curve(y_test, y_test_pred_prob)
+fpr_rf, tpr_rf, _ = roc_curve(y_test, y_test_pred_rf)
+
+plt.figure(figsize=(10, 8))
+plt.plot(fpr_mlp, tpr_mlp, linewidth=3, label=f'MLP (AUC={mlp_auc:.3f})')
+plt.plot(fpr_rf, tpr_rf, linewidth=3, label=f'随机森林 (AUC={rf_auc:.3f})')
+plt.plot([0, 1], [0, 1], 'k--', linewidth=2, label='随机猜测')
+plt.xlabel('FPR (False Positive Rate)', fontsize=12)
+plt.ylabel('TPR (True Positive Rate)', fontsize=12)
+plt.title('MLP vs 随机森林 - ROC 曲线对比', fontsize=14)
+plt.legend(fontsize=11)
+plt.grid(True, alpha=0.3)
+plt.show()
+```
+
+## 小结
+
+**结论：** 在 Titanic 数据集上，随机森林通常表现略好于或持平于基础 MLP。这是正常的，因为：
+
+1. **数据集较小**：神经网络需要大量数据才能充分发挥优势
+2. **特征工程**：随机森林对特征预处理要求较低
+3. **模型复杂度**：我们使用的 MLP 结构相对简单
+
+**MLP 的优势将在更大规模的数据集和更复杂的任务中体现。**
+
+**练习任务：**
+
+- 尝试调整 MLP 的隐藏层神经元数量
+- 尝试不同的激活函数
+- 观察过拟合现象（增加 epochs）
+- 尝试其他数据集（如 MNIST 手写数字识别）
+
+**神经网络的关键概念：**
+
+- **层（Layers）**：神经网络的基本构建块
+- **激活函数（Activation）**：为网络引入非线性
+- **损失函数（Loss）**：衡量预测与真实值的差距
+- **优化器（Optimizer）**：更新网络参数的算法
+- **批次（Batch）**：每次更新使用的样本数量
+- **轮次（Epoch）**：完整遍历训练集的次数
+
+**超参数调优建议：**
+
+- **网络结构**：尝试不同的隐藏层数量和神经元数量
+- **学习率**：太大会震荡，太小会收敛慢
+- **批次大小**：通常 32-128 之间
+- **正则化**：Dropout、L1/L2 正则化防止过拟合
+- **早停（Early Stopping）**：监控验证损失，防止过拟合
