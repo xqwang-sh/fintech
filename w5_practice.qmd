@@ -1,4 +1,6 @@
-# W5 上机：随机森林与 GBDT 实践
+---
+title: W5 上机：随机森林与 GBDT 实践
+---
 
 本上机讲义覆盖 W5 上机大纲：
 
@@ -38,7 +40,7 @@ plt.rcParams['axes.unicode_minus'] = False
 %matplotlib inline
 ```
 
-## 1. 数据准备
+## 数据准备
 
 **说明**：我们使用 W3 预处理后的数据，直接加载即可。数据已经完成：
 
@@ -77,7 +79,7 @@ except FileNotFoundError:
     dt_results_w4 = None
 ```
 
-## 2. 随机森林模型训练与超参数调优
+## 随机森林模型训练与超参数调优
 
 **随机森林简介**：
 
@@ -169,7 +171,7 @@ for i in indices_rf:
     print(f"  {X.columns[i]}: {importances_rf[i]:.4f}")
 ```
 
-## 3. GBDT（LightGBM）模型训练与超参数调优
+## GBDT（LightGBM）模型训练与超参数调优
 
 **GBDT（梯度提升决策树）简介**：
 
@@ -271,7 +273,7 @@ for i in indices_gbm:
     print(f"  {X.columns[i]}: {importances_gbm[i]:.4f}")
 ```
 
-## 4. 三模型对比：决策树 vs 随机森林 vs GBDT
+## 三模型对比：决策树 vs 随机森林 vs GBDT
 
 **对比说明**：
 
@@ -412,7 +414,7 @@ print("- 曲线越靠近左上角，模型性能越好")
 print(f"- 最佳模型: {best_model} (AUC = {comparison_df.loc[best_auc_idx, 'AUC']:.4f})")
 ```
 
-## 5. 总结与实战经验
+## 总结与实战经验
 
 **本次课程的核心内容：**
 

@@ -1,4 +1,6 @@
-# W1 上机：环境安装 + Python 速成 + 第一个回归模型
+---
+title: W1 上机：环境安装 + Python 速成 + 第一个回归模型
+---
 
 本上机讲义覆盖 W1 上机大纲：
 
@@ -110,21 +112,6 @@ for lib in libs:
         print(f'{lib} 导入失败：{e}\n可用 pip 安装：pip install {lib}')
 ```
 
-```{python}
-# 验证 Python 与 Jupyter
-import sys, subprocess
-print('Python 版本:', sys.version)
-
-# 验证常用库是否可导入（若失败不报错，仅提示）
-libs = ['numpy', 'pandas', 'matplotlib', 'sklearn']
-for lib in libs:
-    try:
-        __import__(lib)
-        print(f'{lib} 导入成功')
-    except Exception as e:
-        print(f'{lib} 导入失败：{e}\n可用 pip 安装：pip install {lib}')
-```
-
 ### 如果库导入失败，如何安装？
 
 **方式1：使用 pip 安装（如果使用官网 Python 安装包）**
@@ -150,7 +137,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib 
 - 如果提示 `pip 命令找不到`，尝试：`python -m pip install numpy pandas matplotlib scikit-learn`
 - Mac 用户可能需要使用 `pip3` 而不是 `pip`
 
-## 3.2.1 变量与基本运算
+## 变量与基本运算
 
 **什么是变量？** 变量就像是一个"盒子"，用来存储数据。给这个盒子起个名字，就可以随时使用里面的数据。
 
@@ -189,7 +176,7 @@ print(type(name))      # <class 'str'> - 字符串类型
 
 **提示：** 参考上面的代码，创建两个变量，然后用乘法计算总价。
 
-## 3.2.2 列表
+## 列表
 
 **什么是列表？** 列表就像是一个"容器"，可以存储多个数据。列表中的元素有顺序，可以用位置（索引）来访问。
 
@@ -231,7 +218,7 @@ for p in house_prices:
 - 使用方括号创建列表，例如：`[85, 90, 78, 92, 88]`
 - 使用 `[0]` 访问第一个元素，`[-1]` 访问最后一个元素
 
-## 3.2.3 导入库与函数调用
+## 导入库与函数调用
 
 **什么是库？** 库（Library）就像是一个"工具箱"，里面装满了别人已经写好的实用工具（函数）。我们不需要自己写代码实现所有功能，直接使用库里的工具就可以了。
 
@@ -271,7 +258,7 @@ print("平均分:", mean(scores))  # 直接使用 mean() 计算平均值，输�
 - 或者使用 `import statistics`，然后通过 `statistics.mean()` 和 `statistics.median()` 调用
 - 中位数函数是 `median()`，用法和 `mean()` 一样
 
-## 3.3 第一个机器学习程序：线性回归
+## 第一个机器学习程序：线性回归
 
 **什么是机器学习？** 简单来说，就是让计算机从数据中"学习"规律，然后用学到的规律做预测。
 

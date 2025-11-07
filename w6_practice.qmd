@@ -1,4 +1,6 @@
-# W6 上机：Keras MLP 实战
+---
+title: W6 上机：Keras MLP 实战
+---
 
 本上机讲义覆盖 W6 上机大纲：
 
@@ -12,7 +14,7 @@
 
 **目标：** 掌握 Keras 构建、训练和评估神经网络的基本流程
 
-## 6.1 环境准备
+## 环境准备
 
 首先，我们需要导入必要的库并验证 TensorFlow/Keras 的安装。
 
@@ -39,7 +41,7 @@ plt.rcParams['axes.unicode_minus'] = False
 print(f"TensorFlow 版本: {tf.__version__}")
 ```
 
-## 6.2 数据准备
+## 数据准备
 
 我们使用 sklearn 的 `fetch_openml` 直接加载 Titanic 数据集，然后进行数据预处理：
 
@@ -49,27 +51,9 @@ print(f"TensorFlow 版本: {tf.__version__}")
 - **重要：** 对数值特征进行标准化（神经网络对特征尺度敏感）
 
 ```{python}
-# 加载 Titanic 数据集
-titanic = fetch_openml('titanic', version=1, as_frame=True, parser='auto')
-df = titanic.frame
-
-# 选择相关特征
-df_clean = df[['pclass', 'sex', 'age', 'sibsp', 'parch', 'fare', 'embarked', 'survived']].copy()
-df_clean.columns = ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Survived']
-
-# 数据预处理：处理缺失值
-df_clean['Age'].fillna(df_clean['Age'].median(), inplace=True)
-df_clean['Fare'].fillna(df_clean['Fare'].median(), inplace=True)
-df_clean['Embarked'].fillna(df_clean['Embarked'].mode()[0], inplace=True)
-
-# 编码分类变量
-le_sex = LabelEncoder()
-df_clean['Sex'] = le_sex.fit_transform(df_clean['Sex'])
-df_clean = pd.get_dummies(df_clean, columns=['Embarked'], drop_first=True)
-
-# 分离特征和标签
-X = df_clean.drop('Survived', axis=1).values
-y = df_clean['Survived'].astype(int).values
+# 读取 W4 预处理后的数据
+X = pd.read_csv('titanic_data/features_processed.csv')
+y = pd.read_csv('titanic_data/labels_processed.csv')
 
 # 划分训练/测试集
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
@@ -84,7 +68,7 @@ print(f"测试集形状: {X_test.shape}")
 print(f"特征数量: {X_train.shape[1]}")
 ```
 
-## 6.3 搭建 MLP 模型
+## 搭建 MLP 模型
 
 使用 Keras 的 Sequential API 构建多层感知机：
 
@@ -107,7 +91,7 @@ model = keras.Sequential([
 model.summary()
 ```
 
-## 6.4 编译模型
+## 编译模型
 
 设置损失函数、优化器和评估指标：
 
@@ -121,7 +105,7 @@ model.compile(
 )
 ```
 
-## 6.5 训练模型
+## 训练模型
 
 设置训练参数并开始训练：
 
@@ -140,7 +124,7 @@ history = model.fit(
 )
 ```
 
-## 6.6 可视化学习曲线
+## 可视化学习曲线
 
 观察训练过程中的损失和准确率变化：
 
@@ -184,7 +168,7 @@ print("- 验证损失开始上升可能表示过拟合")
 print("- 训练和验证指标差距过大也可能表示过拟合")
 ```
 
-## 6.7 模型评估
+## 模型评估
 
 在训练集和测试集上评估模型性能：
 
@@ -213,7 +197,7 @@ print("\n分类报告:")
 print(classification_report(y_test, y_test_pred, target_names=['死亡', '存活']))
 ```
 
-## 6.8 MLP vs 随机森林对比
+## MLP vs 随机森林对比
 
 将 MLP 与传统的机器学习算法（随机森林）进行对比。
 
