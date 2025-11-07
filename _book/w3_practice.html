@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; W3 上机：线性回归的正则化 – 金融科技概论讲义（机器学习部分）</title>
+<title>8&nbsp; 第三讲上机实践 – 金融科技概论讲义（机器学习部分）</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w3_practice.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">W3 上机：线性回归的正则化</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w3_practice.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第三讲上机实践</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w1_practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">W1 上机：环境安装 + Python 速成 + 第一个回归模型</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第一讲上机实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -176,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w2_practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">W2 上机：数据处理与线性回归实践</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">第二讲上机实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w3_practice.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">W3 上机：线性回归的正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第三讲上机实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -200,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w4_practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">W4 上机：分类、决策树与评估</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">第四讲上机实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w5_practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">W5 上机：随机森林与 GBDT 实践</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">第五讲上机实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w6_practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W6 上机：Keras MLP 实战</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">第六讲上机实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -279,44 +279,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">目录</h2>
    
   <ul>
-  <li><a href="#学习目标" id="toc-学习目标" class="nav-link active" data-scroll-target="#学习目标"><span class="header-section-number">8.1</span> 学习目标</a></li>
-  <li><a href="#重要提醒" id="toc-重要提醒" class="nav-link" data-scroll-target="#重要提醒"><span class="header-section-number">8.2</span> ⚠️ 重要提醒</a></li>
-  <li><a href="#part-1-环境准备与数据加载" id="toc-part-1-环境准备与数据加载" class="nav-link" data-scroll-target="#part-1-环境准备与数据加载"><span class="header-section-number">9</span> Part 1: 环境准备与数据加载</a>
+  <li><a href="#环境准备与数据加载" id="toc-环境准备与数据加载" class="nav-link active" data-scroll-target="#环境准备与数据加载"><span class="header-section-number">8.1</span> 环境准备与数据加载</a>
   <ul class="collapse">
-  <li><a href="#加载数据集" id="toc-加载数据集" class="nav-link" data-scroll-target="#加载数据集"><span class="header-section-number">9.0.1</span> 加载数据集</a></li>
-  <li><a href="#数据探索" id="toc-数据探索" class="nav-link" data-scroll-target="#数据探索"><span class="header-section-number">9.0.2</span> 数据探索</a></li>
-  <li><a href="#数据切分与标准化" id="toc-数据切分与标准化" class="nav-link" data-scroll-target="#数据切分与标准化"><span class="header-section-number">9.0.3</span> 数据切分与标准化</a></li>
+  <li><a href="#加载数据集" id="toc-加载数据集" class="nav-link" data-scroll-target="#加载数据集"><span class="header-section-number">8.1.1</span> 加载数据集</a></li>
+  <li><a href="#数据探索" id="toc-数据探索" class="nav-link" data-scroll-target="#数据探索"><span class="header-section-number">8.1.2</span> 数据探索</a></li>
+  <li><a href="#数据切分与标准化" id="toc-数据切分与标准化" class="nav-link" data-scroll-target="#数据切分与标准化"><span class="header-section-number">8.1.3</span> 数据切分与标准化</a></li>
   </ul></li>
-  <li><a href="#part-2-理解过拟合问题" id="toc-part-2-理解过拟合问题" class="nav-link" data-scroll-target="#part-2-理解过拟合问题"><span class="header-section-number">10</span> Part 2: 理解过拟合问题</a>
+  <li><a href="#理解过拟合问题" id="toc-理解过拟合问题" class="nav-link" data-scroll-target="#理解过拟合问题"><span class="header-section-number">8.2</span> 理解过拟合问题</a>
   <ul class="collapse">
-  <li><a href="#生成简单数据集" id="toc-生成简单数据集" class="nav-link" data-scroll-target="#生成简单数据集"><span class="header-section-number">10.0.1</span> 生成简单数据集</a></li>
-  <li><a href="#对比不同复杂度的模型" id="toc-对比不同复杂度的模型" class="nav-link" data-scroll-target="#对比不同复杂度的模型"><span class="header-section-number">10.0.2</span> 对比不同复杂度的模型</a></li>
+  <li><a href="#生成简单数据集" id="toc-生成简单数据集" class="nav-link" data-scroll-target="#生成简单数据集"><span class="header-section-number">8.2.1</span> 生成简单数据集</a></li>
+  <li><a href="#对比不同复杂度的模型" id="toc-对比不同复杂度的模型" class="nav-link" data-scroll-target="#对比不同复杂度的模型"><span class="header-section-number">8.2.2</span> 对比不同复杂度的模型</a></li>
   </ul></li>
-  <li><a href="#part-3-ridgelassoelastic-net-实战" id="toc-part-3-ridgelassoelastic-net-实战" class="nav-link" data-scroll-target="#part-3-ridgelassoelastic-net-实战"><span class="header-section-number">11</span> Part 3: Ridge、Lasso、Elastic Net 实战</a>
+  <li><a href="#ridgelassoelastic-net-实战" id="toc-ridgelassoelastic-net-实战" class="nav-link" data-scroll-target="#ridgelassoelastic-net-实战"><span class="header-section-number">8.3</span> Ridge、Lasso、Elastic Net 实战</a>
   <ul class="collapse">
-  <li><a href="#基线模型普通线性回归" id="toc-基线模型普通线性回归" class="nav-link" data-scroll-target="#基线模型普通线性回归"><span class="header-section-number">11.0.1</span> 基线模型：普通线性回归</a></li>
-  <li><a href="#ridge-回归l2-正则化" id="toc-ridge-回归l2-正则化" class="nav-link" data-scroll-target="#ridge-回归l2-正则化"><span class="header-section-number">11.0.2</span> Ridge 回归（L2 正则化）</a></li>
-  <li><a href="#lasso-回归l1-正则化" id="toc-lasso-回归l1-正则化" class="nav-link" data-scroll-target="#lasso-回归l1-正则化"><span class="header-section-number">11.0.3</span> Lasso 回归（L1 正则化）</a></li>
-  <li><a href="#elastic-net-回归l1l2-正则化" id="toc-elastic-net-回归l1l2-正则化" class="nav-link" data-scroll-target="#elastic-net-回归l1l2-正则化"><span class="header-section-number">11.0.4</span> Elastic Net 回归（L1+L2 正则化）</a></li>
-  <li><a href="#模型对比总结" id="toc-模型对比总结" class="nav-link" data-scroll-target="#模型对比总结"><span class="header-section-number">11.0.5</span> 模型对比总结</a></li>
-  <li><a href="#可视化系数对比" id="toc-可视化系数对比" class="nav-link" data-scroll-target="#可视化系数对比"><span class="header-section-number">11.0.6</span> 可视化系数对比</a></li>
+  <li><a href="#基线模型普通线性回归" id="toc-基线模型普通线性回归" class="nav-link" data-scroll-target="#基线模型普通线性回归"><span class="header-section-number">8.3.1</span> 基线模型：普通线性回归</a></li>
+  <li><a href="#ridge-回归l2-正则化" id="toc-ridge-回归l2-正则化" class="nav-link" data-scroll-target="#ridge-回归l2-正则化"><span class="header-section-number">8.3.2</span> Ridge 回归（L2 正则化）</a></li>
+  <li><a href="#lasso-回归l1-正则化" id="toc-lasso-回归l1-正则化" class="nav-link" data-scroll-target="#lasso-回归l1-正则化"><span class="header-section-number">8.3.3</span> Lasso 回归（L1 正则化）</a></li>
+  <li><a href="#elastic-net-回归l1l2-正则化" id="toc-elastic-net-回归l1l2-正则化" class="nav-link" data-scroll-target="#elastic-net-回归l1l2-正则化"><span class="header-section-number">8.3.4</span> Elastic Net 回归（L1+L2 正则化）</a></li>
+  <li><a href="#模型对比总结" id="toc-模型对比总结" class="nav-link" data-scroll-target="#模型对比总结"><span class="header-section-number">8.3.5</span> 模型对比总结</a></li>
+  <li><a href="#可视化系数对比" id="toc-可视化系数对比" class="nav-link" data-scroll-target="#可视化系数对比"><span class="header-section-number">8.3.6</span> 可视化系数对比</a></li>
   </ul></li>
-  <li><a href="#part-4-交叉验证与参数选择" id="toc-part-4-交叉验证与参数选择" class="nav-link" data-scroll-target="#part-4-交叉验证与参数选择"><span class="header-section-number">12</span> Part 4: 交叉验证与参数选择</a>
+  <li><a href="#交叉验证与参数选择" id="toc-交叉验证与参数选择" class="nav-link" data-scroll-target="#交叉验证与参数选择"><span class="header-section-number">8.4</span> 交叉验证与参数选择</a>
   <ul class="collapse">
-  <li><a href="#ridgecv自动选择最优-α" id="toc-ridgecv自动选择最优-α" class="nav-link" data-scroll-target="#ridgecv自动选择最优-α"><span class="header-section-number">12.0.1</span> RidgeCV：自动选择最优 α</a></li>
-  <li><a href="#lassocv自动选择最优-α" id="toc-lassocv自动选择最优-α" class="nav-link" data-scroll-target="#lassocv自动选择最优-α"><span class="header-section-number">12.0.2</span> LassoCV：自动选择最优 α</a></li>
-  <li><a href="#elasticnetcv自动选择最优-α" id="toc-elasticnetcv自动选择最优-α" class="nav-link" data-scroll-target="#elasticnetcv自动选择最优-α"><span class="header-section-number">12.0.3</span> ElasticNetCV：自动选择最优 α</a></li>
-  <li><a href="#最终模型对比" id="toc-最终模型对比" class="nav-link" data-scroll-target="#最终模型对比"><span class="header-section-number">12.0.4</span> 最终模型对比</a></li>
+  <li><a href="#ridgecv自动选择最优-α" id="toc-ridgecv自动选择最优-α" class="nav-link" data-scroll-target="#ridgecv自动选择最优-α"><span class="header-section-number">8.4.1</span> RidgeCV：自动选择最优 α</a></li>
+  <li><a href="#lassocv自动选择最优-α" id="toc-lassocv自动选择最优-α" class="nav-link" data-scroll-target="#lassocv自动选择最优-α"><span class="header-section-number">8.4.2</span> LassoCV：自动选择最优 α</a></li>
+  <li><a href="#elasticnetcv自动选择最优-α" id="toc-elasticnetcv自动选择最优-α" class="nav-link" data-scroll-target="#elasticnetcv自动选择最优-α"><span class="header-section-number">8.4.3</span> ElasticNetCV：自动选择最优 α</a></li>
+  <li><a href="#最终模型对比" id="toc-最终模型对比" class="nav-link" data-scroll-target="#最终模型对比"><span class="header-section-number">8.4.4</span> 最终模型对比</a></li>
   </ul></li>
-  <li><a href="#part-5-正则化路径可视化选做" id="toc-part-5-正则化路径可视化选做" class="nav-link" data-scroll-target="#part-5-正则化路径可视化选做"><span class="header-section-number">13</span> Part 5: 正则化路径可视化（选做）</a>
+  <li><a href="#正则化路径可视化选做" id="toc-正则化路径可视化选做" class="nav-link" data-scroll-target="#正则化路径可视化选做"><span class="header-section-number">8.5</span> 正则化路径可视化（选做）</a>
   <ul class="collapse">
-  <li><a href="#计算-lasso-正则化路径" id="toc-计算-lasso-正则化路径" class="nav-link" data-scroll-target="#计算-lasso-正则化路径"><span class="header-section-number">13.0.1</span> 计算 Lasso 正则化路径</a></li>
-  <li><a href="#绘制正则化路径图" id="toc-绘制正则化路径图" class="nav-link" data-scroll-target="#绘制正则化路径图"><span class="header-section-number">13.0.2</span> 绘制正则化路径图</a></li>
-  <li><a href="#总结与思考" id="toc-总结与思考" class="nav-link" data-scroll-target="#总结与思考"><span class="header-section-number">13.1</span> 总结与思考</a>
-  <ul class="collapse">
-  <li><a href="#本次课程要点" id="toc-本次课程要点" class="nav-link" data-scroll-target="#本次课程要点"><span class="header-section-number">13.1.1</span> 本次课程要点</a></li>
-  <li><a href="#重要提醒-1" id="toc-重要提醒-1" class="nav-link" data-scroll-target="#重要提醒-1"><span class="header-section-number">13.1.2</span> 重要提醒</a></li>
+  <li><a href="#计算-lasso-正则化路径" id="toc-计算-lasso-正则化路径" class="nav-link" data-scroll-target="#计算-lasso-正则化路径"><span class="header-section-number">8.5.1</span> 计算 Lasso 正则化路径</a></li>
+  <li><a href="#绘制正则化路径图" id="toc-绘制正则化路径图" class="nav-link" data-scroll-target="#绘制正则化路径图"><span class="header-section-number">8.5.2</span> 绘制正则化路径图</a></li>
   </ul></li>
+  <li><a href="#总结与思考" id="toc-总结与思考" class="nav-link" data-scroll-target="#总结与思考"><span class="header-section-number">8.6</span> 总结与思考</a>
+  <ul class="collapse">
+  <li><a href="#本次课程要点" id="toc-本次课程要点" class="nav-link" data-scroll-target="#本次课程要点"><span class="header-section-number">8.6.1</span> 本次课程要点</a></li>
+  <li><a href="#重要提醒" id="toc-重要提醒" class="nav-link" data-scroll-target="#重要提醒"><span class="header-section-number">8.6.2</span> 重要提醒</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -326,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">W3 上机：线性回归的正则化</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第三讲上机实践</span></h1>
 </div>
 
 
@@ -343,31 +341,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>本上机讲义覆盖 W3 上机大纲：</p>
+<p>本上机讲义覆盖以下内容：</p>
 <ul>
-<li><strong>Part 1</strong>: 环境准备与数据加载（10分钟）</li>
-<li><strong>Part 2</strong>: 理解过拟合问题（10分钟）</li>
-<li><strong>Part 3</strong>: Ridge、Lasso、Elastic Net 实战（15分钟）</li>
-<li><strong>Part 4</strong>: 交叉验证与参数选择（10分钟）</li>
-<li><strong>Part 5</strong>: 正则化路径可视化（选做）</li>
+<li><strong>Part 1</strong>: 环境准备与数据加载</li>
+<li><strong>Part 2</strong>: 理解过拟合问题</li>
+<li><strong>Part 3</strong>: Ridge、Lasso、Elastic Net 实战</li>
+<li><strong>Part 4</strong>: 交叉验证与参数选择</li>
+<li><strong>Part 5</strong>: 正则化路径可视化</li>
 </ul>
-<section id="学习目标" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="学习目标"><span class="header-section-number">8.1</span> 学习目标</h2>
+<p><strong>学习目标</strong></p>
 <p>✅ 掌握 Ridge、Lasso、Elastic Net 的使用 ✅ 理解正则化参数 α 的作用 ✅ 学会使用交叉验证选择最优参数 ✅ 理解 Lasso 的特征选择功能</p>
-</section>
-<section id="重要提醒" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="重要提醒"><span class="header-section-number">8.2</span> ⚠️ 重要提醒</h2>
+<p>⚠️ <strong>重要提醒</strong></p>
 <ol type="1">
-<li><strong>正则化前必须标准化特征</strong></li>
-<li><strong>不要在测试集上选择参数</strong></li>
-<li><strong>多种方法对比，选择最适合的</strong></li>
+<li>正则化前必须标准化特征</li>
+<li>不要在测试集上选择参数</li>
+<li>多种方法对比，选择最适合的</li>
 </ol>
-<hr>
-</section>
-<section id="part-1-环境准备与数据加载" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Part 1: 环境准备与数据加载</h1>
+<section id="环境准备与数据加载" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="环境准备与数据加载"><span class="header-section-number">8.1</span> 环境准备与数据加载</h2>
 <p>首先导入必要的库，并加载 Boston 房价数据集。</p>
-<div id="c092a56b" class="cell" data-execution_count="1">
+<div id="a3aa3826" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 导入必要的库</span></span>
@@ -402,9 +395,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>✓ 库导入成功！</code></pre>
 </div>
 </div>
-<section id="加载数据集" class="level3" data-number="9.0.1">
-<h3 data-number="9.0.1" class="anchored" data-anchor-id="加载数据集"><span class="header-section-number">9.0.1</span> 加载数据集</h3>
-<div id="25d993d8" class="cell" data-execution_count="2">
+<section id="加载数据集" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="加载数据集"><span class="header-section-number">8.1.1</span> 加载数据集</h3>
+<div id="344bcd39" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载 Boston Housing 数据集</span></span>
@@ -555,10 +548,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="数据探索" class="level3" data-number="9.0.2">
-<h3 data-number="9.0.2" class="anchored" data-anchor-id="数据探索"><span class="header-section-number">9.0.2</span> 数据探索</h3>
+<section id="数据探索" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="数据探索"><span class="header-section-number">8.1.2</span> 数据探索</h3>
 <p>观察数据的基本统计信息和特征尺度。</p>
-<div id="29f61304" class="cell" data-execution_count="3">
+<div id="e4d10780" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 基本统计信息</span></span>
@@ -610,10 +603,10 @@ max     37.970000   50.000000
 </div>
 </div>
 </section>
-<section id="数据切分与标准化" class="level3" data-number="9.0.3">
-<h3 data-number="9.0.3" class="anchored" data-anchor-id="数据切分与标准化"><span class="header-section-number">9.0.3</span> 数据切分与标准化</h3>
+<section id="数据切分与标准化" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="数据切分与标准化"><span class="header-section-number">8.1.3</span> 数据切分与标准化</h3>
 <p><strong>重要步骤</strong>： 1. 先切分训练集和测试集 2. 在训练集上 fit StandardScaler 3. 用训练集的参数 transform 训练集和测试集</p>
-<div id="449e5633" class="cell" data-execution_count="4">
+<div id="962dd048" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 切分训练集和测试集</span></span>
@@ -646,15 +639,14 @@ max     37.970000   50.000000
 ✓ 标准化完成！</code></pre>
 </div>
 </div>
-<hr>
 </section>
 </section>
-<section id="part-2-理解过拟合问题" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Part 2: 理解过拟合问题</h1>
+<section id="理解过拟合问题" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="理解过拟合问题"><span class="header-section-number">8.2</span> 理解过拟合问题</h2>
 <p>用多项式回归演示过拟合现象。</p>
-<section id="生成简单数据集" class="level3" data-number="10.0.1">
-<h3 data-number="10.0.1" class="anchored" data-anchor-id="生成简单数据集"><span class="header-section-number">10.0.1</span> 生成简单数据集</h3>
-<div id="01540906" class="cell" data-execution_count="5">
+<section id="生成简单数据集" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="生成简单数据集"><span class="header-section-number">8.2.1</span> 生成简单数据集</h3>
+<div id="4b551ab2" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成简单的数据集：y = 2x + 1 + 噪声</span></span>
@@ -686,10 +678,10 @@ max     37.970000   50.000000
 </div>
 </div>
 </section>
-<section id="对比不同复杂度的模型" class="level3" data-number="10.0.2">
-<h3 data-number="10.0.2" class="anchored" data-anchor-id="对比不同复杂度的模型"><span class="header-section-number">10.0.2</span> 对比不同复杂度的模型</h3>
+<section id="对比不同复杂度的模型" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="对比不同复杂度的模型"><span class="header-section-number">8.2.2</span> 对比不同复杂度的模型</h3>
 <p>尝试用不同次数的多项式拟合数据。</p>
-<div id="d3f05203" class="cell" data-execution_count="6">
+<div id="8502b751" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练不同次数的多项式回归</span></span>
@@ -747,15 +739,14 @@ max     37.970000   50.000000
 - 15次多项式：训练误差很小，测试误差大 → 过拟合</code></pre>
 </div>
 </div>
-<hr>
 </section>
 </section>
-<section id="part-3-ridgelassoelastic-net-实战" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Part 3: Ridge、Lasso、Elastic Net 实战</h1>
+<section id="ridgelassoelastic-net-实战" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="ridgelassoelastic-net-实战"><span class="header-section-number">8.3</span> Ridge、Lasso、Elastic Net 实战</h2>
 <p>在 Boston 房价数据上对比四种模型。</p>
-<section id="基线模型普通线性回归" class="level3" data-number="11.0.1">
-<h3 data-number="11.0.1" class="anchored" data-anchor-id="基线模型普通线性回归"><span class="header-section-number">11.0.1</span> 基线模型：普通线性回归</h3>
-<div id="a6ae6618" class="cell" data-execution_count="7">
+<section id="基线模型普通线性回归" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="基线模型普通线性回归"><span class="header-section-number">8.3.1</span> 基线模型：普通线性回归</h3>
+<div id="79a39397" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练普通线性回归</span></span>
@@ -796,10 +787,10 @@ max     37.970000   50.000000
 </div>
 </div>
 </section>
-<section id="ridge-回归l2-正则化" class="level3" data-number="11.0.2">
-<h3 data-number="11.0.2" class="anchored" data-anchor-id="ridge-回归l2-正则化"><span class="header-section-number">11.0.2</span> Ridge 回归（L2 正则化）</h3>
+<section id="ridge-回归l2-正则化" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="ridge-回归l2-正则化"><span class="header-section-number">8.3.2</span> Ridge 回归（L2 正则化）</h3>
 <p>惩罚系数的平方和，让系数变小但不为0。</p>
-<div id="28075706" class="cell" data-execution_count="8">
+<div id="4a0b6634" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练 Ridge 回归</span></span>
@@ -834,10 +825,10 @@ Ridge 回归 (α=1.0)
 </div>
 </div>
 </section>
-<section id="lasso-回归l1-正则化" class="level3" data-number="11.0.3">
-<h3 data-number="11.0.3" class="anchored" data-anchor-id="lasso-回归l1-正则化"><span class="header-section-number">11.0.3</span> Lasso 回归（L1 正则化）</h3>
+<section id="lasso-回归l1-正则化" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="lasso-回归l1-正则化"><span class="header-section-number">8.3.3</span> Lasso 回归（L1 正则化）</h3>
 <p>惩罚系数的绝对值和，让某些系数变为0。</p>
-<div id="0dbd9dd6" class="cell" data-execution_count="9">
+<div id="926f76bb" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练 Lasso 回归</span></span>
@@ -875,10 +866,10 @@ Lasso 回归 (α=0.01)
 </div>
 </div>
 </section>
-<section id="elastic-net-回归l1l2-正则化" class="level3" data-number="11.0.4">
-<h3 data-number="11.0.4" class="anchored" data-anchor-id="elastic-net-回归l1l2-正则化"><span class="header-section-number">11.0.4</span> Elastic Net 回归（L1+L2 正则化）</h3>
+<section id="elastic-net-回归l1l2-正则化" class="level3" data-number="8.3.4">
+<h3 data-number="8.3.4" class="anchored" data-anchor-id="elastic-net-回归l1l2-正则化"><span class="header-section-number">8.3.4</span> Elastic Net 回归（L1+L2 正则化）</h3>
 <p>结合 Ridge 和 Lasso 的优点。</p>
-<div id="041e8306" class="cell" data-execution_count="10">
+<div id="d700562c" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练 Elastic Net 回归</span></span>
@@ -917,9 +908,9 @@ Elastic Net 回归 (α=0.01, l1_ratio=0.5)
 </div>
 </div>
 </section>
-<section id="模型对比总结" class="level3" data-number="11.0.5">
-<h3 data-number="11.0.5" class="anchored" data-anchor-id="模型对比总结"><span class="header-section-number">11.0.5</span> 模型对比总结</h3>
-<div id="df504cdd" class="cell" data-execution_count="11">
+<section id="模型对比总结" class="level3" data-number="8.3.5">
+<h3 data-number="8.3.5" class="anchored" data-anchor-id="模型对比总结"><span class="header-section-number">8.3.5</span> 模型对比总结</h3>
+<div id="994b831d" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建对比表格</span></span>
@@ -966,9 +957,9 @@ Elastic Net (α=0.01) 0.7507 0.6679  7.0060    13
 </div>
 </div>
 </section>
-<section id="可视化系数对比" class="level3" data-number="11.0.6">
-<h3 data-number="11.0.6" class="anchored" data-anchor-id="可视化系数对比"><span class="header-section-number">11.0.6</span> 可视化系数对比</h3>
-<div id="71674191" class="cell" data-execution_count="12">
+<section id="可视化系数对比" class="level3" data-number="8.3.6">
+<h3 data-number="8.3.6" class="anchored" data-anchor-id="可视化系数对比"><span class="header-section-number">8.3.6</span> 可视化系数对比</h3>
+<div id="e2006363" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制系数对比图</span></span>
@@ -1015,15 +1006,14 @@ Elastic Net (α=0.01) 0.7507 0.6679  7.0060    13
 - Elastic Net：介于 Ridge 和 Lasso 之间</code></pre>
 </div>
 </div>
-<hr>
 </section>
 </section>
-<section id="part-4-交叉验证与参数选择" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Part 4: 交叉验证与参数选择</h1>
+<section id="交叉验证与参数选择" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="交叉验证与参数选择"><span class="header-section-number">8.4</span> 交叉验证与参数选择</h2>
 <p>使用交叉验证自动选择最优的正则化参数 α。</p>
-<section id="ridgecv自动选择最优-α" class="level3" data-number="12.0.1">
-<h3 data-number="12.0.1" class="anchored" data-anchor-id="ridgecv自动选择最优-α"><span class="header-section-number">12.0.1</span> RidgeCV：自动选择最优 α</h3>
-<div id="eeb086a5" class="cell" data-execution_count="13">
+<section id="ridgecv自动选择最优-α" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="ridgecv自动选择最优-α"><span class="header-section-number">8.4.1</span> RidgeCV：自动选择最优 α</h3>
+<div id="a41b8ea0" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 准备候选的 alpha 值</span></span>
@@ -1059,9 +1049,9 @@ RidgeCV 结果（5折交叉验证）
 </div>
 </div>
 </section>
-<section id="lassocv自动选择最优-α" class="level3" data-number="12.0.2">
-<h3 data-number="12.0.2" class="anchored" data-anchor-id="lassocv自动选择最优-α"><span class="header-section-number">12.0.2</span> LassoCV：自动选择最优 α</h3>
-<div id="d6293d68" class="cell" data-execution_count="14">
+<section id="lassocv自动选择最优-α" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="lassocv自动选择最优-α"><span class="header-section-number">8.4.2</span> LassoCV：自动选择最优 α</h3>
+<div id="a2cb0a40" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LassoCV：5折交叉验证</span></span>
@@ -1091,9 +1081,9 @@ LassoCV 结果（5折交叉验证）
 </div>
 </div>
 </section>
-<section id="elasticnetcv自动选择最优-α" class="level3" data-number="12.0.3">
-<h3 data-number="12.0.3" class="anchored" data-anchor-id="elasticnetcv自动选择最优-α"><span class="header-section-number">12.0.3</span> ElasticNetCV：自动选择最优 α</h3>
-<div id="f9299583" class="cell" data-execution_count="15">
+<section id="elasticnetcv自动选择最优-α" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="elasticnetcv自动选择最优-α"><span class="header-section-number">8.4.3</span> ElasticNetCV：自动选择最优 α</h3>
+<div id="2b23922b" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ElasticNetCV：5折交叉验证</span></span>
@@ -1121,9 +1111,9 @@ ElasticNetCV 结果（5折交叉验证）
 </div>
 </div>
 </section>
-<section id="最终模型对比" class="level3" data-number="12.0.4">
-<h3 data-number="12.0.4" class="anchored" data-anchor-id="最终模型对比"><span class="header-section-number">12.0.4</span> 最终模型对比</h3>
-<div id="af7d64bd" class="cell" data-execution_count="16">
+<section id="最终模型对比" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="最终模型对比"><span class="header-section-number">8.4.4</span> 最终模型对比</h3>
+<div id="5be68f0f" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 汇总所有结果</span></span>
@@ -1205,12 +1195,12 @@ Elastic Net (α=0.01)   0.01 0.667854    13
 <hr>
 </section>
 </section>
-<section id="part-5-正则化路径可视化选做" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Part 5: 正则化路径可视化（选做）</h1>
+<section id="正则化路径可视化选做" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="正则化路径可视化选做"><span class="header-section-number">8.5</span> 正则化路径可视化（选做）</h2>
 <p>观察随着 α 增大，各特征系数如何变化。</p>
-<section id="计算-lasso-正则化路径" class="level3" data-number="13.0.1">
-<h3 data-number="13.0.1" class="anchored" data-anchor-id="计算-lasso-正则化路径"><span class="header-section-number">13.0.1</span> 计算 Lasso 正则化路径</h3>
-<div id="0f171479" class="cell" data-execution_count="17">
+<section id="计算-lasso-正则化路径" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="计算-lasso-正则化路径"><span class="header-section-number">8.5.1</span> 计算 Lasso 正则化路径</h3>
+<div id="3c2d5e18" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算不同 alpha 下的系数</span></span>
@@ -1231,9 +1221,9 @@ Elastic Net (α=0.01)   0.01 0.667854    13
 </div>
 </div>
 </section>
-<section id="绘制正则化路径图" class="level3" data-number="13.0.2">
-<h3 data-number="13.0.2" class="anchored" data-anchor-id="绘制正则化路径图"><span class="header-section-number">13.0.2</span> 绘制正则化路径图</h3>
-<div id="31d6d207" class="cell" data-execution_count="18">
+<section id="绘制正则化路径图" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="绘制正则化路径图"><span class="header-section-number">8.5.2</span> 绘制正则化路径图</h3>
+<div id="338fa5e9" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
@@ -1309,20 +1299,19 @@ Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a 
 - α = 10.0 时：0个特征保留</code></pre>
 </div>
 </div>
-<hr>
 </section>
-<section id="总结与思考" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="总结与思考"><span class="header-section-number">13.1</span> 总结与思考</h2>
-<section id="本次课程要点" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="本次课程要点"><span class="header-section-number">13.1.1</span> 本次课程要点</h3>
+</section>
+<section id="总结与思考" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="总结与思考"><span class="header-section-number">8.6</span> 总结与思考</h2>
+<section id="本次课程要点" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="本次课程要点"><span class="header-section-number">8.6.1</span> 本次课程要点</h3>
 <p>✅ <strong>过拟合</strong>：模型太复杂，记住了训练数据的噪声 ✅ <strong>正则化</strong>：限制模型复杂度，提高泛化能力 ✅ <strong>Ridge (L2)</strong>：让系数变小但不为0 ✅ <strong>Lasso (L1)</strong>：让某些系数变为0（特征选择） ✅ <strong>Elastic Net</strong>：结合 Ridge 和 Lasso ✅ <strong>交叉验证</strong>：自动选择最优参数</p>
 </section>
-<section id="重要提醒-1" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="重要提醒-1"><span class="header-section-number">13.1.2</span> 重要提醒</h3>
-<p>⚠️ <strong>正则化前必须标准化特征</strong> ⚠️ <strong>不要在测试集上选参数</strong> ⚠️ <strong>用 RidgeCV/LassoCV 自动选择 α</strong></p>
+<section id="重要提醒" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="重要提醒"><span class="header-section-number">8.6.2</span> 重要提醒</h3>
+<p>⚠️ 正则化前必须标准化特征 ⚠️ 不要在测试集上选参数 ⚠️ 用 RidgeCV/LassoCV 自动选择 α</p>
 
 
-</section>
 </section>
 </section>
 

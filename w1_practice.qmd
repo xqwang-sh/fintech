@@ -1,8 +1,8 @@
 ---
-title: W1 上机：环境安装 + Python 速成 + 第一个回归模型
+title: 第一讲上机实践
 ---
 
-本上机讲义覆盖 W1 上机大纲：
+本上机讲义覆盖以下内容：
 
 - 环境安装：Python、Jupyter、VS Code插件
 - 安装验证：Python、Jupyter

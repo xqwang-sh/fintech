@@ -1,11 +1,11 @@
 ---
-title: W6 上机：Keras MLP 实战
+title: 第六讲上机实践
 ---
 
-本上机讲义覆盖 W6 上机大纲：
+本上机讲义覆盖以下内容：
 
 - 环境准备：安装/验证 TensorFlow/Keras
-- 数据准备：加载 Titanic 数据集，预处理和标准化
+- 数据准备：读取 Titanic 预处理后数据
 - 搭建 MLP：使用 Sequential API 构建多层感知机
 - 训练模型：设置超参数并训练
 - 可视化学习曲线：观察训练过程
@@ -206,9 +206,9 @@ print(classification_report(y_test, y_test_pred, target_names=['死亡', '存活
 ```{python}
 # 准备随机森林的数据（不需要标准化）
 X_train_orig, X_test_orig, _, _ = train_test_split(
-    df_clean.drop('Survived', axis=1).values,
-    df_clean['Survived'].astype(int).values,
-    test_size=0.2, random_state=42, stratify=df_clean['Survived'].astype(int).values
+    X.values,
+    y.values,
+    test_size=0.2, random_state=42, stratify=y.values
 )
 
 # 训练随机森林
