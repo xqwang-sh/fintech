@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 开场：我们为什么要学机器学习？ – 金融科技概论讲义（机器学习部分）</title>
+<title>3&nbsp; 第一讲：Python基础与机器学习入门 – 金融科技概论讲义（机器学习部分）</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w1_python_ml_intro.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w1_python_ml_intro.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w1_python_ml_intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -272,67 +272,70 @@ window.Quarto = {
     <h2 id="toc-title">目录</h2>
    
   <ul>
-  <li><a href="#思考这些场景有什么共同点" id="toc-思考这些场景有什么共同点" class="nav-link active" data-scroll-target="#思考这些场景有什么共同点"><span class="header-section-number">3.0.1</span> 思考：这些场景有什么共同点？</a></li>
-  <li><a href="#共同点都需要处理复杂数据和决策" id="toc-共同点都需要处理复杂数据和决策" class="nav-link" data-scroll-target="#共同点都需要处理复杂数据和决策"><span class="header-section-number">3.0.2</span> 共同点：都需要处理复杂数据和决策</a></li>
-  <li><a href="#这就是机器学习可以解决的问题" id="toc-这就是机器学习可以解决的问题" class="nav-link" data-scroll-target="#这就是机器学习可以解决的问题"><span class="header-section-number">3.0.3</span> 这就是机器学习可以解决的问题！</a></li>
-  <li><a href="#第一部分什么是机器学习" id="toc-第一部分什么是机器学习" class="nav-link" data-scroll-target="#第一部分什么是机器学习"><span class="header-section-number">3.1</span> 第一部分：什么是机器学习？</a>
+  <li><a href="#开场我们为什么要学机器学习" id="toc-开场我们为什么要学机器学习" class="nav-link active" data-scroll-target="#开场我们为什么要学机器学习"><span class="header-section-number">3.1</span> 开场：我们为什么要学机器学习？</a>
   <ul class="collapse">
-  <li><a href="#定义机器学习的本质" id="toc-定义机器学习的本质" class="nav-link" data-scroll-target="#定义机器学习的本质"><span class="header-section-number">3.1.1</span> 定义：机器学习的本质</a></li>
-  <li><a href="#为什么需要机器学习维度诅咒" id="toc-为什么需要机器学习维度诅咒" class="nav-link" data-scroll-target="#为什么需要机器学习维度诅咒"><span class="header-section-number">3.1.2</span> 为什么需要机器学习？维度诅咒</a></li>
-  <li><a href="#机器学习-vs-传统编程" id="toc-机器学习-vs-传统编程" class="nav-link" data-scroll-target="#机器学习-vs-传统编程"><span class="header-section-number">3.1.3</span> 机器学习 vs 传统编程</a></li>
-  <li><a href="#机器学习的分类" id="toc-机器学习的分类" class="nav-link" data-scroll-target="#机器学习的分类"><span class="header-section-number">3.1.4</span> 机器学习的分类</a></li>
-  <li><a href="#大语言模型llm与机器学习分类" id="toc-大语言模型llm与机器学习分类" class="nav-link" data-scroll-target="#大语言模型llm与机器学习分类"><span class="header-section-number">3.1.5</span> 大语言模型（LLM）与机器学习分类</a></li>
-  <li><a href="#机器学习的技术演进" id="toc-机器学习的技术演进" class="nav-link" data-scroll-target="#机器学习的技术演进"><span class="header-section-number">3.1.6</span> 机器学习的技术演进</a></li>
+  <li><a href="#思考这些场景有什么共同点" id="toc-思考这些场景有什么共同点" class="nav-link" data-scroll-target="#思考这些场景有什么共同点"><span class="header-section-number">3.1.1</span> 思考：这些场景有什么共同点？</a></li>
+  <li><a href="#共同点都需要处理复杂数据和决策" id="toc-共同点都需要处理复杂数据和决策" class="nav-link" data-scroll-target="#共同点都需要处理复杂数据和决策"><span class="header-section-number">3.1.2</span> 共同点：都需要处理复杂数据和决策</a></li>
+  <li><a href="#这就是机器学习可以解决的问题" id="toc-这就是机器学习可以解决的问题" class="nav-link" data-scroll-target="#这就是机器学习可以解决的问题"><span class="header-section-number">3.1.3</span> 这就是机器学习可以解决的问题！</a></li>
   </ul></li>
-  <li><a href="#第二部分监督学习详解" id="toc-第二部分监督学习详解" class="nav-link" data-scroll-target="#第二部分监督学习详解"><span class="header-section-number">3.2</span> 第二部分：监督学习详解</a>
+  <li><a href="#第一部分什么是机器学习" id="toc-第一部分什么是机器学习" class="nav-link" data-scroll-target="#第一部分什么是机器学习"><span class="header-section-number">3.2</span> 第一部分：什么是机器学习？</a>
   <ul class="collapse">
-  <li><a href="#什么是监督学习" id="toc-什么是监督学习" class="nav-link" data-scroll-target="#什么是监督学习"><span class="header-section-number">3.2.1</span> 什么是监督学习？</a></li>
-  <li><a href="#监督学习的完整流程" id="toc-监督学习的完整流程" class="nav-link" data-scroll-target="#监督学习的完整流程"><span class="header-section-number">3.2.2</span> 监督学习的完整流程</a></li>
-  <li><a href="#核心概念1特征features" id="toc-核心概念1特征features" class="nav-link" data-scroll-target="#核心概念1特征features"><span class="header-section-number">3.2.3</span> 核心概念1：特征（Features）</a></li>
-  <li><a href="#核心概念2标签label" id="toc-核心概念2标签label" class="nav-link" data-scroll-target="#核心概念2标签label"><span class="header-section-number">3.2.4</span> 核心概念2：标签（Label）</a></li>
-  <li><a href="#核心概念3模型model" id="toc-核心概念3模型model" class="nav-link" data-scroll-target="#核心概念3模型model"><span class="header-section-number">3.2.5</span> 核心概念3：模型（Model）</a></li>
-  <li><a href="#训练training-让模型学习" id="toc-训练training-让模型学习" class="nav-link" data-scroll-target="#训练training-让模型学习"><span class="header-section-number">3.2.6</span> 训练（Training）= 让模型学习</a></li>
+  <li><a href="#定义机器学习的本质" id="toc-定义机器学习的本质" class="nav-link" data-scroll-target="#定义机器学习的本质"><span class="header-section-number">3.2.1</span> 定义：机器学习的本质</a></li>
+  <li><a href="#为什么需要机器学习维度诅咒" id="toc-为什么需要机器学习维度诅咒" class="nav-link" data-scroll-target="#为什么需要机器学习维度诅咒"><span class="header-section-number">3.2.2</span> 为什么需要机器学习？维度诅咒</a></li>
+  <li><a href="#机器学习-vs-传统编程" id="toc-机器学习-vs-传统编程" class="nav-link" data-scroll-target="#机器学习-vs-传统编程"><span class="header-section-number">3.2.3</span> 机器学习 vs 传统编程</a></li>
+  <li><a href="#机器学习的分类" id="toc-机器学习的分类" class="nav-link" data-scroll-target="#机器学习的分类"><span class="header-section-number">3.2.4</span> 机器学习的分类</a></li>
+  <li><a href="#大语言模型llm与机器学习分类" id="toc-大语言模型llm与机器学习分类" class="nav-link" data-scroll-target="#大语言模型llm与机器学习分类"><span class="header-section-number">3.2.5</span> 大语言模型（LLM）与机器学习分类</a></li>
+  <li><a href="#机器学习的技术演进" id="toc-机器学习的技术演进" class="nav-link" data-scroll-target="#机器学习的技术演进"><span class="header-section-number">3.2.6</span> 机器学习的技术演进</a></li>
   </ul></li>
-  <li><a href="#第三部分分类-vs-回归" id="toc-第三部分分类-vs-回归" class="nav-link" data-scroll-target="#第三部分分类-vs-回归"><span class="header-section-number">3.3</span> 第三部分：分类 vs 回归</a>
+  <li><a href="#第二部分监督学习详解" id="toc-第二部分监督学习详解" class="nav-link" data-scroll-target="#第二部分监督学习详解"><span class="header-section-number">3.3</span> 第二部分：监督学习详解</a>
   <ul class="collapse">
-  <li><a href="#回归问题预测连续数值" id="toc-回归问题预测连续数值" class="nav-link" data-scroll-target="#回归问题预测连续数值"><span class="header-section-number">3.3.1</span> 回归问题：预测连续数值</a></li>
-  <li><a href="#分类问题预测离散类别" id="toc-分类问题预测离散类别" class="nav-link" data-scroll-target="#分类问题预测离散类别"><span class="header-section-number">3.3.2</span> 分类问题：预测离散类别</a></li>
-  <li><a href="#快速判断分类还是回归" id="toc-快速判断分类还是回归" class="nav-link" data-scroll-target="#快速判断分类还是回归"><span class="header-section-number">3.3.3</span> 快速判断：分类还是回归？</a></li>
+  <li><a href="#什么是监督学习" id="toc-什么是监督学习" class="nav-link" data-scroll-target="#什么是监督学习"><span class="header-section-number">3.3.1</span> 什么是监督学习？</a></li>
+  <li><a href="#监督学习的完整流程" id="toc-监督学习的完整流程" class="nav-link" data-scroll-target="#监督学习的完整流程"><span class="header-section-number">3.3.2</span> 监督学习的完整流程</a></li>
+  <li><a href="#核心概念1特征features" id="toc-核心概念1特征features" class="nav-link" data-scroll-target="#核心概念1特征features"><span class="header-section-number">3.3.3</span> 核心概念1：特征（Features）</a></li>
+  <li><a href="#核心概念2标签label" id="toc-核心概念2标签label" class="nav-link" data-scroll-target="#核心概念2标签label"><span class="header-section-number">3.3.4</span> 核心概念2：标签（Label）</a></li>
+  <li><a href="#核心概念3模型model" id="toc-核心概念3模型model" class="nav-link" data-scroll-target="#核心概念3模型model"><span class="header-section-number">3.3.5</span> 核心概念3：模型（Model）</a></li>
+  <li><a href="#训练training-让模型学习" id="toc-训练training-让模型学习" class="nav-link" data-scroll-target="#训练training-让模型学习"><span class="header-section-number">3.3.6</span> 训练（Training）= 让模型学习</a></li>
   </ul></li>
-  <li><a href="#第四部分线性回归入门" id="toc-第四部分线性回归入门" class="nav-link" data-scroll-target="#第四部分线性回归入门"><span class="header-section-number">3.4</span> 第四部分：线性回归入门</a>
+  <li><a href="#第三部分分类-vs-回归" id="toc-第三部分分类-vs-回归" class="nav-link" data-scroll-target="#第三部分分类-vs-回归"><span class="header-section-number">3.4</span> 第三部分：分类 vs 回归</a>
   <ul class="collapse">
-  <li><a href="#最简单的例子一维线性回归" id="toc-最简单的例子一维线性回归" class="nav-link" data-scroll-target="#最简单的例子一维线性回归"><span class="header-section-number">3.4.1</span> 最简单的例子：一维线性回归</a></li>
-  <li><a href="#可视化理解线性回归" id="toc-可视化理解线性回归" class="nav-link" data-scroll-target="#可视化理解线性回归"><span class="header-section-number">3.4.2</span> 可视化理解线性回归</a></li>
-  <li><a href="#训练目标最小化误差" id="toc-训练目标最小化误差" class="nav-link" data-scroll-target="#训练目标最小化误差"><span class="header-section-number">3.4.3</span> 训练目标：最小化误差</a></li>
-  <li><a href="#多维线性回归" id="toc-多维线性回归" class="nav-link" data-scroll-target="#多维线性回归"><span class="header-section-number">3.4.4</span> 多维线性回归</a></li>
+  <li><a href="#回归问题预测连续数值" id="toc-回归问题预测连续数值" class="nav-link" data-scroll-target="#回归问题预测连续数值"><span class="header-section-number">3.4.1</span> 回归问题：预测连续数值</a></li>
+  <li><a href="#分类问题预测离散类别" id="toc-分类问题预测离散类别" class="nav-link" data-scroll-target="#分类问题预测离散类别"><span class="header-section-number">3.4.2</span> 分类问题：预测离散类别</a></li>
+  <li><a href="#快速判断分类还是回归" id="toc-快速判断分类还是回归" class="nav-link" data-scroll-target="#快速判断分类还是回归"><span class="header-section-number">3.4.3</span> 快速判断：分类还是回归？</a></li>
   </ul></li>
-  <li><a href="#第五部分训练集与测试集" id="toc-第五部分训练集与测试集" class="nav-link" data-scroll-target="#第五部分训练集与测试集"><span class="header-section-number">3.5</span> 第五部分：训练集与测试集</a>
+  <li><a href="#第四部分线性回归入门" id="toc-第四部分线性回归入门" class="nav-link" data-scroll-target="#第四部分线性回归入门"><span class="header-section-number">3.5</span> 第四部分：线性回归入门</a>
   <ul class="collapse">
-  <li><a href="#为什么要切分数据" id="toc-为什么要切分数据" class="nav-link" data-scroll-target="#为什么要切分数据"><span class="header-section-number">3.5.1</span> 为什么要切分数据？</a></li>
-  <li><a href="#类比练习题-vs-考试题" id="toc-类比练习题-vs-考试题" class="nav-link" data-scroll-target="#类比练习题-vs-考试题"><span class="header-section-number">3.5.2</span> 类比：练习题 vs 考试题</a></li>
-  <li><a href="#数据切分流程" id="toc-数据切分流程" class="nav-link" data-scroll-target="#数据切分流程"><span class="header-section-number">3.5.3</span> 数据切分流程</a></li>
-  <li><a href="#代码演示数据切分" id="toc-代码演示数据切分" class="nav-link" data-scroll-target="#代码演示数据切分"><span class="header-section-number">3.5.4</span> 代码演示：数据切分</a></li>
+  <li><a href="#最简单的例子一维线性回归" id="toc-最简单的例子一维线性回归" class="nav-link" data-scroll-target="#最简单的例子一维线性回归"><span class="header-section-number">3.5.1</span> 最简单的例子：一维线性回归</a></li>
+  <li><a href="#可视化理解线性回归" id="toc-可视化理解线性回归" class="nav-link" data-scroll-target="#可视化理解线性回归"><span class="header-section-number">3.5.2</span> 可视化理解线性回归</a></li>
+  <li><a href="#训练目标最小化误差" id="toc-训练目标最小化误差" class="nav-link" data-scroll-target="#训练目标最小化误差"><span class="header-section-number">3.5.3</span> 训练目标：最小化误差</a></li>
+  <li><a href="#多维线性回归" id="toc-多维线性回归" class="nav-link" data-scroll-target="#多维线性回归"><span class="header-section-number">3.5.4</span> 多维线性回归</a></li>
   </ul></li>
-  <li><a href="#第六部分过拟合与欠拟合" id="toc-第六部分过拟合与欠拟合" class="nav-link" data-scroll-target="#第六部分过拟合与欠拟合"><span class="header-section-number">3.6</span> 第六部分：过拟合与欠拟合</a>
+  <li><a href="#第五部分训练集与测试集" id="toc-第五部分训练集与测试集" class="nav-link" data-scroll-target="#第五部分训练集与测试集"><span class="header-section-number">3.6</span> 第五部分：训练集与测试集</a>
   <ul class="collapse">
-  <li><a href="#核心问题模型的复杂度" id="toc-核心问题模型的复杂度" class="nav-link" data-scroll-target="#核心问题模型的复杂度"><span class="header-section-number">3.6.1</span> 核心问题：模型的复杂度</a></li>
-  <li><a href="#欠拟合模型太简单" id="toc-欠拟合模型太简单" class="nav-link" data-scroll-target="#欠拟合模型太简单"><span class="header-section-number">3.6.2</span> 欠拟合：模型太简单</a></li>
-  <li><a href="#过拟合模型太复杂" id="toc-过拟合模型太复杂" class="nav-link" data-scroll-target="#过拟合模型太复杂"><span class="header-section-number">3.6.3</span> 过拟合：模型太复杂</a></li>
-  <li><a href="#恰到好处良好的泛化能力" id="toc-恰到好处良好的泛化能力" class="nav-link" data-scroll-target="#恰到好处良好的泛化能力"><span class="header-section-number">3.6.4</span> 恰到好处：良好的泛化能力</a></li>
-  <li><a href="#如何判断过拟合" id="toc-如何判断过拟合" class="nav-link" data-scroll-target="#如何判断过拟合"><span class="header-section-number">3.6.5</span> 如何判断过拟合？</a></li>
-  <li><a href="#类比背题-vs-理解原理" id="toc-类比背题-vs-理解原理" class="nav-link" data-scroll-target="#类比背题-vs-理解原理"><span class="header-section-number">3.6.6</span> 类比：背题 vs 理解原理</a></li>
+  <li><a href="#为什么要切分数据" id="toc-为什么要切分数据" class="nav-link" data-scroll-target="#为什么要切分数据"><span class="header-section-number">3.6.1</span> 为什么要切分数据？</a></li>
+  <li><a href="#类比练习题-vs-考试题" id="toc-类比练习题-vs-考试题" class="nav-link" data-scroll-target="#类比练习题-vs-考试题"><span class="header-section-number">3.6.2</span> 类比：练习题 vs 考试题</a></li>
+  <li><a href="#数据切分流程" id="toc-数据切分流程" class="nav-link" data-scroll-target="#数据切分流程"><span class="header-section-number">3.6.3</span> 数据切分流程</a></li>
+  <li><a href="#代码演示数据切分" id="toc-代码演示数据切分" class="nav-link" data-scroll-target="#代码演示数据切分"><span class="header-section-number">3.6.4</span> 代码演示：数据切分</a></li>
   </ul></li>
-  <li><a href="#第七部分完整的机器学习流程" id="toc-第七部分完整的机器学习流程" class="nav-link" data-scroll-target="#第七部分完整的机器学习流程"><span class="header-section-number">3.7</span> 第七部分：完整的机器学习流程</a>
+  <li><a href="#第六部分过拟合与欠拟合" id="toc-第六部分过拟合与欠拟合" class="nav-link" data-scroll-target="#第六部分过拟合与欠拟合"><span class="header-section-number">3.7</span> 第六部分：过拟合与欠拟合</a>
   <ul class="collapse">
-  <li><a href="#端到端的完整流程" id="toc-端到端的完整流程" class="nav-link" data-scroll-target="#端到端的完整流程"><span class="header-section-number">3.7.1</span> 端到端的完整流程</a></li>
-  <li><a href="#第一个完整例子房价预测" id="toc-第一个完整例子房价预测" class="nav-link" data-scroll-target="#第一个完整例子房价预测"><span class="header-section-number">3.7.2</span> 第一个完整例子：房价预测</a></li>
-  <li><a href="#可视化预测结果" id="toc-可视化预测结果" class="nav-link" data-scroll-target="#可视化预测结果"><span class="header-section-number">3.7.3</span> 可视化预测结果</a></li>
+  <li><a href="#核心问题模型的复杂度" id="toc-核心问题模型的复杂度" class="nav-link" data-scroll-target="#核心问题模型的复杂度"><span class="header-section-number">3.7.1</span> 核心问题：模型的复杂度</a></li>
+  <li><a href="#欠拟合模型太简单" id="toc-欠拟合模型太简单" class="nav-link" data-scroll-target="#欠拟合模型太简单"><span class="header-section-number">3.7.2</span> 欠拟合：模型太简单</a></li>
+  <li><a href="#过拟合模型太复杂" id="toc-过拟合模型太复杂" class="nav-link" data-scroll-target="#过拟合模型太复杂"><span class="header-section-number">3.7.3</span> 过拟合：模型太复杂</a></li>
+  <li><a href="#恰到好处良好的泛化能力" id="toc-恰到好处良好的泛化能力" class="nav-link" data-scroll-target="#恰到好处良好的泛化能力"><span class="header-section-number">3.7.4</span> 恰到好处：良好的泛化能力</a></li>
+  <li><a href="#如何判断过拟合" id="toc-如何判断过拟合" class="nav-link" data-scroll-target="#如何判断过拟合"><span class="header-section-number">3.7.5</span> 如何判断过拟合？</a></li>
+  <li><a href="#类比背题-vs-理解原理" id="toc-类比背题-vs-理解原理" class="nav-link" data-scroll-target="#类比背题-vs-理解原理"><span class="header-section-number">3.7.6</span> 类比：背题 vs 理解原理</a></li>
   </ul></li>
-  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">3.8</span> 总结</a>
+  <li><a href="#第七部分完整的机器学习流程" id="toc-第七部分完整的机器学习流程" class="nav-link" data-scroll-target="#第七部分完整的机器学习流程"><span class="header-section-number">3.8</span> 第七部分：完整的机器学习流程</a>
   <ul class="collapse">
-  <li><a href="#本讲核心知识点" id="toc-本讲核心知识点" class="nav-link" data-scroll-target="#本讲核心知识点"><span class="header-section-number">3.8.1</span> 本讲核心知识点</a></li>
+  <li><a href="#端到端的完整流程" id="toc-端到端的完整流程" class="nav-link" data-scroll-target="#端到端的完整流程"><span class="header-section-number">3.8.1</span> 端到端的完整流程</a></li>
+  <li><a href="#第一个完整例子房价预测" id="toc-第一个完整例子房价预测" class="nav-link" data-scroll-target="#第一个完整例子房价预测"><span class="header-section-number">3.8.2</span> 第一个完整例子：房价预测</a></li>
+  <li><a href="#可视化预测结果" id="toc-可视化预测结果" class="nav-link" data-scroll-target="#可视化预测结果"><span class="header-section-number">3.8.3</span> 可视化预测结果</a></li>
   </ul></li>
-  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">3.9</span> Q&amp;A</a></li>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">3.9</span> 总结</a>
+  <ul class="collapse">
+  <li><a href="#本讲核心知识点" id="toc-本讲核心知识点" class="nav-link" data-scroll-target="#本讲核心知识点"><span class="header-section-number">3.9.1</span> 本讲核心知识点</a></li>
+  </ul></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">3.10</span> Q&amp;A</a></li>
   </ul>
 </nav>
     </div>
@@ -341,7 +344,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">开场：我们为什么要学机器学习？</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></h1>
 </div>
 
 
@@ -358,9 +361,10 @@ window.Quarto = {
 </header>
 
 
-<p>title: 第一讲：Python基础与机器学习入门</p>
-<section id="思考这些场景有什么共同点" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="思考这些场景有什么共同点"><span class="header-section-number">3.0.1</span> 思考：这些场景有什么共同点？</h3>
+<section id="开场我们为什么要学机器学习" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="开场我们为什么要学机器学习"><span class="header-section-number">3.1</span> 开场：我们为什么要学机器学习？</h2>
+<section id="思考这些场景有什么共同点" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="思考这些场景有什么共同点"><span class="header-section-number">3.1.1</span> 思考：这些场景有什么共同点？</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>场景1：银行信贷审批</strong></p>
@@ -379,8 +383,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="共同点都需要处理复杂数据和决策" class="level3" data-number="3.0.2">
-<h3 data-number="3.0.2" class="anchored" data-anchor-id="共同点都需要处理复杂数据和决策"><span class="header-section-number">3.0.2</span> 共同点：都需要处理复杂数据和决策</h3>
+<section id="共同点都需要处理复杂数据和决策" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="共同点都需要处理复杂数据和决策"><span class="header-section-number">3.1.2</span> 共同点：都需要处理复杂数据和决策</h3>
 <p><strong>这些场景的相似之处：</strong></p>
 <ul>
 <li>依赖大量历史数据进行分析</li>
@@ -397,8 +401,8 @@ ELSE 拒绝贷款</code></pre>
 <li>数据更新后规则可能失效，需要手动调整</li>
 </ul>
 </section>
-<section id="这就是机器学习可以解决的问题" class="level3" data-number="3.0.3">
-<h3 data-number="3.0.3" class="anchored" data-anchor-id="这就是机器学习可以解决的问题"><span class="header-section-number">3.0.3</span> 这就是机器学习可以解决的问题！</h3>
+<section id="这就是机器学习可以解决的问题" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="这就是机器学习可以解决的问题"><span class="header-section-number">3.1.3</span> 这就是机器学习可以解决的问题！</h3>
 <p><strong>机器学习的方式：让计算机从数据中自动学习规律</strong></p>
 <div class="cell" data-fig-width="10" data-layout-align="default">
 <div class="cell-output-display">
@@ -423,10 +427,11 @@ ELSE 拒绝贷款</code></pre>
 <li>数据越多，学习得越准确</li>
 </ul>
 </section>
-<section id="第一部分什么是机器学习" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="第一部分什么是机器学习"><span class="header-section-number">3.1</span> 第一部分：什么是机器学习？</h2>
-<section id="定义机器学习的本质" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="定义机器学习的本质"><span class="header-section-number">3.1.1</span> 定义：机器学习的本质</h3>
+</section>
+<section id="第一部分什么是机器学习" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="第一部分什么是机器学习"><span class="header-section-number">3.2</span> 第一部分：什么是机器学习？</h2>
+<section id="定义机器学习的本质" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="定义机器学习的本质"><span class="header-section-number">3.2.1</span> 定义：机器学习的本质</h3>
 <div class="columns">
 <div class="column" style="width:55%;">
 <p><strong>机器学习（Machine Learning）：</strong></p>
@@ -475,10 +480,10 @@ ELSE 拒绝贷款</code></pre>
 </div>
 </div>
 </section>
-<section id="为什么需要机器学习维度诅咒" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="为什么需要机器学习维度诅咒"><span class="header-section-number">3.1.2</span> 为什么需要机器学习？维度诅咒</h3>
-<section id="维度诅咒curse-of-dimensionality" class="level4" data-number="3.1.2.1">
-<h4 data-number="3.1.2.1" class="anchored" data-anchor-id="维度诅咒curse-of-dimensionality"><span class="header-section-number">3.1.2.1</span> 维度诅咒（Curse of Dimensionality）</h4>
+<section id="为什么需要机器学习维度诅咒" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="为什么需要机器学习维度诅咒"><span class="header-section-number">3.2.2</span> 为什么需要机器学习？维度诅咒</h3>
+<section id="维度诅咒curse-of-dimensionality" class="level4" data-number="3.2.2.1">
+<h4 data-number="3.2.2.1" class="anchored" data-anchor-id="维度诅咒curse-of-dimensionality"><span class="header-section-number">3.2.2.1</span> 维度诅咒（Curse of Dimensionality）</h4>
 <p><strong>问题：</strong> 随着特征维度增加，数据变得异常稀疏</p>
 <p><strong>直观理解：</strong></p>
 <ul>
@@ -493,8 +498,8 @@ ELSE 拒绝贷款</code></pre>
 <li>需要机器学习从数据中自动学习模式</li>
 </ul>
 </section>
-<section id="传统编程的困境" class="level4" data-number="3.1.2.2">
-<h4 data-number="3.1.2.2" class="anchored" data-anchor-id="传统编程的困境"><span class="header-section-number">3.1.2.2</span> 传统编程的困境</h4>
+<section id="传统编程的困境" class="level4" data-number="3.2.2.2">
+<h4 data-number="3.2.2.2" class="anchored" data-anchor-id="传统编程的困境"><span class="header-section-number">3.2.2.2</span> 传统编程的困境</h4>
 <p><strong>在高维特征空间中，人工编写规则变得不可能</strong></p>
 <p><strong>金融场景例子：</strong></p>
 <ul>
@@ -510,8 +515,8 @@ ELSE 拒绝贷款</code></pre>
 </ul>
 </section>
 </section>
-<section id="机器学习-vs-传统编程" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="机器学习-vs-传统编程"><span class="header-section-number">3.1.3</span> 机器学习 vs 传统编程</h3>
+<section id="机器学习-vs-传统编程" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="机器学习-vs-传统编程"><span class="header-section-number">3.2.3</span> 机器学习 vs 传统编程</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -554,8 +559,8 @@ ELSE 拒绝贷款</code></pre>
 </tbody>
 </table>
 </section>
-<section id="机器学习的分类" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="机器学习的分类"><span class="header-section-number">3.1.4</span> 机器学习的分类</h3>
+<section id="机器学习的分类" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="机器学习的分类"><span class="header-section-number">3.2.4</span> 机器学习的分类</h3>
 <div class="cell" data-fig-width="10" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -583,10 +588,10 @@ ELSE 拒绝贷款</code></pre>
 </div>
 <p><strong>本课程重点：监督学习</strong>（因为金融领域90%的问题都是监督学习）</p>
 </section>
-<section id="大语言模型llm与机器学习分类" class="level3" data-number="3.1.5">
-<h3 data-number="3.1.5" class="anchored" data-anchor-id="大语言模型llm与机器学习分类"><span class="header-section-number">3.1.5</span> 大语言模型（LLM）与机器学习分类</h3>
-<section id="什么是大语言模型" class="level4" data-number="3.1.5.1">
-<h4 data-number="3.1.5.1" class="anchored" data-anchor-id="什么是大语言模型"><span class="header-section-number">3.1.5.1</span> 什么是大语言模型？</h4>
+<section id="大语言模型llm与机器学习分类" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="大语言模型llm与机器学习分类"><span class="header-section-number">3.2.5</span> 大语言模型（LLM）与机器学习分类</h3>
+<section id="什么是大语言模型" class="level4" data-number="3.2.5.1">
+<h4 data-number="3.2.5.1" class="anchored" data-anchor-id="什么是大语言模型"><span class="header-section-number">3.2.5.1</span> 什么是大语言模型？</h4>
 <p><strong>大语言模型（Large Language Models）</strong>：如 GPT、Claude、DeepSeek 等</p>
 <p><strong>核心特点：</strong></p>
 <ul>
@@ -595,8 +600,8 @@ ELSE 拒绝贷款</code></pre>
 <li><strong>生成式AI</strong>：不仅能分类，还能生成文本</li>
 </ul>
 </section>
-<section id="llm-在机器学习分类中的位置" class="level4" data-number="3.1.5.2">
-<h4 data-number="3.1.5.2" class="anchored" data-anchor-id="llm-在机器学习分类中的位置"><span class="header-section-number">3.1.5.2</span> LLM 在机器学习分类中的位置</h4>
+<section id="llm-在机器学习分类中的位置" class="level4" data-number="3.2.5.2">
+<h4 data-number="3.2.5.2" class="anchored" data-anchor-id="llm-在机器学习分类中的位置"><span class="header-section-number">3.2.5.2</span> LLM 在机器学习分类中的位置</h4>
 <div class="cell" data-fig-width="10" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -631,8 +636,8 @@ ELSE 拒绝贷款</code></pre>
 </div>
 <p><strong>LLM 仍然属于监督学习！</strong></p>
 </section>
-<section id="为什么-llm-这么火" class="level4" data-number="3.1.5.3">
-<h4 data-number="3.1.5.3" class="anchored" data-anchor-id="为什么-llm-这么火"><span class="header-section-number">3.1.5.3</span> 为什么 LLM 这么火？</h4>
+<section id="为什么-llm-这么火" class="level4" data-number="3.2.5.3">
+<h4 data-number="3.2.5.3" class="anchored" data-anchor-id="为什么-llm-这么火"><span class="header-section-number">3.2.5.3</span> 为什么 LLM 这么火？</h4>
 <ol type="1">
 <li><strong>数据规模的突破</strong></li>
 </ol>
@@ -656,8 +661,8 @@ ELSE 拒绝贷款</code></pre>
 </ol>
 <p><strong>小模型</strong>：能做简单任务 <strong>大模型</strong>：突然获得复杂能力（如数学推理、代码编写）</p>
 </section>
-<section id="llm-与传统机器学习的区别" class="level4" data-number="3.1.5.4">
-<h4 data-number="3.1.5.4" class="anchored" data-anchor-id="llm-与传统机器学习的区别"><span class="header-section-number">3.1.5.4</span> LLM 与传统机器学习的区别</h4>
+<section id="llm-与传统机器学习的区别" class="level4" data-number="3.2.5.4">
+<h4 data-number="3.2.5.4" class="anchored" data-anchor-id="llm-与传统机器学习的区别"><span class="header-section-number">3.2.5.4</span> LLM 与传统机器学习的区别</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 24%">
@@ -705,8 +710,8 @@ ELSE 拒绝贷款</code></pre>
 </tbody>
 </table>
 </section>
-<section id="llm-在金融领域的应用" class="level4" data-number="3.1.5.5">
-<h4 data-number="3.1.5.5" class="anchored" data-anchor-id="llm-在金融领域的应用"><span class="header-section-number">3.1.5.5</span> LLM 在金融领域的应用</h4>
+<section id="llm-在金融领域的应用" class="level4" data-number="3.2.5.5">
+<h4 data-number="3.2.5.5" class="anchored" data-anchor-id="llm-在金融领域的应用"><span class="header-section-number">3.2.5.5</span> LLM 在金融领域的应用</h4>
 <ol type="1">
 <li><strong>智能客服与对话</strong></li>
 </ol>
@@ -742,8 +747,8 @@ ELSE 拒绝贷款</code></pre>
 <p><strong>未来展望：</strong> LLM 将成为金融从业者的”智能助手”</p>
 </section>
 </section>
-<section id="机器学习的技术演进" class="level3" data-number="3.1.6">
-<h3 data-number="3.1.6" class="anchored" data-anchor-id="机器学习的技术演进"><span class="header-section-number">3.1.6</span> 机器学习的技术演进</h3>
+<section id="机器学习的技术演进" class="level3" data-number="3.2.6">
+<h3 data-number="3.2.6" class="anchored" data-anchor-id="机器学习的技术演进"><span class="header-section-number">3.2.6</span> 机器学习的技术演进</h3>
 <div class="cell" data-fig-width="12" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -766,10 +771,10 @@ ELSE 拒绝贷款</code></pre>
 <p><strong>我们正处于 AI 发展的激动人心的时刻！</strong></p>
 </section>
 </section>
-<section id="第二部分监督学习详解" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="第二部分监督学习详解"><span class="header-section-number">3.2</span> 第二部分：监督学习详解</h2>
-<section id="什么是监督学习" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="什么是监督学习"><span class="header-section-number">3.2.1</span> 什么是监督学习？</h3>
+<section id="第二部分监督学习详解" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="第二部分监督学习详解"><span class="header-section-number">3.3</span> 第二部分：监督学习详解</h2>
+<section id="什么是监督学习" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="什么是监督学习"><span class="header-section-number">3.3.1</span> 什么是监督学习？</h3>
 <p><strong>定义：</strong> 从<strong>带标签的数据</strong>中学习，预测新数据的标签</p>
 <p><strong>类比：有答案的练习题</strong></p>
 <ul>
@@ -778,8 +783,8 @@ ELSE 拒绝贷款</code></pre>
 <li>考试时遇到新题，能用学到的方法求解</li>
 </ul>
 </section>
-<section id="监督学习的完整流程" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="监督学习的完整流程"><span class="header-section-number">3.2.2</span> 监督学习的完整流程</h3>
+<section id="监督学习的完整流程" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="监督学习的完整流程"><span class="header-section-number">3.3.2</span> 监督学习的完整流程</h3>
 <div class="cell" data-fig-width="12" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -806,8 +811,8 @@ ELSE 拒绝贷款</code></pre>
 </div>
 </div>
 </section>
-<section id="核心概念1特征features" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="核心概念1特征features"><span class="header-section-number">3.2.3</span> 核心概念1：特征（Features）</h3>
+<section id="核心概念1特征features" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="核心概念1特征features"><span class="header-section-number">3.3.3</span> 核心概念1：特征（Features）</h3>
 <p><strong>特征 = 用来预测的信息 = 输入变量 = X</strong></p>
 <p><strong>房价预测例子：</strong></p>
 <table class="caption-top table">
@@ -853,8 +858,8 @@ ELSE 拒绝贷款</code></pre>
 <li>特征工程：创造新特征（如 面积/房间数 = 人均面积）</li>
 </ul>
 </section>
-<section id="核心概念2标签label" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="核心概念2标签label"><span class="header-section-number">3.2.4</span> 核心概念2：标签（Label）</h3>
+<section id="核心概念2标签label" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="核心概念2标签label"><span class="header-section-number">3.3.4</span> 核心概念2：标签（Label）</h3>
 <p><strong>标签 = 我们要预测的目标 = 输出变量 = y</strong></p>
 <p><strong>两种类型：</strong></p>
 <div class="columns">
@@ -878,8 +883,8 @@ ELSE 拒绝贷款</code></pre>
 </div>
 <p><strong>本周重点：回归问题（预测数值）</strong></p>
 </section>
-<section id="核心概念3模型model" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="核心概念3模型model"><span class="header-section-number">3.2.5</span> 核心概念3：模型（Model）</h3>
+<section id="核心概念3模型model" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="核心概念3模型model"><span class="header-section-number">3.3.5</span> 核心概念3：模型（Model）</h3>
 <p><strong>模型 = 学到的规律 = 从X到y的映射函数</strong></p>
 <p><strong>数学表达：</strong></p>
 <p><span class="math display">\[
@@ -895,10 +900,10 @@ y = f(X)
 <li>常数50：基础价格50万</li>
 </ul>
 </section>
-<section id="训练training-让模型学习" class="level3" data-number="3.2.6">
-<h3 data-number="3.2.6" class="anchored" data-anchor-id="训练training-让模型学习"><span class="header-section-number">3.2.6</span> 训练（Training）= 让模型学习</h3>
+<section id="训练training-让模型学习" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="训练training-让模型学习"><span class="header-section-number">3.3.6</span> 训练（Training）= 让模型学习</h3>
 <p><strong>目标：</strong> 找到最好的参数（系数），使得预测尽可能准确</p>
-<div id="0e0dbdde" class="cell" data-execution_count="2">
+<div id="9d30dfe6" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -910,10 +915,10 @@ y = f(X)
 </div>
 </section>
 </section>
-<section id="第三部分分类-vs-回归" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="第三部分分类-vs-回归"><span class="header-section-number">3.3</span> 第三部分：分类 vs 回归</h2>
-<section id="回归问题预测连续数值" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="回归问题预测连续数值"><span class="header-section-number">3.3.1</span> 回归问题：预测连续数值</h3>
+<section id="第三部分分类-vs-回归" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="第三部分分类-vs-回归"><span class="header-section-number">3.4</span> 第三部分：分类 vs 回归</h2>
+<section id="回归问题预测连续数值" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="回归问题预测连续数值"><span class="header-section-number">3.4.1</span> 回归问题：预测连续数值</h3>
 <p><strong>定义：</strong> 输出是一个<strong>数字</strong>，可以取任意值</p>
 <p><strong>金融场景例子：</strong></p>
 <ol type="1">
@@ -929,8 +934,8 @@ y = f(X)
 <li>评估指标：MAE、RMSE（下周详讲）</li>
 </ul>
 </section>
-<section id="分类问题预测离散类别" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="分类问题预测离散类别"><span class="header-section-number">3.3.2</span> 分类问题：预测离散类别</h3>
+<section id="分类问题预测离散类别" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="分类问题预测离散类别"><span class="header-section-number">3.4.2</span> 分类问题：预测离散类别</h3>
 <p><strong>定义：</strong> 输出是一个<strong>类别标签</strong></p>
 <p><strong>金融场景例子：</strong></p>
 <div class="columns">
@@ -959,8 +964,8 @@ y = f(X)
 <li>评估指标：准确率、AUC（第三周详讲）</li>
 </ul>
 </section>
-<section id="快速判断分类还是回归" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="快速判断分类还是回归"><span class="header-section-number">3.3.3</span> 快速判断：分类还是回归？</h3>
+<section id="快速判断分类还是回归" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="快速判断分类还是回归"><span class="header-section-number">3.4.3</span> 快速判断：分类还是回归？</h3>
 <p><strong>看输出类型！</strong></p>
 <table class="caption-top table">
 <thead>
@@ -1012,10 +1017,10 @@ y = f(X)
 </table>
 </section>
 </section>
-<section id="第四部分线性回归入门" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="第四部分线性回归入门"><span class="header-section-number">3.4</span> 第四部分：线性回归入门</h2>
-<section id="最简单的例子一维线性回归" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="最简单的例子一维线性回归"><span class="header-section-number">3.4.1</span> 最简单的例子：一维线性回归</h3>
+<section id="第四部分线性回归入门" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="第四部分线性回归入门"><span class="header-section-number">3.5</span> 第四部分：线性回归入门</h2>
+<section id="最简单的例子一维线性回归" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="最简单的例子一维线性回归"><span class="header-section-number">3.5.1</span> 最简单的例子：一维线性回归</h3>
 <p><strong>问题：</strong> 已知房屋面积，预测房价</p>
 <p><strong>数学模型：</strong></p>
 <p><span class="math display">\[
@@ -1029,9 +1034,9 @@ y = w \times x + b
 </ul>
 <p><strong>几何意义：</strong> 在二维平面上画一条直线</p>
 </section>
-<section id="可视化理解线性回归" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="可视化理解线性回归"><span class="header-section-number">3.4.2</span> 可视化理解线性回归</h3>
-<div id="c2b29bda" class="cell" data-execution_count="3">
+<section id="可视化理解线性回归" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="可视化理解线性回归"><span class="header-section-number">3.5.2</span> 可视化理解线性回归</h3>
+<div id="fba4685e" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1046,8 +1051,8 @@ y = w \times x + b
 </div>
 </div>
 </section>
-<section id="训练目标最小化误差" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="训练目标最小化误差"><span class="header-section-number">3.4.3</span> 训练目标：最小化误差</h3>
+<section id="训练目标最小化误差" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="训练目标最小化误差"><span class="header-section-number">3.5.3</span> 训练目标：最小化误差</h3>
 <p><strong>误差 = 真实值 - 预测值</strong></p>
 <table class="caption-top table">
 <thead>
@@ -1085,8 +1090,8 @@ y = w \times x + b
 \]</span></p>
 <p><strong>算法会自动找到使Loss最小的w和b</strong></p>
 </section>
-<section id="多维线性回归" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="多维线性回归"><span class="header-section-number">3.4.4</span> 多维线性回归</h3>
+<section id="多维线性回归" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="多维线性回归"><span class="header-section-number">3.5.4</span> 多维线性回归</h3>
 <p><strong>现实中通常有多个特征：</strong></p>
 <p><span class="math display">\[
 \text{房价} = w_1 \times \text{面积} + w_2 \times \text{房龄} + w_3 \times \text{地铁距离} + b
@@ -1104,10 +1109,10 @@ y = w \times x + b
 </ul>
 </section>
 </section>
-<section id="第五部分训练集与测试集" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="第五部分训练集与测试集"><span class="header-section-number">3.5</span> 第五部分：训练集与测试集</h2>
-<section id="为什么要切分数据" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="为什么要切分数据"><span class="header-section-number">3.5.1</span> 为什么要切分数据？</h3>
+<section id="第五部分训练集与测试集" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="第五部分训练集与测试集"><span class="header-section-number">3.6</span> 第五部分：训练集与测试集</h2>
+<section id="为什么要切分数据" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="为什么要切分数据"><span class="header-section-number">3.6.1</span> 为什么要切分数据？</h3>
 <p><strong>问题场景：</strong></p>
 <p>你用100道题训练了一个模型，在这100道题上准确率100%。</p>
 <p><strong>能说明什么？</strong></p>
@@ -1117,8 +1122,8 @@ y = w \times x + b
 </ul>
 <p><strong>真正的考验：</strong> 遇到新题目能不能做对？</p>
 </section>
-<section id="类比练习题-vs-考试题" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="类比练习题-vs-考试题"><span class="header-section-number">3.5.2</span> 类比：练习题 vs 考试题</h3>
+<section id="类比练习题-vs-考试题" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="类比练习题-vs-考试题"><span class="header-section-number">3.6.2</span> 类比：练习题 vs 考试题</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>训练集（练习题）</strong></p>
@@ -1140,8 +1145,8 @@ y = w \times x + b
 </div>
 <p><strong>核心原则：</strong> 训练集和测试集必须严格分开，测试集不能参与任何训练过程</p>
 </section>
-<section id="数据切分流程" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="数据切分流程"><span class="header-section-number">3.5.3</span> 数据切分流程</h3>
+<section id="数据切分流程" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="数据切分流程"><span class="header-section-number">3.6.3</span> 数据切分流程</h3>
 <div class="cell" data-fig-width="10" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1173,9 +1178,9 @@ y = w \times x + b
 <li>数据少（&lt;1万）：70% 训练 + 30% 测试，或使用交叉验证</li>
 </ul>
 </section>
-<section id="代码演示数据切分" class="level3" data-number="3.5.4">
-<h3 data-number="3.5.4" class="anchored" data-anchor-id="代码演示数据切分"><span class="header-section-number">3.5.4</span> 代码演示：数据切分</h3>
-<div id="3a0a8e82" class="cell" data-execution_count="4">
+<section id="代码演示数据切分" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="代码演示数据切分"><span class="header-section-number">3.6.4</span> 代码演示：数据切分</h3>
+<div id="7b302569" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -1205,19 +1210,19 @@ y = w \times x + b
 <p><strong>注意：</strong> <code>random_state=42</code> 保证每次切分结果相同（可复现）</p>
 </section>
 </section>
-<section id="第六部分过拟合与欠拟合" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="第六部分过拟合与欠拟合"><span class="header-section-number">3.6</span> 第六部分：过拟合与欠拟合</h2>
-<section id="核心问题模型的复杂度" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="核心问题模型的复杂度"><span class="header-section-number">3.6.1</span> 核心问题：模型的复杂度</h3>
+<section id="第六部分过拟合与欠拟合" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="第六部分过拟合与欠拟合"><span class="header-section-number">3.7</span> 第六部分：过拟合与欠拟合</h2>
+<section id="核心问题模型的复杂度" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="核心问题模型的复杂度"><span class="header-section-number">3.7.1</span> 核心问题：模型的复杂度</h3>
 <p><strong>太简单 → 欠拟合（Underfitting）</strong></p>
 <p><strong>太复杂 → 过拟合（Overfitting）</strong></p>
 <p><strong>刚刚好 → 泛化能力强</strong></p>
 </section>
-<section id="欠拟合模型太简单" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="欠拟合模型太简单"><span class="header-section-number">3.6.2</span> 欠拟合：模型太简单</h3>
+<section id="欠拟合模型太简单" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="欠拟合模型太简单"><span class="header-section-number">3.7.2</span> 欠拟合：模型太简单</h3>
 <p><strong>现象：</strong> 训练集和测试集表现都差</p>
 <p><strong>原因：</strong> 模型能力不足，无法捕捉数据规律</p>
-<div id="a2383492" class="cell" data-execution_count="5">
+<div id="c344038e" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1233,11 +1238,11 @@ y = w \times x + b
 </div>
 </div>
 </section>
-<section id="过拟合模型太复杂" class="level3" data-number="3.6.3">
-<h3 data-number="3.6.3" class="anchored" data-anchor-id="过拟合模型太复杂"><span class="header-section-number">3.6.3</span> 过拟合：模型太复杂</h3>
+<section id="过拟合模型太复杂" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="过拟合模型太复杂"><span class="header-section-number">3.7.3</span> 过拟合：模型太复杂</h3>
 <p><strong>现象：</strong> 训练集表现很好，测试集表现很差</p>
 <p><strong>原因：</strong> 模型把噪声当成规律，失去泛化能力</p>
-<div id="d7c37922" class="cell" data-execution_count="6">
+<div id="7410cf1b" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1253,9 +1258,9 @@ y = w \times x + b
 </div>
 </div>
 </section>
-<section id="恰到好处良好的泛化能力" class="level3" data-number="3.6.4">
-<h3 data-number="3.6.4" class="anchored" data-anchor-id="恰到好处良好的泛化能力"><span class="header-section-number">3.6.4</span> 恰到好处：良好的泛化能力</h3>
-<div id="5e87f407" class="cell" data-execution_count="7">
+<section id="恰到好处良好的泛化能力" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="恰到好处良好的泛化能力"><span class="header-section-number">3.7.4</span> 恰到好处：良好的泛化能力</h3>
+<div id="93ff8393" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1266,8 +1271,8 @@ y = w \times x + b
 </div>
 </div>
 </section>
-<section id="如何判断过拟合" class="level3" data-number="3.6.5">
-<h3 data-number="3.6.5" class="anchored" data-anchor-id="如何判断过拟合"><span class="header-section-number">3.6.5</span> 如何判断过拟合？</h3>
+<section id="如何判断过拟合" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="如何判断过拟合"><span class="header-section-number">3.7.5</span> 如何判断过拟合？</h3>
 <p><strong>关键指标：训练集误差 vs 测试集误差</strong></p>
 <table class="caption-top table">
 <thead>
@@ -1305,8 +1310,8 @@ y = w \times x + b
 </table>
 <p><strong>经验法则：</strong> 测试集误差比训练集误差大一点是正常的，但不应该大很多</p>
 </section>
-<section id="类比背题-vs-理解原理" class="level3" data-number="3.6.6">
-<h3 data-number="3.6.6" class="anchored" data-anchor-id="类比背题-vs-理解原理"><span class="header-section-number">3.6.6</span> 类比：背题 vs 理解原理</h3>
+<section id="类比背题-vs-理解原理" class="level3" data-number="3.7.6">
+<h3 data-number="3.7.6" class="anchored" data-anchor-id="类比背题-vs-理解原理"><span class="header-section-number">3.7.6</span> 类比：背题 vs 理解原理</h3>
 <div class="columns">
 <div class="column" style="width:33%;">
 <p><strong>欠拟合</strong></p>
@@ -1336,10 +1341,10 @@ y = w \times x + b
 </div>
 </section>
 </section>
-<section id="第七部分完整的机器学习流程" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="第七部分完整的机器学习流程"><span class="header-section-number">3.7</span> 第七部分：完整的机器学习流程</h2>
-<section id="端到端的完整流程" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="端到端的完整流程"><span class="header-section-number">3.7.1</span> 端到端的完整流程</h3>
+<section id="第七部分完整的机器学习流程" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="第七部分完整的机器学习流程"><span class="header-section-number">3.8</span> 第七部分：完整的机器学习流程</h2>
+<section id="端到端的完整流程" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="端到端的完整流程"><span class="header-section-number">3.8.1</span> 端到端的完整流程</h3>
 <div class="cell" data-fig-width="12" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1370,9 +1375,9 @@ y = w \times x + b
 </div>
 </div>
 </section>
-<section id="第一个完整例子房价预测" class="level3" data-number="3.7.2">
-<h3 data-number="3.7.2" class="anchored" data-anchor-id="第一个完整例子房价预测"><span class="header-section-number">3.7.2</span> 第一个完整例子：房价预测</h3>
-<div id="3b9ed02e" class="cell" data-execution_count="8">
+<section id="第一个完整例子房价预测" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="第一个完整例子房价预测"><span class="header-section-number">3.8.2</span> 第一个完整例子：房价预测</h3>
+<div id="333dda4b" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 导入库</span></span>
@@ -1407,9 +1412,9 @@ y = w \times x + b
 </div>
 </div>
 </section>
-<section id="可视化预测结果" class="level3" data-number="3.7.3">
-<h3 data-number="3.7.3" class="anchored" data-anchor-id="可视化预测结果"><span class="header-section-number">3.7.3</span> 可视化预测结果</h3>
-<div id="0933abc3" class="cell" data-execution_count="9">
+<section id="可视化预测结果" class="level3" data-number="3.8.3">
+<h3 data-number="3.8.3" class="anchored" data-anchor-id="可视化预测结果"><span class="header-section-number">3.8.3</span> 可视化预测结果</h3>
+<div id="84f570e6" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1420,10 +1425,10 @@ y = w \times x + b
 </div>
 </section>
 </section>
-<section id="总结" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="总结"><span class="header-section-number">3.8</span> 总结</h2>
-<section id="本讲核心知识点" class="level3" data-number="3.8.1">
-<h3 data-number="3.8.1" class="anchored" data-anchor-id="本讲核心知识点"><span class="header-section-number">3.8.1</span> 本讲核心知识点</h3>
+<section id="总结" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="总结"><span class="header-section-number">3.9</span> 总结</h2>
+<section id="本讲核心知识点" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="本讲核心知识点"><span class="header-section-number">3.9.1</span> 本讲核心知识点</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>概念理解</strong></p>
@@ -1453,8 +1458,8 @@ y = w \times x + b
 </ul>
 </section>
 </section>
-<section id="qa" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="qa"><span class="header-section-number">3.9</span> Q&amp;A</h2>
+<section id="qa" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="qa"><span class="header-section-number">3.10</span> Q&amp;A</h2>
 <p><strong>Q1：什么是机器学习？它和传统编程在输入和输出上有何根本区别？</strong></p>
 <p><strong>A：</strong> 机器学习是让计算机通过数据和经验自动改进性能的技术。</p>
 <p>它们根本的区别在于逻辑的来源：</p>
