@@ -104,27 +104,7 @@
     "href": "w0_syllabus.html#教学周次安排",
     "title": "2  课程安排与考核要求",
     "section": "2.2 教学周次安排",
-    "text": "2.2 教学周次安排\n\n2.2.1 W1｜Python 基础 + 回归问题入门\n理论部分\n\n机器学习是什么：预测问题、监督学习流程概览\n回归问题：线性回归直觉（拟合一条线）\n训练集/测试集、过拟合/欠拟合概念\n\n上机部分\n\n安装 Python 3.10 + VS Code + Jupyter Notebook\nPython 速成：变量、列表、函数调用\n运行第一个机器学习程序（线性回归）\n\n\n\n2.2.2 W2｜数据处理与线性回归实践\n理论部分\n\n数据预处理：缺失值、异常值、归一化\n回归模型评估指标：MAE、RMSE\n数据可视化的重要性\n\n上机部分\n\npandas 读数据探索、可视化\n线性回归模型训练与评估\n残差分析\n\n\n\n2.2.3 W3｜线性回归的正则化：Ridge, Lasso 与 Elastic Net\n理论部分\n\n过拟合与欠拟合回顾：训练集 vs 测试集表现\n正则化线性回归：Ridge（L2）、Lasso（L1）、Elastic Net\n正则化参数 α 的选择：交叉验证概念\n\n上机部分\n\n用 sklearn 实现 Ridge/Lasso/Elastic Net\n调参实验：不同 α 值观察系数变化\n正则化路径图、残差图可视化\n特征重要性分析（Lasso 稀疏性）\n\nW3 项目立项验收标准（第四讲前检查）\n\nGitHub 有 README（题目、数据来源、小组分工）\n能用 Jupyter Notebook 加载数据并\n有一张数据可视化图（任意类型）\n\n\n\n2.2.4 W4｜分类问题、决策树与评估指标\n理论部分\n\n分类 vs. 回归：预测类别而非数值\n决策树原理（用流程图展示，不讲数学）\n评估指标体系：混淆矩阵、准确率/召回率/精确率/F1、ROC/AUC\n类别不平衡问题\n\n上机部分\n\nTitanic 数据集：加载、探索、处理类别变量\n决策树分类器训练（sklearn 模板）\n评估可视化：混淆矩阵、ROC 曲线、AUC 计算\n分类阈值调整观察精确率/召回率变化\n\n\n\n2.2.5 W5｜集成学习：随机森林与 GBDT\n理论部分\n\n决策树局限：过拟合问题\n集成学习思想：Bagging（随机森林）vs Boosting（GBDT）\n关键超参数：树深度、树数量、学习率、特征采样\n\n上机部分\n\n随机森林：训练对比决策树 + 特征重要性可视化\nGBDT：LightGBM 实现 + 超参数调整\n三模型对比：AUC、训练时间\n\n\n\n2.2.6 W6｜神经网络基础\n理论部分\n\n神经网络是什么：神经元模型、多层感知机（MLP）\n激活函数：ReLU、Sigmoid、Tanh\n前向传播与反向传播概念\n优化器：SGD、Adam\n何时用树模型 vs MLP\n\n上机部分\n\nKeras 快速入门：Sequential 模型搭建\n第一个 MLP（Titanic）：数据预处理（归一化、one-hot）\n训练可视化：loss/accuracy 曲线 + 测试集 AUC\n\n\n\n2.2.7 W7｜项目答辩\n答辩形式\n\n每组 8 分钟展示 + 4 分钟提问\n提交：6–8 页报告 + 答辩 PDF + 项目仓库（详见教学资源）\n\n验收标准\n\n能用简单脚本完整跑通实验\n有清晰的结果展示：至少 2 种模型对比、评估指标表格、2-3 张关键图\nREADME 包含：问题描述、数据说明、复现步骤、结果总结",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>课程安排与考核要求</span>"
-    ]
-  },
-  {
-    "objectID": "w0_syllabus.html#机器学习项目池",
-    "href": "w0_syllabus.html#机器学习项目池",
-    "title": "2  课程安排与考核要求",
-    "section": "2.3 机器学习项目池",
-    "text": "2.3 机器学习项目池\n难度系数决定最终评分加成\n\n2.3.1 入门级（难度系数 0.9）\n\n房价预测（California House Prices）：回归问题，特征较少，提供数据清洗模板\n信用卡违约预测（UCI Credit Card Default）：分类问题，数据集小，特征清晰\n\n\n\n2.3.2 进阶级（难度系数 1.0）\n\nLendingClub Default Risk：评估 AUC、剔除泄露字段\nHome Credit Default Risk：评估 AUC，可合并外部表\n\n\n\n2.3.3 挑战级（难度系数 1.1，需要一定编程基础）\n\nIEEE-CIS Fraud Detection：极不平衡、严格时序、多表合并\nG-Research Crypto Forecasting：回归/排序、多币种、时间序列",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>课程安排与考核要求</span>"
-    ]
-  },
-  {
-    "objectID": "w0_syllabus.html#项目最低交付标准",
-    "href": "w0_syllabus.html#项目最低交付标准",
-    "title": "2  课程安排与考核要求",
-    "section": "2.4 项目最低交付标准",
-    "text": "2.4 项目最低交付标准\n\n2.4.1 W3 验收（第四周上课前上传）\n\n项目仓库建立（包含相关文件夹）\nREADME 包含题目、数据来源、成员分工\n能在 Jupyter Notebook 中加载数据并展示基本统计信息\n至少一张数据可视化图\n\n\n\n2.4.2 W7 验收（答辩时）\n\n代码能运行：按照 README 步骤能复现结果\n结果齐全：\n\n至少对比 2 种模型\n评估指标表格（分类：准确率/召回率/AUC；回归：RMSE/MAE）\n2-3 张关键图（混淆矩阵/ROC 曲线/特征重要性/残差图）\n\n文档完整：\n\nREADME 有复现步骤\n报告有问题描述、方法、结果、分析\n\n\n\n\n2.4.3 扣分项\n\n代码无法运行：无法手动运行 Notebook，或运行结果与 README 不符\n数据泄露（未做训练/测试切分，或使用未来信息）\n结果造假：结果与 README 不符，或结果无法复现\n大段抄袭：代码/报告抄袭他人，或与他人代码/报告雷同\n\n\n\n2.4.4 不强制要求（鼓励加分）\n\n多做几种模型对比（如三个及以上模型）\n在代码中展示调参过程（如网格搜索等）\n模块化代码结构",
+    "text": "2.2 教学周次安排\n\n2.2.1 W1｜Python 基础 + 回归问题入门\n理论部分\n\n机器学习是什么：预测问题、监督学习流程概览\n回归问题：线性回归直觉（拟合一条线）\n训练集/测试集、过拟合/欠拟合概念\n\n上机部分\n\n安装 Python 3.10 + VS Code + Jupyter Notebook\nPython 速成：变量、列表、函数调用\n运行第一个机器学习程序（线性回归）\n\n\n\n2.2.2 W2｜数据处理与线性回归实践\n理论部分\n\n数据预处理：缺失值、异常值、归一化\n回归模型评估指标：MAE、RMSE\n数据可视化的重要性\n\n上机部分\n\npandas 读数据探索、可视化\n线性回归模型训练与评估\n残差分析\n\n\n\n2.2.3 W3｜线性回归的正则化：Ridge, Lasso 与 Elastic Net\n理论部分\n\n过拟合与欠拟合回顾：训练集 vs 测试集表现\n正则化线性回归：Ridge（L2）、Lasso（L1）、Elastic Net\n正则化参数 α 的选择：交叉验证概念\n\n上机部分\n\n用 sklearn 实现 Ridge/Lasso/Elastic Net\n调参实验：不同 α 值观察系数变化\n正则化路径图、残差图可视化\n特征重要性分析（Lasso 稀疏性）\n\nW3 项目立项验收（第四讲前提交）\n\n\n2.2.4 W4｜分类问题、决策树与评估指标\n理论部分\n\n分类 vs. 回归：预测类别而非数值\n决策树原理（用流程图展示，不讲数学）\n评估指标体系：混淆矩阵、准确率/召回率/精确率/F1、ROC/AUC\n类别不平衡问题\n\n上机部分\n\nTitanic 数据集：加载、探索、处理类别变量\n决策树分类器训练（sklearn 模板）\n评估可视化：混淆矩阵、ROC 曲线、AUC 计算\n分类阈值调整观察精确率/召回率变化\n\n\n\n2.2.5 W5｜集成学习：随机森林与 GBDT\n理论部分\n\n决策树局限：过拟合问题\n集成学习思想：Bagging（随机森林）vs Boosting（GBDT）\n关键超参数：树深度、树数量、学习率、特征采样\n\n上机部分\n\n随机森林：训练对比决策树 + 特征重要性可视化\nGBDT：LightGBM 实现 + 超参数调整\n三模型对比：AUC、训练时间\n\n\n\n2.2.6 W6｜神经网络基础\n理论部分\n\n神经网络是什么：神经元模型、多层感知机（MLP）\n激活函数：ReLU、Sigmoid、Tanh\n前向传播与反向传播概念\n优化器：SGD、Adam\n何时用树模型 vs MLP\n\n上机部分\n\nKeras 快速入门：Sequential 模型搭建\n第一个 MLP（Titanic）：数据预处理（归一化、one-hot）\n训练可视化：loss/accuracy 曲线 + 测试集 AUC\n\n\n\n2.2.7 W7｜项目答辩\n答辩形式\n\n每组 8 分钟展示 + 4 分钟提问\n提交：6–8 页报告 + 答辩 PDF + 项目仓库（详见教学资源）\n\n验收标准\n\n能用简单脚本完整跑通实验\n有清晰的结果展示：至少 2 种模型对比、评估指标表格、2-3 张关键图\nREADME 包含：问题描述、数据说明、复现步骤、结果总结",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>课程安排与考核要求</span>"
     ]
@@ -133,8 +113,28 @@
     "objectID": "w0_syllabus.html#考核要求",
     "href": "w0_syllabus.html#考核要求",
     "title": "2  课程安排与考核要求",
-    "section": "2.5 考核要求",
-    "text": "2.5 考核要求\n\n2.5.1 必修课总分构成（50 分制）\n\n\n\n项目\n权重\n说明\n\n\n\n\n机器学习项目\n20分\nW3立项+ W7 项目答辩\n\n\n期末考试\n25分\n判断 + 选择 + 案例分析（涵盖 W1-W6 理论知识）\n\n\n课堂参与\n5分\n出勤（随机点名）\n\n\n合计\n50分\n\n\n\n\n\n\n2.5.2 选修课总分构成（50 分制）\n\n\n\n项目\n权重\n说明\n\n\n\n\n机器学习项目\n30分\nW3立项 + W7 项目答辩\n\n\n课堂Quiz\n15分\n三次课堂小测（在W2、W4与W6上课时进行）\n\n\n课堂参与\n5分\n出勤（随机点名）\n\n\n合计\n50分\n\n\n\n\n\n\n2.5.3 项目评分\n\n基础分（60 分）：代码能跑 + 有结果 + 文档齐全\n质量分（30 分）：模型对比合理 + 分析有深度 + 可视化清晰\n难度加成（10 分）：原始分 × 难度系数（0.9-1.1）\n\n\n\n2.5.4 项目验收清单\n\n2.5.4.1 W3 检查\n\n建立代码仓库，包含项目结构的文件夹\nREADME 包含项目介绍、数据来源、成员分工\n有能运行的 Notebook，能加载数据并展示基本统计信息\n有至少 1 张可视化图\n\n\n\n2.5.4.2 W7 检查\n\n按照 README 能成功复现（可以手动运行 Notebook，并展示结果）\n有至少 2 种模型的对比结果\n有评估指标表格和 2-3 张关键图\n报告符合基本学术规范（有问题、方法、结果、分析）\n代码有基本注释，关键步骤能看懂，结构清晰",
+    "section": "2.3 考核要求",
+    "text": "2.3 考核要求\n\n2.3.1 必修课总分构成（50 分制）\n\n\n\n项目\n权重\n说明\n\n\n\n\n机器学习项目\n20分\nW3立项+ W7 项目答辩\n\n\n期末考试\n25分\n判断 + 选择 + 案例分析（涵盖 W1-W6 理论知识）\n\n\n课堂参与\n5分\n出勤（随机点名）\n\n\n合计\n50分\n\n\n\n\n\n\n2.3.2 选修课总分构成（50 分制）\n\n\n\n项目\n权重\n说明\n\n\n\n\n机器学习项目\n30分\nW3立项 + W7 项目答辩\n\n\n课堂Quiz\n15分\n三次课堂小测（在W2、W4与W6上课时进行）\n\n\n课堂参与\n5分\n出勤（随机点名）\n\n\n合计\n50分",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>课程安排与考核要求</span>"
+    ]
+  },
+  {
+    "objectID": "w0_syllabus.html#机器学习项目池",
+    "href": "w0_syllabus.html#机器学习项目池",
+    "title": "2  课程安排与考核要求",
+    "section": "2.4 机器学习项目池",
+    "text": "2.4 机器学习项目池\n难度系数决定最终评分加成\n\n2.4.1 入门级（难度系数 0.9）\n\n房价预测（California House Prices）：回归问题，特征较少，提供数据清洗模板\n信用卡违约预测（UCI Credit Card Default）：分类问题，数据集小，特征清晰\n\n\n\n2.4.2 进阶级（难度系数 1.0）\n\nLendingClub Default Risk：评估 AUC、剔除泄露字段\nHome Credit Default Risk：评估 AUC，可合并外部表\n\n\n\n2.4.3 挑战级（难度系数 1.1，需要一定编程基础）\n\nIEEE-CIS Fraud Detection：极不平衡、严格时序、多表合并\nG-Research Crypto Forecasting：回归/排序、多币种、时间序列",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>课程安排与考核要求</span>"
+    ]
+  },
+  {
+    "objectID": "w0_syllabus.html#项目最低交付标准",
+    "href": "w0_syllabus.html#项目最低交付标准",
+    "title": "2  课程安排与考核要求",
+    "section": "2.5 项目最低交付标准",
+    "text": "2.5 项目最低交付标准\n\n2.5.1 W3 验收（第四周上课前提交到学习通/GitHub）\n\n项目仓库建立（包含相关文件夹）\nREADME 包含题目、数据来源、成员分工\n能在 Python程序脚本/Jupyter Notebook 中加载数据并展示基本统计信息\n至少一张数据可视化图\n\n\n\n2.5.2 W7 验收（答辩时）\n\n代码能运行：按照 README 步骤能复现结果\n结果齐全：\n\n至少对比 2 种模型\n评估指标表格（分类：准确率/召回率/AUC；回归：RMSE/MAE）\n2-3 张关键图（混淆矩阵/ROC 曲线/特征重要性/残差图）\n\n文档完整：\n\nREADME 有复现步骤\n报告有问题描述、方法、结果、分析\n\n\n\n\n2.5.3 扣分项\n\n代码无法运行：无法手动运行Python程序脚本/Notebook，或运行结果与 README 不符\n数据泄露（未做训练/测试切分，或使用未来信息）\n结果造假：结果与 README 不符，或结果无法复现\n大段抄袭：代码/报告抄袭他人，或与他人代码/报告雷同\n\n\n\n2.5.4 不强制要求（鼓励加分）\n\n多做几种模型对比（如三个及以上模型）\n在代码中展示调参过程（如网格搜索等）\n模块化代码结构\n\n\n\n2.5.5 项目评分\n\n基础分（60 分）：代码能跑 + 有结果 + 文档齐全\n质量分（30 分）：模型对比合理 + 分析有深度 + 可视化清晰\n难度加成（10 分）：原始分 × 难度系数（0.9-1.1）",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>课程安排与考核要求</span>"
     ]
