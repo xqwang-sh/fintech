@@ -1,4 +1,6 @@
+---
 title: 第六讲：神经网络基础
+---
 
 ```{python}
 #| echo: false

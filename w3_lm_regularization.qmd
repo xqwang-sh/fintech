@@ -1,4 +1,6 @@
+---
 title: 第三讲：线性回归的正则化
+---
 
 ```{python}
 #| echo: false

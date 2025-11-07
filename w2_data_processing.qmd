@@ -1,4 +1,6 @@
+---
 title: 第二讲：数据处理与线性回归实践
+---
 
 ```{python}
 #| echo: false

@@ -1,4 +1,6 @@
+---
 title: 第五讲：集成学习 - 随机森林与 GBDT
+---
 
 ```{python}
 #| echo: false

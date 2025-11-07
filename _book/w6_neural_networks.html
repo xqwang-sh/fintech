@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; 开场：深度学习的神秘面纱 – 金融科技概论讲义（机器学习部分）</title>
+<title>8&nbsp; 第六讲：神经网络基础 – 金融科技概论讲义（机器学习部分）</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w6_neural_networks.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w6_neural_networks.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -193,31 +193,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w2_data_processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第二讲：数据处理与线性回归实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w3_lm_regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">第三讲：线性回归的正则化</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w4_classification_decision_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">第四讲：分类问题、决策树与评估指标</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w5_ensemble_learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w6_neural_networks.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -272,41 +272,44 @@ window.Quarto = {
     <h2 id="toc-title">目录</h2>
    
   <ul>
-  <li><a href="#深度学习无处不在" id="toc-深度学习无处不在" class="nav-link active" data-scroll-target="#深度学习无处不在"><span class="header-section-number">8.0.1</span> 深度学习无处不在</a></li>
-  <li><a href="#本周目标揭开神秘面纱" id="toc-本周目标揭开神秘面纱" class="nav-link" data-scroll-target="#本周目标揭开神秘面纱"><span class="header-section-number">8.0.2</span> 本周目标：揭开神秘面纱</a></li>
-  <li><a href="#第一部分从生物到人工" id="toc-第一部分从生物到人工" class="nav-link" data-scroll-target="#第一部分从生物到人工"><span class="header-section-number">8.1</span> 第一部分：从生物到人工</a>
+  <li><a href="#开场深度学习的神秘面纱" id="toc-开场深度学习的神秘面纱" class="nav-link active" data-scroll-target="#开场深度学习的神秘面纱"><span class="header-section-number">8.1</span> 开场：深度学习的神秘面纱</a>
   <ul class="collapse">
-  <li><a href="#生物神经元" id="toc-生物神经元" class="nav-link" data-scroll-target="#生物神经元"><span class="header-section-number">8.1.1</span> 1.1 生物神经元</a></li>
-  <li><a href="#人工神经元" id="toc-人工神经元" class="nav-link" data-scroll-target="#人工神经元"><span class="header-section-number">8.1.2</span> 1.2 人工神经元</a></li>
+  <li><a href="#深度学习无处不在" id="toc-深度学习无处不在" class="nav-link" data-scroll-target="#深度学习无处不在"><span class="header-section-number">8.1.1</span> 深度学习无处不在</a></li>
+  <li><a href="#本周目标揭开神秘面纱" id="toc-本周目标揭开神秘面纱" class="nav-link" data-scroll-target="#本周目标揭开神秘面纱"><span class="header-section-number">8.1.2</span> 本周目标：揭开神秘面纱</a></li>
   </ul></li>
-  <li><a href="#第二部分激活函数" id="toc-第二部分激活函数" class="nav-link" data-scroll-target="#第二部分激活函数"><span class="header-section-number">8.2</span> 第二部分：激活函数</a>
+  <li><a href="#第一部分从生物到人工" id="toc-第一部分从生物到人工" class="nav-link" data-scroll-target="#第一部分从生物到人工"><span class="header-section-number">8.2</span> 第一部分：从生物到人工</a>
   <ul class="collapse">
-  <li><a href="#为什么需要激活函数" id="toc-为什么需要激活函数" class="nav-link" data-scroll-target="#为什么需要激活函数"><span class="header-section-number">8.2.1</span> 为什么需要激活函数？</a></li>
-  <li><a href="#常见激活函数" id="toc-常见激活函数" class="nav-link" data-scroll-target="#常见激活函数"><span class="header-section-number">8.2.2</span> 常见激活函数</a></li>
+  <li><a href="#生物神经元" id="toc-生物神经元" class="nav-link" data-scroll-target="#生物神经元"><span class="header-section-number">8.2.1</span> 1.1 生物神经元</a></li>
+  <li><a href="#人工神经元" id="toc-人工神经元" class="nav-link" data-scroll-target="#人工神经元"><span class="header-section-number">8.2.2</span> 1.2 人工神经元</a></li>
   </ul></li>
-  <li><a href="#第三部分多层感知机mlp" id="toc-第三部分多层感知机mlp" class="nav-link" data-scroll-target="#第三部分多层感知机mlp"><span class="header-section-number">8.3</span> 第三部分：多层感知机（MLP）</a>
+  <li><a href="#第二部分激活函数" id="toc-第二部分激活函数" class="nav-link" data-scroll-target="#第二部分激活函数"><span class="header-section-number">8.3</span> 第二部分：激活函数</a>
   <ul class="collapse">
-  <li><a href="#网络结构" id="toc-网络结构" class="nav-link" data-scroll-target="#网络结构"><span class="header-section-number">8.3.1</span> 网络结构</a></li>
-  <li><a href="#参数数量计算" id="toc-参数数量计算" class="nav-link" data-scroll-target="#参数数量计算"><span class="header-section-number">8.3.2</span> 参数数量计算</a></li>
-  <li><a href="#为什么需要多层" id="toc-为什么需要多层" class="nav-link" data-scroll-target="#为什么需要多层"><span class="header-section-number">8.3.3</span> 为什么需要多层？</a></li>
+  <li><a href="#为什么需要激活函数" id="toc-为什么需要激活函数" class="nav-link" data-scroll-target="#为什么需要激活函数"><span class="header-section-number">8.3.1</span> 为什么需要激活函数？</a></li>
+  <li><a href="#常见激活函数" id="toc-常见激活函数" class="nav-link" data-scroll-target="#常见激活函数"><span class="header-section-number">8.3.2</span> 常见激活函数</a></li>
   </ul></li>
-  <li><a href="#第四部分前向传播与反向传播" id="toc-第四部分前向传播与反向传播" class="nav-link" data-scroll-target="#第四部分前向传播与反向传播"><span class="header-section-number">8.4</span> 第四部分：前向传播与反向传播</a>
+  <li><a href="#第三部分多层感知机mlp" id="toc-第三部分多层感知机mlp" class="nav-link" data-scroll-target="#第三部分多层感知机mlp"><span class="header-section-number">8.4</span> 第三部分：多层感知机（MLP）</a>
   <ul class="collapse">
-  <li><a href="#前向传播forward-propagation" id="toc-前向传播forward-propagation" class="nav-link" data-scroll-target="#前向传播forward-propagation"><span class="header-section-number">8.4.1</span> 前向传播（Forward Propagation）</a></li>
-  <li><a href="#损失函数loss-function" id="toc-损失函数loss-function" class="nav-link" data-scroll-target="#损失函数loss-function"><span class="header-section-number">8.4.2</span> 损失函数（Loss Function）</a></li>
-  <li><a href="#反向传播backpropagation" id="toc-反向传播backpropagation" class="nav-link" data-scroll-target="#反向传播backpropagation"><span class="header-section-number">8.4.3</span> 反向传播（Backpropagation）</a></li>
-  <li><a href="#优化器optimizer" id="toc-优化器optimizer" class="nav-link" data-scroll-target="#优化器optimizer"><span class="header-section-number">8.4.4</span> 优化器（Optimizer）</a></li>
+  <li><a href="#网络结构" id="toc-网络结构" class="nav-link" data-scroll-target="#网络结构"><span class="header-section-number">8.4.1</span> 网络结构</a></li>
+  <li><a href="#参数数量计算" id="toc-参数数量计算" class="nav-link" data-scroll-target="#参数数量计算"><span class="header-section-number">8.4.2</span> 参数数量计算</a></li>
+  <li><a href="#为什么需要多层" id="toc-为什么需要多层" class="nav-link" data-scroll-target="#为什么需要多层"><span class="header-section-number">8.4.3</span> 为什么需要多层？</a></li>
   </ul></li>
-  <li><a href="#第五部分mlp-vs-树模型" id="toc-第五部分mlp-vs-树模型" class="nav-link" data-scroll-target="#第五部分mlp-vs-树模型"><span class="header-section-number">8.5</span> 第五部分：MLP vs 树模型</a>
+  <li><a href="#第四部分前向传播与反向传播" id="toc-第四部分前向传播与反向传播" class="nav-link" data-scroll-target="#第四部分前向传播与反向传播"><span class="header-section-number">8.5</span> 第四部分：前向传播与反向传播</a>
   <ul class="collapse">
-  <li><a href="#何时用树模型何时用-mlp" id="toc-何时用树模型何时用-mlp" class="nav-link" data-scroll-target="#何时用树模型何时用-mlp"><span class="header-section-number">8.5.1</span> 何时用树模型，何时用 MLP？</a></li>
+  <li><a href="#前向传播forward-propagation" id="toc-前向传播forward-propagation" class="nav-link" data-scroll-target="#前向传播forward-propagation"><span class="header-section-number">8.5.1</span> 前向传播（Forward Propagation）</a></li>
+  <li><a href="#损失函数loss-function" id="toc-损失函数loss-function" class="nav-link" data-scroll-target="#损失函数loss-function"><span class="header-section-number">8.5.2</span> 损失函数（Loss Function）</a></li>
+  <li><a href="#反向传播backpropagation" id="toc-反向传播backpropagation" class="nav-link" data-scroll-target="#反向传播backpropagation"><span class="header-section-number">8.5.3</span> 反向传播（Backpropagation）</a></li>
+  <li><a href="#优化器optimizer" id="toc-优化器optimizer" class="nav-link" data-scroll-target="#优化器optimizer"><span class="header-section-number">8.5.4</span> 优化器（Optimizer）</a></li>
   </ul></li>
-  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">8.6</span> 总结</a>
+  <li><a href="#第五部分mlp-vs-树模型" id="toc-第五部分mlp-vs-树模型" class="nav-link" data-scroll-target="#第五部分mlp-vs-树模型"><span class="header-section-number">8.6</span> 第五部分：MLP vs 树模型</a>
   <ul class="collapse">
-  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">8.6.1</span> 本讲知识回顾</a></li>
-  <li><a href="#核心要点" id="toc-核心要点" class="nav-link" data-scroll-target="#核心要点"><span class="header-section-number">8.6.2</span> 核心要点</a></li>
+  <li><a href="#何时用树模型何时用-mlp" id="toc-何时用树模型何时用-mlp" class="nav-link" data-scroll-target="#何时用树模型何时用-mlp"><span class="header-section-number">8.6.1</span> 何时用树模型，何时用 MLP？</a></li>
   </ul></li>
-  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">8.7</span> Q&amp;A</a></li>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">8.7</span> 总结</a>
+  <ul class="collapse">
+  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">8.7.1</span> 本讲知识回顾</a></li>
+  <li><a href="#核心要点" id="toc-核心要点" class="nav-link" data-scroll-target="#核心要点"><span class="header-section-number">8.7.2</span> 核心要点</a></li>
+  </ul></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">8.8</span> Q&amp;A</a></li>
   </ul>
 </nav>
     </div>
@@ -315,7 +318,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">开场：深度学习的神秘面纱</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">第六讲：神经网络基础</span></h1>
 </div>
 
 
@@ -332,9 +335,10 @@ window.Quarto = {
 </header>
 
 
-<p>title: 第六讲：神经网络基础</p>
-<section id="深度学习无处不在" class="level3" data-number="8.0.1">
-<h3 data-number="8.0.1" class="anchored" data-anchor-id="深度学习无处不在"><span class="header-section-number">8.0.1</span> 深度学习无处不在</h3>
+<section id="开场深度学习的神秘面纱" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="开场深度学习的神秘面纱"><span class="header-section-number">8.1</span> 开场：深度学习的神秘面纱</h2>
+<section id="深度学习无处不在" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="深度学习无处不在"><span class="header-section-number">8.1.1</span> 深度学习无处不在</h3>
 <p><strong>你每天都在使用深度学习</strong>：</p>
 <ul>
 <li>📱 手机人脸解锁</li>
@@ -346,10 +350,10 @@ window.Quarto = {
 <p><strong>问题</strong>：这些”黑科技”的底层原理是什么？</p>
 <p><strong>答案</strong>：<strong>神经网络</strong></p>
 </section>
-<section id="本周目标揭开神秘面纱" class="level3" data-number="8.0.2">
-<h3 data-number="8.0.2" class="anchored" data-anchor-id="本周目标揭开神秘面纱"><span class="header-section-number">8.0.2</span> 本周目标：揭开神秘面纱</h3>
-<section id="知识目标" class="level4" data-number="8.0.2.1">
-<h4 data-number="8.0.2.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">8.0.2.1</span> 知识目标</h4>
+<section id="本周目标揭开神秘面纱" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="本周目标揭开神秘面纱"><span class="header-section-number">8.1.2</span> 本周目标：揭开神秘面纱</h3>
+<section id="知识目标" class="level4" data-number="8.1.2.1">
+<h4 data-number="8.1.2.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">8.1.2.1</span> 知识目标</h4>
 <ol type="1">
 <li>理解神经元的基本概念</li>
 <li>理解多层感知机（MLP）的网络结构</li>
@@ -358,8 +362,8 @@ window.Quarto = {
 <li>知道何时用树模型 vs 神经网络</li>
 </ol>
 </section>
-<section id="技能目标" class="level4" data-number="8.0.2.2">
-<h4 data-number="8.0.2.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">8.0.2.2</span> 技能目标</h4>
+<section id="技能目标" class="level4" data-number="8.1.2.2">
+<h4 data-number="8.1.2.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">8.1.2.2</span> 技能目标</h4>
 <ol type="1">
 <li>使用 Keras 搭建简单的 MLP</li>
 <li>训练 MLP 并可视化学习曲线</li>
@@ -367,8 +371,8 @@ window.Quarto = {
 <li>调整网络结构（层数、神经元数量）</li>
 </ol>
 </section>
-<section id="核心理念" class="level4" data-number="8.0.2.3">
-<h4 data-number="8.0.2.3" class="anchored" data-anchor-id="核心理念"><span class="header-section-number">8.0.2.3</span> 核心理念</h4>
+<section id="核心理念" class="level4" data-number="8.1.2.3">
+<h4 data-number="8.1.2.3" class="anchored" data-anchor-id="核心理念"><span class="header-section-number">8.1.2.3</span> 核心理念</h4>
 <p><strong>深度学习不神秘</strong></p>
 <ul>
 <li>它是基于简单数学运算的累积</li>
@@ -377,12 +381,13 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="第一部分从生物到人工" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="第一部分从生物到人工"><span class="header-section-number">8.1</span> 第一部分：从生物到人工</h2>
-<section id="生物神经元" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="生物神经元"><span class="header-section-number">8.1.1</span> 1.1 生物神经元</h3>
-<section id="人脑的神经网络" class="level4" data-number="8.1.1.1">
-<h4 data-number="8.1.1.1" class="anchored" data-anchor-id="人脑的神经网络"><span class="header-section-number">8.1.1.1</span> 人脑的神经网络</h4>
+</section>
+<section id="第一部分从生物到人工" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="第一部分从生物到人工"><span class="header-section-number">8.2</span> 第一部分：从生物到人工</h2>
+<section id="生物神经元" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="生物神经元"><span class="header-section-number">8.2.1</span> 1.1 生物神经元</h3>
+<section id="人脑的神经网络" class="level4" data-number="8.2.1.1">
+<h4 data-number="8.2.1.1" class="anchored" data-anchor-id="人脑的神经网络"><span class="header-section-number">8.2.1.1</span> 人脑的神经网络</h4>
 <ul>
 <li>人脑约有 <strong>860 亿个神经元</strong></li>
 <li>每个神经元连接 <strong>数千到上万个</strong>其他神经元</li>
@@ -390,8 +395,8 @@ window.Quarto = {
 <li>学习 = 调整神经元之间的<strong>连接强度</strong></li>
 </ul>
 </section>
-<section id="生物神经元的结构" class="level4" data-number="8.1.1.2">
-<h4 data-number="8.1.1.2" class="anchored" data-anchor-id="生物神经元的结构"><span class="header-section-number">8.1.1.2</span> 生物神经元的结构</h4>
+<section id="生物神经元的结构" class="level4" data-number="8.2.1.2">
+<h4 data-number="8.2.1.2" class="anchored" data-anchor-id="生物神经元的结构"><span class="header-section-number">8.2.1.2</span> 生物神经元的结构</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -421,10 +426,10 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section id="人工神经元" class="level3" data-number="8.1.2">
-<h3 data-number="8.1.2" class="anchored" data-anchor-id="人工神经元"><span class="header-section-number">8.1.2</span> 1.2 人工神经元</h3>
-<section id="数学模型" class="level4" data-number="8.1.2.1">
-<h4 data-number="8.1.2.1" class="anchored" data-anchor-id="数学模型"><span class="header-section-number">8.1.2.1</span> 数学模型</h4>
+<section id="人工神经元" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="人工神经元"><span class="header-section-number">8.2.2</span> 1.2 人工神经元</h3>
+<section id="数学模型" class="level4" data-number="8.2.2.1">
+<h4 data-number="8.2.2.1" class="anchored" data-anchor-id="数学模型"><span class="header-section-number">8.2.2.1</span> 数学模型</h4>
 <p><strong>简化的神经元模型（1943年，McCulloch &amp; Pitts）</strong>：</p>
 <p><span class="math display">\[
 y = f\left(\sum_{i=1}^{n} w_i x_i + b\right)
@@ -438,8 +443,8 @@ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right)
 <li><span class="math inline">\(y\)</span>：输出</li>
 </ul>
 </section>
-<section id="可视化人工神经元" class="level4" data-number="8.1.2.2">
-<h4 data-number="8.1.2.2" class="anchored" data-anchor-id="可视化人工神经元"><span class="header-section-number">8.1.2.2</span> 可视化人工神经元</h4>
+<section id="可视化人工神经元" class="level4" data-number="8.2.2.2">
+<h4 data-number="8.2.2.2" class="anchored" data-anchor-id="可视化人工神经元"><span class="header-section-number">8.2.2.2</span> 可视化人工神经元</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -471,8 +476,8 @@ z = w_1 x_1 + w_2 x_2 + w_3 x_3 + b
 y = f(z)
 \]</span></p>
 </section>
-<section id="具体例子titanic-生存预测" class="level4" data-number="8.1.2.3">
-<h4 data-number="8.1.2.3" class="anchored" data-anchor-id="具体例子titanic-生存预测"><span class="header-section-number">8.1.2.3</span> 具体例子：Titanic 生存预测</h4>
+<section id="具体例子titanic-生存预测" class="level4" data-number="8.2.2.3">
+<h4 data-number="8.2.2.3" class="anchored" data-anchor-id="具体例子titanic-生存预测"><span class="header-section-number">8.2.2.3</span> 具体例子：Titanic 生存预测</h4>
 <p><strong>特征</strong>：</p>
 <ul>
 <li><span class="math inline">\(x_1\)</span> = 性别（1=男，0=女）</li>
@@ -505,10 +510,10 @@ y = 1/(1+e^1.2) ≈ 0.23
 </section>
 </section>
 </section>
-<section id="第二部分激活函数" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="第二部分激活函数"><span class="header-section-number">8.2</span> 第二部分：激活函数</h2>
-<section id="为什么需要激活函数" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="为什么需要激活函数"><span class="header-section-number">8.2.1</span> 为什么需要激活函数？</h3>
+<section id="第二部分激活函数" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="第二部分激活函数"><span class="header-section-number">8.3</span> 第二部分：激活函数</h2>
+<section id="为什么需要激活函数" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="为什么需要激活函数"><span class="header-section-number">8.3.1</span> 为什么需要激活函数？</h3>
 <p><strong>没有激活函数的问题</strong>：</p>
 <p><span class="math display">\[
 \begin{align}
@@ -521,12 +526,12 @@ y = 1/(1+e^1.2) ≈ 0.23
 <p><strong>结论</strong>：多层线性叠加 = 单层线性</p>
 <p><strong>激活函数的作用</strong>：<strong>引入非线性</strong>，让网络能学习复杂模式</p>
 </section>
-<section id="常见激活函数" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="常见激活函数"><span class="header-section-number">8.2.2</span> 常见激活函数</h3>
+<section id="常见激活函数" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="常见激活函数"><span class="header-section-number">8.3.2</span> 常见激活函数</h3>
 <p><span class="math display">\[
 \sigma(z) = \frac{1}{1 + e^{-z}}
 \]</span></p>
-<div id="411ee2ea" class="cell" data-message="false" data-execution_count="2">
+<div id="7ae3cae5" class="cell" data-message="false" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -587,8 +592,8 @@ y = 1/(1+e^1.2) ≈ 0.23
 </div>
 </div>
 </div>
-<section id="sigmoid-详解" class="level4" data-number="8.2.2.1">
-<h4 data-number="8.2.2.1" class="anchored" data-anchor-id="sigmoid-详解"><span class="header-section-number">8.2.2.1</span> Sigmoid 详解</h4>
+<section id="sigmoid-详解" class="level4" data-number="8.3.2.1">
+<h4 data-number="8.3.2.1" class="anchored" data-anchor-id="sigmoid-详解"><span class="header-section-number">8.3.2.1</span> Sigmoid 详解</h4>
 <p><strong>公式</strong>：</p>
 <p><span class="math display">\[
 \sigma(z) = \frac{1}{1 + e^{-z}}
@@ -615,8 +620,8 @@ y = 1/(1+e^1.2) ≈ 0.23
 <li>✗ 隐藏层（已被 ReLU 取代）</li>
 </ul>
 </section>
-<section id="relu-详解" class="level4" data-number="8.2.2.2">
-<h4 data-number="8.2.2.2" class="anchored" data-anchor-id="relu-详解"><span class="header-section-number">8.2.2.2</span> ReLU 详解</h4>
+<section id="relu-详解" class="level4" data-number="8.3.2.2">
+<h4 data-number="8.3.2.2" class="anchored" data-anchor-id="relu-详解"><span class="header-section-number">8.3.2.2</span> ReLU 详解</h4>
 <p><strong>公式</strong>：</p>
 <p><span class="math display">\[
 \text{ReLU}(z) = \max(0, z) = \begin{cases}
@@ -641,8 +646,8 @@ z &amp; \text{if } z &gt; 0 \\
 <li>✓ 绝大多数深度学习任务</li>
 </ul>
 </section>
-<section id="tanh-详解" class="level4" data-number="8.2.2.3">
-<h4 data-number="8.2.2.3" class="anchored" data-anchor-id="tanh-详解"><span class="header-section-number">8.2.2.3</span> Tanh 详解</h4>
+<section id="tanh-详解" class="level4" data-number="8.3.2.3">
+<h4 data-number="8.3.2.3" class="anchored" data-anchor-id="tanh-详解"><span class="header-section-number">8.3.2.3</span> Tanh 详解</h4>
 <p><strong>公式</strong>：</p>
 <p><span class="math display">\[
 \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}
@@ -669,8 +674,8 @@ z &amp; \text{if } z &gt; 0 \\
 <li>需要零中心输出的场景</li>
 </ul>
 </section>
-<section id="激活函数对比表" class="level4" data-number="8.2.2.4">
-<h4 data-number="8.2.2.4" class="anchored" data-anchor-id="激活函数对比表"><span class="header-section-number">8.2.2.4</span> 激活函数对比表</h4>
+<section id="激活函数对比表" class="level4" data-number="8.3.2.4">
+<h4 data-number="8.3.2.4" class="anchored" data-anchor-id="激活函数对比表"><span class="header-section-number">8.3.2.4</span> 激活函数对比表</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -725,12 +730,12 @@ z &amp; \text{if } z &gt; 0 \\
 </section>
 </section>
 </section>
-<section id="第三部分多层感知机mlp" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="第三部分多层感知机mlp"><span class="header-section-number">8.3</span> 第三部分：多层感知机（MLP）</h2>
-<section id="网络结构" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="网络结构"><span class="header-section-number">8.3.1</span> 网络结构</h3>
-<section id="从单个神经元到神经网络" class="level4" data-number="8.3.1.1">
-<h4 data-number="8.3.1.1" class="anchored" data-anchor-id="从单个神经元到神经网络"><span class="header-section-number">8.3.1.1</span> 从单个神经元到神经网络</h4>
+<section id="第三部分多层感知机mlp" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="第三部分多层感知机mlp"><span class="header-section-number">8.4</span> 第三部分：多层感知机（MLP）</h2>
+<section id="网络结构" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="网络结构"><span class="header-section-number">8.4.1</span> 网络结构</h3>
+<section id="从单个神经元到神经网络" class="level4" data-number="8.4.1.1">
+<h4 data-number="8.4.1.1" class="anchored" data-anchor-id="从单个神经元到神经网络"><span class="header-section-number">8.4.1.1</span> 从单个神经元到神经网络</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -803,8 +808,8 @@ z &amp; \text{if } z &gt; 0 \\
 </div>
 </div>
 </section>
-<section id="符号表示" class="level4" data-number="8.3.1.2">
-<h4 data-number="8.3.1.2" class="anchored" data-anchor-id="符号表示"><span class="header-section-number">8.3.1.2</span> 符号表示</h4>
+<section id="符号表示" class="level4" data-number="8.4.1.2">
+<h4 data-number="8.4.1.2" class="anchored" data-anchor-id="符号表示"><span class="header-section-number">8.4.1.2</span> 符号表示</h4>
 <p><strong>输入层 → 隐藏层1 → 隐藏层2 → 输出层</strong></p>
 <ul>
 <li>输入：3 个特征</li>
@@ -815,10 +820,10 @@ z &amp; \text{if } z &gt; 0 \\
 <p><strong>简写</strong>：<code>Input(3) → [4] → [2] → Output(1)</code></p>
 </section>
 </section>
-<section id="参数数量计算" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="参数数量计算"><span class="header-section-number">8.3.2</span> 参数数量计算</h3>
-<section id="titanic-例子" class="level4" data-number="8.3.2.1">
-<h4 data-number="8.3.2.1" class="anchored" data-anchor-id="titanic-例子"><span class="header-section-number">8.3.2.1</span> Titanic 例子</h4>
+<section id="参数数量计算" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="参数数量计算"><span class="header-section-number">8.4.2</span> 参数数量计算</h3>
+<section id="titanic-例子" class="level4" data-number="8.4.2.1">
+<h4 data-number="8.4.2.1" class="anchored" data-anchor-id="titanic-例子"><span class="header-section-number">8.4.2.1</span> Titanic 例子</h4>
 <pre><code>Input(8) → Dense(64, ReLU) → Dense(32, ReLU) → Output(1, Sigmoid)</code></pre>
 <p><strong>计算</strong>：</p>
 <table class="caption-top table">
@@ -859,16 +864,16 @@ z &amp; \text{if } z &gt; 0 \\
 </ul>
 </section>
 </section>
-<section id="为什么需要多层" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="为什么需要多层"><span class="header-section-number">8.3.3</span> 为什么需要多层？</h3>
-<section id="单层的局限性" class="level4" data-number="8.3.3.1">
-<h4 data-number="8.3.3.1" class="anchored" data-anchor-id="单层的局限性"><span class="header-section-number">8.3.3.1</span> 单层的局限性</h4>
+<section id="为什么需要多层" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="为什么需要多层"><span class="header-section-number">8.4.3</span> 为什么需要多层？</h3>
+<section id="单层的局限性" class="level4" data-number="8.4.3.1">
+<h4 data-number="8.4.3.1" class="anchored" data-anchor-id="单层的局限性"><span class="header-section-number">8.4.3.1</span> 单层的局限性</h4>
 <p><strong>单层神经网络</strong>（= 逻辑回归）：</p>
 <ul>
 <li>只能学习<strong>线性决策边界</strong></li>
 <li>无法解决 XOR 问题</li>
 </ul>
-<div id="c30362eb" class="cell" data-message="false" data-execution_count="3">
+<div id="31a28c22" class="cell" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># XOR 问题示例</span></span>
@@ -921,8 +926,8 @@ z &amp; \text{if } z &gt; 0 \\
 </div>
 </div>
 </section>
-<section id="多层的威力层次特征学习" class="level4" data-number="8.3.3.2">
-<h4 data-number="8.3.3.2" class="anchored" data-anchor-id="多层的威力层次特征学习"><span class="header-section-number">8.3.3.2</span> 多层的威力：层次特征学习</h4>
+<section id="多层的威力层次特征学习" class="level4" data-number="8.4.3.2">
+<h4 data-number="8.4.3.2" class="anchored" data-anchor-id="多层的威力层次特征学习"><span class="header-section-number">8.4.3.2</span> 多层的威力：层次特征学习</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -951,8 +956,8 @@ z &amp; \text{if } z &gt; 0 \\
 <li>这是<strong>自动特征工程</strong>！</li>
 </ul>
 </section>
-<section id="层数选择建议" class="level4" data-number="8.3.3.3">
-<h4 data-number="8.3.3.3" class="anchored" data-anchor-id="层数选择建议"><span class="header-section-number">8.3.3.3</span> 层数选择建议</h4>
+<section id="层数选择建议" class="level4" data-number="8.4.3.3">
+<h4 data-number="8.4.3.3" class="anchored" data-anchor-id="层数选择建议"><span class="header-section-number">8.4.3.3</span> 层数选择建议</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -993,12 +998,12 @@ z &amp; \text{if } z &gt; 0 \\
 </section>
 </section>
 </section>
-<section id="第四部分前向传播与反向传播" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="第四部分前向传播与反向传播"><span class="header-section-number">8.4</span> 第四部分：前向传播与反向传播</h2>
-<section id="前向传播forward-propagation" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="前向传播forward-propagation"><span class="header-section-number">8.4.1</span> 前向传播（Forward Propagation）</h3>
-<section id="从输入到输出的信息流" class="level4" data-number="8.4.1.1">
-<h4 data-number="8.4.1.1" class="anchored" data-anchor-id="从输入到输出的信息流"><span class="header-section-number">8.4.1.1</span> 从输入到输出的信息流</h4>
+<section id="第四部分前向传播与反向传播" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="第四部分前向传播与反向传播"><span class="header-section-number">8.5</span> 第四部分：前向传播与反向传播</h2>
+<section id="前向传播forward-propagation" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="前向传播forward-propagation"><span class="header-section-number">8.5.1</span> 前向传播（Forward Propagation）</h3>
+<section id="从输入到输出的信息流" class="level4" data-number="8.5.1.1">
+<h4 data-number="8.5.1.1" class="anchored" data-anchor-id="从输入到输出的信息流"><span class="header-section-number">8.5.1.1</span> 从输入到输出的信息流</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1029,10 +1034,10 @@ z &amp; \text{if } z &gt; 0 \\
 <p><strong>结果</strong>：<span class="math inline">\(\hat{y}\)</span> = 0.85（85% 存活概率）</p>
 </section>
 </section>
-<section id="损失函数loss-function" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="损失函数loss-function"><span class="header-section-number">8.4.2</span> 损失函数（Loss Function）</h3>
-<section id="衡量预测误差" class="level4" data-number="8.4.2.1">
-<h4 data-number="8.4.2.1" class="anchored" data-anchor-id="衡量预测误差"><span class="header-section-number">8.4.2.1</span> 衡量预测误差</h4>
+<section id="损失函数loss-function" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="损失函数loss-function"><span class="header-section-number">8.5.2</span> 损失函数（Loss Function）</h3>
+<section id="衡量预测误差" class="level4" data-number="8.5.2.1">
+<h4 data-number="8.5.2.1" class="anchored" data-anchor-id="衡量预测误差"><span class="header-section-number">8.5.2.1</span> 衡量预测误差</h4>
 <p><strong>二分类：Binary Cross-Entropy</strong></p>
 <p><span class="math display">\[
 \text{Loss} = -\frac{1}{n}\sum_{i=1}^{n}\left[y_i \log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i)\right]
@@ -1044,9 +1049,9 @@ z &amp; \text{if } z &gt; 0 \\
 </ul>
 <p><strong>类比</strong>：Loss = 考试分数与满分的差距</p>
 </section>
-<section id="损失函数可视化" class="level4" data-number="8.4.2.2">
-<h4 data-number="8.4.2.2" class="anchored" data-anchor-id="损失函数可视化"><span class="header-section-number">8.4.2.2</span> 损失函数可视化</h4>
-<div id="0604467d" class="cell" data-message="false" data-execution_count="4">
+<section id="损失函数可视化" class="level4" data-number="8.5.2.2">
+<h4 data-number="8.5.2.2" class="anchored" data-anchor-id="损失函数可视化"><span class="header-section-number">8.5.2.2</span> 损失函数可视化</h4>
+<div id="0579f77b" class="cell" data-message="false" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Binary Cross-Entropy 可视化</span></span>
@@ -1080,10 +1085,10 @@ z &amp; \text{if } z &gt; 0 \\
 </div>
 </section>
 </section>
-<section id="反向传播backpropagation" class="level3" data-number="8.4.3">
-<h3 data-number="8.4.3" class="anchored" data-anchor-id="反向传播backpropagation"><span class="header-section-number">8.4.3</span> 反向传播（Backpropagation）</h3>
-<section id="核心思想不讲数学细节" class="level4" data-number="8.4.3.1">
-<h4 data-number="8.4.3.1" class="anchored" data-anchor-id="核心思想不讲数学细节"><span class="header-section-number">8.4.3.1</span> 核心思想（不讲数学细节）</h4>
+<section id="反向传播backpropagation" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="反向传播backpropagation"><span class="header-section-number">8.5.3</span> 反向传播（Backpropagation）</h3>
+<section id="核心思想不讲数学细节" class="level4" data-number="8.5.3.1">
+<h4 data-number="8.5.3.1" class="anchored" data-anchor-id="核心思想不讲数学细节"><span class="header-section-number">8.5.3.1</span> 核心思想（不讲数学细节）</h4>
 <p><strong>问题</strong>：如何调整 W 和 b 来降低 Loss？</p>
 <p><strong>方法</strong>：计算 Loss 对每个参数的”贡献”（梯度）</p>
 <div class="cell" data-layout-align="default">
@@ -1115,9 +1120,9 @@ W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\parti
 <li><span class="math inline">\(\frac{\partial \text{Loss}}{\partial W}\)</span>：梯度（方向）</li>
 </ul>
 </section>
-<section id="类比登山下坡" class="level4" data-number="8.4.3.2">
-<h4 data-number="8.4.3.2" class="anchored" data-anchor-id="类比登山下坡"><span class="header-section-number">8.4.3.2</span> 类比：登山下坡</h4>
-<div id="b1e134bb" class="cell" data-execution_count="5">
+<section id="类比登山下坡" class="level4" data-number="8.5.3.2">
+<h4 data-number="8.5.3.2" class="anchored" data-anchor-id="类比登山下坡"><span class="header-section-number">8.5.3.2</span> 类比：登山下坡</h4>
+<div id="b1f09b07" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 梯度下降可视化</span></span>
@@ -1160,10 +1165,10 @@ W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\parti
 </ul>
 </section>
 </section>
-<section id="优化器optimizer" class="level3" data-number="8.4.4">
-<h3 data-number="8.4.4" class="anchored" data-anchor-id="优化器optimizer"><span class="header-section-number">8.4.4</span> 优化器（Optimizer）</h3>
-<section id="sgd-vs-adam" class="level4" data-number="8.4.4.1">
-<h4 data-number="8.4.4.1" class="anchored" data-anchor-id="sgd-vs-adam"><span class="header-section-number">8.4.4.1</span> SGD vs Adam</h4>
+<section id="优化器optimizer" class="level3" data-number="8.5.4">
+<h3 data-number="8.5.4" class="anchored" data-anchor-id="优化器optimizer"><span class="header-section-number">8.5.4</span> 优化器（Optimizer）</h3>
+<section id="sgd-vs-adam" class="level4" data-number="8.5.4.1">
+<h4 data-number="8.5.4.1" class="anchored" data-anchor-id="sgd-vs-adam"><span class="header-section-number">8.5.4.1</span> SGD vs Adam</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 28%">
@@ -1202,12 +1207,12 @@ W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\parti
 </section>
 </section>
 </section>
-<section id="第五部分mlp-vs-树模型" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="第五部分mlp-vs-树模型"><span class="header-section-number">8.5</span> 第五部分：MLP vs 树模型</h2>
-<section id="何时用树模型何时用-mlp" class="level3" data-number="8.5.1">
-<h3 data-number="8.5.1" class="anchored" data-anchor-id="何时用树模型何时用-mlp"><span class="header-section-number">8.5.1</span> 何时用树模型，何时用 MLP？</h3>
-<section id="对比表" class="level4" data-number="8.5.1.1">
-<h4 data-number="8.5.1.1" class="anchored" data-anchor-id="对比表"><span class="header-section-number">8.5.1.1</span> 对比表</h4>
+<section id="第五部分mlp-vs-树模型" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="第五部分mlp-vs-树模型"><span class="header-section-number">8.6</span> 第五部分：MLP vs 树模型</h2>
+<section id="何时用树模型何时用-mlp" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="何时用树模型何时用-mlp"><span class="header-section-number">8.6.1</span> 何时用树模型，何时用 MLP？</h3>
+<section id="对比表" class="level4" data-number="8.6.1.1">
+<h4 data-number="8.6.1.1" class="anchored" data-anchor-id="对比表"><span class="header-section-number">8.6.1.1</span> 对比表</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -1260,8 +1265,8 @@ W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\parti
 </tbody>
 </table>
 </section>
-<section id="金融领域实际情况" class="level4" data-number="8.5.1.2">
-<h4 data-number="8.5.1.2" class="anchored" data-anchor-id="金融领域实际情况"><span class="header-section-number">8.5.1.2</span> 金融领域实际情况</h4>
+<section id="金融领域实际情况" class="level4" data-number="8.6.1.2">
+<h4 data-number="8.6.1.2" class="anchored" data-anchor-id="金融领域实际情况"><span class="header-section-number">8.6.1.2</span> 金融领域实际情况</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1318,35 +1323,35 @@ W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\parti
 </section>
 </section>
 </section>
-<section id="总结" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="总结"><span class="header-section-number">8.6</span> 总结</h2>
-<section id="本讲知识回顾" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">8.6.1</span> 本讲知识回顾</h3>
-<section id="神经元模型" class="level4" data-number="8.6.1.1">
-<h4 data-number="8.6.1.1" class="anchored" data-anchor-id="神经元模型"><span class="header-section-number">8.6.1.1</span> 神经元模型</h4>
+<section id="总结" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="总结"><span class="header-section-number">8.7</span> 总结</h2>
+<section id="本讲知识回顾" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">8.7.1</span> 本讲知识回顾</h3>
+<section id="神经元模型" class="level4" data-number="8.7.1.1">
+<h4 data-number="8.7.1.1" class="anchored" data-anchor-id="神经元模型"><span class="header-section-number">8.7.1.1</span> 神经元模型</h4>
 <ul>
 <li>生物神经元 → 人工神经元</li>
 <li>加权求和 + 激活函数</li>
 </ul>
 </section>
-<section id="激活函数" class="level4" data-number="8.6.1.2">
-<h4 data-number="8.6.1.2" class="anchored" data-anchor-id="激活函数"><span class="header-section-number">8.6.1.2</span> 激活函数</h4>
+<section id="激活函数" class="level4" data-number="8.7.1.2">
+<h4 data-number="8.7.1.2" class="anchored" data-anchor-id="激活函数"><span class="header-section-number">8.7.1.2</span> 激活函数</h4>
 <ul>
 <li><strong>Sigmoid</strong>：输出层（二分类）</li>
 <li><strong>ReLU</strong>：隐藏层首选</li>
 <li><strong>Tanh</strong>：RNN 专用</li>
 </ul>
 </section>
-<section id="多层感知机" class="level4" data-number="8.6.1.3">
-<h4 data-number="8.6.1.3" class="anchored" data-anchor-id="多层感知机"><span class="header-section-number">8.6.1.3</span> 多层感知机</h4>
+<section id="多层感知机" class="level4" data-number="8.7.1.3">
+<h4 data-number="8.7.1.3" class="anchored" data-anchor-id="多层感知机"><span class="header-section-number">8.7.1.3</span> 多层感知机</h4>
 <ul>
 <li>输入层 → 隐藏层 → 输出层</li>
 <li>参数：权重 W + 偏置 b</li>
 <li>多层 → 学习复杂非线性模式</li>
 </ul>
 </section>
-<section id="训练过程" class="level4" data-number="8.6.1.4">
-<h4 data-number="8.6.1.4" class="anchored" data-anchor-id="训练过程"><span class="header-section-number">8.6.1.4</span> 训练过程</h4>
+<section id="训练过程" class="level4" data-number="8.7.1.4">
+<h4 data-number="8.7.1.4" class="anchored" data-anchor-id="训练过程"><span class="header-section-number">8.7.1.4</span> 训练过程</h4>
 <ul>
 <li><strong>前向传播</strong>：输入 → 输出</li>
 <li><strong>损失函数</strong>：衡量误差</li>
@@ -1354,8 +1359,8 @@ W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\parti
 <li><strong>优化器</strong>：更新参数（推荐 Adam）</li>
 </ul>
 </section>
-<section id="mlp-vs-树模型" class="level4" data-number="8.6.1.5">
-<h4 data-number="8.6.1.5" class="anchored" data-anchor-id="mlp-vs-树模型"><span class="header-section-number">8.6.1.5</span> MLP vs 树模型</h4>
+<section id="mlp-vs-树模型" class="level4" data-number="8.7.1.5">
+<h4 data-number="8.7.1.5" class="anchored" data-anchor-id="mlp-vs-树模型"><span class="header-section-number">8.7.1.5</span> MLP vs 树模型</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1384,8 +1389,8 @@ W_{\text{new}} = W_{\text{old}} - \eta \times \frac{\partial \text{Loss}}{\parti
 </table>
 </section>
 </section>
-<section id="核心要点" class="level3" data-number="8.6.2">
-<h3 data-number="8.6.2" class="anchored" data-anchor-id="核心要点"><span class="header-section-number">8.6.2</span> 核心要点</h3>
+<section id="核心要点" class="level3" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="核心要点"><span class="header-section-number">8.7.2</span> 核心要点</h3>
 <ol type="1">
 <li><p><strong>深度学习不神秘</strong><br>
 基于简单的数学运算累积</p></li>
@@ -1400,8 +1405,8 @@ Sequential API 易上手</p></li>
 </ol>
 </section>
 </section>
-<section id="qa" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="qa"><span class="header-section-number">8.7</span> Q&amp;A</h2>
+<section id="qa" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="qa"><span class="header-section-number">8.8</span> Q&amp;A</h2>
 <p><strong>Q1：人工神经元是如何模拟生物神经元的？请写出人工神经元的基本数学模型。</strong></p>
 <p><strong>A：</strong> 人工神经元模拟生物神经元“接收信号-整合处理-激活发火”的过程。</p>
 <p>它的数学模型是：</p>
@@ -1896,8 +1901,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./w5_ensemble_learning.html" class="pagination-link" aria-label="根据操作系统设置不同的字体">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">根据操作系统设置不同的字体</span></span>
+      <a href="./w5_ensemble_learning.html" class="pagination-link" aria-label="第五讲：集成学习 - 随机森林与 GBDT">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">第五讲：集成学习 - 随机森林与 GBDT</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -1,4 +1,6 @@
+---
 title: 第一讲：Python基础与机器学习入门
+---
 
 ```{python}
 #| echo: false
