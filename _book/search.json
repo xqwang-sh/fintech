@@ -34,7 +34,7 @@
     "href": "index.html#课程结构",
     "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.3 课程结构",
-    "text": "0.3 课程结构\n本书按时间顺序组织，共分为6个主要章节：\n\n第10周：Python基础与机器学习入门\n第11周：数据处理与线性回归实践\n第12周：线性回归的正则化\n第13周：分类问题、决策树与评估指标\n第14周：集成学习 - 随机森林与 GBDT\n第15周：神经网络基础\n\n所有上机课jupyter notebook请通过百度网盘获取（）",
+    "text": "0.3 课程结构\n本书按时间顺序组织，共分为6个主要章节：\n\n第10周：Python基础与机器学习入门\n第11周：数据处理与线性回归实践\n第12周：线性回归的正则化\n第13周：分类问题、决策树与评估指标\n第14周：集成学习 - 随机森林与 GBDT\n第15周：神经网络基础\n\n所有上机课jupyter notebook请通过百度网盘获取（链接: https://pan.baidu.com/s/1DlM2Mt7gS_Jn2C5V4JfBZA?pwd=dhc6 提取码: dhc6）",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>金融科技导论</span>"
     ]
@@ -44,7 +44,7 @@
     "href": "index.html#项目列表与要求",
     "title": "金融科技概论讲义（机器学习部分）",
     "section": "0.4 项目列表与要求",
-    "text": "0.4 项目列表与要求\n\n项目列表与难度\n每个项目具体要求：\n\nCalifornia House Prices\nUCI Credit Card Default\nLendingClub Default Risk\nHome Credit Default Risk\nIEEE-CIS Fraud Detection\nG-Research Crypto Forecasting\n\n项目数据与模板请通过百度网盘获取（）",
+    "text": "0.4 项目列表与要求\n\n项目列表与难度\n每个项目具体要求：\n\nCalifornia House Prices\nUCI Credit Card Default\nLendingClub Default Risk\nHome Credit Default Risk\nIEEE-CIS Fraud Detection\nG-Research Crypto Forecasting\n\n项目数据与模板请通过百度网盘获取（链接: https://pan.baidu.com/s/1DlM2Mt7gS_Jn2C5V4JfBZA?pwd=dhc6 提取码: dhc6）",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>金融科技导论</span>"
     ]
@@ -764,7 +764,7 @@
     "href": "1_california.html#团队与分工6-10-人",
     "title": "10  项目1：California House Prices 学生项目要求",
     "section": "10.3 团队与分工（6-10 人）",
-    "text": "10.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data） B. 数据探索（explore_data） C. 特征工程（feature_engineering） D. 数据切分（split_data） E. 训练模型（train_model） F. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写） H. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索） J. 特征工程辅助（协助 C 完成特征构造、验证） K. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
+    "text": "10.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data）\nB. 数据探索（explore_data）\nC. 特征工程（feature_engineering）\nD. 数据切分（split_data）\nE. 训练模型（train_model）\nF. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写）\nH. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索）\nJ. 特征工程辅助（协助 C 完成特征构造、验证）\nK. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>项目1：California House Prices 学生项目要求</span>"
     ]
@@ -884,7 +884,7 @@
     "href": "2_uci.html#团队与分工6-10-人",
     "title": "11  项目2：UCI Credit Card Default 学生项目要求",
     "section": "11.3 团队与分工（6-10 人）",
-    "text": "11.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data） B. 数据探索（explore_data） C. 特征工程（feature_engineering） D. 数据切分（split_data） E. 训练模型（train_model） F. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写） H. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索） J. 特征工程辅助（协助 C 完成特征构造、验证） K. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
+    "text": "11.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data）\nB. 数据探索（explore_data）\nC. 特征工程（feature_engineering）\nD. 数据切分（split_data）\nE. 训练模型（train_model）\nF. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写）\nH. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索）\nJ. 特征工程辅助（协助 C 完成特征构造、验证）\nK. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
     "crumbs": [
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>项目2：UCI Credit Card Default 学生项目要求</span>"
     ]
@@ -1004,7 +1004,7 @@
     "href": "3_lendingclub.html#团队与分工6-10-人",
     "title": "12  项目3：Lending Club（借贷违约风险）学生项目要求",
     "section": "12.3 团队与分工（6-10 人）",
-    "text": "12.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data） B. 数据探索（explore_data） C. 特征工程（feature_engineering） D. 数据切分（split_data） E. 训练模型（train_model） F. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写） H. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索） J. 特征工程辅助（协助 C 完成特征构造、验证） K. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
+    "text": "12.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data）\nB. 数据探索（explore_data）\nC. 特征工程（feature_engineering）\nD. 数据切分（split_data）\nE. 训练模型（train_model）\nF. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写）\nH. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索）\nJ. 特征工程辅助（协助 C 完成特征构造、验证）\nK. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>项目3：Lending Club（借贷违约风险）学生项目要求</span>"
     ]
@@ -1124,7 +1124,7 @@
     "href": "4_homecredit.html#团队与分工6-10-人",
     "title": "13  项目4：Home Credit Default Risk 学生项目要求",
     "section": "13.3 团队与分工（6-10 人）",
-    "text": "13.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data） B. 数据探索（explore_data） C. 特征工程（feature_engineering） D. 数据切分（split_data） E. 训练模型（train_model） F. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写） H. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索） J. 特征工程辅助（协助 C 完成特征构造、验证） K. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
+    "text": "13.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data）\nB. 数据探索（explore_data）\nC. 特征工程（feature_engineering）\nD. 数据切分（split_data）\nE. 训练模型（train_model）\nF. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写）\nH. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索）\nJ. 特征工程辅助（协助 C 完成特征构造、验证）\nK. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
     "crumbs": [
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>项目4：Home Credit Default Risk 学生项目要求</span>"
     ]
@@ -1244,7 +1244,7 @@
     "href": "5_ieee-cis.html#团队与分工6-10-人",
     "title": "14  项目5：IEEE‑CIS Fraud Detection 学生项目要求",
     "section": "14.3 团队与分工（6-10 人）",
-    "text": "14.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data） B. 数据探索（explore_data） C. 特征工程（feature_engineering） D. 数据切分（split_data） E. 训练模型（train_model） F. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写） H. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索） J. 特征工程辅助（协助 C 完成特征构造、验证） K. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
+    "text": "14.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data）\nB. 数据探索（explore_data）\nC. 特征工程（feature_engineering）\nD. 数据切分（split_data）\nE. 训练模型（train_model）\nF. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写）\nH. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索）\nJ. 特征工程辅助（协助 C 完成特征构造、验证）\nK. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
     "crumbs": [
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>项目5：IEEE‑CIS Fraud Detection 学生项目要求</span>"
     ]
@@ -1364,7 +1364,7 @@
     "href": "6_gresearch.html#团队与分工6-10-人",
     "title": "15  项目6：G‑Research Crypto Forecasting 学生项目要求",
     "section": "15.3 团队与分工（6-10 人）",
-    "text": "15.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data） B. 数据探索（explore_data） C. 特征工程（feature_engineering） D. 数据切分（split_data） E. 训练模型（train_model） F. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写） H. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索） J. 特征工程辅助（协助 C 完成特征构造、验证） K. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
+    "text": "15.3 团队与分工（6-10 人）\n\n推荐规模：6-10 人；可根据团队实际人数灵活调整。\n核心角色（必须）：\nA. 数据读取与清洗（clean_data）\nB. 数据探索（explore_data）\nC. 特征工程（feature_engineering）\nD. 数据切分（split_data）\nE. 训练模型（train_model）\nF. 评估与导出（evaluate_model / save_predictions）\n可选角色（7-8 人时添加）：\nG. 可视化与报告排版（负责图表制作、报告编写）\nH. presenter（做PPT、项目答辩汇报）\n协作角色（9-10 人时添加）：\nI. 数据探索辅助（协助 A 完成数据理解、可视化探索）\nJ. 特征工程辅助（协助 C 完成特征构造、验证）\nK. 模型调参辅助（协助 E 完成超参数调优、模型对比）\n署名规范：每位成员在自己负责的函数顶部写 (owner 学号)+姓名；不得修改他人代码；合并由队长负责。\n分工建议：\n\n6 人：每人 1 个核心角色\n7 人：6 个核心角色 + 1 个可选角色（G 或 H）\n8 人：6 个核心角色 + 2 个可选角色（G + H）\n9 人：6 个核心角色 + 2 个可选角色 + 1 个协作角色\n10 人：6 个核心角色 + 2 个可选角色 + 2 个协作角色",
     "crumbs": [
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>项目6：G‑Research Crypto Forecasting 学生项目要求</span>"
     ]
