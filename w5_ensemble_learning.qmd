@@ -1,6 +1,9 @@
-# 第五讲：集成学习 - 随机森林与 GBDT
+---
+title: 第五讲：集成学习 - 随机森林与 GBDT
+---
 
 ```{python}
+#| echo: false
 import matplotlib.pyplot as plt
 # 根据操作系统设置不同的字体
 import platform
@@ -176,7 +179,7 @@ graph TD
 
 ---
 
-## 2.1 Bagging 原理
+## Bagging 原理
 
 **Bagging = Bootstrap Aggregating**
 
@@ -272,7 +275,7 @@ graph TD
 
 ---
 
-## 2.2 随机森林（Random Forest）
+## 随机森林（Random Forest）
 
 **随机森林 = Bagging + 特征随机**
 
@@ -345,7 +348,7 @@ graph TD
 
 ---
 
-## 3.1 Boosting 核心思想
+## Boosting 核心思想
 
 **Bagging**：独立专家各自诊断，最后投票
 
@@ -395,7 +398,7 @@ graph LR
 
 ---
 
-## 3.2 GBDT 原理
+## GBDT 原理
 
 **GBDT = Gradient Boosting Decision Tree**
 

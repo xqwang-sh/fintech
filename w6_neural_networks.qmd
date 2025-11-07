@@ -1,6 +1,9 @@
-# 第六讲：神经网络基础
+---
+title: 第六讲：神经网络基础
+---
 
 ```{python}
+#| echo: false
 import matplotlib.pyplot as plt
 # 根据操作系统设置不同的字体
 import platform
@@ -199,7 +202,7 @@ y = 1/(1+e^1.2) ≈ 0.23
 
 ---
 
-## 2.1 为什么需要激活函数？
+## 为什么需要激活函数？
 
 **没有激活函数的问题**：
 
@@ -218,9 +221,7 @@ $$
 
 ---
 
-## 2.2 常见激活函数
-
-### 1. Sigmoid
+## 常见激活函数
 
 $$
 \sigma(z) = \frac{1}{1 + e^{-z}}
@@ -393,7 +394,7 @@ $$
 
 ---
 
-## 3.1 网络结构
+## 网络结构
 
 ### 从单个神经元到神经网络
 
@@ -475,7 +476,7 @@ graph LR
 
 ---
 
-## 3.2 参数数量计算
+## 参数数量计算
 
 ### Titanic 例子
 
@@ -499,7 +500,7 @@ Input(8) → Dense(64, ReLU) → Dense(32, ReLU) → Output(1, Sigmoid)
 
 ---
 
-## 3.3 为什么需要多层？
+## 为什么需要多层？
 
 ### 单层的局限性
 
@@ -597,7 +598,7 @@ graph TD
 
 ---
 
-## 4.1 前向传播（Forward Propagation）
+## 前向传播（Forward Propagation）
 
 ### 从输入到输出的信息流
 
@@ -624,7 +625,7 @@ graph LR
 
 ---
 
-## 4.2 损失函数（Loss Function）
+## 损失函数（Loss Function）
 
 ### 衡量预测误差
 
@@ -670,7 +671,7 @@ plt.show()
 
 ---
 
-## 4.3 反向传播（Backpropagation）
+## 反向传播（Backpropagation）
 
 ### 核心思想（不讲数学细节）
 
@@ -737,7 +738,7 @@ plt.show()
 
 ---
 
-## 4.4 优化器（Optimizer）
+## 优化器（Optimizer）
 
 ### SGD vs Adam
 

@@ -1,6 +1,9 @@
-# 第四讲：分类问题、决策树与评估指标
+---
+title: 第四讲：分类问题、决策树与评估指标
+---
 
 ```{python}
+#| echo: false
 import matplotlib.pyplot as plt
 # 根据操作系统设置不同的字体
 import platform
@@ -315,13 +318,13 @@ graph TD
 
 ## 四个概念详解
 
-### 1. TP（True Positive，真阳性）
+### TP（True Positive，真阳性）
 
 - **含义**：真实是正类，预测也是正类 ✓
 - **例子**：真的存活，预测存活（50 人）
 - **理解**：预测对了，皆大欢喜
 
-### 2. FN（False Negative，假阴性）
+### FN（False Negative，假阴性）
 
 - **含义**：真实是正类，预测是负类 ✗
 - **例子**：真的存活，预测死亡（10 人）
@@ -329,13 +332,13 @@ graph TD
 
 ---
 
-### 3. FP（False Positive，假阳性）
+### FP（False Positive，假阳性）
 
 - **含义**：真实是负类，预测是正类 ✗
 - **例子**：真的死亡，预测存活（5 人）
 - **理解**：**误报**（本不该报警，但误报了）
 
-### 4. TN（True Negative，真阴性）
+### TN（True Negative，真阴性）
 
 - **含义**：真实是负类，预测也是负类 ✓
 - **例子**：真的死亡，预测死亡（35 人）
@@ -420,7 +423,7 @@ print(f"TP={TP}, FN={FN}, FP={FP}, TN={TN}")
 
 ---
 
-## 4.1 准确率（Accuracy）
+## 准确率（Accuracy）
 
 ### 定义
 
@@ -450,7 +453,7 @@ $$
 
 ---
 
-## 4.2 精确率（Precision）
+## 精确率（Precision）
 
 ### 定义
 
@@ -472,7 +475,7 @@ $$
 
 ---
 
-## 4.3 召回率（Recall / TPR）
+## 召回率（Recall / TPR）
 
 ### 定义
 
@@ -535,7 +538,7 @@ plt.show()
 
 ---
 
-## 4.4 F1 分数
+## F1 分数
 
 ### 定义
 
@@ -765,211 +768,6 @@ graph TD
 
 - **类别平衡** → 准确率 + AUC
 - **类别不平衡** → **只看 AUC**（准确率会误导）
-
----
-
-# 第六部分：Titanic 实战
-
----
-
-## Titanic 数据集介绍
-
-**背景**：1912 年泰坦尼克号沉船事故
-
-**任务**：预测乘客是否存活
-
-**特征**：
-
-| 特征 | 含义 | 类型 |
-|------|------|------|
-| Pclass | 舱位等级（1/2/3） | 数值 |
-| Sex | 性别 | 类别 |
-| Age | 年龄 | 数值 |
-| SibSp | 兄弟姐妹/配偶数 | 数值 |
-| Parch | 父母/子女数 | 数值 |
-| Fare | 票价 | 数值 |
-| Embarked | 登船港口（C/Q/S） | 类别 |
-
-**标签**：Survived（0=死亡，1=存活）
-
----
-
-## 数据探索
-
-```{python}
-#| echo: true
-import pandas as pd
-from sklearn.datasets import fetch_openml
-
-# 加载 Titanic 数据
-titanic = fetch_openml('titanic', version=1, as_frame=True, parser='auto')
-df = titanic.frame
-
-# 选择关键特征
-df_clean = df[['pclass', 'sex', 'age', 'sibsp', 'parch', 'fare', 'embarked', 'survived']].copy()
-df_clean.columns = ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Survived']
-
-print(f"数据形状: {df_clean.shape}")
-print(f"\n存活率:")
-print(df_clean['Survived'].value_counts(normalize=True))
-```
-
----
-
-```{python}
-# 可视化探索
-fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-
-# 性别 vs 存活
-pd.crosstab(df_clean['Sex'], df_clean['Survived'], normalize='index').plot(kind='bar', ax=axes[0, 0], color=['#f44336', '#4caf50'])
-axes[0, 0].set_title('性别 vs 存活率', fontsize=12)
-axes[0, 0].set_xlabel('性别')
-axes[0, 0].set_ylabel('比例')
-axes[0, 0].set_xticklabels(['女性', '男性'], rotation=0)
-axes[0, 0].legend(['死亡', '存活'])
-axes[0, 0].grid(True, alpha=0.3, axis='y')
-
-# 舱位 vs 存活
-pd.crosstab(df_clean['Pclass'], df_clean['Survived'], normalize='index').plot(kind='bar', ax=axes[0, 1], color=['#f44336', '#4caf50'])
-axes[0, 1].set_title('舱位 vs 存活率', fontsize=12)
-axes[0, 1].set_xlabel('舱位等级')
-axes[0, 1].set_ylabel('比例')
-axes[0, 1].set_xticklabels(['一等舱', '二等舱', '三等舱'], rotation=0)
-axes[0, 1].legend(['死亡', '存活'])
-axes[0, 1].grid(True, alpha=0.3, axis='y')
-
-# 年龄分布
-df_clean[df_clean['Survived']==0]['Age'].dropna().hist(bins=30, alpha=0.5, label='死亡', ax=axes[1, 0], color='#f44336')
-df_clean[df_clean['Survived']==1]['Age'].dropna().hist(bins=30, alpha=0.5, label='存活', ax=axes[1, 0], color='#4caf50')
-axes[1, 0].set_xlabel('年龄')
-axes[1, 0].set_ylabel('频数')
-axes[1, 0].set_title('年龄分布 (存活 vs 死亡)', fontsize=12)
-axes[1, 0].legend()
-axes[1, 0].grid(True, alpha=0.3)
-
-# 票价分布
-df_clean[df_clean['Survived']==0]['Fare'].dropna().hist(bins=30, alpha=0.5, label='死亡', ax=axes[1, 1], color='#f44336')
-df_clean[df_clean['Survived']==1]['Fare'].dropna().hist(bins=30, alpha=0.5, label='存活', ax=axes[1, 1], color='#4caf50')
-axes[1, 1].set_xlabel('票价')
-axes[1, 1].set_ylabel('频数')
-axes[1, 1].set_title('票价分布 (存活 vs 死亡)', fontsize=12)
-axes[1, 1].legend()
-axes[1, 1].grid(True, alpha=0.3)
-
-plt.tight_layout()
-plt.show()
-```
-
----
-
-## 数据预处理
-
-```{python}
-#| echo: true
-# 处理缺失值
-df_clean['Age'].fillna(df_clean['Age'].median(), inplace=True)
-df_clean['Fare'].fillna(df_clean['Fare'].median(), inplace=True)
-df_clean['Embarked'].fillna(df_clean['Embarked'].mode()[0], inplace=True)
-
-# 编码类别特征
-from sklearn.preprocessing import LabelEncoder
-
-le_sex = LabelEncoder()
-df_clean['Sex'] = le_sex.fit_transform(df_clean['Sex'])  # female=0, male=1
-
-# 独热编码港口
-df_clean = pd.get_dummies(df_clean, columns=['Embarked'], drop_first=True)
-
-print("处理后特征:")
-print(df_clean.columns.tolist())
-print(f"\n缺失值: {df_clean.isnull().sum().sum()}")
-```
-
----
-
-## 训练决策树
-
-```{python}
-#| echo: true
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-
-# 准备数据
-X = df_clean.drop('Survived', axis=1)
-y = df_clean['Survived'].astype(int)
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y
-)
-
-# 训练决策树
-tree = DecisionTreeClassifier(max_depth=3, random_state=42)
-tree.fit(X_train, y_train)
-
-# 预测
-y_train_pred = tree.predict(X_train)
-y_test_pred = tree.predict(X_test)
-y_test_prob = tree.predict_proba(X_test)[:, 1]
-
-print("决策树训练完成")
-```
-
----
-
-## 评估结果
-
-```{python}
-#| echo: true
-from sklearn.metrics import classification_report, accuracy_score
-
-print("=== 训练集 ===")
-print(f"准确率: {accuracy_score(y_train, y_train_pred):.3f}")
-
-print("\n=== 测试集 ===")
-print(f"准确率: {accuracy_score(y_test, y_test_pred):.3f}")
-print("\n分类报告:")
-print(classification_report(y_test, y_test_pred, target_names=['死亡', '存活']))
-```
-
----
-
-## 混淆矩阵
-
-```{python}
-cm = confusion_matrix(y_test, y_test_pred)
-
-plt.figure(figsize=(8, 6))
-disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['死亡', '存活'])
-disp.plot(cmap='Blues', values_format='d')
-plt.title('Titanic 决策树 - 混淆矩阵', fontsize=14)
-plt.show()
-
-TN, FP, FN, TP = cm.ravel()
-print(f"\nTP={TP}, FN={FN}, FP={FP}, TN={TN}")
-print(f"Precision = {TP/(TP+FP):.3f}")
-print(f"Recall = {TP/(TP+FN):.3f}")
-```
-
----
-
-## ROC 曲线
-
-```{python}
-fpr_tree, tpr_tree, _ = roc_curve(y_test, y_test_prob)
-auc_tree = auc(fpr_tree, tpr_tree)
-
-plt.figure(figsize=(10, 8))
-plt.plot(fpr_tree, tpr_tree, color='darkorange', lw=3, label=f'决策树 (AUC = {auc_tree:.3f})')
-plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--', label='随机猜测')
-plt.xlim([0.0, 1.0])
-plt.ylim([0.0, 1.05])
-plt.xlabel('假正例率 (FPR)', fontsize=12)
-plt.ylabel('真正例率 (TPR)', fontsize=12)
-plt.title('Titanic 决策树 - ROC 曲线', fontsize=14)
-plt.legend(loc="lower right", fontsize=12)
-plt.grid(alpha=0.3)
-plt.show()
-```
 
 ---
 
