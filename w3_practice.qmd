@@ -28,6 +28,8 @@ title: 第三讲上机实践
 首先导入必要的库，并加载 Boston 房价数据集。
 
 ```{python}
+#| message: false
+#| warning: false
 # 导入必要的库
 import numpy as np
 import pandas as pd
@@ -60,6 +62,8 @@ print("✓ 库导入成功！")
 ### 加载数据集
 
 ```{python}
+#| message: false
+#| warning: false
 # 加载 Boston Housing 数据集
 data_url = "http://lib.stat.cmu.edu/datasets/boston"
 raw_df = pd.read_csv(data_url, sep="\s+", skiprows=22, header=None)
@@ -87,6 +91,8 @@ df.head()
 观察数据的基本统计信息和特征尺度。
 
 ```{python}
+#| message: false
+#| warning: false
 # 基本统计信息
 print("数据统计信息:")
 print(df.describe())
@@ -105,6 +111,8 @@ print("="*60)
 3. 用训练集的参数 transform 训练集和测试集
 
 ```{python}
+#| message: false
+#| warning: false
 # 切分训练集和测试集
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
@@ -132,6 +140,8 @@ print("\n✓ 标准化完成！")
 ### 生成简单数据集
 
 ```{python}
+#| message: false
+#| warning: false
 # 生成简单的数据集：y = 2x + 1 + 噪声
 np.random.seed(42)
 X_simple = np.linspace(0, 10, 20).reshape(-1, 1)
@@ -158,6 +168,8 @@ plt.show()
 尝试用不同次数的多项式拟合数据。
 
 ```{python}
+#| message: false
+#| warning: false
 # 训练不同次数的多项式回归
 degrees = [1, 4, 15]
 titles = ['欠拟合（1次）', '刚刚好（4次）', '过拟合（15次）']
@@ -206,6 +218,8 @@ print("- 15次多项式：训练误差很小，测试误差大 → 过拟合")
 ### 基线模型：普通线性回归
 
 ```{python}
+#| message: false
+#| warning: false
 # 训练普通线性回归
 lr = LinearRegression()
 lr.fit(X_train_scaled, y_train)
@@ -236,6 +250,8 @@ print(f"非零系数数:  {np.sum(lr.coef_ != 0)}/{len(lr.coef_)}")
 惩罚系数的平方和，让系数变小但不为0。
 
 ```{python}
+#| message: false
+#| warning: false
 # 训练 Ridge 回归
 ridge = Ridge(alpha=1.0)  # alpha 越大，正则化越强
 ridge.fit(X_train_scaled, y_train)
@@ -263,6 +279,8 @@ print(f"测试集 R²:   {test_r2_ridge:.4f}")
 惩罚系数的绝对值和，让某些系数变为0。
 
 ```{python}
+#| message: false
+#| warning: false
 # 训练 Lasso 回归
 lasso = Lasso(alpha=0.01, max_iter=10000)  # alpha 越大，正则化越强
 lasso.fit(X_train_scaled, y_train)
@@ -291,6 +309,8 @@ print(f"\n保留特征数: {np.sum(lasso.coef_ != 0)}/{len(lasso.coef_)}")
 结合 Ridge 和 Lasso 的优点。
 
 ```{python}
+#| message: false
+#| warning: false
 # 训练 Elastic Net 回归
 elastic = ElasticNet(alpha=0.01, l1_ratio=0.5, max_iter=10000)
 # l1_ratio=0.5 表示 L1 和 L2 正则化各占 50%
@@ -318,6 +338,8 @@ print(f"\n保留特征数: {np.sum(elastic.coef_ != 0)}/{len(elastic.coef_)}")
 ### 模型对比总结
 
 ```{python}
+#| message: false
+#| warning: false
 # 创建对比表格
 results = pd.DataFrame({
     '模型': ['普通回归', 'Ridge (α=1.0)', 'Lasso (α=0.01)', 'Elastic Net (α=0.01)'],
@@ -351,6 +373,8 @@ print(f"  测试R² = {results.loc[best_idx, '测试R²']:.4f}")
 ### 可视化系数对比
 
 ```{python}
+#| message: false
+#| warning: false
 # 绘制系数对比图
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 axes = axes.flatten()
@@ -387,6 +411,8 @@ print("- Elastic Net：介于 Ridge 和 Lasso 之间")
 ### RidgeCV：自动选择最优 α
 
 ```{python}
+#| message: false
+#| warning: false
 # 准备候选的 alpha 值
 alphas_cv = np.logspace(-3, 3, 50)  # 从 0.001 到 1000，50个值
 
@@ -408,6 +434,8 @@ print(f"  测试R² 提升: {(ridge_cv.score(X_test_scaled, y_test) - test_r2_ri
 ### LassoCV：自动选择最优 α
 
 ```{python}
+#| message: false
+#| warning: false
 # LassoCV：5折交叉验证
 lasso_cv = LassoCV(alphas=alphas_cv, cv=5, max_iter=10000)
 lasso_cv.fit(X_train_scaled, y_train)
@@ -425,6 +453,8 @@ print(f"被剔除特征: {[feature_names[i] for i in range(len(lasso_cv.coef_)) 
 ### ElasticNetCV：自动选择最优 α
 
 ```{python}
+#| message: false
+#| warning: false
 # ElasticNetCV：5折交叉验证
 elastic_cv = ElasticNetCV(alphas=alphas_cv, l1_ratio=0.5, cv=5, max_iter=10000)
 elastic_cv.fit(X_train_scaled, y_train)
@@ -441,6 +471,8 @@ print(f"\n保留特征数: {np.sum(elastic_cv.coef_ != 0)}/{len(elastic_cv.coef_
 ### 最终模型对比
 
 ```{python}
+#| message: false
+#| warning: false
 # 汇总所有结果
 final_results = pd.DataFrame({
     '模型': [
@@ -505,6 +537,8 @@ print("="*80)
 ### 计算 Lasso 正则化路径
 
 ```{python}
+#| message: false
+#| warning: false
 # 计算不同 alpha 下的系数
 alphas_path = np.logspace(-3, 1, 100)
 coefs_lasso_path = []
@@ -522,6 +556,9 @@ print("✓ 正则化路径计算完成！")
 ### 绘制正则化路径图
 
 ```{python}
+#| message: false
+#| warning: false
+
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
 # 图1：系数路径

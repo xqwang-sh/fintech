@@ -19,6 +19,8 @@ title: 第六讲上机实践
 首先，我们需要导入必要的库并验证 TensorFlow/Keras 的安装。
 
 ```{python}
+#| message: false
+#| warning: false
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -51,6 +53,8 @@ print(f"TensorFlow 版本: {tf.__version__}")
 - **重要：** 对数值特征进行标准化（神经网络对特征尺度敏感）
 
 ```{python}
+#| message: false
+#| warning: false
 # 读取 W4 预处理后的数据
 X = pd.read_csv('titanic_data/features_processed.csv')
 y = pd.read_csv('titanic_data/labels_processed.csv')
@@ -73,6 +77,8 @@ print(f"特征数量: {X_train.shape[1]}")
 使用 Keras 的 Sequential API 构建多层感知机：
 
 ```{python}
+#| message: false
+#| warning: false
 # 搭建 MLP 模型
 model = keras.Sequential([
     # 输入层 + 第一个隐藏层
@@ -96,6 +102,8 @@ model.summary()
 设置损失函数、优化器和评估指标：
 
 ```{python}
+#| message: false
+#| warning: false
 # 编译模型
 model.compile(
     optimizer='adam',                    # 优化器
@@ -110,6 +118,8 @@ model.compile(
 设置训练参数并开始训练：
 
 ```{python}
+#| message: false
+#| warning: false
 # 训练参数
 epochs = 50          # 训练轮数
 batch_size = 32      # 批次大小
@@ -129,6 +139,8 @@ history = model.fit(
 观察训练过程中的损失和准确率变化：
 
 ```{python}
+#| message: false
+#| warning: false
 # 绘制学习曲线
 fig, axes = plt.subplots(1, 3, figsize=(18, 5))
 
@@ -177,6 +189,8 @@ print("- 训练和验证指标差距过大也可能表示过拟合")
 - 分类报告：精确率、召回率、F1 分数
 
 ```{python}
+#| message: false
+#| warning: false
 # 预测
 y_train_pred_prob = model.predict(X_train).flatten()
 y_test_pred_prob = model.predict(X_test).flatten()
@@ -204,6 +218,8 @@ print(classification_report(y_test, y_test_pred, target_names=['死亡', '存活
 **注意：** 随机森林不需要特征标准化，所以使用原始特征。
 
 ```{python}
+#| message: false
+#| warning: false
 # 准备随机森林的数据（不需要标准化）
 X_train_orig, X_test_orig, _, _ = train_test_split(
     X.values,
@@ -232,6 +248,8 @@ print(f"\nMLP 优势: {mlp_auc - rf_auc:+.3f} (AUC 差异)")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # ROC 曲线对比
 fpr_mlp, tpr_mlp, _ = roc_curve(y_test, y_test_pred_prob)
 fpr_rf, tpr_rf, _ = roc_curve(y_test, y_test_pred_rf)

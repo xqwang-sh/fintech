@@ -76,6 +76,8 @@ conda install jupyter
 按顺序运行每个单元格，遇到错误先读提示再求助助教。
 
 ```{python}
+#| message: false
+#| warning: false
 # 验证 Python 与 Jupyter
 import sys, subprocess
 print('Python 版本:', sys.version)
@@ -150,6 +152,8 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib 
 下面我们看看具体例子：
 
 ```{python}
+#| message: false
+#| warning: false
 # 1. 变量赋值：创建变量并存储数据
 age = 20          # 整数（int）：存储年龄
 price = 50.5      # 浮点数（float）：存储价格，带小数
@@ -191,6 +195,8 @@ print(type(name))      # <class 'str'> - 字符串类型
 下面我们学习列表的基本操作：
 
 ```{python}
+#| message: false
+#| warning: false
 # 1. 创建列表：存储多个房价数据
 house_prices = [100, 150, 200, 250, 300]
 
@@ -239,6 +245,8 @@ for p in house_prices:
 下面看看如何使用库：
 
 ```{python}
+#| message: false
+#| warning: false
 # 方式1：导入整个库，使用时需要加库名
 import math              # 导入数学库
 x = 16
@@ -274,6 +282,8 @@ print("平均分:", mean(scores))  # 直接使用 mean() 计算平均值，输�
 下面我们一步步实现：
 
 ```{python}
+#| message: false
+#| warning: false
 # 第一个机器学习程序：房价预测（简化版）
 
 # ========== 第1步：导入必要的库 ==========

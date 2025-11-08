@@ -46,6 +46,8 @@ title: 第四讲上机实践
 - 可以很好地展示分类算法的效果
 
 ```{python}
+#| message: false
+#| warning: false
 # 导入所需库
 import pandas as pd
 import numpy as np
@@ -66,6 +68,8 @@ plt.rcParams["axes.unicode_minus"] = False
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 加载 Titanic 数据
 df = pd.read_csv("titanic_data/train.csv")
 print(f"数据集形状: {df.shape}")
@@ -90,6 +94,8 @@ print(f"生存率: {df['Survived'].mean():.3f}")
 **让我们通过可视化来探索 Titanic 数据：**
 
 ```{python}
+#| message: false
+#| warning: false
 # 数据探索：可视化分析
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
@@ -184,6 +190,8 @@ plt.show()
    - 排除像 Name、Ticket ID 这样的无关特征
 
 ```{python}
+#| message: false
+#| warning: false
 # 数据预处理
 print("缺失值统计:")
 print(df.isnull().sum())
@@ -239,6 +247,8 @@ print("已保存处理后的特征 (titanic_data/features_processed.csv) 和标�
 - 最佳点：验证集得分最高且与训练集差距不大
 
 ```{python}
+#| message: false
+#| warning: false
 # 数据分割：将数据分为训练集和测试集
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
@@ -251,6 +261,8 @@ print(f"测试集存活率: {y_test.mean():.3f}")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 超参数调优：1. 调优 max_depth 参数
 print("=" * 50)
 print("1. 调优 max_depth 参数")
@@ -288,6 +300,8 @@ print(f"交叉验证准确率: {max(cv_scores):.4f}")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 超参数调优：2. 调优 min_samples_split 参数
 print("=" * 50)
 print("2. 调优 min_samples_split 参数")
@@ -329,6 +343,8 @@ print(f"交叉验证准确率: {max(cv_scores):.4f}")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 超参数调优：3. 调优 min_samples_leaf 参数
 print("=" * 50)
 print("3. 调优 min_samples_leaf 参数")
@@ -371,6 +387,8 @@ print(f"交叉验证准确率: {max(cv_scores):.4f}")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 训练最终模型
 print("=" * 50)
 print("使用最佳参数训练最终模型")
@@ -425,6 +443,8 @@ print(f"测试集准确率: {test_accuracy:.4f}")
 - **AUC**：ROC 曲线下的面积，AUC 越大，模型性能越好
 
 ```{python}
+#| message: false
+#| warning: false
 # 预测测试集
 y_pred = best_dt.predict(X_test)
 y_pred_proba = best_dt.predict_proba(X_test)[:, 1]  # 预测为正例的概率
@@ -451,6 +471,8 @@ plt.show()
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 2. 分类报告：包含多种评估指标
 print("=" * 50)
 print("2. 详细评估指标")
@@ -474,6 +496,8 @@ print(f"F1 分数: {f1:.4f} - 精确率和召回率的调和平均")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 3. ROC 曲线和 AUC
 fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
 roc_auc = auc(fpr, tpr)
@@ -503,6 +527,8 @@ print(f"- 我们的模型 AUC = {roc_auc:.4f}，说明模型性能 {(roc_auc-0.5
 
 
 ```{python}
+#| message: false
+#| warning: false
 # 4. 特征重要性分析
 feature_importance = pd.DataFrame({
     'feature': features,
@@ -535,6 +561,8 @@ plt.show()
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 保存模型和结果（供 W5 使用）
 import pickle
 

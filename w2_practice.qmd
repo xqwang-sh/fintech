@@ -14,6 +14,8 @@ title: 第二讲上机实践
 ## 导入库
 
 ```{python}
+#| message: false
+#| warning: false
 # 导入库
 import pandas as pd
 import numpy as np
@@ -33,6 +35,8 @@ plt.rcParams['axes.unicode_minus'] = False
 ## 数据读取与基本概览
 
 ```{python}
+#| message: false
+#| warning: false
 # 读取数据与基本概览
 # 加载 Boston Housing 数据集
 data_url = "http://lib.stat.cmu.edu/datasets/boston"
@@ -78,6 +82,8 @@ print(df.describe())
 ## 缺失值检查
 
 ```{python}
+#| message: false
+#| warning: false
 # 缺失值检查（Boston Housing 数据集通常没有缺失值）
 print('缺失值统计:')
 print(df.isnull().sum())
@@ -88,6 +94,8 @@ print("Boston Housing 数据集通常没有缺失值，无需额外处理")
 ## 异常值检测
 
 ```{python}
+#| message: false
+#| warning: false
 # 异常值可视化与简单检测（以房价为例）
 fig, ax = plt.subplots(1, 2, figsize=(10, 4))
 df.boxplot(column=['MEDV'], ax=ax[0])
@@ -108,6 +116,8 @@ print(f"房价异常值数量: {len(outliers)}")
 ## 数据可视化
 
 ```{python}
+#| message: false
+#| warning: false
 # 可视化：散点图、直方图、相关矩阵
 sns.scatterplot(data=df, x='RM', y='MEDV')
 plt.title('房间数 vs 房价'); plt.show()
@@ -131,6 +141,8 @@ print(corr['MEDV'].sort_values(ascending=False))
 ## 线性回归模型训练与评估
 
 ```{python}
+#| message: false
+#| warning: false
 # 训练线性回归并评估（MAE/RMSE）
 features = ['RM', 'AGE', 'CRIM']  # 房间数、房龄、犯罪率
 X = df[features]
@@ -159,6 +171,8 @@ print('截距:', round(model.intercept_, 3))
 ## 残差分析
 
 ```{python}
+#| message: false
+#| warning: false
 # 残差分析
 residuals = y_test - y_test_pred
 plt.figure(figsize=(10,4))

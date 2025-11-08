@@ -19,6 +19,8 @@ title: 第五讲上机实践
 **数据来源**：`titanic_data/features_processed.csv` 和 `titanic_data/labels_processed.csv`（来自 W4 的预处理结果）
 
 ```{python}
+#| message: false
+#| warning: false
 # 导入所需库
 import pandas as pd
 import numpy as np
@@ -51,6 +53,8 @@ plt.rcParams['axes.unicode_minus'] = False
 **注意**：数据分割的 random_state 需要与 W3 保持一致（random_state=42），这样才能使用相同的测试集进行公平对比。
 
 ```{python}
+#| message: false
+#| warning: false
 # 读取 W4 预处理后的数据
 X = pd.read_csv('titanic_data/features_processed.csv')
 y = pd.read_csv('titanic_data/labels_processed.csv')
@@ -98,6 +102,8 @@ except FileNotFoundError:
 - **max_features**：寻找最佳分裂时考虑的特征数量
 
 ```{python}
+#| message: false
+#| warning: false
 # 随机森林：超参数调优（使用 GridSearchCV）
 print("\n" + "=" * 60)
 print("随机森林超参数调优")
@@ -151,6 +157,8 @@ print(f"  AUC: {rf_auc:.4f}")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # 随机森林：特征重要性可视化
 importances_rf = rf_best.feature_importances_
 indices_rf = np.argsort(importances_rf)[::-1]
@@ -200,6 +208,8 @@ GBDT 是一种强大的集成学习方法，通过逐步修正前一轮的错误
 - **min_child_samples**：叶节点的最小样本数
 
 ```{python}
+#| message: false
+#| warning: false
 # GBDT（LightGBM）：超参数调优（使用 GridSearchCV）
 print("\n" + "=" * 60)
 print("GBDT (LightGBM) 超参数调优")
@@ -253,6 +263,8 @@ print(f"  AUC: {gbm_auc:.4f}")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # GBDT：特征重要性可视化
 importances_gbm = gbm_best.feature_importances_
 indices_gbm = np.argsort(importances_gbm)[::-1]
@@ -292,6 +304,8 @@ for i in indices_gbm:
 - AUC（ROC 曲线下面积）
 
 ```{python}
+#| message: false
+#| warning: false
 # 三模型对比：决策树 vs 随机森林 vs GBDT
 print("\n" + "=" * 60)
 print("三模型性能对比")
@@ -370,6 +384,8 @@ print(f"   AUC: {comparison_df.loc[best_auc_idx, 'AUC']:.4f}")
 ```
 
 ```{python}
+#| message: false
+#| warning: false
 # ROC 曲线对比
 # 获取各模型的预测概率
 if dt_model_w4 is not None:
