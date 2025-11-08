@@ -2,6 +2,28 @@
 title: 第一讲上机实践
 ---
 
+```{python}
+#| echo: false
+import matplotlib.pyplot as plt
+# 根据操作系统设置不同的字体
+import platform
+
+# 获取操作系统类型
+system = platform.system()
+
+# 设置 matplotlib 字体
+if system == 'Windows':
+    plt.rcParams['font.sans-serif'] = ['SimHei']  # Windows 使用黑体
+elif system == 'Darwin':
+    plt.rcParams['font.sans-serif'] = ['Songti SC']  # Mac 使用宋体
+else:
+    plt.rcParams['font.sans-serif'] = ['WenQuanYi Zen Hei']  # Linux 使用文泉驿正黑
+
+# 解决负号显示问题
+plt.rcParams['axes.unicode_minus'] = False
+
+```
+
 本上机讲义覆盖以下内容：
 
 - 环境安装：Python、Jupyter、VS Code插件

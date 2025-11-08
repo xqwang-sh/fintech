@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>比较不同集成学习方法的性能</li>
 </ul>
 <p><strong>数据来源</strong>：<code>titanic_data/features_processed.csv</code> 和 <code>titanic_data/labels_processed.csv</code>（来自 W4 的预处理结果）</p>
-<div id="0141440f" class="cell" data-message="false" data-execution_count="1">
+<div id="cb1f1cd3" class="cell" data-message="false" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 导入所需库</span></span>
@@ -354,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>特征选择</li>
 </ul>
 <p><strong>注意</strong>：数据分割的 random_state 需要与 W3 保持一致（random_state=42），这样才能使用相同的测试集进行公平对比。</p>
-<div id="aca3c343" class="cell" data-message="false" data-execution_count="2">
+<div id="21c77e2c" class="cell" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取 W4 预处理后的数据</span></span>
@@ -412,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>min_samples_leaf</strong>：叶节点所需的最小样本数</li>
 <li><strong>max_features</strong>：寻找最佳分裂时考虑的特征数量</li>
 </ul>
-<div id="380bdb45" class="cell" data-message="false" data-execution_count="3">
+<div id="00a92f5a" class="cell" data-message="false" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 随机森林：超参数调优（使用 GridSearchCV）</span></span>
@@ -488,7 +488,7 @@ Fitting 5 folds for each of 162 candidates, totalling 810 fits</code></pre>
   AUC: 0.8402</code></pre>
 </div>
 </div>
-<div id="dbe288fb" class="cell" data-message="false" data-execution_count="4">
+<div id="0cec7e8a" class="cell" data-message="false" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 随机森林：特征重要性可视化</span></span>
@@ -513,7 +513,7 @@ Fitting 5 folds for each of 162 candidates, totalling 810 fits</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w5_practice_files/figure-html/cell-5-output-1.png" width="950" height="566" class="figure-img"></p>
+<p><img src="w5_practice_files/figure-html/cell-6-output-1.png" width="950" height="566" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -557,7 +557,7 @@ Fitting 5 folds for each of 162 candidates, totalling 810 fits</code></pre>
 <li><strong>num_leaves</strong>：叶子节点数量（LightGBM 特有）</li>
 <li><strong>min_child_samples</strong>：叶节点的最小样本数</li>
 </ul>
-<div id="74ac04c7" class="cell" data-message="false" data-execution_count="5">
+<div id="40360524" class="cell" data-message="false" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GBDT（LightGBM）：超参数调优（使用 GridSearchCV）</span></span>
@@ -633,7 +633,7 @@ Fitting 5 folds for each of 324 candidates, totalling 1620 fits</code></pre>
   AUC: 0.8375</code></pre>
 </div>
 </div>
-<div id="9ed82d9d" class="cell" data-message="false" data-execution_count="6">
+<div id="f1046fcd" class="cell" data-message="false" data-execution_count="7">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GBDT：特征重要性可视化</span></span>
@@ -658,7 +658,7 @@ Fitting 5 folds for each of 324 candidates, totalling 1620 fits</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w5_practice_files/figure-html/cell-7-output-1.png" width="950" height="566" class="figure-img"></p>
+<p><img src="w5_practice_files/figure-html/cell-8-output-1.png" width="950" height="566" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -693,7 +693,7 @@ GBDT 特征重要性（从高到低）:
 <li>F1 分数</li>
 <li>AUC（ROC 曲线下面积）</li>
 </ul>
-<div id="2b61d7a7" class="cell" data-message="false" data-execution_count="7">
+<div id="4e3b3747" class="cell" data-message="false" data-execution_count="8">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 三模型对比：决策树 vs 随机森林 vs GBDT</span></span>
@@ -788,7 +788,7 @@ GBDT 特征重要性（从高到低）:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w5_practice_files/figure-html/cell-8-output-2.png" width="1717" height="950" class="figure-img"></p>
+<p><img src="w5_practice_files/figure-html/cell-9-output-2.png" width="1717" height="950" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -798,7 +798,7 @@ GBDT 特征重要性（从高到低）:
    AUC: 0.8560</code></pre>
 </div>
 </div>
-<div id="5de8b473" class="cell" data-message="false" data-execution_count="8">
+<div id="2258658b" class="cell" data-message="false" data-execution_count="9">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC 曲线对比</span></span>
@@ -847,7 +847,7 @@ GBDT 特征重要性（从高到低）:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w5_practice_files/figure-html/cell-9-output-1.png" width="951" height="758" class="figure-img"></p>
+<p><img src="w5_practice_files/figure-html/cell-10-output-1.png" width="951" height="758" class="figure-img"></p>
 </figure>
 </div>
 </div>
