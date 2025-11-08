@@ -57,11 +57,6 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
-# 设置中文字体
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus'] = False
-%matplotlib inline
-
 print(f"TensorFlow 版本: {tf.__version__}")
 ```
 

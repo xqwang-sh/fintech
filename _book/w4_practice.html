@@ -382,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>结果易于理解和解释</li>
 <li>可以很好地展示分类算法的效果</li>
 </ul>
-<div id="fb9836f8" class="cell" data-message="false" data-execution_count="2">
+<div id="0be6539c" class="cell" data-message="false" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 导入所需库</span></span>
@@ -396,15 +396,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> (confusion_matrix, ConfusionMatrixDisplay,</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                             accuracy_score, precision_score, recall_score, f1_score,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                             roc_curve, auc, classification_report)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置中文显示</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"font.sans-serif"</span>] <span class="op">=</span> [<span class="st">"SimHei"</span>]</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"axes.unicode_minus"</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                             roc_curve, auc, classification_report)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="fe715241" class="cell" data-message="false" data-execution_count="3">
+<div id="9b8281e0" class="cell" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载 Titanic 数据</span></span>
@@ -459,7 +454,7 @@ Name: count, dtype: int64
 <li>为特征工程和模型选择提供依据</li>
 </ul>
 <p><strong>让我们通过可视化来探索 Titanic 数据：</strong></p>
-<div id="c6a2d993" class="cell" data-message="false" data-execution_count="4">
+<div id="5c9fb6c7" class="cell" data-message="false" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据探索：可视化分析</span></span>
@@ -519,7 +514,7 @@ Name: count, dtype: int64
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_practice_files/figure-html/cell-5-output-1.png" width="1334" height="950" class="figure-img"></p>
+<p><img src="w4_practice_files/figure-html/cell-5-output-1.png" width="1335" height="952" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -562,7 +557,7 @@ Name: count, dtype: int64
 <li>排除像 Name、Ticket ID 这样的无关特征</li>
 </ul></li>
 </ol>
-<div id="da5ea18f" class="cell" data-message="false" data-execution_count="5">
+<div id="769fcc3e" class="cell" data-message="false" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据预处理</span></span>
@@ -637,7 +632,7 @@ dtype: int64
 <li>如果两者都低 → 欠拟合，需要增加复杂度</li>
 <li>最佳点：验证集得分最高且与训练集差距不大</li>
 </ul>
-<div id="b6b17b17" class="cell" data-message="false" data-execution_count="6">
+<div id="a4cb776b" class="cell" data-message="false" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据分割：将数据分为训练集和测试集</span></span>
@@ -657,7 +652,7 @@ dtype: int64
 测试集存活率: 0.382</code></pre>
 </div>
 </div>
-<div id="dba7ccd3" class="cell" data-message="false" data-execution_count="7">
+<div id="07b206ba" class="cell" data-message="false" data-execution_count="7">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 超参数调优：1. 调优 max_depth 参数</span></span>
@@ -703,7 +698,7 @@ dtype: int64
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_practice_files/figure-html/cell-8-output-2.png" width="951" height="566" class="figure-img"></p>
+<p><img src="w4_practice_files/figure-html/cell-8-output-2.png" width="950" height="567" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -712,7 +707,7 @@ dtype: int64
 交叉验证准确率: 0.8129</code></pre>
 </div>
 </div>
-<div id="1882d479" class="cell" data-message="false" data-execution_count="8">
+<div id="bfcd7260" class="cell" data-message="false" data-execution_count="8">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 超参数调优：2. 调优 min_samples_split 参数</span></span>
@@ -762,7 +757,7 @@ dtype: int64
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_practice_files/figure-html/cell-9-output-2.png" width="951" height="566" class="figure-img"></p>
+<p><img src="w4_practice_files/figure-html/cell-9-output-2.png" width="950" height="567" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -771,7 +766,7 @@ dtype: int64
 交叉验证准确率: 0.8129</code></pre>
 </div>
 </div>
-<div id="308b5155" class="cell" data-message="false" data-execution_count="9">
+<div id="09ac2a3f" class="cell" data-message="false" data-execution_count="9">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 超参数调优：3. 调优 min_samples_leaf 参数</span></span>
@@ -822,7 +817,7 @@ dtype: int64
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_practice_files/figure-html/cell-10-output-2.png" width="951" height="566" class="figure-img"></p>
+<p><img src="w4_practice_files/figure-html/cell-10-output-2.png" width="950" height="567" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -831,7 +826,7 @@ dtype: int64
 交叉验证准确率: 0.8129</code></pre>
 </div>
 </div>
-<div id="2f047090" class="cell" data-message="false" data-execution_count="10">
+<div id="050cd2ac" class="cell" data-message="false" data-execution_count="10">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练最终模型</span></span>
@@ -896,7 +891,7 @@ dtype: int64
 <li><strong>ROC 曲线</strong>：以假正例率(FPR)为横轴，真正例率(TPR)为纵轴绘制的曲线</li>
 <li><strong>AUC</strong>：ROC 曲线下的面积，AUC 越大，模型性能越好</li>
 </ul>
-<div id="233a1ff3" class="cell" data-message="false" data-execution_count="11">
+<div id="0f042cec" class="cell" data-message="false" data-execution_count="11">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 预测测试集</span></span>
@@ -939,12 +934,12 @@ dtype: int64
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_practice_files/figure-html/cell-12-output-2.png" width="495" height="439" class="figure-img"></p>
+<p><img src="w4_practice_files/figure-html/cell-12-output-2.png" width="498" height="438" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="4c51527d" class="cell" data-message="false" data-execution_count="12">
+<div id="cea9cbf9" class="cell" data-message="false" data-execution_count="12">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 分类报告：包含多种评估指标</span></span>
@@ -991,7 +986,7 @@ weighted avg       0.81      0.81      0.80       178
 F1 分数: 0.7213 - 精确率和召回率的调和平均</code></pre>
 </div>
 </div>
-<div id="513ba177" class="cell" data-message="false" data-execution_count="13">
+<div id="de8d53d6" class="cell" data-message="false" data-execution_count="13">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. ROC 曲线和 AUC</span></span>
@@ -1023,7 +1018,7 @@ F1 分数: 0.7213 - 精确率和召回率的调和平均</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_practice_files/figure-html/cell-14-output-1.png" width="676" height="528" class="figure-img"></p>
+<p><img src="w4_practice_files/figure-html/cell-14-output-1.png" width="667" height="527" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1040,7 +1035,7 @@ AUC 解读:
 - 我们的模型 AUC = 0.8560，说明模型性能 71.2% 优于随机猜测</code></pre>
 </div>
 </div>
-<div id="b95da318" class="cell" data-message="false" data-execution_count="14">
+<div id="e1f686e1" class="cell" data-message="false" data-execution_count="14">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 特征重要性分析</span></span>
@@ -1090,12 +1085,12 @@ Embarked_S  : 0.0000</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_practice_files/figure-html/cell-15-output-2.png" width="947" height="566" class="figure-img"></p>
+<p><img src="w4_practice_files/figure-html/cell-15-output-2.png" width="950" height="567" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="bbabf9c0" class="cell" data-message="false" data-execution_count="15">
+<div id="190af335" class="cell" data-message="false" data-execution_count="15">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存模型和结果（供 W5 使用）</span></span>

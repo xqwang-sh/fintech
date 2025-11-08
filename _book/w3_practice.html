@@ -360,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="环境准备与数据加载" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="环境准备与数据加载"><span class="header-section-number">8.1</span> 环境准备与数据加载</h2>
 <p>首先导入必要的库，并加载 Boston 房价数据集。</p>
-<div id="c34e99bc" class="cell" data-message="false" data-execution_count="2">
+<div id="c366bbf4" class="cell" data-message="false" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 导入必要的库</span></span>
@@ -375,21 +375,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, PolynomialFeatures</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score, mean_absolute_error</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置中文字体</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> platform</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>system <span class="op">=</span> platform.system()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> system <span class="op">==</span> <span class="st">'Windows'</span>:</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> system <span class="op">==</span> <span class="st">'Darwin'</span>:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Songti SC'</span>]</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'WenQuanYi Zen Hei'</span>]</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置随机种子</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ 库导入成功！"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置随机种子</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ 库导入成功！"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>✓ 库导入成功！</code></pre>
@@ -397,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="加载数据集" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="加载数据集"><span class="header-section-number">8.1.1</span> 加载数据集</h3>
-<div id="21432dfe" class="cell" data-message="false" data-execution_count="3">
+<div id="f8804cf0" class="cell" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载 Boston Housing 数据集</span></span>
@@ -551,7 +540,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="数据探索" class="level3" data-number="8.1.2">
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="数据探索"><span class="header-section-number">8.1.2</span> 数据探索</h3>
 <p>观察数据的基本统计信息和特征尺度。</p>
-<div id="0f877b4e" class="cell" data-message="false" data-execution_count="4">
+<div id="9bc8c4fd" class="cell" data-message="false" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 基本统计信息</span></span>
@@ -606,7 +595,7 @@ max     37.970000   50.000000
 <section id="数据切分与标准化" class="level3" data-number="8.1.3">
 <h3 data-number="8.1.3" class="anchored" data-anchor-id="数据切分与标准化"><span class="header-section-number">8.1.3</span> 数据切分与标准化</h3>
 <p><strong>重要步骤</strong>： 1. 先切分训练集和测试集 2. 在训练集上 fit StandardScaler 3. 用训练集的参数 transform 训练集和测试集</p>
-<div id="cbba7a8d" class="cell" data-message="false" data-execution_count="5">
+<div id="c2dd949e" class="cell" data-message="false" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 切分训练集和测试集</span></span>
@@ -646,7 +635,7 @@ max     37.970000   50.000000
 <p>用多项式回归演示过拟合现象。</p>
 <section id="生成简单数据集" class="level3" data-number="8.2.1">
 <h3 data-number="8.2.1" class="anchored" data-anchor-id="生成简单数据集"><span class="header-section-number">8.2.1</span> 生成简单数据集</h3>
-<div id="b0ebd88f" class="cell" data-message="false" data-execution_count="6">
+<div id="8a780327" class="cell" data-message="false" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成简单的数据集：y = 2x + 1 + 噪声</span></span>
@@ -681,7 +670,7 @@ max     37.970000   50.000000
 <section id="对比不同复杂度的模型" class="level3" data-number="8.2.2">
 <h3 data-number="8.2.2" class="anchored" data-anchor-id="对比不同复杂度的模型"><span class="header-section-number">8.2.2</span> 对比不同复杂度的模型</h3>
 <p>尝试用不同次数的多项式拟合数据。</p>
-<div id="a4954e57" class="cell" data-message="false" data-execution_count="7">
+<div id="c00ad6ab" class="cell" data-message="false" data-execution_count="7">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练不同次数的多项式回归</span></span>
@@ -746,7 +735,7 @@ max     37.970000   50.000000
 <p>在 Boston 房价数据上对比四种模型。</p>
 <section id="基线模型普通线性回归" class="level3" data-number="8.3.1">
 <h3 data-number="8.3.1" class="anchored" data-anchor-id="基线模型普通线性回归"><span class="header-section-number">8.3.1</span> 基线模型：普通线性回归</h3>
-<div id="d919abd5" class="cell" data-message="false" data-execution_count="8">
+<div id="5fe587fd" class="cell" data-message="false" data-execution_count="8">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练普通线性回归</span></span>
@@ -790,7 +779,7 @@ max     37.970000   50.000000
 <section id="ridge-回归l2-正则化" class="level3" data-number="8.3.2">
 <h3 data-number="8.3.2" class="anchored" data-anchor-id="ridge-回归l2-正则化"><span class="header-section-number">8.3.2</span> Ridge 回归（L2 正则化）</h3>
 <p>惩罚系数的平方和，让系数变小但不为0。</p>
-<div id="eb6ad17d" class="cell" data-message="false" data-execution_count="9">
+<div id="37fdd6b2" class="cell" data-message="false" data-execution_count="9">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练 Ridge 回归</span></span>
@@ -828,7 +817,7 @@ Ridge 回归 (α=1.0)
 <section id="lasso-回归l1-正则化" class="level3" data-number="8.3.3">
 <h3 data-number="8.3.3" class="anchored" data-anchor-id="lasso-回归l1-正则化"><span class="header-section-number">8.3.3</span> Lasso 回归（L1 正则化）</h3>
 <p>惩罚系数的绝对值和，让某些系数变为0。</p>
-<div id="440a18fb" class="cell" data-message="false" data-execution_count="10">
+<div id="b7572334" class="cell" data-message="false" data-execution_count="10">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练 Lasso 回归</span></span>
@@ -869,7 +858,7 @@ Lasso 回归 (α=0.01)
 <section id="elastic-net-回归l1l2-正则化" class="level3" data-number="8.3.4">
 <h3 data-number="8.3.4" class="anchored" data-anchor-id="elastic-net-回归l1l2-正则化"><span class="header-section-number">8.3.4</span> Elastic Net 回归（L1+L2 正则化）</h3>
 <p>结合 Ridge 和 Lasso 的优点。</p>
-<div id="b9604bf6" class="cell" data-message="false" data-execution_count="11">
+<div id="8606c6b2" class="cell" data-message="false" data-execution_count="11">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练 Elastic Net 回归</span></span>
@@ -910,7 +899,7 @@ Elastic Net 回归 (α=0.01, l1_ratio=0.5)
 </section>
 <section id="模型对比总结" class="level3" data-number="8.3.5">
 <h3 data-number="8.3.5" class="anchored" data-anchor-id="模型对比总结"><span class="header-section-number">8.3.5</span> 模型对比总结</h3>
-<div id="da5ee237" class="cell" data-message="false" data-execution_count="12">
+<div id="8122e717" class="cell" data-message="false" data-execution_count="12">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建对比表格</span></span>
@@ -959,7 +948,7 @@ Elastic Net (α=0.01) 0.7507 0.6679  7.0060    13
 </section>
 <section id="可视化系数对比" class="level3" data-number="8.3.6">
 <h3 data-number="8.3.6" class="anchored" data-anchor-id="可视化系数对比"><span class="header-section-number">8.3.6</span> 可视化系数对比</h3>
-<div id="1d9c83f3" class="cell" data-message="false" data-execution_count="13">
+<div id="4be0bc33" class="cell" data-message="false" data-execution_count="13">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制系数对比图</span></span>
@@ -1013,7 +1002,7 @@ Elastic Net (α=0.01) 0.7507 0.6679  7.0060    13
 <p>使用交叉验证自动选择最优的正则化参数 α。</p>
 <section id="ridgecv自动选择最优-α" class="level3" data-number="8.4.1">
 <h3 data-number="8.4.1" class="anchored" data-anchor-id="ridgecv自动选择最优-α"><span class="header-section-number">8.4.1</span> RidgeCV：自动选择最优 α</h3>
-<div id="4103ebcb" class="cell" data-message="false" data-execution_count="14">
+<div id="0b83f6f3" class="cell" data-message="false" data-execution_count="14">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 准备候选的 alpha 值</span></span>
@@ -1051,7 +1040,7 @@ RidgeCV 结果（5折交叉验证）
 </section>
 <section id="lassocv自动选择最优-α" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="lassocv自动选择最优-α"><span class="header-section-number">8.4.2</span> LassoCV：自动选择最优 α</h3>
-<div id="732798a0" class="cell" data-message="false" data-execution_count="15">
+<div id="252298de" class="cell" data-message="false" data-execution_count="15">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LassoCV：5折交叉验证</span></span>
@@ -1083,7 +1072,7 @@ LassoCV 结果（5折交叉验证）
 </section>
 <section id="elasticnetcv自动选择最优-α" class="level3" data-number="8.4.3">
 <h3 data-number="8.4.3" class="anchored" data-anchor-id="elasticnetcv自动选择最优-α"><span class="header-section-number">8.4.3</span> ElasticNetCV：自动选择最优 α</h3>
-<div id="74a6457f" class="cell" data-message="false" data-execution_count="16">
+<div id="cb8b0f17" class="cell" data-message="false" data-execution_count="16">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ElasticNetCV：5折交叉验证</span></span>
@@ -1113,7 +1102,7 @@ ElasticNetCV 结果（5折交叉验证）
 </section>
 <section id="最终模型对比" class="level3" data-number="8.4.4">
 <h3 data-number="8.4.4" class="anchored" data-anchor-id="最终模型对比"><span class="header-section-number">8.4.4</span> 最终模型对比</h3>
-<div id="848eddee" class="cell" data-message="false" data-execution_count="17">
+<div id="79cc0bfa" class="cell" data-message="false" data-execution_count="17">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 汇总所有结果</span></span>
@@ -1200,7 +1189,7 @@ Elastic Net (α=0.01)   0.01 0.667854    13
 <p>观察随着 α 增大，各特征系数如何变化。</p>
 <section id="计算-lasso-正则化路径" class="level3" data-number="8.5.1">
 <h3 data-number="8.5.1" class="anchored" data-anchor-id="计算-lasso-正则化路径"><span class="header-section-number">8.5.1</span> 计算 Lasso 正则化路径</h3>
-<div id="e1ea34b8" class="cell" data-message="false" data-execution_count="18">
+<div id="86ed2abd" class="cell" data-message="false" data-execution_count="18">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算不同 alpha 下的系数</span></span>
@@ -1223,7 +1212,7 @@ Elastic Net (α=0.01)   0.01 0.667854    13
 </section>
 <section id="绘制正则化路径图" class="level3" data-number="8.5.2">
 <h3 data-number="8.5.2" class="anchored" data-anchor-id="绘制正则化路径图"><span class="header-section-number">8.5.2</span> 绘制正则化路径图</h3>
-<div id="d73f303b" class="cell" data-message="false" data-execution_count="19">
+<div id="596e6d5b" class="cell" data-message="false" data-execution_count="19">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>

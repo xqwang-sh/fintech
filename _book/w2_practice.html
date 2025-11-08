@@ -319,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>数据：使用经典的 Boston Housing 数据集（房价预测数据集）。</p>
 <section id="导入库" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="导入库"><span class="header-section-number">6.1</span> 导入库</h2>
-<div id="01394368" class="cell" data-message="false" data-execution_count="2">
+<div id="ab1e0b89" class="cell" data-message="false" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 导入库</span></span>
@@ -331,17 +331,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Boston housing 数据集已从 sklearn 中移除，我们从原始数据源获取</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error, mean_squared_error</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error, mean_squared_error</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="数据读取与基本概览" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="数据读取与基本概览"><span class="header-section-number">6.2</span> 数据读取与基本概览</h2>
-<div id="3e7f7657" class="cell" data-message="false" data-execution_count="3">
+<div id="8e5d6e9d" class="cell" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据与基本概览</span></span>
@@ -485,7 +481,7 @@ max     37.970000   50.000000  </code></pre>
 </section>
 <section id="缺失值检查" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="缺失值检查"><span class="header-section-number">6.3</span> 缺失值检查</h2>
-<div id="8dc41e9f" class="cell" data-message="false" data-execution_count="4">
+<div id="07f31f2e" class="cell" data-message="false" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 缺失值检查（Boston Housing 数据集通常没有缺失值）</span></span>
@@ -519,7 +515,7 @@ Boston Housing 数据集通常没有缺失值，无需额外处理</code></pre>
 </section>
 <section id="异常值检测" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="异常值检测"><span class="header-section-number">6.4</span> 异常值检测</h2>
-<div id="90b284d5" class="cell" data-message="false" data-execution_count="5">
+<div id="c5798343" class="cell" data-message="false" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 异常值可视化与简单检测（以房价为例）</span></span>
@@ -541,7 +537,7 @@ Boston Housing 数据集通常没有缺失值，无需额外处理</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w2_practice_files/figure-html/cell-6-output-1.png" width="950" height="374" class="figure-img"></p>
+<p><img src="w2_practice_files/figure-html/cell-6-output-1.png" width="950" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -552,7 +548,7 @@ Boston Housing 数据集通常没有缺失值，无需额外处理</code></pre>
 </section>
 <section id="数据可视化" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="数据可视化"><span class="header-section-number">6.5</span> 数据可视化</h2>
-<div id="da894a4e" class="cell" data-message="false" data-execution_count="6">
+<div id="32713f74" class="cell" data-message="false" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化：散点图、直方图、相关矩阵</span></span>
@@ -577,21 +573,21 @@ Boston Housing 数据集通常没有缺失值，无需额外处理</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w2_practice_files/figure-html/cell-7-output-1.png" width="585" height="449" class="figure-img"></p>
+<p><img src="w2_practice_files/figure-html/cell-7-output-1.png" width="579" height="448" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w2_practice_files/figure-html/cell-7-output-2.png" width="950" height="758" class="figure-img"></p>
+<p><img src="w2_practice_files/figure-html/cell-7-output-2.png" width="950" height="760" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w2_practice_files/figure-html/cell-7-output-3.png" width="873" height="801" class="figure-img"></p>
+<p><img src="w2_practice_files/figure-html/cell-7-output-3.png" width="865" height="801" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -617,7 +613,7 @@ Name: MEDV, dtype: float64</code></pre>
 </section>
 <section id="线性回归模型训练与评估" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="线性回归模型训练与评估"><span class="header-section-number">6.6</span> 线性回归模型训练与评估</h2>
-<div id="b83f7ece" class="cell" data-message="false" data-execution_count="7">
+<div id="b019a63d" class="cell" data-message="false" data-execution_count="7">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练线性回归并评估（MAE/RMSE）</span></span>
@@ -657,7 +653,7 @@ Name: MEDV, dtype: float64</code></pre>
 </section>
 <section id="残差分析" class="level2" data-number="6.7">
 <h2 data-number="6.7" class="anchored" data-anchor-id="残差分析"><span class="header-section-number">6.7</span> 残差分析</h2>
-<div id="23750973" class="cell" data-message="false" data-execution_count="8">
+<div id="76d0d10b" class="cell" data-message="false" data-execution_count="8">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 残差分析</span></span>
@@ -676,7 +672,7 @@ Name: MEDV, dtype: float64</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w2_practice_files/figure-html/cell-9-output-1.png" width="950" height="374" class="figure-img"></p>
+<p><img src="w2_practice_files/figure-html/cell-9-output-1.png" width="951" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>

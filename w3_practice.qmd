@@ -64,17 +64,6 @@ from sklearn.linear_model import RidgeCV, LassoCV, ElasticNetCV
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
-# 设置中文字体
-import platform
-system = platform.system()
-if system == 'Windows':
-    plt.rcParams['font.sans-serif'] = ['SimHei']
-elif system == 'Darwin':
-    plt.rcParams['font.sans-serif'] = ['Songti SC']
-else:
-    plt.rcParams['font.sans-serif'] = ['WenQuanYi Zen Hei']
-plt.rcParams['axes.unicode_minus'] = False
-
 # 设置随机种子
 np.random.seed(42)
 

@@ -83,10 +83,6 @@ from sklearn.metrics import (confusion_matrix, ConfusionMatrixDisplay,
                              accuracy_score, precision_score, recall_score, f1_score,
                              roc_curve, auc, classification_report)
 
-# 设置中文显示
-plt.rcParams["font.sans-serif"] = ["SimHei"]
-plt.rcParams["axes.unicode_minus"] = False
-%matplotlib inline
 ```
 
 ```{python}
