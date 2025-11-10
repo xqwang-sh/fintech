@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 第一讲：Python基础与机器学习入门 – 金融科技概论讲义（机器学习部分）</title>
+<title>3&nbsp; 第一讲：机器学习入门与Python基础 – 金融科技概论讲义（机器学习部分）</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w1_python_ml_intro.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w1_python_ml_intro.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：机器学习入门与Python基础</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./w1_python_ml_intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：机器学习入门与Python基础</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -380,7 +380,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：Python基础与机器学习入门</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第一讲：机器学习入门与Python基础</span></h1>
 </div>
 
 
@@ -947,7 +947,7 @@ y = f(X)
 <section id="训练training-让模型学习" class="level3" data-number="3.3.6">
 <h3 data-number="3.3.6" class="anchored" data-anchor-id="训练training-让模型学习"><span class="header-section-number">3.3.6</span> 训练（Training）= 让模型学习</h3>
 <p><strong>目标：</strong> 找到最好的参数（系数），使得预测尽可能准确</p>
-<div id="cf4e66c8" class="cell" data-execution_count="2">
+<div id="734e8a68" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1080,7 +1080,7 @@ y = w \times x + b
 </section>
 <section id="可视化理解线性回归" class="level3" data-number="3.5.2">
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="可视化理解线性回归"><span class="header-section-number">3.5.2</span> 可视化理解线性回归</h3>
-<div id="06ac8d53" class="cell" data-execution_count="3">
+<div id="f4c514a8" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1224,7 +1224,7 @@ y = w \times x + b
 </section>
 <section id="代码演示数据切分" class="level3" data-number="3.6.4">
 <h3 data-number="3.6.4" class="anchored" data-anchor-id="代码演示数据切分"><span class="header-section-number">3.6.4</span> 代码演示：数据切分</h3>
-<div id="a5703d08" class="cell" data-execution_count="4">
+<div id="38b90059" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -1266,7 +1266,7 @@ y = w \times x + b
 <h3 data-number="3.7.2" class="anchored" data-anchor-id="欠拟合模型太简单"><span class="header-section-number">3.7.2</span> 欠拟合：模型太简单</h3>
 <p><strong>现象：</strong> 训练集和测试集表现都差</p>
 <p><strong>原因：</strong> 模型能力不足，无法捕捉数据规律</p>
-<div id="b733fdcf" class="cell" data-execution_count="5">
+<div id="43a158ce" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1286,7 +1286,7 @@ y = w \times x + b
 <h3 data-number="3.7.3" class="anchored" data-anchor-id="过拟合模型太复杂"><span class="header-section-number">3.7.3</span> 过拟合：模型太复杂</h3>
 <p><strong>现象：</strong> 训练集表现很好，测试集表现很差</p>
 <p><strong>原因：</strong> 模型把噪声当成规律，失去泛化能力</p>
-<div id="48681301" class="cell" data-execution_count="6">
+<div id="14040144" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1304,7 +1304,7 @@ y = w \times x + b
 </section>
 <section id="恰到好处良好的泛化能力" class="level3" data-number="3.7.4">
 <h3 data-number="3.7.4" class="anchored" data-anchor-id="恰到好处良好的泛化能力"><span class="header-section-number">3.7.4</span> 恰到好处：良好的泛化能力</h3>
-<div id="74c6e57f" class="cell" data-execution_count="7">
+<div id="1b8f1bf3" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1421,7 +1421,7 @@ y = w \times x + b
 </section>
 <section id="第一个完整例子房价预测" class="level3" data-number="3.8.2">
 <h3 data-number="3.8.2" class="anchored" data-anchor-id="第一个完整例子房价预测"><span class="header-section-number">3.8.2</span> 第一个完整例子：房价预测</h3>
-<div id="f74b626e" class="cell" data-execution_count="8">
+<div id="38094899" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 导入库</span></span>
@@ -1458,7 +1458,7 @@ y = w \times x + b
 </section>
 <section id="可视化预测结果" class="level3" data-number="3.8.3">
 <h3 data-number="3.8.3" class="anchored" data-anchor-id="可视化预测结果"><span class="header-section-number">3.8.3</span> 可视化预测结果</h3>
-<div id="d27caa87" class="cell" data-execution_count="9">
+<div id="1d0e315c" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
