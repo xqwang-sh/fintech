@@ -110,7 +110,7 @@ VS Code 最强大的地方就是可以通过插件扩展功能。打开 VS Code 
 | `matplotlib` | 数据可视化（画图） |
 | `scikit-learn` | 机器学习模型 |
 
-**安装这些库（推荐三种方式之一）：**
+**安装这些库（推荐两种方式之一）：**
 
 **方式 1：基础方式 - 使用 pip**
 
@@ -153,12 +153,14 @@ uv pip install numpy pandas matplotlib scikit-learn
 这表示系统找不到 Python 或 pip 的位置。按以下步骤解决：
 
 **第1步：重启计算机**
+
 - 重启可以使系统重新加载 PATH 环境变量
 - 重启后重新打开终端，尝试 `pip --version`
 
 **第2步：如果还是失败，手动添加 Python 到 PATH**
 
 **Windows：**
+
 1. 打开 "文件资源管理器" → 右键单击 "此电脑" → "属性"
 2. 点击 "高级系统设置"
 3. 点击 "环境变量"
@@ -167,6 +169,7 @@ uv pip install numpy pandas matplotlib scikit-learn
 6. 点击 "确定" 保存，重启终端
 
 **Mac/Linux：**
+
 1. 打开终端
 2. 编辑 `~/.zshrc` 或 `~/.bashrc`：
    ```bash
@@ -180,6 +183,7 @@ uv pip install numpy pandas matplotlib scikit-learn
 5. 运行 `source ~/.zshrc` 加载配置
 
 **第3步：如果以上都不行，重装 Python**
+
 1. 卸载已安装的 Python
 2. 从 https://www.python.org/downloads 重新下载并安装
 3. **安装时务必勾选 "Add Python to PATH"**
@@ -250,9 +254,10 @@ else:
 **机器学习的基本流程：**
 
 1. 准备数据（历史数据：已知面积和价格）
-2. 训练模型（让计算机学习规律）
-3. 预测新数据（用学到的规律预测新房子价格）
-4. 可视化（画图看看效果）
+2. 数据探索与可视化（了解数据特性）
+3. 训练模型（让计算机学习规律）
+4. 预测新数据（用学到的规律预测新房子价格）
+5. 评估模型（对比预测结果与真实数据）
 
 下面我们一步步实现：
 
@@ -271,41 +276,64 @@ import matplotlib.pyplot as plt                    # 画图库
 areas = [50, 60, 70, 80, 90, 100, 110, 120]      # 房屋面积（平米）
 prices = [150, 180, 210, 240, 270, 300, 330, 360] # 对应价格（万元）
 
-# 观察：面积越大，价格越高，看起来是线性关系
+# ========== 第3步：数据探索与可视化 ==========
+# 在训练模型前，先看看数据的特性
+# 可视化帮助我们理解：面积和价格是否有线性关系？
+plt.figure(figsize=(8, 5))
+plt.scatter(areas, prices, s=100, alpha=0.7, color='blue', label='真实数据点')
+plt.xlabel('房屋面积（平米）', fontsize=12)
+plt.ylabel('房屋价格（万元）', fontsize=12)
+plt.title('房屋面积与价格的关系', fontsize=14)
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.show()
 
-# ========== 第3步：数据格式转换 ==========
+print("观察：从图上可以看出，面积越大，价格越高，呈现线性关系 ✓")
+
+# ========== 第4步：数据格式转换 ==========
 # 将数据转换为 numpy 数组格式（机器学习中常用的数据格式）
 X = np.array(areas).reshape(-1, 1)  # 特征（输入）：房屋面积，reshape 成二维数组
 y = np.array(prices)                # 标签（输出）：房屋价格
 
-# ========== 第4步：创建模型 ==========
-model = LinearRegression()  # 创建一个线性回归模型
+# ========== 第5步：创建和训练模型 ==========
+# 创建线性回归模型
+model = LinearRegression()
 
-# ========== 第5步：训练模型 ==========
 # fit() 就是"训练"：让模型从数据中学习规律
 # 模型会找到一条直线，使得这条直线最接近所有数据点
 model.fit(X, y)
 
+print("\n✓ 模型训练完成！")
+
 # ========== 第6步：查看学到的参数 ==========
 # 模型学到的规律可以用一条直线表示：价格 = 斜率 × 面积 + 截距
-print("斜率（每平米价格）:", model.coef_[0])  # 约 3.0，表示每平米约3万元
-print("截距:", model.intercept_)              # 直线的截距
+print(f"学到的规律：价格 = {model.coef_[0]:.2f} × 面积 + {model.intercept_:.2f}")
+print(f"  - 斜率（每平米价格）: {model.coef_[0]:.2f} 万元/平米")
+print(f"  - 截距: {model.intercept_:.2f} 万元")
 
 # ========== 第7步：预测新数据 ==========
 # 现在用训练好的模型预测 95 平米房子的价格
 new_area = np.array([[95]])  # 要预测的房子面积（使用 numpy 数组格式）
 predicted = model.predict(new_area)[0]  # predict() 返回预测结果
-print(f"95平米预测价格: {predicted:.1f} 万元")
+print(f"\n预测：95平米的房子价格约为 {predicted:.1f} 万元")
 
-# ========== 第8步：可视化 ==========
-# 画图看看模型的拟合效果
-plt.scatter(areas, prices, label='真实数据')           # 散点图：真实数据点
-plt.plot(areas, model.predict(X), color='red', label='拟合直线')  # 红线：模型学到的直线
-plt.xlabel('面积（平米）')
-plt.ylabel('价格（万元）')
-plt.legend()  # 显示图例
-plt.title('房价预测')
-plt.show()    # 显示图形
+# ========== 第8步：评估模型 - 可视化拟合效果 ==========
+# 画图对比：真实数据 vs 模型拟合的直线
+plt.figure(figsize=(8, 5))
+plt.scatter(areas, prices, s=100, alpha=0.7, color='blue', label='真实数据点')
+plt.plot(areas, model.predict(X), color='red', linewidth=2, label='模型拟合直线')
+
+# 标记预测点
+plt.scatter([95], [predicted], s=150, color='green', marker='*', label=f'预测：95平米 → {predicted:.1f}万元', zorder=5)
+
+plt.xlabel('房屋面积（平米）', fontsize=12)
+plt.ylabel('房屋价格（万元）', fontsize=12)
+plt.title('房价预测模型效果', fontsize=14)
+plt.grid(True, alpha=0.3)
+plt.legend(fontsize=10)
+plt.show()
+
+print("\n✓ 模型效果评估完成！")
 ```
 
 **恭喜！** 你已经完成了第一个机器学习程序！🎉

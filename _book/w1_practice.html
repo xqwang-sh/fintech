@@ -430,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p><strong>安装这些库（推荐三种方式之一）：</strong></p>
+<p><strong>安装这些库（推荐两种方式之一）：</strong></p>
 <p><strong>方式 1：基础方式 - 使用 pip</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>方式 2：现代方式 - 使用 uv（推荐！）</strong></p>
@@ -483,51 +483,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>如果你运行 <code>pip install</code> 或 <code>uv pip install</code> 时出现错误，通常是以下原因。按顺序尝试：</p>
 <p><strong>错误现象 1：<code>pip: command not found</code> 或 <code>'pip' 不是内部或外部命令</code></strong></p>
 <p>这表示系统找不到 Python 或 pip 的位置。按以下步骤解决：</p>
-<p><strong>第1步：重启计算机</strong> - 重启可以使系统重新加载 PATH 环境变量 - 重启后重新打开终端，尝试 <code>pip --version</code></p>
+<p><strong>第1步：重启计算机</strong></p>
+<ul>
+<li>重启可以使系统重新加载 PATH 环境变量</li>
+<li>重启后重新打开终端，尝试 <code>pip --version</code></li>
+</ul>
 <p><strong>第2步：如果还是失败，手动添加 Python 到 PATH</strong></p>
-<p><strong>Windows：</strong> 1. 打开 “文件资源管理器” → 右键单击 “此电脑” → “属性” 2. 点击 “高级系统设置” 3. 点击 “环境变量” 4. 在 “用户变量” 或 “系统变量” 中，找到 “Path”，点击 “编辑” 5. 点击 “新建”，添加 Python 安装路径（通常是 <code>C:\Users\你的用户名\AppData\Local\Programs\Python\Python311</code> 或类似路径） 6. 点击 “确定” 保存，重启终端</p>
-<p><strong>Mac/Linux：</strong> 1. 打开终端 2. 编辑 <code>~/.zshrc</code> 或 <code>~/.bashrc</code>： <code>bash    nano ~/.zshrc</code> 3. 在文件末尾添加： <code>bash    export PATH="/usr/local/bin:$PATH"</code> 4. 按 <code>Ctrl+X</code>，然后 <code>Y</code>，再按 <code>Enter</code> 保存 5. 运行 <code>source ~/.zshrc</code> 加载配置</p>
-<p><strong>第3步：如果以上都不行，重装 Python</strong> 1. 卸载已安装的 Python 2. 从 https://www.python.org/downloads 重新下载并安装 3. <strong>安装时务必勾选 “Add Python to PATH”</strong> 4. 重启计算机</p>
+<p><strong>Windows：</strong></p>
+<ol type="1">
+<li>打开 “文件资源管理器” → 右键单击 “此电脑” → “属性”</li>
+<li>点击 “高级系统设置”</li>
+<li>点击 “环境变量”</li>
+<li>在 “用户变量” 或 “系统变量” 中，找到 “Path”，点击 “编辑”</li>
+<li>点击 “新建”，添加 Python 安装路径（通常是 <code>C:\Users\你的用户名\AppData\Local\Programs\Python\Python311</code> 或类似路径）</li>
+<li>点击 “确定” 保存，重启终端</li>
+</ol>
+<p><strong>Mac/Linux：</strong></p>
+<ol type="1">
+<li><p>打开终端</p></li>
+<li><p>编辑 <code>~/.zshrc</code> 或 <code>~/.bashrc</code>：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> ~/.zshrc</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>在文件末尾添加：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"/usr/local/bin:</span><span class="va">$PATH</span><span class="st">"</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>按 <code>Ctrl+X</code>，然后 <code>Y</code>，再按 <code>Enter</code> 保存</p></li>
+<li><p>运行 <code>source ~/.zshrc</code> 加载配置</p></li>
+</ol>
+<p><strong>第3步：如果以上都不行，重装 Python</strong></p>
+<ol type="1">
+<li>卸载已安装的 Python</li>
+<li>从 https://www.python.org/downloads 重新下载并安装</li>
+<li><strong>安装时务必勾选 “Add Python to PATH”</strong></li>
+<li>重启计算机</li>
+</ol>
 <p><strong>错误现象 2：网络连接问题</strong></p>
 <p>如果安装速度很慢或显示网络错误，可以尝试：</p>
 <p>方案1：使用国内镜像源</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>方案2：使用 uv（uv 通常自动处理网络问题，且更快）</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="安装验证" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="安装验证"><span class="header-section-number">4.2</span> 安装验证</h2>
 <p>在终端/命令行运行以下命令来快速验证你的环境。遇到错误先读提示再求助助教。</p>
 <p><strong>验证 Python 和 pip：</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> <span class="at">--version</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> <span class="at">--version</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>如果两个命令都正常显示版本号，说明 Python 和 pip 已正确安装！</p>
 <p><strong>验证库安装：</strong></p>
 <p>运行以下 Python 代码来检查必要的库是否已安装：</p>
-<div id="5b96ea8d" class="cell" data-message="false" data-execution_count="2">
+<div id="1ef6a9f2" class="cell" data-message="false" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 验证库安装情况</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>libs <span class="op">=</span> [<span class="st">'numpy'</span>, <span class="st">'pandas'</span>, <span class="st">'matplotlib'</span>, <span class="st">'sklearn'</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"正在验证库安装...</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>all_success <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lib <span class="kw">in</span> libs:</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">__import__</span>(lib)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'✓ </span><span class="sc">{</span>lib<span class="sc">}</span><span class="ss"> - 已安装'</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ImportError</span>:</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'✗ </span><span class="sc">{</span>lib<span class="sc">}</span><span class="ss"> - 未安装'</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        all_success <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> all_success:</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">如有库未安装，运行以下命令之一："</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  pip install numpy pandas matplotlib scikit-learn"</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  # 或者使用 uv (更快):"</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  uv pip install numpy pandas matplotlib scikit-learn"</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">✓ 所有库已安装！环境配置完成 🎉"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 验证库安装情况</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>libs <span class="op">=</span> [<span class="st">'numpy'</span>, <span class="st">'pandas'</span>, <span class="st">'matplotlib'</span>, <span class="st">'sklearn'</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"正在验证库安装...</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>all_success <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lib <span class="kw">in</span> libs:</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">__import__</span>(lib)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'✓ </span><span class="sc">{</span>lib<span class="sc">}</span><span class="ss"> - 已安装'</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ImportError</span>:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'✗ </span><span class="sc">{</span>lib<span class="sc">}</span><span class="ss"> - 未安装'</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        all_success <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> all_success:</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">如有库未安装，运行以下命令之一："</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  pip install numpy pandas matplotlib scikit-learn"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  # 或者使用 uv (更快):"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  uv pip install numpy pandas matplotlib scikit-learn"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">✓ 所有库已安装！环境配置完成 🎉"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>正在验证库安装...
@@ -548,73 +575,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>机器学习的基本流程：</strong></p>
 <ol type="1">
 <li>准备数据（历史数据：已知面积和价格）</li>
+<li>数据探索与可视化（了解数据特性）</li>
 <li>训练模型（让计算机学习规律）</li>
 <li>预测新数据（用学到的规律预测新房子价格）</li>
-<li>可视化（画图看看效果）</li>
+<li>评估模型（对比预测结果与真实数据）</li>
 </ol>
 <p>下面我们一步步实现：</p>
-<div id="06032a91" class="cell" data-message="false" data-execution_count="3">
+<div id="87856e7e" class="cell" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第一个机器学习程序：房价预测（简化版）</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第1步：导入必要的库 ==========</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression  <span class="co"># 线性回归模型</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np                                <span class="co"># 数值计算库</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt                    <span class="co"># 画图库</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第2步：准备数据（历史数据）==========</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 这是我们的"历史数据"：8 套房子的面积和价格</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>]      <span class="co"># 房屋面积（平米）</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> [<span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">210</span>, <span class="dv">240</span>, <span class="dv">270</span>, <span class="dv">300</span>, <span class="dv">330</span>, <span class="dv">360</span>] <span class="co"># 对应价格（万元）</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 观察：面积越大，价格越高，看起来是线性关系</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第3步：数据格式转换 ==========</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 将数据转换为 numpy 数组格式（机器学习中常用的数据格式）</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array(areas).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># 特征（输入）：房屋面积，reshape 成二维数组</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array(prices)                <span class="co"># 标签（输出）：房屋价格</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第4步：创建模型 ==========</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()  <span class="co"># 创建一个线性回归模型</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第5步：训练模型 ==========</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># fit() 就是"训练"：让模型从数据中学习规律</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型会找到一条直线，使得这条直线最接近所有数据点</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第6步：查看学到的参数 ==========</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型学到的规律可以用一条直线表示：价格 = 斜率 × 面积 + 截距</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"斜率（每平米价格）:"</span>, model.coef_[<span class="dv">0</span>])  <span class="co"># 约 3.0，表示每平米约3万元</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"截距:"</span>, model.intercept_)              <span class="co"># 直线的截距</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第7步：预测新数据 ==========</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 现在用训练好的模型预测 95 平米房子的价格</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>new_area <span class="op">=</span> np.array([[<span class="dv">95</span>]])  <span class="co"># 要预测的房子面积（使用 numpy 数组格式）</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> model.predict(new_area)[<span class="dv">0</span>]  <span class="co"># predict() 返回预测结果</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95平米预测价格: </span><span class="sc">{</span>predicted<span class="sc">:.1f}</span><span class="ss"> 万元"</span>)</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第8步：可视化 ==========</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 画图看看模型的拟合效果</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>plt.scatter(areas, prices, label<span class="op">=</span><span class="st">'真实数据'</span>)           <span class="co"># 散点图：真实数据点</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>plt.plot(areas, model.predict(X), color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'拟合直线'</span>)  <span class="co"># 红线：模型学到的直线</span></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'面积（平米）'</span>)</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'价格（万元）'</span>)</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>plt.legend()  <span class="co"># 显示图例</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'房价预测'</span>)</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>plt.show()    <span class="co"># 显示图形</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第一个机器学习程序：房价预测（简化版）</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第1步：导入必要的库 ==========</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression  <span class="co"># 线性回归模型</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np                                <span class="co"># 数值计算库</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt                    <span class="co"># 画图库</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第2步：准备数据（历史数据）==========</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 这是我们的"历史数据"：8 套房子的面积和价格</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>]      <span class="co"># 房屋面积（平米）</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> [<span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">210</span>, <span class="dv">240</span>, <span class="dv">270</span>, <span class="dv">300</span>, <span class="dv">330</span>, <span class="dv">360</span>] <span class="co"># 对应价格（万元）</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第3步：数据探索与可视化 ==========</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 在训练模型前，先看看数据的特性</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化帮助我们理解：面积和价格是否有线性关系？</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.scatter(areas, prices, s<span class="op">=</span><span class="dv">100</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'真实数据点'</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'房屋面积（平米）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'房屋价格（万元）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'房屋面积与价格的关系'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"观察：从图上可以看出，面积越大，价格越高，呈现线性关系 ✓"</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第4步：数据格式转换 ==========</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 将数据转换为 numpy 数组格式（机器学习中常用的数据格式）</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array(areas).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># 特征（输入）：房屋面积，reshape 成二维数组</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array(prices)                <span class="co"># 标签（输出）：房屋价格</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第5步：创建和训练模型 ==========</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建线性回归模型</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co"># fit() 就是"训练"：让模型从数据中学习规律</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型会找到一条直线，使得这条直线最接近所有数据点</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">✓ 模型训练完成！"</span>)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第6步：查看学到的参数 ==========</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型学到的规律可以用一条直线表示：价格 = 斜率 × 面积 + 截距</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"学到的规律：价格 = </span><span class="sc">{</span>model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> × 面积 + </span><span class="sc">{</span>model<span class="sc">.</span>intercept_<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - 斜率（每平米价格）: </span><span class="sc">{</span>model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> 万元/平米"</span>)</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - 截距: </span><span class="sc">{</span>model<span class="sc">.</span>intercept_<span class="sc">:.2f}</span><span class="ss"> 万元"</span>)</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第7步：预测新数据 ==========</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="co"># 现在用训练好的模型预测 95 平米房子的价格</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>new_area <span class="op">=</span> np.array([[<span class="dv">95</span>]])  <span class="co"># 要预测的房子面积（使用 numpy 数组格式）</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> model.predict(new_area)[<span class="dv">0</span>]  <span class="co"># predict() 返回预测结果</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">预测：95平米的房子价格约为 </span><span class="sc">{</span>predicted<span class="sc">:.1f}</span><span class="ss"> 万元"</span>)</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第8步：评估模型 - 可视化拟合效果 ==========</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="co"># 画图对比：真实数据 vs 模型拟合的直线</span></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>plt.scatter(areas, prices, s<span class="op">=</span><span class="dv">100</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'真实数据点'</span>)</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>plt.plot(areas, model.predict(X), color<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'模型拟合直线'</span>)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="co"># 标记预测点</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>plt.scatter([<span class="dv">95</span>], [predicted], s<span class="op">=</span><span class="dv">150</span>, color<span class="op">=</span><span class="st">'green'</span>, marker<span class="op">=</span><span class="st">'*'</span>, label<span class="op">=</span><span class="ss">f'预测：95平米 → </span><span class="sc">{</span>predicted<span class="sc">:.1f}</span><span class="ss">万元'</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'房屋面积（平米）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'房屋价格（万元）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'房价预测模型效果'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">✓ 模型效果评估完成！"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w1_practice_files/figure-html/cell-4-output-1.png" width="663" height="453" class="figure-img"></p>
+</figure>
+</div>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>斜率（每平米价格）: 3.0000000000000004
-截距: -2.842170943040401e-14
-95平米预测价格: 285.0 万元</code></pre>
+<pre><code>观察：从图上可以看出，面积越大，价格越高，呈现线性关系 ✓
+
+✓ 模型训练完成！
+学到的规律：价格 = 3.00 × 面积 + -0.00
+  - 斜率（每平米价格）: 3.00 万元/平米
+  - 截距: -0.00 万元
+
+预测：95平米的房子价格约为 285.0 万元</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w1_practice_files/figure-html/cell-4-output-2.png" width="586" height="449" class="figure-img"></p>
+<p><img src="w1_practice_files/figure-html/cell-4-output-3.png" width="663" height="453" class="figure-img"></p>
 </figure>
 </div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+✓ 模型效果评估完成！</code></pre>
 </div>
 </div>
 <p><strong>恭喜！</strong> 你已经完成了第一个机器学习程序！🎉</p>
