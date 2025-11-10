@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>搜索上述插件名称并安装</li>
 </ol>
 <p>按顺序运行每个单元格，遇到错误先读提示再求助助教。</p>
-<div id="cdcde648" class="cell" data-message="false" data-execution_count="2">
+<div id="217ef9da" class="cell" data-message="false" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 验证 Python 与 Jupyter</span></span>
@@ -456,7 +456,7 @@ sklearn 导入成功</code></pre>
 <li>可以随时修改值</li>
 </ul>
 <p>下面我们看看具体例子：</p>
-<div id="e7494c3b" class="cell" data-message="false" data-execution_count="3">
+<div id="d575e030" class="cell" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 变量赋值：创建变量并存储数据</span></span>
@@ -505,7 +505,7 @@ Alice
 <li>可以随时添加、删除元素</li>
 </ul>
 <p>下面我们学习列表的基本操作：</p>
-<div id="5cd4136d" class="cell" data-message="false" data-execution_count="4">
+<div id="1bc9e709" class="cell" data-message="false" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 创建列表：存储多个房价数据</span></span>
@@ -558,37 +558,73 @@ Alice
 </ul>
 <p><strong>Python 常用库：</strong></p>
 <ul>
-<li><code>math</code>：数学函数（开方、三角函数等）</li>
-<li><code>statistics</code>：统计函数（平均值、中位数等）</li>
-<li><code>pandas</code>：数据处理（后续会学）</li>
-<li><code>matplotlib</code>：画图（后续会学）</li>
+<li><code>numpy</code>：数值计算（数组、矩阵运算）</li>
+<li><code>pandas</code>：数据处理（表格数据操作）</li>
+<li><code>matplotlib</code>：画图（数据可视化）</li>
 <li><code>sklearn</code>：机器学习（后续会学）</li>
 </ul>
 <p>下面看看如何使用库：</p>
-<div id="311f91d8" class="cell" data-message="false" data-execution_count="5">
+<div id="053d4614" class="cell" data-message="false" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 方式1：导入整个库，使用时需要加库名</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math              <span class="co"># 导入数学库</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">16</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.sqrt(x))      <span class="co"># 使用 math.sqrt() 计算平方根，输出：4.0</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 方式2：只导入需要的函数，使用时不需要加库名</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statistics <span class="im">import</span> mean  <span class="co"># 从 statistics 库中导入 mean 函数</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> [<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">92</span>, <span class="dv">88</span>]</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"平均分:"</span>, mean(scores))  <span class="co"># 直接使用 mean() 计算平均值，输出：86.6</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 导入库：使用时需要加库名</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np       <span class="co"># 导入 numpy 库，通常缩写为 np</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd      <span class="co"># 导入 pandas 库，通常缩写为 pd</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># numpy 示例：数值计算和数组操作</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 注意：numpy数组 vs Python列表的区别</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - 列表：Python内置，灵活但计算慢</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># - 数组：numpy专用，高效但类型固定</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>scores_list <span class="op">=</span> [<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">92</span>, <span class="dv">88</span>]        <span class="co"># Python 列表</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> np.array(scores_list)             <span class="co"># 转换为 numpy 数组</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"原始列表:"</span>, scores_list)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"numpy数组:"</span>, scores)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"平均分:"</span>, np.mean(scores))         <span class="co"># numpy 计算平均值，输出：86.6</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"最高分:"</span>, np.<span class="bu">max</span>(scores))          <span class="co"># 最高分，输出：92</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"最低分:"</span>, np.<span class="bu">min</span>(scores))          <span class="co"># 最低分，输出：78</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># pandas 示例：表格数据处理</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个学生成绩表</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'姓名'</span>: [<span class="st">'小明'</span>, <span class="st">'小红'</span>, <span class="st">'小刚'</span>, <span class="st">'小丽'</span>],</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'成绩'</span>: [<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">92</span>]</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)  <span class="co"># 创建 DataFrame（数据表格）</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">学生成绩表:"</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)               <span class="co"># 显示表格</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">平均成绩:"</span>, df[<span class="st">'成绩'</span>].mean())  <span class="co"># pandas 计算平均值</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>4.0
-平均分: 86.6</code></pre>
+<pre><code>原始列表: [85, 90, 78, 92, 88]
+numpy数组: [85 90 78 92 88]
+平均分: 86.6
+最高分: 92
+最低分: 78
+
+学生成绩表:
+   姓名  成绩
+0  小明  85
+1  小红  90
+2  小刚  78
+3  小丽  92
+
+平均成绩: 86.25</code></pre>
 </div>
 </div>
-<p><strong>练习题：</strong> 导入 <code>statistics</code> 库，计算 <code>[10, 20, 30, 40, 50]</code> 的平均值和中位数。</p>
+<p><strong>练习题：</strong> 使用 numpy 和 pandas 创建一个简单的学生成绩管理系统。</p>
+<p><strong>要求：</strong></p>
+<ol type="1">
+<li>使用 numpy 创建一个包含 5 个学生成绩的数组：<code>[85, 92, 78, 96, 88]</code></li>
+<li>计算这些成绩的平均值、最高分和最低分</li>
+<li>使用 pandas 创建一个 DataFrame，包含学生的姓名和成绩</li>
+<li>显示 DataFrame 并计算平均成绩</li>
+</ol>
 <p><strong>提示：</strong></p>
 <ul>
-<li>使用 <code>from statistics import mean, median</code> 导入两个函数</li>
-<li>或者使用 <code>import statistics</code>，然后通过 <code>statistics.mean()</code> 和 <code>statistics.median()</code> 调用</li>
-<li>中位数函数是 <code>median()</code>，用法和 <code>mean()</code> 一样</li>
+<li>numpy 数组创建：<code>np.array([数值列表])</code></li>
+<li>numpy 统计函数：<code>np.mean()</code>, <code>np.max()</code>, <code>np.min()</code></li>
+<li>pandas DataFrame 创建：<code>pd.DataFrame({'列名': [数据]})</code></li>
+<li>DataFrame 平均值：<code>df['列名'].mean()</code></li>
 </ul>
 </section>
 <section id="第一个机器学习程序线性回归" class="level2" data-number="4.5">
@@ -603,27 +639,27 @@ Alice
 <li>可视化（画图看看效果）</li>
 </ol>
 <p>下面我们一步步实现：</p>
-<div id="ca58ddde" class="cell" data-message="false" data-execution_count="6">
+<div id="42fa229b" class="cell" data-message="false" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第一个机器学习程序：房价预测（简化版）</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第1步：导入必要的库 ==========</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression  <span class="co"># 线性回归模型</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt                    <span class="co"># 画图库</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第2步：准备数据（历史数据）==========</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 这是我们的"历史数据"：8 套房子的面积和价格</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>]      <span class="co"># 房屋面积（平米）</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> [<span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">210</span>, <span class="dv">240</span>, <span class="dv">270</span>, <span class="dv">300</span>, <span class="dv">330</span>, <span class="dv">360</span>] <span class="co"># 对应价格（万元）</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 观察：面积越大，价格越高，看起来是线性关系</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第3步：数据格式转换 ==========</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># sklearn 要求特征 X 是二维数组格式</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># [[50], [60], [70], ...] 而不是 [50, 60, 70, ...]</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [[a] <span class="cf">for</span> a <span class="kw">in</span> areas]  <span class="co"># 特征（输入）：房屋面积</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> prices                <span class="co"># 标签（输出）：房屋价格</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np                                <span class="co"># 数值计算库</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt                    <span class="co"># 画图库</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第2步：准备数据（历史数据）==========</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 这是我们的"历史数据"：8 套房子的面积和价格</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>]      <span class="co"># 房屋面积（平米）</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> [<span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">210</span>, <span class="dv">240</span>, <span class="dv">270</span>, <span class="dv">300</span>, <span class="dv">330</span>, <span class="dv">360</span>] <span class="co"># 对应价格（万元）</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 观察：面积越大，价格越高，看起来是线性关系</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第3步：数据格式转换 ==========</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 将数据转换为 numpy 数组格式（机器学习中常用的数据格式）</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array(areas).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># 特征（输入）：房屋面积，reshape 成二维数组</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array(prices)                <span class="co"># 标签（输出）：房屋价格</span></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第4步：创建模型 ==========</span></span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()  <span class="co"># 创建一个线性回归模型</span></span>
@@ -640,7 +676,7 @@ Alice
 <span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co"># ========== 第7步：预测新数据 ==========</span></span>
 <span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 现在用训练好的模型预测 95 平米房子的价格</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>new_area <span class="op">=</span> [[<span class="dv">95</span>]]  <span class="co"># 要预测的房子面积（注意格式：二维数组）</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>new_area <span class="op">=</span> np.array([[<span class="dv">95</span>]])  <span class="co"># 要预测的房子面积（使用 numpy 数组格式）</span></span>
 <span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> model.predict(new_area)[<span class="dv">0</span>]  <span class="co"># predict() 返回预测结果</span></span>
 <span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95平米预测价格: </span><span class="sc">{</span>predicted<span class="sc">:.1f}</span><span class="ss"> 万元"</span>)</span>
 <span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
