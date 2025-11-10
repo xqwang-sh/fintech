@@ -63,13 +63,6 @@ plt.rcParams['axes.unicode_minus'] = False
    - 下载适合你操作系统的安装程序
    - 运行安装程序，按照提示完成安装
    - 启动 VS Code
-3. **特别优惠 - GitHub Student 账户**：
-   - **免费用户**：GitHub Copilot 有月度限制（免费版本问答次数有限制）
-   - **Student 账户**：获得 **GitHub Copilot Pro 免费使用权**（价值 $10/月）
-     - 无限制使用 Copilot（AI 代码助手）
-     - 比免费用户多得多的问答次数和优先级
-   - **申请方式**：访问 https://education.github.com/pack，用学生邮箱注册即可
-   - **还包含其他开发工具的优惠**：例如云服务、设计工具等
 
 ### Step 3: VS Code 插件安装
 
@@ -94,7 +87,12 @@ VS Code 最强大的地方就是可以通过插件扩展功能。打开 VS Code 
 3. **GitHub Copilot**（AI 代码助手 - 强烈推荐！）
    - 搜索关键词：`Copilot` 或 `GitHub.copilot`
    - 功能：使用 AI 帮助写代码、生成代码建议
-   - **免费使用**：如果你有 GitHub Student 账户（Student 账户免费享用 $10/月 的 Copilot Pro）
+   - **价格对比**：
+     - 免费用户：GitHub Copilot 有月度限制（问答次数有限制）
+     - **Student 账户**：免费享用 **GitHub Copilot Pro**（价值 $10/月）
+       - 无限制使用 Copilot
+       - 比免费用户多得多的问答次数和优先级
+   - **获得 Student 优惠**：访问 https://education.github.com/pack，用学生邮箱注册即可（还包含其他开发工具的优惠）
 
 ### Step 4: 库和包管理 - pip 与 uv
 
