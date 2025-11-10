@@ -52,7 +52,7 @@ plt.rcParams['axes.unicode_minus'] = False
   3. 添加 Anaconda 到系统 PATH（安装时勾选）
   4. 验证安装：打开终端运行 `python --version`
 
-### Jupyter 安装
+### Jupyter 安装（可先跳过）
 
 **方式1：通过 pip 安装**
 
@@ -80,7 +80,7 @@ conda install jupyter
    - 搜索并安装：`ms-python.python`
    - 提供 Python 语言支持、调试、代码格式化等功能
 
-2. **Jupyter**
+2. **Jupyter**（可先跳过）
    - 搜索并安装：`ms-toolsai.jupyter`
    - 支持在 VS Code 中运行 .ipynb 文件
 
