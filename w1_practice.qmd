@@ -82,15 +82,16 @@ plt.rcParams['axes.unicode_minus'] = False
 
 打开终端，运行：
 ```bash
-pip install numpy pandas matplotlib scikit-learn
+pip install numpy pandas matplotlib seaborn scikit-learn
 ```
 
 这会安装本课程需要的全部库：
 
 - `numpy` - 数值计算
 - `pandas` - 数据处理  
-- `matplotlib` - 数据可视化
-- `scikit-learn` - 机器学习
+- `matplotlib` - 基础数据可视化
+- `seaborn` - 高级数据可视化
+- `scikit-learn` - 机器学习库
 
 **如果 pip install 出错？**
 
@@ -107,7 +108,7 @@ pip install numpy pandas matplotlib scikit-learn
 如果安装速度很慢或显示网络错误，可以尝试使用国内镜像源：
 
 ```bash
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib scikit-learn
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib seaborn scikit-learn
 ```
 
 ## 安装验证
@@ -124,7 +125,7 @@ pip --version
 #| message: false
 #| warning: false
 # 验证库安装情况
-libs = ['numpy', 'pandas', 'matplotlib', 'sklearn']
+libs = ['numpy', 'pandas', 'matplotlib', 'seaborn', 'sklearn']
 
 print("正在验证库安装...\n")
 all_success = True
@@ -139,7 +140,7 @@ for lib in libs:
 if all_success:
     print("\n✓ 所有库已安装！环境配置完成 🎉")
 else:
-    print("\n未安装的库需要运行：pip install numpy pandas matplotlib scikit-learn")
+    print("\n未安装的库需要运行：pip install numpy pandas matplotlib seaborn scikit-learn")
 ```
 
 ## Python 基础：变量、列表、库
@@ -314,7 +315,7 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # 然后安装库
-pip install numpy pandas matplotlib scikit-learn
+pip install numpy pandas matplotlib seaborn scikit-learn
 ```
 
 **虚拟环境的好处：**
@@ -339,9 +340,9 @@ pip install numpy pandas matplotlib scikit-learn
 pip install uv
 
 # 用 uv 安装库（两种方式都可以）
-uv pip install numpy pandas matplotlib scikit-learn
+uv pip install numpy pandas matplotlib seaborn scikit-learn
 # 或
-uv install numpy pandas matplotlib scikit-learn
+uv install numpy pandas matplotlib seaborn scikit-learn
 ```
 
 **uv 的优势：**

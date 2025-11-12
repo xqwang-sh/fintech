@@ -384,14 +384,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-4-安装必要的库" class="level3" data-number="4.1.4">
 <h3 data-number="4.1.4" class="anchored" data-anchor-id="step-4-安装必要的库"><span class="header-section-number">4.1.4</span> Step 4: 安装必要的库</h3>
 <p>打开终端，运行：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib seaborn scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>这会安装本课程需要的全部库：</p>
 <ul>
 <li><code>numpy</code> - 数值计算</li>
 <li><code>pandas</code> - 数据处理<br>
 </li>
-<li><code>matplotlib</code> - 数据可视化</li>
-<li><code>scikit-learn</code> - 机器学习</li>
+<li><code>matplotlib</code> - 基础数据可视化</li>
+<li><code>seaborn</code> - 高级数据可视化</li>
+<li><code>scikit-learn</code> - 机器学习库</li>
 </ul>
 <p><strong>如果 pip install 出错？</strong></p>
 <p><strong>错误 1：<code>pip: command not found</code></strong></p>
@@ -406,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>错误 2：网络问题</strong></p>
 <p>如果安装速度很慢或显示网络错误，可以尝试使用国内镜像源：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib seaborn scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="安装验证" class="level2" data-number="4.2">
@@ -415,11 +416,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> <span class="at">--version</span></span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>运行下面 Python 代码检查库是否安装：</p>
-<div id="a7259011" class="cell" data-message="false" data-execution_count="2">
+<div id="776a1f5c" class="cell" data-message="false" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 验证库安装情况</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>libs <span class="op">=</span> [<span class="st">'numpy'</span>, <span class="st">'pandas'</span>, <span class="st">'matplotlib'</span>, <span class="st">'sklearn'</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>libs <span class="op">=</span> [<span class="st">'numpy'</span>, <span class="st">'pandas'</span>, <span class="st">'matplotlib'</span>, <span class="st">'seaborn'</span>, <span class="st">'sklearn'</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"正在验证库安装...</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>all_success <span class="op">=</span> <span class="va">True</span></span>
@@ -434,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> all_success:</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">✓ 所有库已安装！环境配置完成 🎉"</span>)</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">未安装的库需要运行：pip install numpy pandas matplotlib scikit-learn"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">未安装的库需要运行：pip install numpy pandas matplotlib seaborn scikit-learn"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>正在验证库安装...
@@ -442,6 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✓ numpy - 已安装
 ✓ pandas - 已安装
 ✓ matplotlib - 已安装
+✓ seaborn - 已安装
 ✓ sklearn - 已安装
 
 ✓ 所有库已安装！环境配置完成 🎉</code></pre>
@@ -452,7 +454,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.3" class="anchored" data-anchor-id="python-基础变量列表库"><span class="header-section-number">4.3</span> Python 基础：变量、列表、库</h2>
 <section id="变量与基本运算" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="变量与基本运算"><span class="header-section-number">4.3.1</span> 变量与基本运算</h3>
-<div id="de397722" class="cell" data-message="false" data-execution_count="3">
+<div id="740ca176" class="cell" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 变量赋值</span></span>
@@ -476,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="列表" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="列表"><span class="header-section-number">4.3.2</span> 列表</h3>
-<div id="0ed93f4f" class="cell" data-message="false" data-execution_count="4">
+<div id="27eb3c55" class="cell" data-message="false" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建列表</span></span>
@@ -511,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="导入库与函数调用" class="level3" data-number="4.3.3">
 <h3 data-number="4.3.3" class="anchored" data-anchor-id="导入库与函数调用"><span class="header-section-number">4.3.3</span> 导入库与函数调用</h3>
-<div id="29accbb4" class="cell" data-message="false" data-execution_count="5">
+<div id="4bba3053" class="cell" data-message="false" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -550,7 +552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.4" class="anchored" data-anchor-id="第一个机器学习程序线性回归"><span class="header-section-number">4.4</span> 第一个机器学习程序：线性回归</h2>
 <p><strong>什么是机器学习？</strong> 让计算机从数据中”学习”规律，然后用来做预测。</p>
 <p><strong>机器学习的基本流程：</strong> 1. 准备数据 2. 数据探索与可视化 3. 训练模型 4. 预测新数据 5. 评估模型</p>
-<div id="fba7ef70" class="cell" data-message="false" data-execution_count="6">
+<div id="0b7999de" class="cell" data-message="false" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
@@ -660,7 +662,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv/bin/activate</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 然后安装库</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib seaborn scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>虚拟环境的好处：</strong></p>
 <ul>
 <li>库只安装在项目文件夹</li>
@@ -682,9 +684,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install uv</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 用 uv 安装库（两种方式都可以）</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install numpy pandas matplotlib scikit-learn</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install numpy pandas matplotlib seaborn scikit-learn</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 或</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> install numpy pandas matplotlib scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> install numpy pandas matplotlib seaborn scikit-learn</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>uv 的优势：</strong></p>
 <table class="caption-top table">
 <thead>
