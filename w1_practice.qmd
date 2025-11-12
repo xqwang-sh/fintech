@@ -26,199 +26,93 @@ plt.rcParams['axes.unicode_minus'] = False
 
 本上机讲义覆盖以下内容：
 
-- 环境安装：Python、VS Code、必要的库
-- 安装验证：Python、库文件
-- 第一个机器学习程序：线性回归的简化体验
+**基础要求（必读）：**
+- 环境安装：Python + VS Code + 必要的库（pip）
+- 安装验证
+- Python 基础与机器学习第一个程序
 
-## 环境安装详细指南
+**进阶内容（可选）：**
+- Jupyter Notebook 的使用
+- 虚拟环境管理
+- uv 包管理工具
 
-### Step 1: Python 官方安装
+## 基础环境安装
 
-**推荐方式：使用 Python 官方安装包（简单可靠）**
+### Step 1: 安装 Python（官方版本）
+
+**推荐方式：Python 官方安装包**
 
 1. **下载地址**：https://www.python.org/downloads
-2. **选择版本**：建议选择最新稳定版本（3.10、3.11 或 3.12）
+2. **选择版本**：建议选择 3.10 - 3.12
 3. **安装步骤**：
    - 下载适合你操作系统的安装程序
-   - 运行安装程序，**务必勾选 "Add Python to PATH"** ⚠️（这很重要！）
-   - 点击 "Install Now" 或选择自定义安装即可
-4. **验证安装**：打开终端/命令行，运行以下命令：
+   - 运行安装程序，**务必勾选 "Add Python to PATH"** ⚠️
+   - 点击"Install Now"或选择自定义安装
+4. **验证安装**：打开终端，运行：
    ```bash
    python --version
    ```
-   如果显示版本号（如 Python 3.11.x），说明安装成功！
+   显示版本号说明安装成功！
 
-**为什么不推荐 Anaconda？**
+**为什么不用 Anaconda？**
+- 占用空间大（超过1GB）
+- 容易出现包版本冲突
+- 对初学者更复杂
 
-- 虽然 Anaconda 预装了许多库，看似方便，但对初学者而言反而会带来复杂性：
-  - 占用空间大（超过1GB）
-  - 环境管理复杂，容易出现包版本冲突
-  - 容易让学生"吃苦头"——问题难以调试
-- 官方 Python + pip 的组合简洁、稳定、可靠
-
-### Step 2: 安装 VS Code（推荐的代码编辑器）
+### Step 2: 安装 VS Code
 
 1. **下载地址**：https://code.visualstudio.com/
-2. **安装步骤**：
-   - 下载适合你操作系统的安装程序
-   - 运行安装程序，按照提示完成安装
-   - 启动 VS Code
+2. **安装步骤**：下载后按提示安装，然后启动 VS Code
 
-### Step 3: VS Code 插件安装
+### Step 3: 安装 VS Code 插件
 
-VS Code 最强大的地方就是可以通过插件扩展功能。打开 VS Code 后，按照以下步骤安装必备插件：
+打开 VS Code，按 `Ctrl+Shift+X` (Windows/Linux) 或 `Cmd+Shift+X` (Mac) 打开插件市场，搜索并安装：
 
-**安装步骤：**
+**必装插件：**
+1. **Python**（Microsoft 官方）- 代码支持和调试
+2. **Pylance** - 智能代码提示和类型检查  
+3. **GitHub Copilot**（推荐）- AI 代码助手
+   - **Student 优惠**：GitHub Student 账户免费享用 Copilot Pro（$10/月），申请地址：https://education.github.com/pack
 
-1. 打开 VS Code
-2. 按 `Ctrl+Shift+X` (Windows/Linux) 或 `Cmd+Shift+X` (Mac) 打开插件市场
-3. 搜索以下插件名称并安装：
+### Step 4: 安装必要的库
 
-**必备插件：**
-
-1. **Python**（Microsoft 官方）
-   - 搜索关键词：`Python` 或 `ms-python.python`
-   - 功能：Python 代码支持、调试、代码格式化
-
-2. **Pylance**（更好的语言服务）
-   - 搜索关键词：`Pylance` 或 `ms-python.pylance`
-   - 功能：类型检查、智能代码完成、错误提示
-
-3. **GitHub Copilot**（AI 代码助手 - 强烈推荐！）
-   - 搜索关键词：`Copilot` 或 `GitHub.copilot`
-   - 功能：使用 AI 帮助写代码、生成代码建议
-   - **价格对比**：
-     - 免费用户：GitHub Copilot 有月度限制（问答次数有限制）
-     - **Student 账户**：免费享用 **GitHub Copilot Pro**（价值 $10/月）
-       - 无限制使用 Copilot
-       - 比免费用户多得多的问答次数和优先级
-   - **获得 Student 优惠**：访问 https://education.github.com/pack，用学生邮箱注册即可（还包含其他开发工具的优惠）
-
-### Step 4: 库和包管理 - pip 与 uv
-
-**什么是 pip？**
-
-- `pip` 是 Python 的包管理工具，用于安装和管理第三方库
-- 库（Library）就像是一个"工具箱"，里面装满了别人已经写好的实用工具
-
-**本课程需要的库：**
-
-| 库名 | 用途 |
-|------|------|
-| `numpy` | 数值计算（数组、矩阵运算） |
-| `pandas` | 数据处理（表格数据操作） |
-| `matplotlib` | 数据可视化（画图） |
-| `scikit-learn` | 机器学习模型 |
-
-**安装这些库（推荐两种方式之一）：**
-
-**方式 1：基础方式 - 使用 pip**
-
+打开终端，运行：
 ```bash
 pip install numpy pandas matplotlib scikit-learn
 ```
 
-**方式 2：现代方式 - 使用 uv（推荐！）**
+这会安装本课程需要的全部库：
+- `numpy` - 数值计算
+- `pandas` - 数据处理  
+- `matplotlib` - 数据可视化
+- `scikit-learn` - 机器学习
 
-`uv` 是一个更快、更安全的 Python 包管理工具，专为初学者和团队项目设计。
+**如果 pip install 出错？**
 
-首先安装 `uv`：
-```bash
-pip install uv
-```
+**错误 1：`pip: command not found`**
+- 第1步：重启计算机，重新打开终端
+- 第2步：如果还是失败，手动添加 Python 到 PATH
+  - **Windows**：环境变量中添加 Python 安装路径
+  - **Mac/Linux**：在 `~/.zshrc` 中添加 `export PATH="/usr/local/bin:$PATH"`
+- 第3步：如果依然失败，请重装Python，并确保勾选 "Add Python to PATH"
 
-然后用 `uv` 安装其他库：
-```bash
-uv pip install numpy pandas matplotlib scikit-learn
-```
+**错误 2：网络问题**
 
-**uv 的优势：**
+如果安装速度很慢或显示网络错误，可以尝试使用国内镜像源：
 
-| 特性 | pip | uv |
-|------|-----|-----|
-| 安装速度 | 较慢 | ⚡ 快 10-100 倍 |
-| 依赖解析 | 有时出现版本冲突 | ✓ 更准确，冲突更少 |
-| 一键安装多个库 | ✓ 可以 | ✓ 可以，更快 |
-| 导出依赖 | 较复杂 | ✓ 一行命令 |
-| 初学者友好度 | 一般 | ✓ 更友好 |
-
-简单来说：**`uv` 就像是"自动帮你打理图书馆的管家"**，让你不用担心安装库的细节，把注意力集中在代码和实验本身。
-
-### Step 5: pip install 常见问题排查
-
-如果你运行 `pip install` 或 `uv pip install` 时出现错误，通常是以下原因。按顺序尝试：
-
-**错误现象 1：`pip: command not found` 或 `'pip' 不是内部或外部命令`**
-
-这表示系统找不到 Python 或 pip 的位置。按以下步骤解决：
-
-**第1步：重启计算机**
-
-- 重启可以使系统重新加载 PATH 环境变量
-- 重启后重新打开终端，尝试 `pip --version`
-
-**第2步：如果还是失败，手动添加 Python 到 PATH**
-
-**Windows：**
-
-1. 打开 "文件资源管理器" → 右键单击 "此电脑" → "属性"
-2. 点击 "高级系统设置"
-3. 点击 "环境变量"
-4. 在 "用户变量" 或 "系统变量" 中，找到 "Path"，点击 "编辑"
-5. 点击 "新建"，添加 Python 安装路径（通常是 `C:\Users\你的用户名\AppData\Local\Programs\Python\Python311` 或类似路径）
-6. 点击 "确定" 保存，重启终端
-
-**Mac/Linux：**
-
-1. 打开终端
-2. 编辑 `~/.zshrc` 或 `~/.bashrc`：
-   ```bash
-   nano ~/.zshrc
-   ```
-3. 在文件末尾添加：
-   ```bash
-   export PATH="/usr/local/bin:$PATH"
-   ```
-4. 按 `Ctrl+X`，然后 `Y`，再按 `Enter` 保存
-5. 运行 `source ~/.zshrc` 加载配置
-
-**第3步：如果以上都不行，重装 Python**
-
-1. 卸载已安装的 Python
-2. 从 https://www.python.org/downloads 重新下载并安装
-3. **安装时务必勾选 "Add Python to PATH"**
-4. 重启计算机
-
-**错误现象 2：网络连接问题**
-
-如果安装速度很慢或显示网络错误，可以尝试：
-
-方案1：使用国内镜像源
 ```bash
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy pandas matplotlib scikit-learn
 ```
 
-方案2：使用 uv（uv 通常自动处理网络问题，且更快）
-```bash
-uv pip install numpy pandas matplotlib scikit-learn
-```
-
 ## 安装验证
 
-在终端/命令行运行以下命令来快速验证你的环境。遇到错误先读提示再求助助教。
-
-**验证 Python 和 pip：**
-
+在终端验证：
 ```bash
 python --version
 pip --version
 ```
 
-如果两个命令都正常显示版本号，说明 Python 和 pip 已正确安装！
-
-**验证库安装：**
-
-运行以下 Python 代码来检查必要的库是否已安装：
+运行下面 Python 代码检查库是否安装：
 
 ```{python}
 #| message: false
@@ -236,49 +130,105 @@ for lib in libs:
         print(f'✗ {lib} - 未安装')
         all_success = False
 
-if not all_success:
-    print("\n如有库未安装，运行以下命令之一：")
-    print("  pip install numpy pandas matplotlib scikit-learn")
-    print("  # 或者使用 uv (更快):")
-    print("  uv pip install numpy pandas matplotlib scikit-learn")
-else:
+if all_success:
     print("\n✓ 所有库已安装！环境配置完成 🎉")
+else:
+    print("\n未安装的库需要运行：pip install numpy pandas matplotlib scikit-learn")
 ```
 
-## 第一个机器学习程序：线性回归
+## Python 基础：变量、列表、库
 
-**什么是机器学习？** 简单来说，就是让计算机从数据中"学习"规律，然后用学到的规律做预测。
-
-**这个例子要做什么？** 我们要让计算机学习"房屋面积和价格的关系"，然后预测新房子的价格。
-
-**机器学习的基本流程：**
-
-1. 准备数据（历史数据：已知面积和价格）
-2. 数据探索与可视化（了解数据特性）
-3. 训练模型（让计算机学习规律）
-4. 预测新数据（用学到的规律预测新房子价格）
-5. 评估模型（对比预测结果与真实数据）
-
-下面我们一步步实现：
+### 变量与基本运算
 
 ```{python}
 #| message: false
 #| warning: false
-# 第一个机器学习程序：房价预测（简化版）
+# 变量赋值
+age = 20
+price = 50.5
+name = "Alice"
+print(age, price, name)
 
-# ========== 第1步：导入必要的库 ==========
-from sklearn.linear_model import LinearRegression  # 线性回归模型
-import numpy as np                                # 数值计算库
-import matplotlib.pyplot as plt                    # 画图库
+# 基本运算
+area = 100              # 房屋面积（平米）
+price_per_sqm = 5000   # 每平米价格（元）
+total_price = area * price_per_sqm
+print("总价:", total_price)
+```
 
-# ========== 第2步：准备数据（历史数据）==========
-# 这是我们的"历史数据"：8 套房子的面积和价格
-areas = [50, 60, 70, 80, 90, 100, 110, 120]      # 房屋面积（平米）
-prices = [150, 180, 210, 240, 270, 300, 330, 360] # 对应价格（万元）
+**练习**：创建 `house_area = 120` 和 `price_per_sqm = 8000`，计算总价。
+
+### 列表
+
+```{python}
+#| message: false
+#| warning: false
+# 创建列表
+house_prices = [100, 150, 200, 250, 300]
+
+# 访问元素
+print(house_prices[0])    # 第一个元素
+print(house_prices[-1])  # 最后一个元素
+print(len(house_prices))  # 列表长度
+
+# 添加元素
+house_prices.append(350)
+print(house_prices)
+
+# 遍历列表
+for p in house_prices:
+    print(p)
+```
+
+### 导入库与函数调用
+
+```{python}
+#| message: false
+#| warning: false
+import numpy as np
+import pandas as pd
+
+# numpy 示例
+scores = np.array([85, 90, 78, 92, 88])
+print("平均分:", np.mean(scores))
+print("最高分:", np.max(scores))
+
+# pandas 示例
+data = {
+    '姓名': ['小明', '小红', '小刚'],
+    '成绩': [85, 90, 78]
+}
+df = pd.DataFrame(data)
+print("\n学生成绩表:")
+print(df)
+print("平均成绩:", df['成绩'].mean())
+```
+
+## 第一个机器学习程序：线性回归
+
+**什么是机器学习？** 让计算机从数据中"学习"规律，然后用来做预测。
+
+**机器学习的基本流程：**
+1. 准备数据
+2. 数据探索与可视化
+3. 训练模型
+4. 预测新数据
+5. 评估模型
+
+```{python}
+#| message: false
+#| warning: false
+from sklearn.linear_model import LinearRegression
+import numpy as np
+import matplotlib.pyplot as plt
+
+# ========== 第1步：导入库 ==========
+
+# ========== 第2步：准备数据 ==========
+areas = [50, 60, 70, 80, 90, 100, 110, 120]      # 房屋面积
+prices = [150, 180, 210, 240, 270, 300, 330, 360] # 房屋价格
 
 # ========== 第3步：数据探索与可视化 ==========
-# 在训练模型前，先看看数据的特性
-# 可视化帮助我们理解：面积和价格是否有线性关系？
 plt.figure(figsize=(8, 5))
 plt.scatter(areas, prices, s=100, alpha=0.7, color='blue', label='真实数据点')
 plt.xlabel('房屋面积（平米）', fontsize=12)
@@ -287,55 +237,109 @@ plt.title('房屋面积与价格的关系', fontsize=14)
 plt.grid(True, alpha=0.3)
 plt.legend()
 plt.show()
-
-print("观察：从图上可以看出，面积越大，价格越高，呈现线性关系 ✓")
+print("观察：面积越大，价格越高，呈现线性关系 ✓")
 
 # ========== 第4步：数据格式转换 ==========
-# 将数据转换为 numpy 数组格式（机器学习中常用的数据格式）
-X = np.array(areas).reshape(-1, 1)  # 特征（输入）：房屋面积，reshape 成二维数组
-y = np.array(prices)                # 标签（输出）：房屋价格
+X = np.array(areas).reshape(-1, 1)
+y = np.array(prices)
 
 # ========== 第5步：创建和训练模型 ==========
-# 创建线性回归模型
 model = LinearRegression()
-
-# fit() 就是"训练"：让模型从数据中学习规律
-# 模型会找到一条直线，使得这条直线最接近所有数据点
 model.fit(X, y)
-
 print("\n✓ 模型训练完成！")
 
 # ========== 第6步：查看学到的参数 ==========
-# 模型学到的规律可以用一条直线表示：价格 = 斜率 × 面积 + 截距
 print(f"学到的规律：价格 = {model.coef_[0]:.2f} × 面积 + {model.intercept_:.2f}")
-print(f"  - 斜率（每平米价格）: {model.coef_[0]:.2f} 万元/平米")
-print(f"  - 截距: {model.intercept_:.2f} 万元")
 
 # ========== 第7步：预测新数据 ==========
-# 现在用训练好的模型预测 95 平米房子的价格
-new_area = np.array([[95]])  # 要预测的房子面积（使用 numpy 数组格式）
-predicted = model.predict(new_area)[0]  # predict() 返回预测结果
-print(f"\n预测：95平米的房子价格约为 {predicted:.1f} 万元")
+new_area = np.array([[95]])
+predicted = model.predict(new_area)[0]
+print(f"预测：95平米的房子价格约为 {predicted:.1f} 万元")
 
-# ========== 第8步：评估模型 - 可视化拟合效果 ==========
-# 画图对比：真实数据 vs 模型拟合的直线
+# ========== 第8步：评估模型 ==========
 plt.figure(figsize=(8, 5))
 plt.scatter(areas, prices, s=100, alpha=0.7, color='blue', label='真实数据点')
-plt.plot(areas, model.predict(X), color='red', linewidth=2, label='模型拟合直线')
-
-# 标记预测点
+plt.plot(areas, model.predict(X), color='red', linewidth=2, label='拟合直线')
 plt.scatter([95], [predicted], s=150, color='green', marker='*', label=f'预测：95平米 → {predicted:.1f}万元', zorder=5)
-
 plt.xlabel('房屋面积（平米）', fontsize=12)
 plt.ylabel('房屋价格（万元）', fontsize=12)
 plt.title('房价预测模型效果', fontsize=14)
 plt.grid(True, alpha=0.3)
 plt.legend(fontsize=10)
 plt.show()
-
-print("\n✓ 模型效果评估完成！")
+print("✓ 模型效果评估完成！")
 ```
 
 **恭喜！** 你已经完成了第一个机器学习程序！🎉
 
+---
 
+## 进阶内容（可选）
+
+### Jupyter Notebook（可选：交互式编程）
+
+Jupyter 适合做数据分析和实验。两种方式：
+
+**方式 A：命令行方式**
+```bash
+pip install jupyter notebook
+jupyter notebook
+```
+
+**方式 B：VS Code 插件**
+- 在 VS Code 中安装 Jupyter 插件
+- 直接在 VS Code 中创建和运行 `.ipynb` 文件
+
+**本课程推荐使用 VS Code 编写 `.py` 文件**
+
+### 虚拟环境（可选：项目隔离）
+
+如果想为本课程单独建立编程环境（不影响系统）：
+
+```bash
+# 创建虚拟环境
+python -m venv venv
+
+# 激活虚拟环境
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+
+# 然后安装库
+pip install numpy pandas matplotlib scikit-learn
+```
+
+**虚拟环境的好处：**
+- 库只安装在项目文件夹
+- 不同项目可以有不同的库版本
+- 项目便携性强
+
+**何时使用虚拟环境：**
+- 系统中已有其他版本的库 → 建议使用
+- 刚开始学 Python → 可直接安装到系统
+- 后续做多个项目 → 建议学习使用
+
+### uv 包管理工具（可选：更快的安装）
+
+`uv` 是一个现代的 Python 包管理工具，比 pip 快 10-100 倍。
+
+**安装和使用：**
+```bash
+# 安装 uv
+pip install uv
+
+# 用 uv 安装库（两种方式都可以）
+uv pip install numpy pandas matplotlib scikit-learn
+# 或
+uv install numpy pandas matplotlib scikit-learn
+```
+
+**uv 的优势：**
+| 特性 | pip | uv |
+|------|-----|-----|
+| 安装速度 | 较慢 | ⚡ 快 10-100 倍 |
+| 依赖冲突 | 常有 | 更少 |
+| 初学者友好 | 一般 | ✓ 更好 |
+
+简单来说，`uv` 是"自动帮你打理图书馆的管家" ——让你不用担心安装细节，把注意力集中在代码本身。
