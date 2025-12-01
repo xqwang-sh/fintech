@@ -335,7 +335,6 @@ window.Quarto = {
   <li><a href="#混淆矩阵的定义" id="toc-混淆矩阵的定义" class="nav-link" data-scroll-target="#混淆矩阵的定义"><span class="header-section-number">9.4.2</span> 混淆矩阵的定义</a></li>
   <li><a href="#四个概念详解" id="toc-四个概念详解" class="nav-link" data-scroll-target="#四个概念详解"><span class="header-section-number">9.4.3</span> 四个概念详解</a></li>
   <li><a href="#记忆方法" id="toc-记忆方法" class="nav-link" data-scroll-target="#记忆方法"><span class="header-section-number">9.4.4</span> 记忆方法</a></li>
-  <li><a href="#可视化混淆矩阵" id="toc-可视化混淆矩阵" class="nav-link" data-scroll-target="#可视化混淆矩阵"><span class="header-section-number">9.4.5</span> 可视化混淆矩阵</a></li>
   </ul></li>
   <li><a href="#第四部分分类评估指标" id="toc-第四部分分类评估指标" class="nav-link" data-scroll-target="#第四部分分类评估指标"><span class="header-section-number">9.5</span> 第四部分：分类评估指标</a>
   <ul class="collapse">
@@ -865,83 +864,6 @@ ELSE
 <li><strong>P 在前</strong>：Predict Positive（预测为正类）</li>
 </ul>
 </section>
-<section id="可视化混淆矩阵" class="level3" data-number="9.4.5">
-<h3 data-number="9.4.5" class="anchored" data-anchor-id="可视化混淆矩阵"><span class="header-section-number">9.4.5</span> 可视化混淆矩阵</h3>
-<div id="6c1bc1c7" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>代码</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟预测结果</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">60</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span>)  <span class="co"># 60个存活，40个死亡</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> y_true.copy()</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 引入一些错误</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>y_pred[[<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">12</span>]] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># 3个FN（漏报）</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>y_pred[[<span class="dv">65</span>, <span class="dv">72</span>]] <span class="op">=</span> <span class="dv">1</span>    <span class="co"># 2个FP（误报）</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_true, y_pred)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 混淆矩阵（数字）</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>[<span class="st">'死亡'</span>, <span class="st">'存活'</span>])</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>disp.plot(cmap<span class="op">=</span><span class="st">'Blues'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'混淆矩阵'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注含义</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>TN, FP, FN, TP <span class="op">=</span> cm.ravel()</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].text(<span class="fl">0.1</span>, <span class="fl">0.8</span>, <span class="ss">f'TP (真阳性) = </span><span class="sc">{</span>TP<span class="sc">}</span><span class="ch">\n</span><span class="ss">真实存活，预测存活 ✓'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, </span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>             bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'#c8e6c9'</span>))</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].text(<span class="fl">0.1</span>, <span class="fl">0.6</span>, <span class="ss">f'FN (假阴性) = </span><span class="sc">{</span>FN<span class="sc">}</span><span class="ch">\n</span><span class="ss">真实存活，预测死亡 ✗</span><span class="ch">\n</span><span class="ss">漏报'</span>, fontsize<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>             bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'#ffccbc'</span>))</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].text(<span class="fl">0.1</span>, <span class="fl">0.4</span>, <span class="ss">f'FP (假阳性) = </span><span class="sc">{</span>FP<span class="sc">}</span><span class="ch">\n</span><span class="ss">真实死亡，预测存活 ✗</span><span class="ch">\n</span><span class="ss">误报'</span>, fontsize<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>             bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'#ffccbc'</span>))</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].text(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="ss">f'TN (真阴性) = </span><span class="sc">{</span>TN<span class="sc">}</span><span class="ch">\n</span><span class="ss">真实死亡，预测死亡 ✓'</span>, fontsize<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>             bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'#c8e6c9'</span>))</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'含义解释'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"TP=</span><span class="sc">{</span>TP<span class="sc">}</span><span class="ss">, FN=</span><span class="sc">{</span>FN<span class="sc">}</span><span class="ss">, FP=</span><span class="sc">{</span>FP<span class="sc">}</span><span class="ss">, TN=</span><span class="sc">{</span>TN<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_89141/493726840.py:38: UserWarning:
-
-Glyph 10003 (\N{CHECK MARK}) missing from current font.
-
-/var/folders/dh/sd70vd1d0jg1tkw7h3zwjqxr0000gn/T/ipykernel_89141/493726840.py:38: UserWarning:
-
-Glyph 10007 (\N{BALLOT X}) missing from current font.
-
-/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
-
-Glyph 10003 (\N{CHECK MARK}) missing from current font.
-
-/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning:
-
-Glyph 10007 (\N{BALLOT X}) missing from current font.
-</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="w4_classification_decision_tree_files/figure-html/cell-3-output-2.png" width="1336" height="596" class="figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>TP=57, FN=3, FP=2, TN=38</code></pre>
-</div>
-</div>
-</section>
 </section>
 <section id="第四部分分类评估指标" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="第四部分分类评估指标"><span class="header-section-number">9.5</span> 第四部分：分类评估指标</h2>
@@ -1014,42 +936,47 @@ Glyph 10007 (\N{BALLOT X}) missing from current font.
 </section>
 <section id="precision-vs-recall" class="level3" data-number="9.5.4">
 <h3 data-number="9.5.4" class="anchored" data-anchor-id="precision-vs-recall"><span class="header-section-number">9.5.4</span> Precision vs Recall</h3>
-<div id="aeb1222e" class="cell" data-execution_count="3">
+<div id="9e4fd473" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化 Precision vs Recall</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景1：高 Precision，低 Recall</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y_true_1 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">50</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">50</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>y_pred_1 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">10</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">50</span>)  <span class="co"># 只预测10个正类，但都对</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cm_1 <span class="op">=</span> confusion_matrix(y_true_1, y_pred_1)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>TN_1, FP_1, FN_1, TP_1 <span class="op">=</span> cm_1.ravel()</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>precision_1 <span class="op">=</span> TP_1 <span class="op">/</span> (TP_1 <span class="op">+</span> FP_1) <span class="cf">if</span> (TP_1 <span class="op">+</span> FP_1) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>recall_1 <span class="op">=</span> TP_1 <span class="op">/</span> (TP_1 <span class="op">+</span> FN_1)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>disp_1 <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm_1, display_labels<span class="op">=</span>[<span class="st">'负'</span>, <span class="st">'正'</span>])</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>disp_1.plot(cmap<span class="op">=</span><span class="st">'Blues'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="ss">f'保守策略</span><span class="ch">\n</span><span class="ss">Precision=</span><span class="sc">{</span>precision_1<span class="sc">:.2f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall_1<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">（宁可放过，不可错杀）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景2：低 Precision，高 Recall</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>y_pred_2 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">80</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">20</span>)  <span class="co"># 预测80个正类，包含30个FP</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>cm_2 <span class="op">=</span> confusion_matrix(y_true_1, y_pred_2)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>TN_2, FP_2, FN_2, TP_2 <span class="op">=</span> cm_2.ravel()</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>precision_2 <span class="op">=</span> TP_2 <span class="op">/</span> (TP_2 <span class="op">+</span> FP_2)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>recall_2 <span class="op">=</span> TP_2 <span class="op">/</span> (TP_2 <span class="op">+</span> FN_2)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>disp_2 <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm_2, display_labels<span class="op">=</span>[<span class="st">'负'</span>, <span class="st">'正'</span>])</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>disp_2.plot(cmap<span class="op">=</span><span class="st">'Oranges'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="ss">f'激进策略</span><span class="ch">\n</span><span class="ss">Precision=</span><span class="sc">{</span>precision_2<span class="sc">:.2f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall_2<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">（宁可错杀，不可放过）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化 Precision vs Recall</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景1：高 Precision，低 Recall</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>y_true_1 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">50</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>y_pred_1 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">10</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">50</span>)  <span class="co"># 只预测10个正类，但都对</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>cm_1 <span class="op">=</span> confusion_matrix(y_true_1, y_pred_1)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>TN_1, FP_1, FN_1, TP_1 <span class="op">=</span> cm_1.ravel()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>precision_1 <span class="op">=</span> TP_1 <span class="op">/</span> (TP_1 <span class="op">+</span> FP_1) <span class="cf">if</span> (TP_1 <span class="op">+</span> FP_1) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>recall_1 <span class="op">=</span> TP_1 <span class="op">/</span> (TP_1 <span class="op">+</span> FN_1)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>disp_1 <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm_1, display_labels<span class="op">=</span>[<span class="st">'负'</span>, <span class="st">'正'</span>])</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>disp_1.plot(cmap<span class="op">=</span><span class="st">'Blues'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="ss">f'保守策略</span><span class="ch">\n</span><span class="ss">Precision=</span><span class="sc">{</span>precision_1<span class="sc">:.2f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall_1<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">（宁可放过，不可错杀）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景2：低 Precision，高 Recall</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>y_pred_2 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">80</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">20</span>)  <span class="co"># 预测80个正类，包含30个FP</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>cm_2 <span class="op">=</span> confusion_matrix(y_true_1, y_pred_2)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>TN_2, FP_2, FN_2, TP_2 <span class="op">=</span> cm_2.ravel()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>precision_2 <span class="op">=</span> TP_2 <span class="op">/</span> (TP_2 <span class="op">+</span> FP_2)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>recall_2 <span class="op">=</span> TP_2 <span class="op">/</span> (TP_2 <span class="op">+</span> FN_2)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>disp_2 <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm_2, display_labels<span class="op">=</span>[<span class="st">'负'</span>, <span class="st">'正'</span>])</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>disp_2.plot(cmap<span class="op">=</span><span class="st">'Oranges'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="ss">f'激进策略</span><span class="ch">\n</span><span class="ss">Precision=</span><span class="sc">{</span>precision_2<span class="sc">:.2f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall_2<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">（宁可错杀，不可放过）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_classification_decision_tree_files/figure-html/cell-4-output-1.png" width="1290" height="614" class="figure-img"></p>
+<p><img src="w4_classification_decision_tree_files/figure-html/cell-3-output-1.png" width="1290" height="614" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1088,28 +1015,28 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 <li>Precision = 0.9, Recall = 0.8</li>
 <li>F1 = <span class="math inline">\(2 \times \frac{0.9 \times 0.8}{0.9 + 0.8} = 0.847\)</span></li>
 </ul>
-<div id="e329ad79" class="cell" data-execution_count="4">
+<div id="88913a51" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># F1 分数可视化</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>precisions <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>recalls <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>P, R <span class="op">=</span> np.meshgrid(precisions, recalls)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>F1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (P <span class="op">*</span> R) <span class="op">/</span> (P <span class="op">+</span> R)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>contour <span class="op">=</span> plt.contourf(P, R, F1, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'RdYlGn'</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.colorbar(contour, label<span class="op">=</span><span class="st">'F1 分数'</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Precision'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Recall'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'F1 分数热力图</span><span class="ch">\n</span><span class="st">（两个指标都高，F1 才高）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># F1 分数可视化</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>precisions <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>recalls <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>P, R <span class="op">=</span> np.meshgrid(precisions, recalls)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>F1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (P <span class="op">*</span> R) <span class="op">/</span> (P <span class="op">+</span> R)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>contour <span class="op">=</span> plt.contourf(P, R, F1, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'RdYlGn'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.colorbar(contour, label<span class="op">=</span><span class="st">'F1 分数'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Precision'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Recall'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'F1 分数热力图</span><span class="ch">\n</span><span class="st">（两个指标都高，F1 才高）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_classification_decision_tree_files/figure-html/cell-5-output-1.png" width="764" height="620" class="figure-img"></p>
+<p><img src="w4_classification_decision_tree_files/figure-html/cell-4-output-1.png" width="764" height="620" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1212,33 +1139,33 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </section>
 <section id="阈值对指标的影响" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="阈值对指标的影响"><span class="header-section-number">9.6.2</span> 阈值对指标的影响</h3>
-<div id="f87472ae" class="cell" data-execution_count="5">
+<div id="1becab56" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟阈值变化</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>y_true_roc <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">60</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y_score <span class="op">=</span> np.concatenate([np.random.beta(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">60</span>), np.random.beta(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">40</span>)])</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score, recall_score</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>]</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> thresh <span class="kw">in</span> thresholds:</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    y_pred_thresh <span class="op">=</span> (y_score <span class="op">&gt;=</span> thresh).astype(<span class="bu">int</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    precision <span class="op">=</span> precision_score(y_true_roc, y_pred_thresh)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    recall <span class="op">=</span> recall_score(y_true_roc, y_pred_thresh)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    pred_positive <span class="op">=</span> y_pred_thresh.<span class="bu">sum</span>()</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    results.append({</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'阈值'</span>: thresh,</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'预测正类数'</span>: pred_positive,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Precision'</span>: precision,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Recall'</span>: recall</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>df_thresh <span class="op">=</span> pd.DataFrame(results)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_thresh.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟阈值变化</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y_true_roc <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">60</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y_score <span class="op">=</span> np.concatenate([np.random.beta(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">60</span>), np.random.beta(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">40</span>)])</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score, recall_score</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>]</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> thresh <span class="kw">in</span> thresholds:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    y_pred_thresh <span class="op">=</span> (y_score <span class="op">&gt;=</span> thresh).astype(<span class="bu">int</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    precision <span class="op">=</span> precision_score(y_true_roc, y_pred_thresh)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    recall <span class="op">=</span> recall_score(y_true_roc, y_pred_thresh)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    pred_positive <span class="op">=</span> y_pred_thresh.<span class="bu">sum</span>()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    results.append({</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'阈值'</span>: thresh,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'预测正类数'</span>: pred_positive,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Precision'</span>: precision,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Recall'</span>: recall</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>df_thresh <span class="op">=</span> pd.DataFrame(results)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_thresh.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> 阈值  预测正类数  Precision   Recall
@@ -1267,38 +1194,38 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </section>
 <section id="roc-曲线可视化" class="level4" data-number="9.6.3.2">
 <h4 data-number="9.6.3.2" class="anchored" data-anchor-id="roc-曲线可视化"><span class="header-section-number">9.6.3.2</span> ROC 曲线可视化</h4>
-<div id="2ed78a63" class="cell" data-execution_count="6">
+<div id="b62fde4d" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, auc</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds_roc <span class="op">=</span> roc_curve(y_true_roc, y_score)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr, tpr, color<span class="op">=</span><span class="st">'darkorange'</span>, lw<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'ROC 曲线 (AUC = </span><span class="sc">{</span>roc_auc<span class="sc">:.3f}</span><span class="ss">)'</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'navy'</span>, lw<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'随机猜测 (AUC = 0.5)'</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注几个关键点</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, thresh <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>]):</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(thresholds_roc <span class="op">-</span> thresh))</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    plt.scatter(fpr[idx], tpr[idx], s<span class="op">=</span><span class="dv">100</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    plt.annotate(<span class="ss">f'阈值=</span><span class="sc">{</span>thresh<span class="sc">:.1f}</span><span class="ss">'</span>, (fpr[idx], tpr[idx]), </span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                textcoords<span class="op">=</span><span class="st">"offset points"</span>, xytext<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>), fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="fl">0.0</span>, <span class="fl">1.0</span>])</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="fl">0.0</span>, <span class="fl">1.05</span>])</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'假正例率 (FPR) = FP/(FP+TN)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'真正例率 (TPR) = Recall'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ROC 曲线'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"lower right"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, auc</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds_roc <span class="op">=</span> roc_curve(y_true_roc, y_score)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr, tpr, color<span class="op">=</span><span class="st">'darkorange'</span>, lw<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'ROC 曲线 (AUC = </span><span class="sc">{</span>roc_auc<span class="sc">:.3f}</span><span class="ss">)'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'navy'</span>, lw<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'随机猜测 (AUC = 0.5)'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注几个关键点</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, thresh <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>]):</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(thresholds_roc <span class="op">-</span> thresh))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    plt.scatter(fpr[idx], tpr[idx], s<span class="op">=</span><span class="dv">100</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    plt.annotate(<span class="ss">f'阈值=</span><span class="sc">{</span>thresh<span class="sc">:.1f}</span><span class="ss">'</span>, (fpr[idx], tpr[idx]), </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                textcoords<span class="op">=</span><span class="st">"offset points"</span>, xytext<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>), fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="fl">0.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="fl">0.0</span>, <span class="fl">1.05</span>])</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'假正例率 (FPR) = FP/(FP+TN)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'真正例率 (TPR) = Recall'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ROC 曲线'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"lower right"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_classification_decision_tree_files/figure-html/cell-7-output-1.png" width="816" height="675" class="figure-img"></p>
+<p><img src="w4_classification_decision_tree_files/figure-html/cell-6-output-1.png" width="816" height="675" class="figure-img"></p>
 </figure>
 </div>
 </div>

@@ -347,53 +347,6 @@ graph TD
 - **P 在前**：Predict Positive（预测为正类）
 
 
-### 可视化混淆矩阵
-
-```{python}
-import numpy as np
-import pandas as pd
-import seaborn as sns
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-
-# 模拟预测结果
-np.random.seed(42)
-y_true = np.array([1]*60 + [0]*40)  # 60个存活，40个死亡
-y_pred = y_true.copy()
-# 引入一些错误
-y_pred[[5, 8, 12]] = 0  # 3个FN（漏报）
-y_pred[[65, 72]] = 1    # 2个FP（误报）
-
-cm = confusion_matrix(y_true, y_pred)
-
-fig, axes = plt.subplots(1, 2, figsize=(14, 6))
-
-# 混淆矩阵（数字）
-disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['死亡', '存活'])
-disp.plot(cmap='Blues', ax=axes[0])
-axes[0].set_title('混淆矩阵', fontsize=14)
-
-# 标注含义
-TN, FP, FN, TP = cm.ravel()
-axes[1].text(0.1, 0.8, f'TP (真阳性) = {TP}\n真实存活，预测存活 ✓', fontsize=12, 
-             bbox=dict(boxstyle='round', facecolor='#c8e6c9'))
-axes[1].text(0.1, 0.6, f'FN (假阴性) = {FN}\n真实存活，预测死亡 ✗\n漏报', fontsize=12,
-             bbox=dict(boxstyle='round', facecolor='#ffccbc'))
-axes[1].text(0.1, 0.4, f'FP (假阳性) = {FP}\n真实死亡，预测存活 ✗\n误报', fontsize=12,
-             bbox=dict(boxstyle='round', facecolor='#ffccbc'))
-axes[1].text(0.1, 0.2, f'TN (真阴性) = {TN}\n真实死亡，预测死亡 ✓', fontsize=12,
-             bbox=dict(boxstyle='round', facecolor='#c8e6c9'))
-axes[1].set_xlim(0, 1)
-axes[1].set_ylim(0, 1)
-axes[1].axis('off')
-axes[1].set_title('含义解释', fontsize=14)
-
-plt.tight_layout()
-plt.show()
-
-print(f"TP={TP}, FN={FN}, FP={FP}, TN={TN}")
-```
-
-
 ## 第四部分：分类评估指标
 
 
@@ -471,6 +424,11 @@ $$
 ### Precision vs Recall
 
 ```{python}
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
 # 可视化 Precision vs Recall
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
