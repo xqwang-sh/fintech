@@ -321,44 +321,51 @@ window.Quarto = {
   <li><a href="#快速判断练习" id="toc-快速判断练习" class="nav-link" data-scroll-target="#快速判断练习"><span class="header-section-number">9.2.3</span> 快速判断练习</a></li>
   <li><a href="#金融场景中的分类问题" id="toc-金融场景中的分类问题" class="nav-link" data-scroll-target="#金融场景中的分类问题"><span class="header-section-number">9.2.4</span> 金融场景中的分类问题</a></li>
   </ul></li>
-  <li><a href="#第二部分决策树decision-tree" id="toc-第二部分决策树decision-tree" class="nav-link" data-scroll-target="#第二部分决策树decision-tree"><span class="header-section-number">9.3</span> 第二部分：决策树（Decision Tree）</a>
+  <li><a href="#第二部分逻辑回归logistic-regression" id="toc-第二部分逻辑回归logistic-regression" class="nav-link" data-scroll-target="#第二部分逻辑回归logistic-regression"><span class="header-section-number">9.3</span> 第二部分：逻辑回归（Logistic Regression）</a>
   <ul class="collapse">
-  <li><a href="#引入人类如何做决策" id="toc-引入人类如何做决策" class="nav-link" data-scroll-target="#引入人类如何做决策"><span class="header-section-number">9.3.1</span> 引入：人类如何做决策？</a></li>
-  <li><a href="#决策树的结构" id="toc-决策树的结构" class="nav-link" data-scroll-target="#决策树的结构"><span class="header-section-number">9.3.2</span> 决策树的结构</a></li>
-  <li><a href="#决策树如何学习" id="toc-决策树如何学习" class="nav-link" data-scroll-target="#决策树如何学习"><span class="header-section-number">9.3.3</span> 决策树如何学习？</a></li>
-  <li><a href="#决策树的优缺点" id="toc-决策树的优缺点" class="nav-link" data-scroll-target="#决策树的优缺点"><span class="header-section-number">9.3.4</span> 决策树的优缺点</a></li>
-  <li><a href="#控制过拟合关键参数" id="toc-控制过拟合关键参数" class="nav-link" data-scroll-target="#控制过拟合关键参数"><span class="header-section-number">9.3.5</span> 控制过拟合：关键参数</a></li>
+  <li><a href="#名字的误区" id="toc-名字的误区" class="nav-link" data-scroll-target="#名字的误区"><span class="header-section-number">9.3.1</span> 名字的误区</a></li>
+  <li><a href="#为什么要用逻辑回归" id="toc-为什么要用逻辑回归" class="nav-link" data-scroll-target="#为什么要用逻辑回归"><span class="header-section-number">9.3.2</span> 为什么要用逻辑回归？</a></li>
+  <li><a href="#决策边界decision-boundary" id="toc-决策边界decision-boundary" class="nav-link" data-scroll-target="#决策边界decision-boundary"><span class="header-section-number">9.3.3</span> 决策边界（Decision Boundary）</a></li>
+  <li><a href="#优缺点分析" id="toc-优缺点分析" class="nav-link" data-scroll-target="#优缺点分析"><span class="header-section-number">9.3.4</span> 优缺点分析</a></li>
   </ul></li>
-  <li><a href="#第三部分混淆矩阵" id="toc-第三部分混淆矩阵" class="nav-link" data-scroll-target="#第三部分混淆矩阵"><span class="header-section-number">9.4</span> 第三部分：混淆矩阵</a>
+  <li><a href="#第三部分决策树decision-tree" id="toc-第三部分决策树decision-tree" class="nav-link" data-scroll-target="#第三部分决策树decision-tree"><span class="header-section-number">9.4</span> 第三部分：决策树（Decision Tree）</a>
   <ul class="collapse">
-  <li><a href="#为什么需要混淆矩阵" id="toc-为什么需要混淆矩阵" class="nav-link" data-scroll-target="#为什么需要混淆矩阵"><span class="header-section-number">9.4.1</span> 为什么需要混淆矩阵？</a></li>
-  <li><a href="#混淆矩阵的定义" id="toc-混淆矩阵的定义" class="nav-link" data-scroll-target="#混淆矩阵的定义"><span class="header-section-number">9.4.2</span> 混淆矩阵的定义</a></li>
-  <li><a href="#四个概念详解" id="toc-四个概念详解" class="nav-link" data-scroll-target="#四个概念详解"><span class="header-section-number">9.4.3</span> 四个概念详解</a></li>
-  <li><a href="#记忆方法" id="toc-记忆方法" class="nav-link" data-scroll-target="#记忆方法"><span class="header-section-number">9.4.4</span> 记忆方法</a></li>
+  <li><a href="#引入人类如何做决策" id="toc-引入人类如何做决策" class="nav-link" data-scroll-target="#引入人类如何做决策"><span class="header-section-number">9.4.1</span> 引入：人类如何做决策？</a></li>
+  <li><a href="#决策树的结构" id="toc-决策树的结构" class="nav-link" data-scroll-target="#决策树的结构"><span class="header-section-number">9.4.2</span> 决策树的结构</a></li>
+  <li><a href="#决策树如何学习" id="toc-决策树如何学习" class="nav-link" data-scroll-target="#决策树如何学习"><span class="header-section-number">9.4.3</span> 决策树如何学习？</a></li>
+  <li><a href="#决策树的优缺点" id="toc-决策树的优缺点" class="nav-link" data-scroll-target="#决策树的优缺点"><span class="header-section-number">9.4.4</span> 决策树的优缺点</a></li>
+  <li><a href="#控制过拟合关键参数" id="toc-控制过拟合关键参数" class="nav-link" data-scroll-target="#控制过拟合关键参数"><span class="header-section-number">9.4.5</span> 控制过拟合：关键参数</a></li>
   </ul></li>
-  <li><a href="#第四部分分类评估指标" id="toc-第四部分分类评估指标" class="nav-link" data-scroll-target="#第四部分分类评估指标"><span class="header-section-number">9.5</span> 第四部分：分类评估指标</a>
+  <li><a href="#第四部分混淆矩阵" id="toc-第四部分混淆矩阵" class="nav-link" data-scroll-target="#第四部分混淆矩阵"><span class="header-section-number">9.5</span> 第四部分：混淆矩阵</a>
   <ul class="collapse">
-  <li><a href="#准确率accuracy" id="toc-准确率accuracy" class="nav-link" data-scroll-target="#准确率accuracy"><span class="header-section-number">9.5.1</span> 准确率（Accuracy）</a></li>
-  <li><a href="#精确率precision" id="toc-精确率precision" class="nav-link" data-scroll-target="#精确率precision"><span class="header-section-number">9.5.2</span> 精确率（Precision）</a></li>
-  <li><a href="#召回率recall-tpr" id="toc-召回率recall-tpr" class="nav-link" data-scroll-target="#召回率recall-tpr"><span class="header-section-number">9.5.3</span> 召回率（Recall / TPR）</a></li>
-  <li><a href="#precision-vs-recall" id="toc-precision-vs-recall" class="nav-link" data-scroll-target="#precision-vs-recall"><span class="header-section-number">9.5.4</span> Precision vs Recall</a></li>
-  <li><a href="#f1-分数" id="toc-f1-分数" class="nav-link" data-scroll-target="#f1-分数"><span class="header-section-number">9.5.5</span> F1 分数</a></li>
-  <li><a href="#指标总结对比" id="toc-指标总结对比" class="nav-link" data-scroll-target="#指标总结对比"><span class="header-section-number">9.5.6</span> 指标总结对比</a></li>
+  <li><a href="#为什么需要混淆矩阵" id="toc-为什么需要混淆矩阵" class="nav-link" data-scroll-target="#为什么需要混淆矩阵"><span class="header-section-number">9.5.1</span> 为什么需要混淆矩阵？</a></li>
+  <li><a href="#混淆矩阵的定义" id="toc-混淆矩阵的定义" class="nav-link" data-scroll-target="#混淆矩阵的定义"><span class="header-section-number">9.5.2</span> 混淆矩阵的定义</a></li>
+  <li><a href="#四个概念详解" id="toc-四个概念详解" class="nav-link" data-scroll-target="#四个概念详解"><span class="header-section-number">9.5.3</span> 四个概念详解</a></li>
+  <li><a href="#记忆方法" id="toc-记忆方法" class="nav-link" data-scroll-target="#记忆方法"><span class="header-section-number">9.5.4</span> 记忆方法</a></li>
   </ul></li>
-  <li><a href="#第五部分roc-曲线与-auc" id="toc-第五部分roc-曲线与-auc" class="nav-link" data-scroll-target="#第五部分roc-曲线与-auc"><span class="header-section-number">9.6</span> 第五部分：ROC 曲线与 AUC</a>
+  <li><a href="#第五部分分类评估指标" id="toc-第五部分分类评估指标" class="nav-link" data-scroll-target="#第五部分分类评估指标"><span class="header-section-number">9.6</span> 第五部分：分类评估指标</a>
   <ul class="collapse">
-  <li><a href="#分类阈值的影响" id="toc-分类阈值的影响" class="nav-link" data-scroll-target="#分类阈值的影响"><span class="header-section-number">9.6.1</span> 分类阈值的影响</a></li>
-  <li><a href="#阈值对指标的影响" id="toc-阈值对指标的影响" class="nav-link" data-scroll-target="#阈值对指标的影响"><span class="header-section-number">9.6.2</span> 阈值对指标的影响</a></li>
-  <li><a href="#roc-曲线" id="toc-roc-曲线" class="nav-link" data-scroll-target="#roc-曲线"><span class="header-section-number">9.6.3</span> ROC 曲线</a></li>
-  <li><a href="#理解-roc-曲线" id="toc-理解-roc-曲线" class="nav-link" data-scroll-target="#理解-roc-曲线"><span class="header-section-number">9.6.4</span> 理解 ROC 曲线</a></li>
-  <li><a href="#aucarea-under-curve" id="toc-aucarea-under-curve" class="nav-link" data-scroll-target="#aucarea-under-curve"><span class="header-section-number">9.6.5</span> AUC（Area Under Curve）</a></li>
+  <li><a href="#准确率accuracy" id="toc-准确率accuracy" class="nav-link" data-scroll-target="#准确率accuracy"><span class="header-section-number">9.6.1</span> 准确率（Accuracy）</a></li>
+  <li><a href="#精确率precision" id="toc-精确率precision" class="nav-link" data-scroll-target="#精确率precision"><span class="header-section-number">9.6.2</span> 精确率（Precision）</a></li>
+  <li><a href="#召回率recall-tpr" id="toc-召回率recall-tpr" class="nav-link" data-scroll-target="#召回率recall-tpr"><span class="header-section-number">9.6.3</span> 召回率（Recall / TPR）</a></li>
+  <li><a href="#precision-vs-recall" id="toc-precision-vs-recall" class="nav-link" data-scroll-target="#precision-vs-recall"><span class="header-section-number">9.6.4</span> Precision vs Recall</a></li>
+  <li><a href="#f1-分数" id="toc-f1-分数" class="nav-link" data-scroll-target="#f1-分数"><span class="header-section-number">9.6.5</span> F1 分数</a></li>
+  <li><a href="#指标总结对比" id="toc-指标总结对比" class="nav-link" data-scroll-target="#指标总结对比"><span class="header-section-number">9.6.6</span> 指标总结对比</a></li>
   </ul></li>
-  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">9.7</span> 总结</a>
+  <li><a href="#第六部分roc-曲线与-auc" id="toc-第六部分roc-曲线与-auc" class="nav-link" data-scroll-target="#第六部分roc-曲线与-auc"><span class="header-section-number">9.7</span> 第六部分：ROC 曲线与 AUC</a>
   <ul class="collapse">
-  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">9.7.1</span> 本讲知识回顾</a></li>
-  <li><a href="#核心要点" id="toc-核心要点" class="nav-link" data-scroll-target="#核心要点"><span class="header-section-number">9.7.2</span> 核心要点</a></li>
+  <li><a href="#分类阈值的影响" id="toc-分类阈值的影响" class="nav-link" data-scroll-target="#分类阈值的影响"><span class="header-section-number">9.7.1</span> 分类阈值的影响</a></li>
+  <li><a href="#阈值对指标的影响" id="toc-阈值对指标的影响" class="nav-link" data-scroll-target="#阈值对指标的影响"><span class="header-section-number">9.7.2</span> 阈值对指标的影响</a></li>
+  <li><a href="#roc-曲线" id="toc-roc-曲线" class="nav-link" data-scroll-target="#roc-曲线"><span class="header-section-number">9.7.3</span> ROC 曲线</a></li>
+  <li><a href="#理解-roc-曲线" id="toc-理解-roc-曲线" class="nav-link" data-scroll-target="#理解-roc-曲线"><span class="header-section-number">9.7.4</span> 理解 ROC 曲线</a></li>
+  <li><a href="#aucarea-under-curve" id="toc-aucarea-under-curve" class="nav-link" data-scroll-target="#aucarea-under-curve"><span class="header-section-number">9.7.5</span> AUC（Area Under Curve）</a></li>
   </ul></li>
-  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">9.8</span> Q&amp;A</a></li>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">9.8</span> 总结</a>
+  <ul class="collapse">
+  <li><a href="#本讲知识回顾" id="toc-本讲知识回顾" class="nav-link" data-scroll-target="#本讲知识回顾"><span class="header-section-number">9.8.1</span> 本讲知识回顾</a></li>
+  <li><a href="#核心要点" id="toc-核心要点" class="nav-link" data-scroll-target="#核心要点"><span class="header-section-number">9.8.2</span> 核心要点</a></li>
+  </ul></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">9.9</span> Q&amp;A</a></li>
   </ul>
 </nav>
     </div>
@@ -416,6 +423,7 @@ window.Quarto = {
 <h4 data-number="9.1.3.1" class="anchored" data-anchor-id="知识目标"><span class="header-section-number">9.1.3.1</span> 知识目标</h4>
 <ol type="1">
 <li>理解分类与回归的本质区别</li>
+<li>理解逻辑回归与 Sigmoid 函数</li>
 <li>掌握决策树的基本原理</li>
 <li>理解混淆矩阵（TP、FP、TN、FN）</li>
 <li>掌握分类模型评估指标（准确率、精确率、召回率、F1、AUC）</li>
@@ -425,7 +433,7 @@ window.Quarto = {
 <section id="技能目标" class="level4" data-number="9.1.3.2">
 <h4 data-number="9.1.3.2" class="anchored" data-anchor-id="技能目标"><span class="header-section-number">9.1.3.2</span> 技能目标</h4>
 <ol type="1">
-<li>使用 sklearn 训练决策树分类器</li>
+<li>使用 sklearn 训练逻辑回归与决策树分类器</li>
 <li>计算并可视化混淆矩阵</li>
 <li>绘制 ROC 曲线并计算 AUC</li>
 <li>处理类别型特征（编码）</li>
@@ -551,10 +559,128 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="第二部分决策树decision-tree" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="第二部分决策树decision-tree"><span class="header-section-number">9.3</span> 第二部分：决策树（Decision Tree）</h2>
-<section id="引入人类如何做决策" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="引入人类如何做决策"><span class="header-section-number">9.3.1</span> 引入：人类如何做决策？</h3>
+<section id="第二部分逻辑回归logistic-regression" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="第二部分逻辑回归logistic-regression"><span class="header-section-number">9.3</span> 第二部分：逻辑回归（Logistic Regression）</h2>
+<section id="名字的误区" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="名字的误区"><span class="header-section-number">9.3.1</span> 名字的误区</h3>
+<p>虽然名字里有<strong>回归</strong>，但它是一个<strong>分类</strong>算法！</p>
+<ul>
+<li><strong>线性回归</strong>：预测连续值（房价、温度）</li>
+<li><strong>逻辑回归</strong>：预测概率（属于某一类的可能性）</li>
+</ul>
+</section>
+<section id="为什么要用逻辑回归" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="为什么要用逻辑回归"><span class="header-section-number">9.3.2</span> 为什么要用逻辑回归？</h3>
+<p><strong>问题</strong>：如果用线性回归做分类（0或1），输出可能是 1.5 或 -0.2，这代表什么？</p>
+<p><strong>解决</strong>：我们需要把输出压缩到 <strong>0 到 1 之间</strong>，代表概率。</p>
+<p><strong>核心工具：Sigmoid 函数</strong></p>
+<p><span class="math display">\[
+P(y=1|x) = \frac{1}{1 + e^{-z}}
+\]</span></p>
+<p>其中 <span class="math inline">\(z = w \cdot x + b\)</span> （线性方程）</p>
+<div id="de4585c8" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>z))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>phi_z <span class="op">=</span> sigmoid(z)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.plot(z, phi_z)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="fl">0.0</span>, color<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'z (线性输出)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$\phi (z)$ (概率)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sigmoid 函数：将数值压缩到 (0, 1)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.yticks([<span class="fl">0.0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>])</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w4_classification_decision_tree_files/figure-html/cell-3-output-1.png" width="663" height="454" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>特点</strong>：</p>
+<ul>
+<li><span class="math inline">\(z = 0\)</span> 时，概率 = 0.5（决策边界）</li>
+<li><span class="math inline">\(z &gt; 0\)</span> 时，概率 &gt; 0.5（预测为正类 1）</li>
+<li><span class="math inline">\(z &lt; 0\)</span> 时，概率 &lt; 0.5（预测为负类 0）</li>
+</ul>
+</section>
+<section id="决策边界decision-boundary" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="决策边界decision-boundary"><span class="header-section-number">9.3.3</span> 决策边界（Decision Boundary）</h3>
+<p>逻辑回归试图找到一条直线（或平面）来分开两类数据。</p>
+<div id="1db0c305" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>代码</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成模拟数据</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">100</span>, centers<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>, cluster_std<span class="op">=</span><span class="fl">2.0</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>lr_model <span class="op">=</span> LogisticRegression()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>lr_model.fit(X, y)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化决策边界</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>x_min, x_max <span class="op">=</span> X[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, X[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>y_min, y_max <span class="op">=</span> X[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, X[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.arange(x_min, x_max, <span class="fl">0.1</span>),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                     np.arange(y_min, y_max, <span class="fl">0.1</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> lr_model.predict(np.c_[xx.ravel(), yy.ravel()])</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Z.reshape(xx.shape)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>plt.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.3</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'逻辑回归的线性决策边界'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'特征 1'</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'特征 2'</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w4_classification_decision_tree_files/figure-html/cell-4-output-1.png" width="654" height="525" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="优缺点分析" class="level3" data-number="9.3.4">
+<h3 data-number="9.3.4" class="anchored" data-anchor-id="优缺点分析"><span class="header-section-number">9.3.4</span> 优缺点分析</h3>
+<section id="优点" class="level4" data-number="9.3.4.1">
+<h4 data-number="9.3.4.1" class="anchored" data-anchor-id="优点"><span class="header-section-number">9.3.4.1</span> 优点 ✓</h4>
+<ul>
+<li><strong>输出概率</strong>：不仅告诉你“是/否”，还告诉你“可能性多大”（如 80% 违约概率）。</li>
+<li><strong>简单高效</strong>：计算速度快，适合大规模数据。</li>
+<li><strong>可解释性</strong>：权重 <span class="math inline">\(w\)</span> 直接反映特征的重要性（正权重促进正类，负权重抑制）。</li>
+</ul>
+</section>
+<section id="缺点" class="level4" data-number="9.3.4.2">
+<h4 data-number="9.3.4.2" class="anchored" data-anchor-id="缺点"><span class="header-section-number">9.3.4.2</span> 缺点 ✗</h4>
+<ul>
+<li><strong>线性边界</strong>：只能处理线性可分的数据（除非做特征工程）。</li>
+<li><strong>依赖特征独立性</strong>：假设特征之间相互独立（虽然现实中很难满足）。</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="第三部分决策树decision-tree" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="第三部分决策树decision-tree"><span class="header-section-number">9.4</span> 第三部分：决策树（Decision Tree）</h2>
+<section id="引入人类如何做决策" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="引入人类如何做决策"><span class="header-section-number">9.4.1</span> 引入：人类如何做决策？</h3>
 <p><strong>场景：银行如何决定是否发放贷款？</strong></p>
 <p><strong>传统规则（专家经验）</strong>：</p>
 <pre><code>IF 收入 &gt; 5000 AND 信用评分 &gt; 700 THEN
@@ -566,8 +692,8 @@ ELSE
 <p><strong>问题</strong>：规则由人工制定，可能不准确</p>
 <p><strong>决策树</strong>：<strong>让机器从数据中自动学习这些规则！</strong></p>
 </section>
-<section id="决策树的结构" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="决策树的结构"><span class="header-section-number">9.3.2</span> 决策树的结构</h3>
+<section id="决策树的结构" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="决策树的结构"><span class="header-section-number">9.4.2</span> 决策树的结构</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -598,10 +724,10 @@ ELSE
 <li><strong>分裂</strong>：根据某个特征的某个值进行分组</li>
 </ul>
 </section>
-<section id="决策树如何学习" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="决策树如何学习"><span class="header-section-number">9.3.3</span> 决策树如何学习？</h3>
-<section id="核心思想" class="level4" data-number="9.3.3.1">
-<h4 data-number="9.3.3.1" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">9.3.3.1</span> 核心思想</h4>
+<section id="决策树如何学习" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="决策树如何学习"><span class="header-section-number">9.4.3</span> 决策树如何学习？</h3>
+<section id="核心思想" class="level4" data-number="9.4.3.1">
+<h4 data-number="9.4.3.1" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">9.4.3.1</span> 核心思想</h4>
 <p><strong>每次选择”最能区分两类”的特征进行分裂</strong></p>
 <p><strong>类比</strong>：20 个问题猜动物游戏</p>
 <ul>
@@ -609,8 +735,8 @@ ELSE
 <li>差问题：“是蓝色的吗？” → 区分能力有限</li>
 </ul>
 </section>
-<section id="示例数据" class="level4" data-number="9.3.3.2">
-<h4 data-number="9.3.3.2" class="anchored" data-anchor-id="示例数据"><span class="header-section-number">9.3.3.2</span> 示例数据</h4>
+<section id="示例数据" class="level4" data-number="9.4.3.2">
+<h4 data-number="9.4.3.2" class="anchored" data-anchor-id="示例数据"><span class="header-section-number">9.4.3.2</span> 示例数据</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -654,8 +780,8 @@ ELSE
 </table>
 <p><strong>目标</strong>：找到最好的分裂点</p>
 </section>
-<section id="尝试分裂-1收入-5000" class="level4" data-number="9.3.3.3">
-<h4 data-number="9.3.3.3" class="anchored" data-anchor-id="尝试分裂-1收入-5000"><span class="header-section-number">9.3.3.3</span> 尝试分裂 1：收入 &gt; 5000</h4>
+<section id="尝试分裂-1收入-5000" class="level4" data-number="9.4.3.3">
+<h4 data-number="9.4.3.3" class="anchored" data-anchor-id="尝试分裂-1收入-5000"><span class="header-section-number">9.4.3.3</span> 尝试分裂 1：收入 &gt; 5000</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -675,8 +801,8 @@ ELSE
 </div>
 <p><strong>结果</strong>：<strong>完美分类！</strong> 纯度 100%</p>
 </section>
-<section id="尝试分裂-2信用分-700" class="level4" data-number="9.3.3.4">
-<h4 data-number="9.3.3.4" class="anchored" data-anchor-id="尝试分裂-2信用分-700"><span class="header-section-number">9.3.3.4</span> 尝试分裂 2：信用分 &gt; 700</h4>
+<section id="尝试分裂-2信用分-700" class="level4" data-number="9.4.3.4">
+<h4 data-number="9.4.3.4" class="anchored" data-anchor-id="尝试分裂-2信用分-700"><span class="header-section-number">9.4.3.4</span> 尝试分裂 2：信用分 &gt; 700</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -698,10 +824,10 @@ ELSE
 <p><strong>选择</strong>：收入 &gt; 5000（纯度更高）</p>
 </section>
 </section>
-<section id="决策树的优缺点" class="level3" data-number="9.3.4">
-<h3 data-number="9.3.4" class="anchored" data-anchor-id="决策树的优缺点"><span class="header-section-number">9.3.4</span> 决策树的优缺点</h3>
-<section id="优点" class="level4" data-number="9.3.4.1">
-<h4 data-number="9.3.4.1" class="anchored" data-anchor-id="优点"><span class="header-section-number">9.3.4.1</span> 优点 ✓</h4>
+<section id="决策树的优缺点" class="level3" data-number="9.4.4">
+<h3 data-number="9.4.4" class="anchored" data-anchor-id="决策树的优缺点"><span class="header-section-number">9.4.4</span> 决策树的优缺点</h3>
+<section id="优点-1" class="level4" data-number="9.4.4.1">
+<h4 data-number="9.4.4.1" class="anchored" data-anchor-id="优点-1"><span class="header-section-number">9.4.4.1</span> 优点 ✓</h4>
 <ul>
 <li><strong>易于理解</strong>：可视化，符合人类思维</li>
 <li><strong>可解释性强</strong>：能清楚看到决策路径</li>
@@ -710,8 +836,8 @@ ELSE
 <li><strong>自动特征选择</strong>：重要特征会靠近根节点</li>
 </ul>
 </section>
-<section id="缺点" class="level4" data-number="9.3.4.2">
-<h4 data-number="9.3.4.2" class="anchored" data-anchor-id="缺点"><span class="header-section-number">9.3.4.2</span> 缺点 ✗</h4>
+<section id="缺点-1" class="level4" data-number="9.4.4.2">
+<h4 data-number="9.4.4.2" class="anchored" data-anchor-id="缺点-1"><span class="header-section-number">9.4.4.2</span> 缺点 ✗</h4>
 <ul>
 <li><strong>容易过拟合</strong>：树太深会记住训练数据</li>
 <li><strong>不稳定</strong>：数据稍微变化，树结构可能完全不同</li>
@@ -719,8 +845,8 @@ ELSE
 </ul>
 </section>
 </section>
-<section id="控制过拟合关键参数" class="level3" data-number="9.3.5">
-<h3 data-number="9.3.5" class="anchored" data-anchor-id="控制过拟合关键参数"><span class="header-section-number">9.3.5</span> 控制过拟合：关键参数</h3>
+<section id="控制过拟合关键参数" class="level3" data-number="9.4.5">
+<h3 data-number="9.4.5" class="anchored" data-anchor-id="控制过拟合关键参数"><span class="header-section-number">9.4.5</span> 控制过拟合：关键参数</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -760,10 +886,10 @@ ELSE
 <p><strong>核心原则</strong>：<strong>限制树的复杂度，防止过拟合</strong></p>
 </section>
 </section>
-<section id="第三部分混淆矩阵" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="第三部分混淆矩阵"><span class="header-section-number">9.4</span> 第三部分：混淆矩阵</h2>
-<section id="为什么需要混淆矩阵" class="level3" data-number="9.4.1">
-<h3 data-number="9.4.1" class="anchored" data-anchor-id="为什么需要混淆矩阵"><span class="header-section-number">9.4.1</span> 为什么需要混淆矩阵？</h3>
+<section id="第四部分混淆矩阵" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="第四部分混淆矩阵"><span class="header-section-number">9.5</span> 第四部分：混淆矩阵</h2>
+<section id="为什么需要混淆矩阵" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="为什么需要混淆矩阵"><span class="header-section-number">9.5.1</span> 为什么需要混淆矩阵？</h3>
 <p><strong>场景</strong>：违约预测</p>
 <ul>
 <li><strong>模型 A</strong>：所有人都预测为”不违约” → 准确率 99%（因为 99% 人真的不违约）</li>
@@ -772,8 +898,8 @@ ELSE
 <p><strong>教训</strong>：<strong>准确率不够！需要更细致的评估</strong></p>
 <p><strong>混淆矩阵</strong>：把所有预测结果分成 4 类</p>
 </section>
-<section id="混淆矩阵的定义" class="level3" data-number="9.4.2">
-<h3 data-number="9.4.2" class="anchored" data-anchor-id="混淆矩阵的定义"><span class="header-section-number">9.4.2</span> 混淆矩阵的定义</h3>
+<section id="混淆矩阵的定义" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="混淆矩阵的定义"><span class="header-section-number">9.5.2</span> 混淆矩阵的定义</h3>
 <p><strong>Titanic 例子</strong>：预测乘客是否存活</p>
 <table class="caption-top table">
 <thead>
@@ -797,34 +923,34 @@ ELSE
 </tbody>
 </table>
 </section>
-<section id="四个概念详解" class="level3" data-number="9.4.3">
-<h3 data-number="9.4.3" class="anchored" data-anchor-id="四个概念详解"><span class="header-section-number">9.4.3</span> 四个概念详解</h3>
-<section id="tptrue-positive真阳性" class="level4" data-number="9.4.3.1">
-<h4 data-number="9.4.3.1" class="anchored" data-anchor-id="tptrue-positive真阳性"><span class="header-section-number">9.4.3.1</span> TP（True Positive，真阳性）</h4>
+<section id="四个概念详解" class="level3" data-number="9.5.3">
+<h3 data-number="9.5.3" class="anchored" data-anchor-id="四个概念详解"><span class="header-section-number">9.5.3</span> 四个概念详解</h3>
+<section id="tptrue-positive真阳性" class="level4" data-number="9.5.3.1">
+<h4 data-number="9.5.3.1" class="anchored" data-anchor-id="tptrue-positive真阳性"><span class="header-section-number">9.5.3.1</span> TP（True Positive，真阳性）</h4>
 <ul>
 <li><strong>含义</strong>：真实是正类，预测也是正类 ✓</li>
 <li><strong>例子</strong>：真的存活，预测存活（50 人）</li>
 <li><strong>理解</strong>：预测对了，皆大欢喜</li>
 </ul>
 </section>
-<section id="fnfalse-negative假阴性" class="level4" data-number="9.4.3.2">
-<h4 data-number="9.4.3.2" class="anchored" data-anchor-id="fnfalse-negative假阴性"><span class="header-section-number">9.4.3.2</span> FN（False Negative，假阴性）</h4>
+<section id="fnfalse-negative假阴性" class="level4" data-number="9.5.3.2">
+<h4 data-number="9.5.3.2" class="anchored" data-anchor-id="fnfalse-negative假阴性"><span class="header-section-number">9.5.3.2</span> FN（False Negative，假阴性）</h4>
 <ul>
 <li><strong>含义</strong>：真实是正类，预测是负类 ✗</li>
 <li><strong>例子</strong>：真的存活，预测死亡（10 人）</li>
 <li><strong>理解</strong>：<strong>漏报</strong>（本该检测出来，但漏掉了）</li>
 </ul>
 </section>
-<section id="fpfalse-positive假阳性" class="level4" data-number="9.4.3.3">
-<h4 data-number="9.4.3.3" class="anchored" data-anchor-id="fpfalse-positive假阳性"><span class="header-section-number">9.4.3.3</span> FP（False Positive，假阳性）</h4>
+<section id="fpfalse-positive假阳性" class="level4" data-number="9.5.3.3">
+<h4 data-number="9.5.3.3" class="anchored" data-anchor-id="fpfalse-positive假阳性"><span class="header-section-number">9.5.3.3</span> FP（False Positive，假阳性）</h4>
 <ul>
 <li><strong>含义</strong>：真实是负类，预测是正类 ✗</li>
 <li><strong>例子</strong>：真的死亡，预测存活（5 人）</li>
 <li><strong>理解</strong>：<strong>误报</strong>（本不该报警，但误报了）</li>
 </ul>
 </section>
-<section id="tntrue-negative真阴性" class="level4" data-number="9.4.3.4">
-<h4 data-number="9.4.3.4" class="anchored" data-anchor-id="tntrue-negative真阴性"><span class="header-section-number">9.4.3.4</span> TN（True Negative，真阴性）</h4>
+<section id="tntrue-negative真阴性" class="level4" data-number="9.5.3.4">
+<h4 data-number="9.5.3.4" class="anchored" data-anchor-id="tntrue-negative真阴性"><span class="header-section-number">9.5.3.4</span> TN（True Negative，真阴性）</h4>
 <ul>
 <li><strong>含义</strong>：真实是负类，预测也是负类 ✓</li>
 <li><strong>例子</strong>：真的死亡，预测死亡（35 人）</li>
@@ -832,8 +958,8 @@ ELSE
 </ul>
 </section>
 </section>
-<section id="记忆方法" class="level3" data-number="9.4.4">
-<h3 data-number="9.4.4" class="anchored" data-anchor-id="记忆方法"><span class="header-section-number">9.4.4</span> 记忆方法</h3>
+<section id="记忆方法" class="level3" data-number="9.5.4">
+<h3 data-number="9.5.4" class="anchored" data-anchor-id="记忆方法"><span class="header-section-number">9.5.4</span> 记忆方法</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -865,19 +991,19 @@ ELSE
 </ul>
 </section>
 </section>
-<section id="第四部分分类评估指标" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="第四部分分类评估指标"><span class="header-section-number">9.5</span> 第四部分：分类评估指标</h2>
-<section id="准确率accuracy" class="level3" data-number="9.5.1">
-<h3 data-number="9.5.1" class="anchored" data-anchor-id="准确率accuracy"><span class="header-section-number">9.5.1</span> 准确率（Accuracy）</h3>
-<section id="定义" class="level4" data-number="9.5.1.1">
-<h4 data-number="9.5.1.1" class="anchored" data-anchor-id="定义"><span class="header-section-number">9.5.1.1</span> 定义</h4>
+<section id="第五部分分类评估指标" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="第五部分分类评估指标"><span class="header-section-number">9.6</span> 第五部分：分类评估指标</h2>
+<section id="准确率accuracy" class="level3" data-number="9.6.1">
+<h3 data-number="9.6.1" class="anchored" data-anchor-id="准确率accuracy"><span class="header-section-number">9.6.1</span> 准确率（Accuracy）</h3>
+<section id="定义" class="level4" data-number="9.6.1.1">
+<h4 data-number="9.6.1.1" class="anchored" data-anchor-id="定义"><span class="header-section-number">9.6.1.1</span> 定义</h4>
 <p><span class="math display">\[
 \text{Accuracy} = \frac{TP + TN}{\text{总样本数}} = \frac{\text{预测正确的}}{\text{全部}}
 \]</span></p>
 <p><strong>例子</strong>：<span class="math inline">\(\frac{57 + 38}{100} = 95\%\)</span></p>
 </section>
-<section id="准确率的问题" class="level4" data-number="9.5.1.2">
-<h4 data-number="9.5.1.2" class="anchored" data-anchor-id="准确率的问题"><span class="header-section-number">9.5.1.2</span> 准确率的问题</h4>
+<section id="准确率的问题" class="level4" data-number="9.6.1.2">
+<h4 data-number="9.6.1.2" class="anchored" data-anchor-id="准确率的问题"><span class="header-section-number">9.6.1.2</span> 准确率的问题</h4>
 <p><strong>场景：欺诈检测</strong></p>
 <ul>
 <li>总样本：10000 笔交易</li>
@@ -893,10 +1019,10 @@ ELSE
 <p><strong>结论</strong>：<strong>在类别不平衡时，准确率会误导</strong></p>
 </section>
 </section>
-<section id="精确率precision" class="level3" data-number="9.5.2">
-<h3 data-number="9.5.2" class="anchored" data-anchor-id="精确率precision"><span class="header-section-number">9.5.2</span> 精确率（Precision）</h3>
-<section id="定义-1" class="level4" data-number="9.5.2.1">
-<h4 data-number="9.5.2.1" class="anchored" data-anchor-id="定义-1"><span class="header-section-number">9.5.2.1</span> 定义</h4>
+<section id="精确率precision" class="level3" data-number="9.6.2">
+<h3 data-number="9.6.2" class="anchored" data-anchor-id="精确率precision"><span class="header-section-number">9.6.2</span> 精确率（Precision）</h3>
+<section id="定义-1" class="level4" data-number="9.6.2.1">
+<h4 data-number="9.6.2.1" class="anchored" data-anchor-id="定义-1"><span class="header-section-number">9.6.2.1</span> 定义</h4>
 <p><span class="math display">\[
 \text{Precision} = \frac{TP}{TP + FP} = \frac{\text{真正是正类}}{\text{预测为正类}}
 \]</span></p>
@@ -913,10 +1039,10 @@ ELSE
 </ul>
 </section>
 </section>
-<section id="召回率recall-tpr" class="level3" data-number="9.5.3">
-<h3 data-number="9.5.3" class="anchored" data-anchor-id="召回率recall-tpr"><span class="header-section-number">9.5.3</span> 召回率（Recall / TPR）</h3>
-<section id="定义-2" class="level4" data-number="9.5.3.1">
-<h4 data-number="9.5.3.1" class="anchored" data-anchor-id="定义-2"><span class="header-section-number">9.5.3.1</span> 定义</h4>
+<section id="召回率recall-tpr" class="level3" data-number="9.6.3">
+<h3 data-number="9.6.3" class="anchored" data-anchor-id="召回率recall-tpr"><span class="header-section-number">9.6.3</span> 召回率（Recall / TPR）</h3>
+<section id="定义-2" class="level4" data-number="9.6.3.1">
+<h4 data-number="9.6.3.1" class="anchored" data-anchor-id="定义-2"><span class="header-section-number">9.6.3.1</span> 定义</h4>
 <p><span class="math display">\[
 \text{Recall} = \frac{TP}{TP + FN} = \frac{\text{找出来的正类}}{\text{真正的正类}}
 \]</span></p>
@@ -934,49 +1060,49 @@ ELSE
 </ul>
 </section>
 </section>
-<section id="precision-vs-recall" class="level3" data-number="9.5.4">
-<h3 data-number="9.5.4" class="anchored" data-anchor-id="precision-vs-recall"><span class="header-section-number">9.5.4</span> Precision vs Recall</h3>
-<div id="9e4fd473" class="cell" data-execution_count="2">
+<section id="precision-vs-recall" class="level3" data-number="9.6.4">
+<h3 data-number="9.6.4" class="anchored" data-anchor-id="precision-vs-recall"><span class="header-section-number">9.6.4</span> Precision vs Recall</h3>
+<div id="4c7274db" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化 Precision vs Recall</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景1：高 Precision，低 Recall</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>y_true_1 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">50</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">50</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>y_pred_1 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">10</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">50</span>)  <span class="co"># 只预测10个正类，但都对</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>cm_1 <span class="op">=</span> confusion_matrix(y_true_1, y_pred_1)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>TN_1, FP_1, FN_1, TP_1 <span class="op">=</span> cm_1.ravel()</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>precision_1 <span class="op">=</span> TP_1 <span class="op">/</span> (TP_1 <span class="op">+</span> FP_1) <span class="cf">if</span> (TP_1 <span class="op">+</span> FP_1) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>recall_1 <span class="op">=</span> TP_1 <span class="op">/</span> (TP_1 <span class="op">+</span> FN_1)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>disp_1 <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm_1, display_labels<span class="op">=</span>[<span class="st">'负'</span>, <span class="st">'正'</span>])</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>disp_1.plot(cmap<span class="op">=</span><span class="st">'Blues'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="ss">f'保守策略</span><span class="ch">\n</span><span class="ss">Precision=</span><span class="sc">{</span>precision_1<span class="sc">:.2f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall_1<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">（宁可放过，不可错杀）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景2：低 Precision，高 Recall</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>y_pred_2 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">80</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">20</span>)  <span class="co"># 预测80个正类，包含30个FP</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>cm_2 <span class="op">=</span> confusion_matrix(y_true_1, y_pred_2)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>TN_2, FP_2, FN_2, TP_2 <span class="op">=</span> cm_2.ravel()</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>precision_2 <span class="op">=</span> TP_2 <span class="op">/</span> (TP_2 <span class="op">+</span> FP_2)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>recall_2 <span class="op">=</span> TP_2 <span class="op">/</span> (TP_2 <span class="op">+</span> FN_2)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>disp_2 <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm_2, display_labels<span class="op">=</span>[<span class="st">'负'</span>, <span class="st">'正'</span>])</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>disp_2.plot(cmap<span class="op">=</span><span class="st">'Oranges'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="ss">f'激进策略</span><span class="ch">\n</span><span class="ss">Precision=</span><span class="sc">{</span>precision_2<span class="sc">:.2f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall_2<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">（宁可错杀，不可放过）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化 Precision vs Recall</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景1：高 Precision，低 Recall</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>y_true_1 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">50</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>y_pred_1 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">10</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">50</span>)  <span class="co"># 只预测10个正类，但都对</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>cm_1 <span class="op">=</span> confusion_matrix(y_true_1, y_pred_1)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>TN_1, FP_1, FN_1, TP_1 <span class="op">=</span> cm_1.ravel()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>precision_1 <span class="op">=</span> TP_1 <span class="op">/</span> (TP_1 <span class="op">+</span> FP_1) <span class="cf">if</span> (TP_1 <span class="op">+</span> FP_1) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>recall_1 <span class="op">=</span> TP_1 <span class="op">/</span> (TP_1 <span class="op">+</span> FN_1)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>disp_1 <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm_1, display_labels<span class="op">=</span>[<span class="st">'负'</span>, <span class="st">'正'</span>])</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>disp_1.plot(cmap<span class="op">=</span><span class="st">'Blues'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="ss">f'保守策略</span><span class="ch">\n</span><span class="ss">Precision=</span><span class="sc">{</span>precision_1<span class="sc">:.2f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall_1<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">（宁可放过，不可错杀）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景2：低 Precision，高 Recall</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>y_pred_2 <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">80</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">20</span>)  <span class="co"># 预测80个正类，包含30个FP</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>cm_2 <span class="op">=</span> confusion_matrix(y_true_1, y_pred_2)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>TN_2, FP_2, FN_2, TP_2 <span class="op">=</span> cm_2.ravel()</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>precision_2 <span class="op">=</span> TP_2 <span class="op">/</span> (TP_2 <span class="op">+</span> FP_2)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>recall_2 <span class="op">=</span> TP_2 <span class="op">/</span> (TP_2 <span class="op">+</span> FN_2)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>disp_2 <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm_2, display_labels<span class="op">=</span>[<span class="st">'负'</span>, <span class="st">'正'</span>])</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>disp_2.plot(cmap<span class="op">=</span><span class="st">'Oranges'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="ss">f'激进策略</span><span class="ch">\n</span><span class="ss">Precision=</span><span class="sc">{</span>precision_2<span class="sc">:.2f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall_2<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">（宁可错杀，不可放过）'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_classification_decision_tree_files/figure-html/cell-3-output-1.png" width="1290" height="614" class="figure-img"></p>
+<p><img src="w4_classification_decision_tree_files/figure-html/cell-5-output-1.png" width="1290" height="614" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -987,10 +1113,10 @@ ELSE
 <li>提高 Recall → 降低 Precision（更激进）</li>
 </ul>
 </section>
-<section id="f1-分数" class="level3" data-number="9.5.5">
-<h3 data-number="9.5.5" class="anchored" data-anchor-id="f1-分数"><span class="header-section-number">9.5.5</span> F1 分数</h3>
-<section id="定义-3" class="level4" data-number="9.5.5.1">
-<h4 data-number="9.5.5.1" class="anchored" data-anchor-id="定义-3"><span class="header-section-number">9.5.5.1</span> 定义</h4>
+<section id="f1-分数" class="level3" data-number="9.6.5">
+<h3 data-number="9.6.5" class="anchored" data-anchor-id="f1-分数"><span class="header-section-number">9.6.5</span> F1 分数</h3>
+<section id="定义-3" class="level4" data-number="9.6.5.1">
+<h4 data-number="9.6.5.1" class="anchored" data-anchor-id="定义-3"><span class="header-section-number">9.6.5.1</span> 定义</h4>
 <p><span class="math display">\[
 F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
 \]</span></p>
@@ -1002,8 +1128,8 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </ul>
 <p><strong>调和平均惩罚极端值</strong>：两个指标都高，F1 才高</p>
 </section>
-<section id="f1-的应用场景" class="level4" data-number="9.5.5.2">
-<h4 data-number="9.5.5.2" class="anchored" data-anchor-id="f1-的应用场景"><span class="header-section-number">9.5.5.2</span> F1 的应用场景</h4>
+<section id="f1-的应用场景" class="level4" data-number="9.6.5.2">
+<h4 data-number="9.6.5.2" class="anchored" data-anchor-id="f1-的应用场景"><span class="header-section-number">9.6.5.2</span> F1 的应用场景</h4>
 <p><strong>何时使用 F1？</strong></p>
 <ul>
 <li>Precision 和 Recall 都重要</li>
@@ -1015,36 +1141,36 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 <li>Precision = 0.9, Recall = 0.8</li>
 <li>F1 = <span class="math inline">\(2 \times \frac{0.9 \times 0.8}{0.9 + 0.8} = 0.847\)</span></li>
 </ul>
-<div id="88913a51" class="cell" data-execution_count="3">
+<div id="01561e76" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># F1 分数可视化</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>precisions <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>recalls <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>P, R <span class="op">=</span> np.meshgrid(precisions, recalls)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>F1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (P <span class="op">*</span> R) <span class="op">/</span> (P <span class="op">+</span> R)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>contour <span class="op">=</span> plt.contourf(P, R, F1, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'RdYlGn'</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.colorbar(contour, label<span class="op">=</span><span class="st">'F1 分数'</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Precision'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Recall'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'F1 分数热力图</span><span class="ch">\n</span><span class="st">（两个指标都高，F1 才高）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># F1 分数可视化</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>precisions <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>recalls <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>P, R <span class="op">=</span> np.meshgrid(precisions, recalls)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>F1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (P <span class="op">*</span> R) <span class="op">/</span> (P <span class="op">+</span> R)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>contour <span class="op">=</span> plt.contourf(P, R, F1, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'RdYlGn'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.colorbar(contour, label<span class="op">=</span><span class="st">'F1 分数'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Precision'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Recall'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'F1 分数热力图</span><span class="ch">\n</span><span class="st">（两个指标都高，F1 才高）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_classification_decision_tree_files/figure-html/cell-4-output-1.png" width="764" height="620" class="figure-img"></p>
+<p><img src="w4_classification_decision_tree_files/figure-html/cell-6-output-1.png" width="764" height="620" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="指标总结对比" class="level3" data-number="9.5.6">
-<h3 data-number="9.5.6" class="anchored" data-anchor-id="指标总结对比"><span class="header-section-number">9.5.6</span> 指标总结对比</h3>
+<section id="指标总结对比" class="level3" data-number="9.6.6">
+<h3 data-number="9.6.6" class="anchored" data-anchor-id="指标总结对比"><span class="header-section-number">9.6.6</span> 指标总结对比</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1088,10 +1214,10 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </table>
 </section>
 </section>
-<section id="第五部分roc-曲线与-auc" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="第五部分roc-曲线与-auc"><span class="header-section-number">9.6</span> 第五部分：ROC 曲线与 AUC</h2>
-<section id="分类阈值的影响" class="level3" data-number="9.6.1">
-<h3 data-number="9.6.1" class="anchored" data-anchor-id="分类阈值的影响"><span class="header-section-number">9.6.1</span> 分类阈值的影响</h3>
+<section id="第六部分roc-曲线与-auc" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="第六部分roc-曲线与-auc"><span class="header-section-number">9.7</span> 第六部分：ROC 曲线与 AUC</h2>
+<section id="分类阈值的影响" class="level3" data-number="9.7.1">
+<h3 data-number="9.7.1" class="anchored" data-anchor-id="分类阈值的影响"><span class="header-section-number">9.7.1</span> 分类阈值的影响</h3>
 <p><strong>问题</strong>：分类器输出的是<strong>概率</strong>，如何转成类别？</p>
 <p><strong>例子</strong>：</p>
 <table class="caption-top table">
@@ -1137,35 +1263,35 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </table>
 <p><strong>观察</strong>：阈值不同，分类结果不同</p>
 </section>
-<section id="阈值对指标的影响" class="level3" data-number="9.6.2">
-<h3 data-number="9.6.2" class="anchored" data-anchor-id="阈值对指标的影响"><span class="header-section-number">9.6.2</span> 阈值对指标的影响</h3>
-<div id="1becab56" class="cell" data-execution_count="4">
+<section id="阈值对指标的影响" class="level3" data-number="9.7.2">
+<h3 data-number="9.7.2" class="anchored" data-anchor-id="阈值对指标的影响"><span class="header-section-number">9.7.2</span> 阈值对指标的影响</h3>
+<div id="1660be5b" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟阈值变化</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y_true_roc <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">60</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y_score <span class="op">=</span> np.concatenate([np.random.beta(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">60</span>), np.random.beta(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">40</span>)])</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score, recall_score</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>]</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> thresh <span class="kw">in</span> thresholds:</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    y_pred_thresh <span class="op">=</span> (y_score <span class="op">&gt;=</span> thresh).astype(<span class="bu">int</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    precision <span class="op">=</span> precision_score(y_true_roc, y_pred_thresh)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    recall <span class="op">=</span> recall_score(y_true_roc, y_pred_thresh)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    pred_positive <span class="op">=</span> y_pred_thresh.<span class="bu">sum</span>()</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    results.append({</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'阈值'</span>: thresh,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'预测正类数'</span>: pred_positive,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Precision'</span>: precision,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Recall'</span>: recall</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>df_thresh <span class="op">=</span> pd.DataFrame(results)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_thresh.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟阈值变化</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y_true_roc <span class="op">=</span> np.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">60</span> <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">40</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y_score <span class="op">=</span> np.concatenate([np.random.beta(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">60</span>), np.random.beta(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">40</span>)])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score, recall_score</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> thresh <span class="kw">in</span> thresholds:</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    y_pred_thresh <span class="op">=</span> (y_score <span class="op">&gt;=</span> thresh).astype(<span class="bu">int</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    precision <span class="op">=</span> precision_score(y_true_roc, y_pred_thresh)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    recall <span class="op">=</span> recall_score(y_true_roc, y_pred_thresh)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    pred_positive <span class="op">=</span> y_pred_thresh.<span class="bu">sum</span>()</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    results.append({</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'阈值'</span>: thresh,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'预测正类数'</span>: pred_positive,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Precision'</span>: precision,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Recall'</span>: recall</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>df_thresh <span class="op">=</span> pd.DataFrame(results)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_thresh.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> 阈值  预测正类数  Precision   Recall
@@ -1181,10 +1307,10 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 <li>阈值高 → 预测更少正类 → Precision 高,Recall 低</li>
 </ul>
 </section>
-<section id="roc-曲线" class="level3" data-number="9.6.3">
-<h3 data-number="9.6.3" class="anchored" data-anchor-id="roc-曲线"><span class="header-section-number">9.6.3</span> ROC 曲线</h3>
-<section id="定义-4" class="level4" data-number="9.6.3.1">
-<h4 data-number="9.6.3.1" class="anchored" data-anchor-id="定义-4"><span class="header-section-number">9.6.3.1</span> 定义</h4>
+<section id="roc-曲线" class="level3" data-number="9.7.3">
+<h3 data-number="9.7.3" class="anchored" data-anchor-id="roc-曲线"><span class="header-section-number">9.7.3</span> ROC 曲线</h3>
+<section id="定义-4" class="level4" data-number="9.7.3.1">
+<h4 data-number="9.7.3.1" class="anchored" data-anchor-id="定义-4"><span class="header-section-number">9.7.3.1</span> 定义</h4>
 <p><strong>ROC（Receiver Operating Characteristic）曲线</strong>：</p>
 <ul>
 <li><strong>横轴</strong>：假正例率 FPR = FP / (FP + TN)</li>
@@ -1192,48 +1318,48 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 <li><strong>每个点</strong>：一个阈值对应的 (FPR, TPR)</li>
 </ul>
 </section>
-<section id="roc-曲线可视化" class="level4" data-number="9.6.3.2">
-<h4 data-number="9.6.3.2" class="anchored" data-anchor-id="roc-曲线可视化"><span class="header-section-number">9.6.3.2</span> ROC 曲线可视化</h4>
-<div id="b62fde4d" class="cell" data-execution_count="5">
+<section id="roc-曲线可视化" class="level4" data-number="9.7.3.2">
+<h4 data-number="9.7.3.2" class="anchored" data-anchor-id="roc-曲线可视化"><span class="header-section-number">9.7.3.2</span> ROC 曲线可视化</h4>
+<div id="2cfe411f" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>代码</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, auc</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds_roc <span class="op">=</span> roc_curve(y_true_roc, y_score)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr, tpr, color<span class="op">=</span><span class="st">'darkorange'</span>, lw<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'ROC 曲线 (AUC = </span><span class="sc">{</span>roc_auc<span class="sc">:.3f}</span><span class="ss">)'</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'navy'</span>, lw<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'随机猜测 (AUC = 0.5)'</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注几个关键点</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, thresh <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>]):</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(thresholds_roc <span class="op">-</span> thresh))</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    plt.scatter(fpr[idx], tpr[idx], s<span class="op">=</span><span class="dv">100</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    plt.annotate(<span class="ss">f'阈值=</span><span class="sc">{</span>thresh<span class="sc">:.1f}</span><span class="ss">'</span>, (fpr[idx], tpr[idx]), </span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                textcoords<span class="op">=</span><span class="st">"offset points"</span>, xytext<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>), fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="fl">0.0</span>, <span class="fl">1.0</span>])</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="fl">0.0</span>, <span class="fl">1.05</span>])</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'假正例率 (FPR) = FP/(FP+TN)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'真正例率 (TPR) = Recall'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ROC 曲线'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"lower right"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, auc</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds_roc <span class="op">=</span> roc_curve(y_true_roc, y_score)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr, tpr, color<span class="op">=</span><span class="st">'darkorange'</span>, lw<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'ROC 曲线 (AUC = </span><span class="sc">{</span>roc_auc<span class="sc">:.3f}</span><span class="ss">)'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'navy'</span>, lw<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'随机猜测 (AUC = 0.5)'</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注几个关键点</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, thresh <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>]):</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(thresholds_roc <span class="op">-</span> thresh))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    plt.scatter(fpr[idx], tpr[idx], s<span class="op">=</span><span class="dv">100</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    plt.annotate(<span class="ss">f'阈值=</span><span class="sc">{</span>thresh<span class="sc">:.1f}</span><span class="ss">'</span>, (fpr[idx], tpr[idx]), </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                textcoords<span class="op">=</span><span class="st">"offset points"</span>, xytext<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>), fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="fl">0.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="fl">0.0</span>, <span class="fl">1.05</span>])</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'假正例率 (FPR) = FP/(FP+TN)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'真正例率 (TPR) = Recall'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ROC 曲线'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"lower right"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="w4_classification_decision_tree_files/figure-html/cell-6-output-1.png" width="816" height="675" class="figure-img"></p>
+<p><img src="w4_classification_decision_tree_files/figure-html/cell-8-output-1.png" width="816" height="675" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="理解-roc-曲线" class="level3" data-number="9.6.4">
-<h3 data-number="9.6.4" class="anchored" data-anchor-id="理解-roc-曲线"><span class="header-section-number">9.6.4</span> 理解 ROC 曲线</h3>
+<section id="理解-roc-曲线" class="level3" data-number="9.7.4">
+<h3 data-number="9.7.4" class="anchored" data-anchor-id="理解-roc-曲线"><span class="header-section-number">9.7.4</span> 理解 ROC 曲线</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1263,15 +1389,15 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 <li><strong>曲线越靠近左上角越好</strong></li>
 </ul>
 </section>
-<section id="aucarea-under-curve" class="level3" data-number="9.6.5">
-<h3 data-number="9.6.5" class="anchored" data-anchor-id="aucarea-under-curve"><span class="header-section-number">9.6.5</span> AUC（Area Under Curve）</h3>
-<section id="定义-5" class="level4" data-number="9.6.5.1">
-<h4 data-number="9.6.5.1" class="anchored" data-anchor-id="定义-5"><span class="header-section-number">9.6.5.1</span> 定义</h4>
+<section id="aucarea-under-curve" class="level3" data-number="9.7.5">
+<h3 data-number="9.7.5" class="anchored" data-anchor-id="aucarea-under-curve"><span class="header-section-number">9.7.5</span> AUC（Area Under Curve）</h3>
+<section id="定义-5" class="level4" data-number="9.7.5.1">
+<h4 data-number="9.7.5.1" class="anchored" data-anchor-id="定义-5"><span class="header-section-number">9.7.5.1</span> 定义</h4>
 <p><strong>AUC</strong>：ROC 曲线下的面积</p>
 <p><strong>取值范围</strong>：0.5 ~ 1.0</p>
 </section>
-<section id="auc-的含义" class="level4" data-number="9.6.5.2">
-<h4 data-number="9.6.5.2" class="anchored" data-anchor-id="auc-的含义"><span class="header-section-number">9.6.5.2</span> AUC 的含义</h4>
+<section id="auc-的含义" class="level4" data-number="9.7.5.2">
+<h4 data-number="9.7.5.2" class="anchored" data-anchor-id="auc-的含义"><span class="header-section-number">9.7.5.2</span> AUC 的含义</h4>
 <p><strong>直观解释</strong>：</p>
 <p>随机选一个正样本和一个负样本，模型给正样本打分更高的概率</p>
 <p><strong>判断标准</strong>：</p>
@@ -1307,8 +1433,8 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </tbody>
 </table>
 </section>
-<section id="为什么-auc-重要" class="level4" data-number="9.6.5.3">
-<h4 data-number="9.6.5.3" class="anchored" data-anchor-id="为什么-auc-重要"><span class="header-section-number">9.6.5.3</span> 为什么 AUC 重要？</h4>
+<section id="为什么-auc-重要" class="level4" data-number="9.7.5.3">
+<h4 data-number="9.7.5.3" class="anchored" data-anchor-id="为什么-auc-重要"><span class="header-section-number">9.7.5.3</span> 为什么 AUC 重要？</h4>
 <p><strong>优点</strong>：</p>
 <ol type="1">
 <li><strong>不受阈值影响</strong>：综合评估所有阈值</li>
@@ -1328,19 +1454,28 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </section>
 </section>
 </section>
-<section id="总结" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="总结"><span class="header-section-number">9.7</span> 总结</h2>
-<section id="本讲知识回顾" class="level3" data-number="9.7.1">
-<h3 data-number="9.7.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">9.7.1</span> 本讲知识回顾</h3>
-<section id="分类-vs-回归" class="level4" data-number="9.7.1.1">
-<h4 data-number="9.7.1.1" class="anchored" data-anchor-id="分类-vs-回归"><span class="header-section-number">9.7.1.1</span> 分类 vs 回归</h4>
+<section id="总结" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="总结"><span class="header-section-number">9.8</span> 总结</h2>
+<section id="本讲知识回顾" class="level3" data-number="9.8.1">
+<h3 data-number="9.8.1" class="anchored" data-anchor-id="本讲知识回顾"><span class="header-section-number">9.8.1</span> 本讲知识回顾</h3>
+<section id="分类-vs-回归" class="level4" data-number="9.8.1.1">
+<h4 data-number="9.8.1.1" class="anchored" data-anchor-id="分类-vs-回归"><span class="header-section-number">9.8.1.1</span> 分类 vs 回归</h4>
 <ul>
 <li><strong>回归</strong>：预测连续值（房价、温度）</li>
 <li><strong>分类</strong>：预测离散类别（存活/死亡、是/否）</li>
 </ul>
 </section>
-<section id="决策树" class="level4" data-number="9.7.1.2">
-<h4 data-number="9.7.1.2" class="anchored" data-anchor-id="决策树"><span class="header-section-number">9.7.1.2</span> 决策树</h4>
+<section id="逻辑回归" class="level4" data-number="9.8.1.2">
+<h4 data-number="9.8.1.2" class="anchored" data-anchor-id="逻辑回归"><span class="header-section-number">9.8.1.2</span> 逻辑回归</h4>
+<ul>
+<li><strong>原理</strong>：使用 Sigmoid 函数将线性输出映射到 (0, 1) 概率</li>
+<li><strong>决策边界</strong>：概率 &gt; 0.5 预测为正类</li>
+<li><strong>优点</strong>：输出概率、可解释</li>
+<li><strong>缺点</strong>：处理非线性能力弱</li>
+</ul>
+</section>
+<section id="决策树" class="level4" data-number="9.8.1.3">
+<h4 data-number="9.8.1.3" class="anchored" data-anchor-id="决策树"><span class="header-section-number">9.8.1.3</span> 决策树</h4>
 <ul>
 <li>结构：根节点、内部节点、叶节点</li>
 <li>原理：选择最能区分的特征分裂</li>
@@ -1348,8 +1483,8 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 <li>缺点：易过拟合</li>
 </ul>
 </section>
-<section id="混淆矩阵与评估指标" class="level4" data-number="9.7.1.3">
-<h4 data-number="9.7.1.3" class="anchored" data-anchor-id="混淆矩阵与评估指标"><span class="header-section-number">9.7.1.3</span> 混淆矩阵与评估指标</h4>
+<section id="混淆矩阵与评估指标" class="level4" data-number="9.8.1.4">
+<h4 data-number="9.8.1.4" class="anchored" data-anchor-id="混淆矩阵与评估指标"><span class="header-section-number">9.8.1.4</span> 混淆矩阵与评估指标</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1397,8 +1532,8 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </tbody>
 </table>
 </section>
-<section id="roc-与-auc" class="level4" data-number="9.7.1.4">
-<h4 data-number="9.7.1.4" class="anchored" data-anchor-id="roc-与-auc"><span class="header-section-number">9.7.1.4</span> ROC 与 AUC</h4>
+<section id="roc-与-auc" class="level4" data-number="9.8.1.5">
+<h4 data-number="9.8.1.5" class="anchored" data-anchor-id="roc-与-auc"><span class="header-section-number">9.8.1.5</span> ROC 与 AUC</h4>
 <ul>
 <li><strong>ROC 曲线</strong>：不同阈值下的 TPR vs FPR</li>
 <li><strong>AUC</strong>：ROC 曲线下面积（0.5~1.0）</li>
@@ -1407,8 +1542,8 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </ul>
 </section>
 </section>
-<section id="核心要点" class="level3" data-number="9.7.2">
-<h3 data-number="9.7.2" class="anchored" data-anchor-id="核心要点"><span class="header-section-number">9.7.2</span> 核心要点</h3>
+<section id="核心要点" class="level3" data-number="9.8.2">
+<h3 data-number="9.8.2" class="anchored" data-anchor-id="核心要点"><span class="header-section-number">9.8.2</span> 核心要点</h3>
 <ol type="1">
 <li><p><strong>选对评估指标</strong><br>
 类别平衡 → 准确率；类别不平衡 → AUC</p></li>
@@ -1421,8 +1556,8 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </ol>
 </section>
 </section>
-<section id="qa" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="qa"><span class="header-section-number">9.8</span> Q&amp;A</h2>
+<section id="qa" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="qa"><span class="header-section-number">9.9</span> Q&amp;A</h2>
 <p><strong>Q1：请用一句话概括“分类”与“回归”的本质区别，并判断“预测客户信用评级（A/B/C/D）”属于哪一类？</strong></p>
 <p><strong>A：</strong></p>
 <ul>
@@ -1471,6 +1606,13 @@ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \t
 </ul></li>
 <li>这就是 Precision-Recall 权衡。</li>
 </ul>
+<p><strong>Q9：为什么不能直接用线性回归来处理分类问题（例如预测 0 和 1）？</strong></p>
+<p><strong>A：</strong></p>
+<ol type="1">
+<li><strong>输出范围问题</strong>：线性回归的输出可以是任意实数（例如 100 或 -50），这对于表示概率（必须在 0 到 1 之间）没有意义。</li>
+<li><strong>不稳定性</strong>：线性回归对异常值非常敏感，异常值可能会严重偏移决策边界。</li>
+<li><strong>逻辑回归的改进</strong>：逻辑回归引入了 Sigmoid 函数，将任意实数压缩到 (0, 1) 区间，非常适合表示概率。</li>
+</ol>
 
 
 </section>

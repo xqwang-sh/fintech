@@ -59,13 +59,14 @@ plt.rcParams['axes.unicode_minus'] = False
 
 #### 知识目标
 1. 理解分类与回归的本质区别
-2. 掌握决策树的基本原理
-3. 理解混淆矩阵（TP、FP、TN、FN）
-4. 掌握分类模型评估指标（准确率、精确率、召回率、F1、AUC）
-5. 理解 ROC 曲线的含义
+2. 理解逻辑回归与 Sigmoid 函数
+3. 掌握决策树的基本原理
+4. 理解混淆矩阵（TP、FP、TN、FN）
+5. 掌握分类模型评估指标（准确率、精确率、召回率、F1、AUC）
+6. 理解 ROC 曲线的含义
 
 #### 技能目标
-1. 使用 sklearn 训练决策树分类器
+1. 使用 sklearn 训练逻辑回归与决策树分类器
 2. 计算并可视化混淆矩阵
 3. 绘制 ROC 曲线并计算 AUC
 4. 处理类别型特征（编码）
@@ -138,7 +139,109 @@ graph LR
 - **特征**：使用频率、投诉次数、余额、会员等级
 
 
-## 第二部分：决策树（Decision Tree）
+## 第二部分：逻辑回归（Logistic Regression）
+
+
+### 名字的误区
+
+虽然名字里有**回归**，但它是一个**分类**算法！
+
+*   **线性回归**：预测连续值（房价、温度）
+*   **逻辑回归**：预测概率（属于某一类的可能性）
+
+
+### 为什么要用逻辑回归？
+
+**问题**：如果用线性回归做分类（0或1），输出可能是 1.5 或 -0.2，这代表什么？
+
+**解决**：我们需要把输出压缩到 **0 到 1 之间**，代表概率。
+
+**核心工具：Sigmoid 函数**
+
+$$
+P(y=1|x) = \frac{1}{1 + e^{-z}}
+$$
+
+其中 $z = w \cdot x + b$ （线性方程）
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+z = np.linspace(-10, 10, 100)
+phi_z = sigmoid(z)
+
+plt.figure(figsize=(8, 5))
+plt.plot(z, phi_z)
+plt.axvline(0.0, color='k')
+plt.ylim(-0.1, 1.1)
+plt.xlabel('z (线性输出)', fontsize=12)
+plt.ylabel('$\phi (z)$ (概率)', fontsize=12)
+plt.title('Sigmoid 函数：将数值压缩到 (0, 1)', fontsize=14)
+plt.yticks([0.0, 0.5, 1.0])
+plt.grid(True, alpha=0.3)
+plt.show()
+```
+
+**特点**：
+
+*   $z = 0$ 时，概率 = 0.5（决策边界）
+*   $z > 0$ 时，概率 > 0.5（预测为正类 1）
+*   $z < 0$ 时，概率 < 0.5（预测为负类 0）
+
+
+### 决策边界（Decision Boundary）
+
+逻辑回归试图找到一条直线（或平面）来分开两类数据。
+
+```{python}
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import make_blobs
+
+# 生成模拟数据
+X, y = make_blobs(n_samples=100, centers=2, random_state=42, cluster_std=2.0)
+
+# 训练模型
+lr_model = LogisticRegression()
+lr_model.fit(X, y)
+
+# 可视化决策边界
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.1),
+                     np.arange(y_min, y_max, 0.1))
+
+Z = lr_model.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+
+plt.figure(figsize=(8, 6))
+plt.contourf(xx, yy, Z, alpha=0.3, cmap='coolwarm')
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap='coolwarm', edgecolors='k')
+plt.title('逻辑回归的线性决策边界', fontsize=14)
+plt.xlabel('特征 1')
+plt.ylabel('特征 2')
+plt.show()
+```
+
+
+### 优缺点分析
+
+#### 优点 ✓
+
+*   **输出概率**：不仅告诉你“是/否”，还告诉你“可能性多大”（如 80% 违约概率）。
+*   **简单高效**：计算速度快，适合大规模数据。
+*   **可解释性**：权重 $w$ 直接反映特征的重要性（正权重促进正类，负权重抑制）。
+
+#### 缺点 ✗
+
+*   **线性边界**：只能处理线性可分的数据（除非做特征工程）。
+*   **依赖特征独立性**：假设特征之间相互独立（虽然现实中很难满足）。
+
+
+## 第三部分：决策树（Decision Tree）
 
 
 ### 引入：人类如何做决策？
@@ -270,7 +373,7 @@ graph TD
 **核心原则**：**限制树的复杂度，防止过拟合**
 
 
-## 第三部分：混淆矩阵
+## 第四部分：混淆矩阵
 
 
 ### 为什么需要混淆矩阵？
@@ -347,7 +450,7 @@ graph TD
 - **P 在前**：Predict Positive（预测为正类）
 
 
-## 第四部分：分类评估指标
+## 第五部分：分类评估指标
 
 
 ### 准确率（Accuracy）
@@ -524,7 +627,7 @@ plt.show()
 | **F1** | 调和平均 | 综合 | 两者都重要 | 欺诈检测 |
 
 
-## 第五部分：ROC 曲线与 AUC
+## 第六部分：ROC 曲线与 AUC
 
 
 ### 分类阈值的影响
@@ -696,6 +799,14 @@ graph TD
 - **回归**：预测连续值（房价、温度）
 - **分类**：预测离散类别（存活/死亡、是/否）
 
+#### 逻辑回归
+
+- **原理**：使用 Sigmoid 函数将线性输出映射到 (0, 1) 概率
+- **决策边界**：概率 > 0.5 预测为正类
+- **优点**：输出概率、可解释
+- **缺点**：处理非线性能力弱
+
+
 #### 决策树
 
 - 结构：根节点、内部节点、叶节点
@@ -814,3 +925,12 @@ graph TD
     * Precision (精确率) 会上升：因为被预测为“正类”的门槛高了，这些预测中“猜对”的比例（TP / (TP+FP)）会更高。
     * Recall (召回率) 会下降：因为模型变得保守，它会漏掉很多“不太确定但确实是正类”的样本（FN 增加），导致“找全”的能力（TP / (TP+FN)）下降。
 * 这就是 Precision-Recall 权衡。
+
+
+**Q9：为什么不能直接用线性回归来处理分类问题（例如预测 0 和 1）？**
+
+**A：**
+
+1.  **输出范围问题**：线性回归的输出可以是任意实数（例如 100 或 -50），这对于表示概率（必须在 0 到 1 之间）没有意义。
+2.  **不稳定性**：线性回归对异常值非常敏感，异常值可能会严重偏移决策边界。
+3.  **逻辑回归的改进**：逻辑回归引入了 Sigmoid 函数，将任意实数压缩到 (0, 1) 区间，非常适合表示概率。
